@@ -336,6 +336,7 @@ class IPAddr
   def ==(other); end
   def ===(other); end
   def >>(num); end
+  def _ipv4_compat?; end
   def _reverse; end
   def _to_string(addr); end
   def addr_mask(addr); end
@@ -357,9 +358,14 @@ class IPAddr
   def ipv4_mapped; end
   def ipv4_mapped?; end
   def ipv6?; end
+  def link_local?; end
+  def loopback?; end
   def mask!(mask); end
   def mask(prefixlen); end
   def native; end
+  def prefix; end
+  def prefix=(prefix); end
+  def private?; end
   def reverse; end
   def self.new_ntoh(addr); end
   def self.ntop(addr); end

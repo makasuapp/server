@@ -32,7 +32,6 @@ module Parlour::Debugging::Tree
 end
 module Kernel
   def then; end
-  def yield_self; end
 end
 class Parlour::Plugin
   def generate(*args, &blk); end

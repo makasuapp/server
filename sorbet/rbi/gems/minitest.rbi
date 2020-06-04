@@ -337,6 +337,7 @@ class Minitest::Expectation < Struct
   def path_must_exist(*args); end
   def path_wont_exist(*args); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def target; end

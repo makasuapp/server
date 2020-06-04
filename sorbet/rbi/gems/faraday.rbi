@@ -137,6 +137,7 @@ class Anonymous_Faraday_Options_25 < Faraday::Options
   def read_timeout; end
   def read_timeout=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def timeout; end
@@ -168,6 +169,7 @@ class Anonymous_Faraday_Options_26 < Faraday::Options
   def private_key; end
   def private_key=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def verify; end
@@ -187,6 +189,7 @@ class Anonymous_Faraday_Options_27 < Faraday::Options
   def password; end
   def password=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def uri; end
@@ -224,6 +227,7 @@ class Anonymous_Faraday_Options_28 < Faraday::Options
   def request; end
   def request=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def ssl; end
@@ -259,6 +263,7 @@ class Anonymous_Faraday_Options_29 < Faraday::Options
   def response_headers; end
   def response_headers=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def ssl; end
@@ -484,6 +489,7 @@ class Anonymous_Struct_30 < Struct
   def path; end
   def path=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end

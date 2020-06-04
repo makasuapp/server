@@ -10,7 +10,6 @@
 # activesupport-5.2.4.3
 
 class Array
-  def append(*arg0); end
   def as_json(options = nil); end
   def blank?; end
   def deep_dup; end
@@ -22,10 +21,9 @@ class Array
   def in_groups(number, fill_with = nil); end
   def in_groups_of(number, fill_with = nil); end
   def inquiry; end
-  def prepend(*arg0); end
   def second; end
   def second_to_last; end
-  def self.[](*arg0); end
+  def self.wrap(object); end
   def split(value = nil); end
   def third; end
   def third_to_last; end
@@ -65,10 +63,9 @@ class Hash
   def reverse_merge!(other_hash); end
   def reverse_merge(other_hash); end
   def reverse_update(other_hash); end
-  def self.[](*arg0); end
+  def self.from_xml(xml, disallowed_types = nil); end
   def self.try_convert(arg0); end
   def slice!(*keys); end
-  def slice(*keys); end
   def stringify_keys!; end
   def stringify_keys; end
   def symbolize_keys!; end
@@ -78,8 +75,6 @@ class Hash
   def to_param(namespace = nil); end
   def to_query(namespace = nil); end
   def to_xml(options = nil); end
-  def transform_keys!; end
-  def transform_keys; end
   def with_defaults!(other_hash); end
   def with_defaults(other_hash); end
   def with_indifferent_access; end
@@ -1203,10 +1198,8 @@ class Method
   def duplicable?; end
 end
 class Complex < Numeric
-  def duplicable?; end
 end
 class Rational < Numeric
-  def duplicable?; end
 end
 class Integer < Numeric
   def month; end
@@ -1387,6 +1380,7 @@ class ActiveSupport::Callbacks::Filters::Environment < Struct
   def halted; end
   def halted=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def target; end
@@ -1793,6 +1787,7 @@ class ActiveSupport::ExecutionWrapper::RunHook < Struct
   def hook; end
   def hook=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -1802,6 +1797,7 @@ class ActiveSupport::ExecutionWrapper::CompleteHook < Struct
   def hook; end
   def hook=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -2027,8 +2023,8 @@ module ActiveSupport::NumericWithFormat
   def to_s(format = nil, options = nil); end
 end
 class File < IO
+  def self.atomic_write(file_name, temp_dir = nil); end
   def self.empty?(arg0); end
-  def self.size(arg0); end
 end
 module ActiveSupport::RangeWithFormat
   def to_default_s(format = nil); end
@@ -2259,6 +2255,7 @@ class ActiveSupport::Testing::SimpleStubs::Stub < Struct
   def original_method; end
   def original_method=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end

@@ -117,6 +117,7 @@ class Skylight::Util::HTTP::ErrorResponse < Struct
   def request; end
   def request=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def status; end

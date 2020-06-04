@@ -74,6 +74,7 @@ class Anonymous_Struct_44 < Struct
   def options; end
   def options=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def usage; end

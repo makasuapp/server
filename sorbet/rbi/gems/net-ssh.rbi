@@ -840,6 +840,7 @@ class Net::SSH::Service::Forward::Remote < Struct
   def port; end
   def port=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end

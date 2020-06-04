@@ -404,6 +404,7 @@ class Anonymous_Struct_1 < Struct
   def script; end
   def script=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def variant; end

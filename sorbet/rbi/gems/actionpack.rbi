@@ -174,6 +174,7 @@ class ActionDispatch::Response::ContentTypeHeader < Struct
   def mime_type; end
   def mime_type=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -558,6 +559,7 @@ class ActionDispatch::Journey::Format::Parameter < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -1381,6 +1383,7 @@ class ActionDispatch::Routing::RouteSet::Config < Struct
   def relative_url_root; end
   def relative_url_root=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -2152,6 +2155,7 @@ class Anonymous_Struct_4 < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end

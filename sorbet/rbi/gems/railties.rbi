@@ -390,6 +390,7 @@ class SourceAnnotationExtractor::Annotation < Struct
   def self.[](*arg0); end
   def self.directories; end
   def self.extensions; end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def self.register_directories(*dirs); end

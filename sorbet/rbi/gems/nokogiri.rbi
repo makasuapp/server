@@ -664,6 +664,7 @@ class Anonymous_Struct_33 < Struct
   def prefix; end
   def prefix=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def uri; end
@@ -776,6 +777,7 @@ class Anonymous_Struct_34 < Struct
   def public_id; end
   def public_id=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def system_id; end
@@ -793,6 +795,7 @@ class Anonymous_Struct_35 < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def value; end
@@ -858,6 +861,7 @@ class Struct::HTMLElementDescription < Struct
   def saveEndTag; end
   def saveEndTag=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def startTag; end

@@ -576,6 +576,7 @@ class ActiveRecord::Migration::ReversibleBlockHelper < Struct
   def reverting; end
   def reverting=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def up; end
@@ -596,6 +597,7 @@ class ActiveRecord::MigrationProxy < Struct
   def scope; end
   def scope=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def version; end
@@ -2094,6 +2096,7 @@ class ActiveRecord::Reflection::AbstractReflection::JoinKeys < Struct
   def key; end
   def key=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -2432,6 +2435,7 @@ class ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array::Data < Struct
   def encoder; end
   def encoder=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def values; end
@@ -2499,6 +2503,7 @@ class ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Oid < ActiveModel::Type
 end
 class ActiveRecord::Point < Struct
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def x; end
@@ -2645,6 +2650,7 @@ class ActiveRecord::ConnectionAdapters::ColumnDefinition < Struct
   def scale; end
   def scale=(value); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def sql_type; end
@@ -2656,6 +2662,7 @@ class ActiveRecord::ConnectionAdapters::AddColumnDefinition < Struct
   def column; end
   def column=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -2665,6 +2672,7 @@ class ActiveRecord::ConnectionAdapters::ChangeColumnDefinition < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -2672,6 +2680,7 @@ class ActiveRecord::ConnectionAdapters::PrimaryKeyDefinition < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -2689,6 +2698,7 @@ class ActiveRecord::ConnectionAdapters::ForeignKeyDefinition < Struct
   def options=(_); end
   def primary_key; end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def to_table; end
@@ -3814,6 +3824,7 @@ class ActiveRecord::Associations::JoinDependency::Aliases::Table < Struct
   def node; end
   def node=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -3823,6 +3834,7 @@ class ActiveRecord::Associations::JoinDependency::Aliases::Column < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -4242,6 +4254,7 @@ class Anonymous_Struct_23 < Struct
   def end; end
   def end=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end

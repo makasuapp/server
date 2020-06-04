@@ -1,24 +1,38 @@
-# README
+Ruby on Rails web server for interacting with the mobile apps
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# First time setup
 
-Things you may want to cover:
+1. [Install ruby version manager](https://rvm.io/rvm/install)
+2. Install ruby: `rvm install ruby-2.5.3`
+3. Use the version installed: `rvm use ruby-2.5.3`
+4. Install bundler: `gem install bundler`
+5. Install gems. First time will take a while since it's installing Rails: `bundle`
+6. Create the database (you might have to install postgres manually if there's issues): `rake db:create && rake db:migrate`
 
-* Ruby version
+# Update server
 
-* System dependencies
+Run these every time you pull in new commits:
 
-* Configuration
+```
+  bundle
+  rake db:migrate
+  bundle exec rake rails_rbi:all
+```
 
-* Database creation
+# Start the server
 
-* Database initialization
+```
+  rails s
+```
 
-* How to run the test suite
+# Test
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the type checker:
+```
+  srb tc
+```
 
-* Deployment instructions
-
-* ...
+Run the automated tests:
+```
+  rails test
+```

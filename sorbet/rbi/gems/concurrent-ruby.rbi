@@ -546,6 +546,7 @@ class Concurrent::CyclicBarrier < Concurrent::Synchronization::LockableObject
 end
 class Concurrent::CyclicBarrier::Generation < Struct
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def status; end
@@ -678,6 +679,7 @@ class Concurrent::SerializedExecution::Job < Struct
   def executor; end
   def executor=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -875,6 +877,7 @@ class Concurrent::Agent::Job < Struct
   def executor; end
   def executor=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -1179,6 +1182,7 @@ class Concurrent::Transaction
 end
 class Concurrent::Transaction::ReadLogEntry < Struct
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def tvar; end

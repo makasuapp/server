@@ -623,6 +623,7 @@ class Anonymous_Struct_8 < Struct
   def root; end
   def root=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -865,6 +866,7 @@ class Rack::Multipart::Parser::MultipartInfo < Struct
   def params; end
   def params=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def tmp_files; end
@@ -891,6 +893,7 @@ class Anonymous_Struct_9 < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end

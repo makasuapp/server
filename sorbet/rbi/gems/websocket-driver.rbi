@@ -51,11 +51,13 @@ module WebSocket::Driver::EventEmitter
 end
 class WebSocket::Driver::ConnectEvent < Struct
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
 class WebSocket::Driver::OpenEvent < Struct
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -63,6 +65,7 @@ class WebSocket::Driver::MessageEvent < Struct
   def data; end
   def data=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -70,6 +73,7 @@ class WebSocket::Driver::PingEvent < Struct
   def data; end
   def data=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -77,6 +81,7 @@ class WebSocket::Driver::PongEvent < Struct
   def data; end
   def data=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -86,6 +91,7 @@ class WebSocket::Driver::CloseEvent < Struct
   def reason; end
   def reason=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end

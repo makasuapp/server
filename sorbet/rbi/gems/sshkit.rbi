@@ -334,6 +334,7 @@ class SSHKit::Backend::ConnectionPool::NilCache < Struct
   def push(conn); end
   def same_key?(_key); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end

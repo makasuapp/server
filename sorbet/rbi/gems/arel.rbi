@@ -146,6 +146,7 @@ class Anonymous_Struct_13 < Struct
   def relation; end
   def relation=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -477,6 +478,7 @@ class Arel::Visitors::MSSQL::RowNumber < Struct
   def children; end
   def children=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
@@ -619,6 +621,7 @@ class Anonymous_Struct_14 < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
   def to; end
@@ -711,6 +714,7 @@ class Anonymous_Struct_15 < Struct
   def data; end
   def data=(_); end
   def self.[](*arg0); end
+  def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
