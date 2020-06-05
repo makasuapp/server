@@ -3,8 +3,8 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-def r(name, quantity = 1, unit = nil)
-  Recipe.find_or_create_by!(name: name, output_quantity: quantity, unit: unit)
+def r(name, quantity = 1, unit = nil, publish = false)
+  Recipe.find_or_create_by!(name: name, output_quantity: quantity, unit: unit, publish: publish)
 end
 
 def i(name)
@@ -173,7 +173,7 @@ if sauce.recipe_steps.empty?
   si(s5, "Recipe", minced_ginger)
 end
 
-chicken = r("Mouth Watering Chicken", 2)
+chicken = r("Mouth Watering Chicken", 2, nil, true)
 if chicken.recipe_steps.empty?
   s1 = s(chicken, 1, "Dry brine chicken overnight", "prep",
     {min_before_sec: 60 * 60 * 8}

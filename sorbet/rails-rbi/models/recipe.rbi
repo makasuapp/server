@@ -44,6 +44,15 @@ module Recipe::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def output_quantity?; end
 
+  sig { returns(T::Boolean) }
+  def publish; end
+
+  sig { params(value: T::Boolean).void }
+  def publish=(value); end
+
+  sig { returns(T::Boolean) }
+  def publish?; end
+
   sig { returns(T.nilable(String)) }
   def unit; end
 

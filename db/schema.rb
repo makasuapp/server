@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_010356) do
   create_table "recipes", force: :cascade do |t|
     t.string "name", null: false
     t.decimal "output_quantity", precision: 6, scale: 2, default: "1.0", null: false
+    t.boolean "publish", default: false, null: false
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

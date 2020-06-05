@@ -6,7 +6,8 @@
 #  id              :bigint           not null, primary key
 #  name            :string           not null
 #  output_quantity :decimal(6, 2)    default(1.0), not null
-#  untest            :string
+#  publish         :boolean          default(FALSE), not null
+#  unit            :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

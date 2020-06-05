@@ -109,6 +109,15 @@ module RecipeStep::GeneratedAssociationMethods
   sig { params(value: T::Enumerable[::DetailedInstruction]).void }
   def detailed_instructions=(value); end
 
+  sig { returns(::StepInput::ActiveRecord_Associations_CollectionProxy) }
+  def inputs; end
+
+  sig { returns(T::Array[Integer]) }
+  def input_ids; end
+
+  sig { params(value: T::Enumerable[::StepInput]).void }
+  def inputs=(value); end
+
   sig { returns(::Recipe) }
   def recipe; end
 
