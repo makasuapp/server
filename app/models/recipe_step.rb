@@ -1,0 +1,34 @@
+# typed: strict
+# == Schema Information
+#
+# Table name: recipe_steps
+#
+#  id             :bigint           not null, primary key
+#  duration_sec   :integer
+#  instruction    :text             not null
+#  max_before_sec :integer
+#  min_before_sec :integer
+#  number         :integer          not null
+#  step_type      :string           not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  recipe_id      :bigint           not null
+#
+# Indexes
+#
+#  index_recipe_steps_on_recipe_id  (recipe_id)
+#  index_recipe_steps_on_step_type  (step_type)
+#
+class RecipeStep < ApplicationRecord
+  extend T::Sig
+  
+  validates :step_type, inclusion: { in: %w(cook prep), message: "%{value} is not a valid type" }
+
+  belongs_to :recipe
+  #inputs in this step
+  has_many :step_inputs
+  #steps where this is an input
+  has_many :step_inputs, as: :inputable
+  has_and_belongs_to_many :tools
+  has_and_belongs_to_many :detailed_instructions
+end
