@@ -5,7 +5,7 @@ class CreateStepInputs < ActiveRecord::Migration[5.2]
       t.belongs_to :recipe_step, null: false
       t.bigint :inputable_id, null: false
       t.string :inputable_type, null: false
-      t.integer :quantity, null: false, default: 1
+      t.decimal :quantity, precision: 6, scale: 2, null: false, default: 1
 
       t.string :unit
 

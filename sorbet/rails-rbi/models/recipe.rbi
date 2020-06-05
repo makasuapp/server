@@ -35,6 +35,24 @@ module Recipe::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def name?; end
 
+  sig { returns(BigDecimal) }
+  def output_quantity; end
+
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
+  def output_quantity=(value); end
+
+  sig { returns(T::Boolean) }
+  def output_quantity?; end
+
+  sig { returns(T.nilable(String)) }
+  def unit; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def unit=(value); end
+
+  sig { returns(T::Boolean) }
+  def unit?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def updated_at; end
 

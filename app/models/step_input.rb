@@ -5,7 +5,7 @@
 #
 #  id             :bigint           not null, primary key
 #  inputable_type :string           not null
-#  quantity       :integer          default(1), not null
+#  quantity       :decimal(6, 2)    default(1.0), not null
 #  unit           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
