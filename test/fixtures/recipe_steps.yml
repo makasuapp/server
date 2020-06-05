@@ -23,3 +23,56 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+green_onion_p1:
+  recipe: green_onion
+  instruction: "Chop green onions"
+  number: 1
+  step_type: "prep"
+  tools: knife
+
+sauce_p1:
+  recipe: sauce
+  instruction: "Get salt"
+  number: 1
+  step_type: "prep"
+
+sauce_p2:
+  recipe: sauce
+  instruction: "Mix together with sesame paste and oil"
+  number: 2
+  step_type: "prep"
+
+sauce_p3:
+  recipe: sauce
+  instruction: "Mix all together"
+  number: 3
+  step_type: "prep"
+
+chicken_p1:
+  recipe: chicken
+  instruction: "Dry brine chicken overnight"
+  number: 1
+  step_type: "prep"
+  min_before_sec: 28800
+
+chicken_p2:
+  recipe: chicken
+  instruction: "Cook on low heat for 20 minutes"
+  number: 2
+  step_type: "prep"
+  duration_sec: 1200
+  tools: stove
+
+chicken_c1:
+  recipe: chicken
+  instruction: "Cut chicken into cubes"
+  number: 1
+  step_type: "cook"
+  tools: knife
+
+chicken_c2:
+  recipe: chicken
+  instruction: "Drizzle on sauce and green onions as garnish"
+  number: 2
+  step_type: "cook"

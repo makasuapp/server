@@ -29,7 +29,22 @@ class Recipe < ApplicationRecord
 
   sig {returns(T::Boolean)}
   def is_valid?
-    #TODO: check if all steps aside from last are inputs to later steps
-    true
+    #check if all steps aside from last are inputs to later steps
+    steps_to_check = self.recipe_steps.order("step_type DESC, number ASC")
+    used_steps = {}
+    step_id = ->(step) {"#{step.step_type}#{step.number}"}
+    last_id = steps_to_check.last.try(:id)
+
+    steps_to_check.each do |step|
+      if step.id != last_id && used_steps[step_id.call(step)].nil?
+        used_steps[step_id.call(step)] = false
+      end
+
+      step.inputs.recipe_step_inputs.each do |input|
+        used_steps[step_id.call(input.inputable)] = true
+      end
+    end
+
+    used_steps.values.inject(true) { |sum, step| sum && step }
   end
 end

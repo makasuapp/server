@@ -82,20 +82,20 @@ end
 
 pepper_oil = r("Sichuan Pepper Oil", 130, g)
 if pepper_oil.recipe_steps.empty?
-  s1 = s(pepper_oil, 1, "Heat oil until 220 degrees F", "cook")
+  s1 = s(pepper_oil, 1, "Heat oil until 220 degrees F")
   si(s1, "Ingredient", oil, 90, g)
   s1.tools << wok
   s1.tools << stove
 
-  s2 = s(pepper_oil, 2, "Add in sesame, cook until starting to brown, then remove the sesame", "cook")
+  s2 = s(pepper_oil, 2, "Add in sesame, cook until starting to brown, then remove the sesame")
   si(s2, "Ingredient", sesame, 10, g)
   si(s2, "RecipeStep", s1)
 
-  s3 = s(pepper_oil, 3, "Let oil cool until 200, then pour in half of the pepper paste. Stir continuously to not burn it", "cook")
+  s3 = s(pepper_oil, 3, "Let oil cool until 200, then pour in half of the pepper paste. Stir continuously to not burn it")
   si(s3, "RecipeStep", s2)
   si(s3, "Recipe", pepper_paste, 1.5)
 
-  s4 = s(pepper_oil, 4, "Let oil cool until 160, then pour in the other half of the pepper paste and add the sesame back", "cook")
+  s4 = s(pepper_oil, 4, "Let oil cool until 160, then pour in the other half of the pepper paste and add the sesame back")
   si(s4, "RecipeStep", s3)
   si(s4, "Recipe", pepper_paste, 1.5)
 end
@@ -114,7 +114,7 @@ end
 
 peppercorn_oil = r("Sichuan Peppercorn Oil", 50, g)
 if peppercorn_oil.recipe_steps.empty?
-  s1 = s(peppercorn_oil, 1, "Cook on high heat to bring out the fragrance, then lower heat to bring out the flavor inside", "cook")
+  s1 = s(peppercorn_oil, 1, "Cook on high heat to bring out the fragrance, then lower heat to bring out the flavor inside")
   si(s1, "Ingredient", oil, 40, g)
   si(s1, "Recipe", peppercorn_paste, 1)
   s1.tools << wok

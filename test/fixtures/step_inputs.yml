@@ -21,3 +21,63 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+green_onion_p1:
+  inputable: green_onion (Ingredient)
+  recipe_step: green_onion_p1
+  quantity: 100
+  unit: "grams"
+
+sauce_p1:
+  inputable: salt (Ingredient)
+  recipe_step: sauce_p1
+  quantity: 1
+  unit: "teaspoons"
+
+sauce_p2_i1:
+  inputable: sesame_paste (Ingredient)
+  recipe_step: sauce_p2
+  quantity: 3
+  unit: "tablespoons"
+
+sauce_p2_i2:
+  inputable: sesame_oil (Ingredient)
+  recipe_step: sauce_p2
+  quantity: 6
+  unit: "tablespoons"
+
+sauce_p3_i1:
+  inputable: sauce_p1 (RecipeStep)
+  recipe_step: sauce_p3
+
+sauce_p3_i2:
+  inputable: sauce_p2 (RecipeStep)
+  recipe_step: sauce_p3
+
+chicken_p1_i1:
+  inputable: chicken (Ingredient)
+  recipe_step: chicken_p1
+
+chicken_p1_i2:
+  inputable: salt (Ingredient)
+  recipe_step: chicken_p1
+
+chicken_p2:
+  inputable: chicken_p1 (RecipeStep)
+  recipe_step: chicken_p2
+
+chicken_c1:
+  inputable: chicken_p2 (RecipeStep)
+  recipe_step: chicken_c1
+
+chicken_c2_i1:
+  inputable: chicken_c1 (RecipeStep)
+  recipe_step: chicken_c2
+
+chicken_c2_i2:
+  inputable: sauce (Recipe)
+  recipe_step: chicken_c2
+
+chicken_c2_i3:
+  inputable: green_onion (Recipe)
+  recipe_step: chicken_c2

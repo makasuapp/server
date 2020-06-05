@@ -14,3 +14,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+chicken:
+  name: "Mouth Watering Chicken"
+  output_quantity: 2
+
+green_onion:
+  name: "Chopped Green Onion"
+  output_quantity: 100
+  unit: "grams"
+
+sauce:
+  name: "Mouth Watering Chicken Sauce"

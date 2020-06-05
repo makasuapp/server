@@ -26,6 +26,21 @@ class StepInput < ApplicationRecord
   belongs_to :recipe_step
   belongs_to :inputable, polymorphic: true
 
+  sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
+  def self.recipe_inputs
+    self.where(inputable_type: "Recipe")
+  end
+
+  sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
+  def self.recipe_step_inputs
+    self.where(inputable_type: "RecipeStep")
+  end
+
+  sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
+  def self.ingredient_inputs
+    self.where(inputable_type: "Ingredient")
+  end
+
   sig {void}
   def step_input_above_chain
     if self.inputable_type == "RecipeStep"
