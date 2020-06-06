@@ -1,7 +1,0 @@
-# Add configuration values here, as shown below.
-
-DATABASE_PASSWORD: s2v48CDkUNofBrUdUA3a
-DATABASE_HOST: coaching.cojxvkimk6fr.us-west-2.rds.amazonaws.com
-DATABASE_PORT: "5432"
-SECRET_KEY_BASE: 177af02258ad98cbc375b1141daa4950a732f9a3296d5bed56cdc1e3d19e42aeaa3fdb4596d298d271f265c104af87ca0b394623801e5430c44506a25546ffcb
-RAILS_MASTER_KEY: ee1b545912dc3bb7f6fd784495c53b09

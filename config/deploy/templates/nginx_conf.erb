@@ -1,0 +1,135 @@
+upstream puma_<%= fetch(:nginx_config_name) %> { <%
+  @backends = [fetch(:puma_bind)].flatten.map do |m|
+  etype, address  = /(tcp|unix|ssl):\/{1,2}(.+)/.match(m).captures
+  if etype == 'unix'
+    "server #{etype}:/#{address} #{fetch(:nginx_socket_flags)};"
+  else
+    "server #{address.gsub(/0\.0\.0\.0(.+)/, "127.0.0.1\\1")} #{fetch(:nginx_http_flags)};"
+  end
+end
+%><% @backends.each do |server| %>
+  <%= server %><% end %>
+}
+<% if fetch(:nginx_use_ssl) -%>
+
+server {
+  listen 80;
+  if ($host = bramper.com) {
+      return 301 https://$host$request_uri;
+  } # managed by Certbot
+
+
+  server_name <%= fetch(:nginx_server_name) %>;
+  return 404; # managed by Certbot
+}
+<% end -%>
+
+server {
+<% if fetch(:nginx_use_ssl) -%>
+  listen 443;
+  ssl on;
+<% if fetch(:nginx_ssl_certificate) -%>
+  ssl_certificate <%= fetch(:nginx_ssl_certificate) %>;
+  include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+  ssl_session_cache builtin:1000 shared:SSL:10m;
+<% else -%>
+  ssl_certificate /etc/ssl/certs/<%= fetch(:nginx_config_name) %>.crt;
+<% end -%>
+<% if fetch(:nginx_ssl_certificate_key) -%>
+  ssl_certificate_key <%= fetch(:nginx_ssl_certificate_key) %>;
+<% else -%>
+  ssl_certificate_key /etc/ssl/private/<%= fetch(:nginx_config_name) %>.key;
+<% end -%>
+<% else -%>
+  listen 80;
+<% end -%>
+
+  server_name <%= fetch(:nginx_server_name) %>;
+  root <%= current_path %>/public;
+
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+
+  error_page 500 502 504 /500.html;
+  error_page 503 @503;
+
+  access_log <%= shared_path %>/log/nginx.access.log;
+  error_log <%= shared_path %>/log/nginx.error.log;
+
+  location / {
+    # try_files $uri/index.html $uri @puma_<%= fetch(:nginx_config_name) %>;
+
+    set $cors '';
+    if ($http_origin ~ '^https?://(localhost\:[0-9]+|([A-Za-z0-9]+\.)?bramper\.com|([A-Za-z0-9]+\.)?ivyxu\.co|([A-Za-z0-9]+\.)?kuluin\.com|([A-Za-z0-9]+\.)?beta\.camp)') {
+      set $cors 'true';
+    }
+
+    if ($cors = 'true') {
+      add_header 'Access-Control-Allow-Origin' "$http_origin" always;
+      add_header 'Access-Control-Allow-Credentials' 'true' always;
+      add_header 'Access-Control-Allow-Methods' 'GET, POST, PATCH, DELETE, OPTIONS' always;
+      add_header 'Access-Control-Allow-Headers' 'Accept,Authorization,Cache-Control,Content-Type,Keep-Alive,Origin,User-Agent' always;
+      # required to be able to read Authorization header in frontend
+      add_header 'Access-Control-Expose-Headers' 'Authorization' always;
+    }
+
+    # in new nginx, each if is a different context
+    if ($request_method = 'OPTIONS') {
+      # Tell client that this pre-flight info is valid for 20 days
+      add_header 'Access-Control-Max-Age' 1728000;
+      add_header 'Content-Type' 'text/plain charset=UTF-8';
+      add_header 'Content-Length' 0;
+      add_header 'Access-Control-Allow-Origin' "$http_origin" always;
+      add_header 'Access-Control-Allow-Credentials' 'true' always;
+      add_header 'Access-Control-Allow-Methods' 'GET, POST, PATCH, DELETE, OPTIONS' always;
+      add_header 'Access-Control-Allow-Headers' 'Accept,Authorization,Cache-Control,Content-Type,Keep-Alive,Origin,User-Agent' always;
+      # required to be able to read Authorization header in frontend
+      add_header 'Access-Control-Expose-Headers' 'Authorization' always;
+      return 204;
+    }
+
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $host;
+    proxy_redirect off;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "Upgrade";
+<% if fetch(:nginx_use_ssl) -%>
+    proxy_set_header X-Forwarded-Proto https;
+<% else -%>
+    proxy_set_header X-Forwarded-Proto http;
+<% end -%>
+    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
+    # limit_req zone=one;
+  }
+
+  location ^~ /assets/ {
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  location = /50x.html {
+    root html;
+  }
+
+  location = /404.html {
+    root html;
+  }
+
+  location @503 {
+    error_page 405 = /system/maintenance.html;
+    if (-f $document_root/system/maintenance.html) {
+      rewrite ^(.*)$ /system/maintenance.html break;
+    }
+    rewrite ^(.*)$ /503.html break;
+  }
+
+  if ($request_method !~ ^(GET|HEAD|PUT|PATCH|POST|DELETE|OPTIONS)$ ){
+    return 405;
+  }
+
+  if (-f $document_root/system/maintenance.html) {
+    return 503;
+  }
+}
