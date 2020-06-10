@@ -1,4 +1,5 @@
-json.extract! recipe, :id, :name, :publish, :output_quantity, :unit
+json.extract! recipe, :id, :name, :publish, :unit
+json.output_quantity recipe.output_quantity.to_f
 
 json.prep_steps(recipe.prep_steps) do |step|
   json.extract! step, :id, :number, :duration_sec, :instruction, :max_before_sec, :min_before_sec
@@ -12,7 +13,8 @@ json.prep_steps(recipe.prep_steps) do |step|
   end
 
   json.inputs(step.inputs) do |input|
-    json.extract! input, :id, :inputable_type, :inputable_id, :quantity, :unit
+    json.extract! input, :id, :inputable_type, :inputable_id, :unit
+    json.quantity input.quantity.to_f
 
     if input.inputable_type == "Ingredient"
       json.name input.inputable.name
@@ -32,7 +34,8 @@ json.cook_steps(recipe.cook_steps) do |step|
   end
   
   json.inputs(step.inputs) do |input|
-    json.extract! input, :id, :inputable_type, :inputable_id, :quantity, :unit
+    json.extract! input, :id, :inputable_type, :inputable_id, :unit
+    json.quantity input.quantity.to_f
 
     if input.inputable_type == "Ingredient"
       json.name input.inputable.name
