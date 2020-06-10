@@ -15,10 +15,6 @@ json.prep_steps(recipe.prep_steps) do |step|
   json.inputs(step.inputs) do |input|
     json.extract! input, :id, :inputable_type, :inputable_id, :unit
     json.quantity input.quantity.to_f
-
-    if input.inputable_type == "Ingredient"
-      json.name input.inputable.name
-    end 
   end
 end
 
@@ -36,9 +32,5 @@ json.cook_steps(recipe.cook_steps) do |step|
   json.inputs(step.inputs) do |input|
     json.extract! input, :id, :inputable_type, :inputable_id, :unit
     json.quantity input.quantity.to_f
-
-    if input.inputable_type == "Ingredient"
-      json.name input.inputable.name
-    end 
   end
 end
