@@ -1,4 +1,4 @@
-#typed: false
+# typed: ignore
 class Api::RecipesController < ApplicationController
   def index
     @recipes = Recipe.all

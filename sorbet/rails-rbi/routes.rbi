@@ -14,6 +14,153 @@ class ActionMailer::Base
 end
 
 module GeneratedUrlHelpers
+  # Sigs for route /admin/login(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_user_session_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_user_session_url(*args, **kwargs); end
+
+  # Sigs for route /admin/login(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_session_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_session_url(*args, **kwargs); end
+
+  # Sigs for route /admin/logout(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def destroy_user_session_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def destroy_user_session_url(*args, **kwargs); end
+
+  # Sigs for route /admin/password/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_user_password_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_user_password_url(*args, **kwargs); end
+
+  # Sigs for route /admin/password/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_user_password_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_user_password_url(*args, **kwargs); end
+
+  # Sigs for route /admin/password(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_password_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_password_url(*args, **kwargs); end
+
+  # Sigs for route /admin/cancel(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def cancel_user_registration_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def cancel_user_registration_url(*args, **kwargs); end
+
+  # Sigs for route /admin/sign_up(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_user_registration_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_user_registration_url(*args, **kwargs); end
+
+  # Sigs for route /admin/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_user_registration_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_user_registration_url(*args, **kwargs); end
+
+  # Sigs for route /admin(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_registration_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_registration_url(*args, **kwargs); end
+
+  # Sigs for route /admin/unlock/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_user_unlock_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_user_unlock_url(*args, **kwargs); end
+
+  # Sigs for route /admin/unlock(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_unlock_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_unlock_url(*args, **kwargs); end
+
+  # Sigs for route /admin(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_root_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_root_url(*args, **kwargs); end
+
+  # Sigs for route /admin/dashboard(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_dashboard_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_dashboard_url(*args, **kwargs); end
+
+  # Sigs for route /admin/purchased_recipes/batch_action(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def batch_action_admin_purchased_recipes_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def batch_action_admin_purchased_recipes_url(*args, **kwargs); end
+
+  # Sigs for route /admin/purchased_recipes(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_purchased_recipes_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_purchased_recipes_url(*args, **kwargs); end
+
+  # Sigs for route /admin/purchased_recipes/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_admin_purchased_recipe_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_admin_purchased_recipe_url(*args, **kwargs); end
+
+  # Sigs for route /admin/purchased_recipes/:id/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_admin_purchased_recipe_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_admin_purchased_recipe_url(*args, **kwargs); end
+
+  # Sigs for route /admin/purchased_recipes/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_purchased_recipe_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_purchased_recipe_url(*args, **kwargs); end
+
+  # Sigs for route /admin/comments(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_comments_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_comments_url(*args, **kwargs); end
+
+  # Sigs for route /admin/comments/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_comment_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_comment_url(*args, **kwargs); end
+
   # Sigs for route /
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def root_path(*args, **kwargs); end
@@ -27,4 +174,11 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_recipes_url(*args, **kwargs); end
+
+  # Sigs for route /api/ingredients(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_ingredients_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_ingredients_url(*args, **kwargs); end
 end

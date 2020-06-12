@@ -26,6 +26,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'rack-cors'
 gem 'figaro'
 
+gem 'devise'
+gem 'activeadmin'
+gem 'cancan'
+
 #sentry for error reporting
 gem "sentry-raven"
 #skylight.io for apm
@@ -34,6 +38,9 @@ gem "skylight"
 gem 'sorbet', :group => :development
 gem 'sorbet-runtime'
 gem 'sorbet-rails'
+
+gem 'dalli'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

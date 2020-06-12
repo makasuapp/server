@@ -1,4 +1,4 @@
-# typed: strict
+# typed: false
 # == Schema Information
 #
 # Table name: recipes
@@ -16,6 +16,12 @@ class Recipe < ApplicationRecord
 
   has_many :recipe_steps
   has_many :step_inputs, as: :inputable
+
+  sig {returns(Recipe::ActiveRecord_Relation)}
+  def self.published
+    self.where(publish: true)
+  end
+
 
   sig {returns(RecipeStep::ActiveRecord_AssociationRelation)}
   def prep_steps
