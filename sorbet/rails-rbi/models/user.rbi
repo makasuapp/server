@@ -217,6 +217,15 @@ class User < ApplicationRecord
 
   sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
   def self.user(*args); end
+
+  sig { returns(T.nilable(String)) }
+  def role; end
+
+  sig { params(value: T.nilable(T.any(Integer, String, Symbol))).void }
+  def role=(value); end
+
+  sig { returns(T::Boolean) }
+  def role?; end
 end
 
 class User::ActiveRecord_Relation < ActiveRecord::Relation

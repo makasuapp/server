@@ -1044,7 +1044,6 @@ module ActiveRecord::Querying
   def maximum(*args, &block); end
   def merge(*args, &block); end
   def minimum(*args, &block); end
-  def none(*args, &block); end
   def none?(*args, &block); end
   def offset(*args, &block); end
   def one?(*args, &block); end

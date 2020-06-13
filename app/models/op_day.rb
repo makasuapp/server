@@ -13,4 +13,5 @@
 #  index_op_days_on_date  (date)
 #
 class OpDay < ApplicationRecord
+  has_many :day_ingredients
 end

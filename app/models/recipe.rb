@@ -1,4 +1,4 @@
-# typed: false
+# typed: strict
 # == Schema Information
 #
 # Table name: recipes
@@ -15,6 +15,7 @@ class Recipe < ApplicationRecord
   extend T::Sig
 
   has_many :recipe_steps
+  #places where this is an input
   has_many :step_inputs, as: :inputable
 
   sig {returns(Recipe::ActiveRecord_Relation)}
@@ -22,12 +23,11 @@ class Recipe < ApplicationRecord
     self.where(publish: true)
   end
 
-
   sig {returns(RecipeStep::ActiveRecord_AssociationRelation)}
   def prep_steps
     self.recipe_steps
       .includes([:tools, :detailed_instructions, {inputs: :inputable}])
-      .where(step_type: "prep")
+      .where(step_type: StepType::Prep)
       .order("number ASC")
   end
 
@@ -35,9 +35,18 @@ class Recipe < ApplicationRecord
   def cook_steps
     self.recipe_steps
       .includes([:tools, :detailed_instructions, {inputs: :inputable}])
-      .where(step_type: "cook")
+      .where(step_type: StepType::Cook)
       .order("number ASC")
   end
+
+  # sig {returns(T::Array[StepInput])}
+  # #TODO: not great, a lot of db calls
+  # def ingredient_inputs
+  #   steps_to_check = self.recipe_steps.order("step_type DESC, number ASC")
+  #   steps_to_check.each do |step|
+  #     step.inputs.where(inputable_type: InputType::Ingredient)
+  #   end
+  # end
 
   sig {returns(T::Boolean)}
   #TODO: not great, a lot of db calls
@@ -53,7 +62,7 @@ class Recipe < ApplicationRecord
         used_steps[step_id.call(step)] = false
       end
 
-      step.inputs.where(inputable_type: "RecipeStep").each do |input|
+      step.inputs.where(inputable_type: InputType::RecipeStep).each do |input|
         used_steps[step_id.call(input.inputable)] = true
       end
     end

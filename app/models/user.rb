@@ -1,4 +1,4 @@
-# typed: false
+# typed: strict
 # == Schema Information
 #
 # Table name: users

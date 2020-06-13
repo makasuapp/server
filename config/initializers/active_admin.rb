@@ -1,4 +1,4 @@
-# typed: false
+# typed: strict
 ActiveAdmin.setup do |config|
   # == Site Title
   #

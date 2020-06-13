@@ -45,6 +45,17 @@ module OpDay::GeneratedAttributeMethods
   def updated_at?; end
 end
 
+module OpDay::GeneratedAssociationMethods
+  sig { returns(::DayIngredient::ActiveRecord_Associations_CollectionProxy) }
+  def day_ingredients; end
+
+  sig { returns(T::Array[Integer]) }
+  def day_ingredient_ids; end
+
+  sig { params(value: T::Enumerable[::DayIngredient]).void }
+  def day_ingredients=(value); end
+end
+
 module OpDay::CustomFinderMethods
   sig { params(limit: Integer).returns(T::Array[OpDay]) }
   def first_n(limit); end
@@ -64,6 +75,7 @@ end
 
 class OpDay < ApplicationRecord
   include OpDay::GeneratedAttributeMethods
+  include OpDay::GeneratedAssociationMethods
   extend OpDay::CustomFinderMethods
   extend OpDay::QueryMethodsReturningRelation
   RelationType = T.type_alias { T.any(OpDay::ActiveRecord_Relation, OpDay::ActiveRecord_Associations_CollectionProxy, OpDay::ActiveRecord_AssociationRelation) }

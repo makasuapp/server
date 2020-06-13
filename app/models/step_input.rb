@@ -17,6 +17,12 @@
 #  index_step_inputs_on_inputable_type_and_inputable_id  (inputable_type,inputable_id)
 #  index_step_inputs_on_recipe_step_id                   (recipe_step_id)
 #
+module InputType
+  Recipe = "Recipe"
+  Ingredient = "Ingredient"
+  RecipeStep = "RecipeStep"
+end
+
 class StepInput < ApplicationRecord
   extend T::Sig
 
@@ -28,22 +34,22 @@ class StepInput < ApplicationRecord
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
   def self.recipe_inputs
-    self.where(inputable_type: "Recipe")
+    self.where(inputable_type: InputType::Recipe)
   end
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
   def self.recipe_step_inputs
-    self.where(inputable_type: "RecipeStep")
+    self.where(inputable_type: InputType::RecipeStep)
   end
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
   def self.ingredient_inputs
-    self.where(inputable_type: "Ingredient")
+    self.where(inputable_type: InputType::Ingredient)
   end
 
   sig {void}
   def step_input_above_chain
-    if self.inputable_type == "RecipeStep"
+    if self.inputable_type == InputType::RecipeStep
       input_step = RecipeStep.find(self.inputable_id) 
       of_step = self.recipe_step
 
@@ -52,7 +58,7 @@ class StepInput < ApplicationRecord
       end
 
       if (input_step.step_type == of_step.step_type && input_step.number > of_step.number) ||
-        (input_step.step_type == "cook" && of_step.step_type == "prep")
+        (input_step.step_type == StepType::Cook && of_step.step_type == StepType::Prep)
         errors.add(:inputable_type, "must not be a step after this one")
       end
     end
@@ -60,7 +66,7 @@ class StepInput < ApplicationRecord
 
   sig {void}
   def recipe_input_not_recursive
-    if self.inputable_type == "Recipe" && self.id.present?
+    if self.inputable_type == InputType::Recipe && self.id.present?
       input_recipe = Recipe.find(self.inputable_id)
       of_recipe_id = self.recipe_step.recipe_id
       # TODO: check that inputs to of_recipe that are recipes don't use input_recipe to make. need to recurse

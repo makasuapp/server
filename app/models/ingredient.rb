@@ -11,5 +11,6 @@
 class Ingredient < ApplicationRecord
   extend T::Sig
 
+  #places where this is an input
   has_many :step_inputs, as: :inputable
 end

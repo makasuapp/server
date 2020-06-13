@@ -19,6 +19,11 @@
 #  index_recipe_steps_on_recipe_id  (recipe_id)
 #  index_recipe_steps_on_step_type  (step_type)
 #
+module StepType
+  Cook = "cook"
+  Prep = "prep"
+end
+
 class RecipeStep < ApplicationRecord
   extend T::Sig
   
