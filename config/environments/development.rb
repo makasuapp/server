@@ -52,6 +52,9 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
 
+  config.assets.debug = false
+  config.assets.digest = false
+
   #nginx handles cors in production
   config.middleware.insert_before 0, Rack::Cors do
     allow do
