@@ -1,4 +1,3 @@
-# typed: false
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_190827) do
+ActiveRecord::Schema.define(version: 2020_06_13_194304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "day_ingredients", force: :cascade do |t|
-    t.bigint "op_day_id"
-    t.bigint "ingredient_id"
-    t.integer "had_qty"
-    t.integer "expected_qty"
+    t.bigint "op_day_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.float "had_qty"
+    t.float "expected_qty", null: false
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,8 +55,8 @@ ActiveRecord::Schema.define(version: 2020_06_12_190827) do
 
   create_table "purchased_recipes", force: :cascade do |t|
     t.date "date", null: false
-    t.integer "quantity"
-    t.bigint "recipe_id"
+    t.integer "quantity", null: false
+    t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["date"], name: "index_purchased_recipes_on_date"
@@ -87,7 +86,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_190827) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "name", null: false
-    t.decimal "output_quantity", precision: 6, scale: 2, default: "1.0", null: false
+    t.float "output_qty", default: 1.0, null: false
     t.boolean "publish", default: false, null: false
     t.string "unit"
     t.datetime "created_at", null: false
@@ -98,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_190827) do
     t.bigint "recipe_step_id", null: false
     t.bigint "inputable_id", null: false
     t.string "inputable_type", null: false
-    t.decimal "quantity", precision: 6, scale: 2, default: "1.0", null: false
+    t.float "quantity", default: 1.0, null: false
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

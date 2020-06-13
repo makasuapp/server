@@ -5592,6 +5592,12 @@ module ActiveModel::VERSION
   TINY = ::T.let(nil, ::T.untyped)
 end
 
+class ActiveRecord::Associations::CollectionProxy
+  def bulk_import(*args, &block); end
+
+  def import(*args, &block); end
+end
+
 class ActiveRecord::Associations::JoinDependency::JoinAssociation
   include ::Polyamorous::JoinAssociationExtensions
   include ::Polyamorous::SwappingReflectionClass
@@ -5630,12 +5636,15 @@ class ActiveRecord::Base
   def _ransackers=(val); end
 
   def _ransackers?(); end
+
+  def synchronize(instances, key=T.unsafe(nil)); end
 end
 
 class ActiveRecord::Base
   extend ::OrmAdapter::ToAdapter
   extend ::Ransack::Adapters::ActiveRecord::Base
   extend ::Devise::Models
+  extend ::ActiveRecord::Import::Connection
   def self._ransack_aliases(); end
 
   def self._ransack_aliases=(val); end
@@ -5647,6 +5656,28 @@ class ActiveRecord::Base
   def self._ransackers=(val); end
 
   def self._ransackers?(); end
+
+  def self.bulk_import(*args); end
+
+  def self.bulk_import!(*args); end
+
+  def self.import(*args); end
+
+  def self.import!(*args); end
+
+  def self.import_helper(*args); end
+
+  def self.import_with_validations(column_names, array_of_attributes, options=T.unsafe(nil)); end
+
+  def self.import_without_validations_or_callbacks(column_names, array_of_attributes, options=T.unsafe(nil)); end
+
+  def self.supports_import?(*args); end
+
+  def self.supports_on_duplicate_key_update?(); end
+
+  def self.supports_setting_primary_key_of_imported_objects?(); end
+
+  def self.synchronize(instances, keys=T.unsafe(nil)); end
 end
 
 module ActiveRecord::Batches
@@ -5692,6 +5723,7 @@ class ActiveRecord::ConnectionAdapters::AbstractAdapter
   include ::ActiveRecord::ConnectionAdapters::SchemaStatements
   include ::ActiveRecord::Migration::JoinTable
   include ::ActiveRecord::ConnectionAdapters::DatabaseStatements
+  include ::ActiveRecord::Import::AbstractAdapter::InstanceMethods
   ADAPTER_NAME = ::T.let(nil, ::T.untyped)
   SIMPLE_INT = ::T.let(nil, ::T.untyped)
 end
@@ -5714,6 +5746,8 @@ class ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Uuid
 end
 
 class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
+  include ::ActiveRecord::Import::PostgreSQLAdapter
+  include ::ActiveRecord::Import::ImportSupport
   ADAPTER_NAME = ::T.let(nil, ::T.untyped)
   CACHED_PLAN_HEURISTIC = ::T.let(nil, ::T.untyped)
   DEADLOCK_DETECTED = ::T.let(nil, ::T.untyped)
@@ -5768,6 +5802,181 @@ end
 
 class ActiveRecord::FixtureSet
   MAX_ID = ::T.let(nil, ::T.untyped)
+end
+
+module ActiveRecord::Import
+  ADAPTER_PATH = ::T.let(nil, ::T.untyped)
+end
+
+module ActiveRecord::Import::AbstractAdapter
+end
+
+module ActiveRecord::Import::AbstractAdapter::InstanceMethods
+  def after_import_synchronize(instances); end
+
+  def increment_locking_column!(table_name, results, locking_column); end
+
+  def insert_many(sql, values, _options=T.unsafe(nil), *args); end
+
+  def next_value_for_sequence(sequence_name); end
+
+  def post_sql_statements(table_name, options); end
+
+  def pre_sql_statements(options); end
+
+  def supports_on_duplicate_key_update?(); end
+end
+
+module ActiveRecord::Import::AbstractAdapter::InstanceMethods
+end
+
+module ActiveRecord::Import::AbstractAdapter
+end
+
+module ActiveRecord::Import::Connection
+  def establish_connection(args=T.unsafe(nil)); end
+end
+
+module ActiveRecord::Import::Connection
+end
+
+module ActiveRecord::Import::ConnectionAdapters
+end
+
+module ActiveRecord::Import::ConnectionAdapters
+end
+
+module ActiveRecord::Import::ImportSupport
+  def supports_import?(); end
+end
+
+module ActiveRecord::Import::ImportSupport
+end
+
+class ActiveRecord::Import::MissingColumnError
+  def initialize(name, index); end
+end
+
+class ActiveRecord::Import::MissingColumnError
+end
+
+module ActiveRecord::Import::PostgreSQLAdapter
+  include ::ActiveRecord::Import::ImportSupport
+  def add_column_for_on_duplicate_key_update(column, options=T.unsafe(nil)); end
+
+  def duplicate_key_update_error?(exception); end
+
+  def insert_many(sql, values, options=T.unsafe(nil), *args); end
+
+  def next_value_for_sequence(sequence_name); end
+
+  def post_sql_statements(table_name, options); end
+
+  def returning_columns(options); end
+
+  def split_ids_and_results(values, columns, options); end
+
+  def sql_for_conflict_target(args=T.unsafe(nil)); end
+
+  def sql_for_default_conflict_target(table_name, primary_key); end
+
+  def sql_for_on_duplicate_key_ignore(table_name, *args); end
+
+  def sql_for_on_duplicate_key_update(table_name, *args); end
+
+  def sql_for_on_duplicate_key_update_as_array(table_name, locking_column, arr); end
+
+  def sql_for_on_duplicate_key_update_as_hash(table_name, locking_column, hsh); end
+
+  def supports_on_duplicate_key_update?(); end
+
+  def supports_setting_primary_key_of_imported_objects?(); end
+  MIN_VERSION_FOR_UPSERT = ::T.let(nil, ::T.untyped)
+end
+
+module ActiveRecord::Import::PostgreSQLAdapter
+end
+
+class ActiveRecord::Import::Result
+  def failed_instances(); end
+
+  def failed_instances=(_); end
+
+  def ids(); end
+
+  def ids=(_); end
+
+  def num_inserts(); end
+
+  def num_inserts=(_); end
+
+  def results(); end
+
+  def results=(_); end
+end
+
+class ActiveRecord::Import::Result
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class ActiveRecord::Import::Validator
+  def init_validations(klass); end
+
+  def initialize(klass, options=T.unsafe(nil)); end
+
+  def valid_model?(model); end
+end
+
+class ActiveRecord::Import::Validator
+end
+
+class ActiveRecord::Import::ValueSetTooLargeError
+  def initialize(msg=T.unsafe(nil), size=T.unsafe(nil)); end
+
+  def size(); end
+end
+
+class ActiveRecord::Import::ValueSetTooLargeError
+end
+
+class ActiveRecord::Import::ValueSetsBytesParser
+  def initialize(values, options); end
+
+  def max_bytes(); end
+
+  def parse(); end
+
+  def reserved_bytes(); end
+
+  def values(); end
+end
+
+class ActiveRecord::Import::ValueSetsBytesParser
+  def self.parse(values, options); end
+end
+
+class ActiveRecord::Import::ValueSetsRecordsParser
+  def initialize(values, options); end
+
+  def max_records(); end
+
+  def parse(); end
+
+  def values(); end
+end
+
+class ActiveRecord::Import::ValueSetsRecordsParser
+  def self.parse(values, options); end
+end
+
+module ActiveRecord::Import
+  def self.base_adapter(adapter); end
+
+  def self.load_from_connection_pool(connection_pool); end
+
+  def self.require_adapter(adapter); end
 end
 
 class ActiveRecord::InternalMetadata
@@ -6080,6 +6289,10 @@ module ActiveRecord::QueryMethods
   STRUCTURAL_OR_METHODS = ::T.let(nil, ::T.untyped)
   VALID_DIRECTIONS = ::T.let(nil, ::T.untyped)
   VALID_UNSCOPING_VALUES = ::T.let(nil, ::T.untyped)
+end
+
+module ActiveRecord::Querying
+  def none(*args, &block); end
 end
 
 class ActiveRecord::Relation
@@ -16593,6 +16806,12 @@ class Ingredient
   def self.before_remove_for_step_inputs?(); end
 end
 
+class IngredientAmount
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.inherited(s); end
+end
+
 module InheritedResources
   ACTIONS = ::T.let(nil, ::T.untyped)
   VERSION = ::T.let(nil, ::T.untyped)
@@ -22755,40 +22974,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70276245376000
+module Polyfill::Module::M70192834032020
 end
 
-module Polyfill::Module::M70276245376000
+module Polyfill::Module::M70192834032020
 end
 
-module Polyfill::Module::M70276245410480
+module Polyfill::Module::M70192834738880
 end
 
-module Polyfill::Module::M70276245410480
+module Polyfill::Module::M70192834738880
 end
 
-module Polyfill::Module::M70276252209740
+module Polyfill::Module::M70192834941180
 end
 
-module Polyfill::Module::M70276252209740
+module Polyfill::Module::M70192834941180
 end
 
-module Polyfill::Module::M70276252430840
+module Polyfill::Module::M70192852186880
 end
 
-module Polyfill::Module::M70276252430840
+module Polyfill::Module::M70192852186880
 end
 
-module Polyfill::Module::M70276274146340
+module Polyfill::Module::M70192852303500
 end
 
-module Polyfill::Module::M70276274146340
+module Polyfill::Module::M70192852303500
 end
 
-module Polyfill::Module::M70276274280260
+module Polyfill::Module::M70192852424640
 end
 
-module Polyfill::Module::M70276274280260
+module Polyfill::Module::M70192852424640
 end
 
 class Proc
@@ -23153,6 +23372,11 @@ module PurchasedRecipe::GeneratedRelationMethods
 end
 
 module PurchasedRecipe::GeneratedRelationMethods
+end
+
+class PurchasedRecipe
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 module Racc
@@ -31080,8 +31304,6 @@ end
 
 module User::GeneratedRelationMethods
   def admin(*args, &block); end
-
-  def manager(*args, &block); end
 
   def user(*args, &block); end
 end

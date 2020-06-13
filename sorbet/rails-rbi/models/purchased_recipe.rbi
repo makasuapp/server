@@ -35,19 +35,19 @@ module PurchasedRecipe::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def id?; end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(Integer) }
   def quantity; end
 
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
   def quantity=(value); end
 
   sig { returns(T::Boolean) }
   def quantity?; end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(Integer) }
   def recipe_id; end
 
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
   def recipe_id=(value); end
 
   sig { returns(T::Boolean) }

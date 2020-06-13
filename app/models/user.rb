@@ -35,7 +35,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :lockable, :trackable
 
-  enum role: [:user, :manager, :admin]
+  enum role: [:user, :admin]
 
   after_initialize :set_default_role, :if => :new_record?
   validates :email, uniqueness: { case_sensitive: false }, presence: true, allow_blank: false

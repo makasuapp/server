@@ -4,7 +4,7 @@
 #
 #  id             :bigint           not null, primary key
 #  inputable_type :string           not null
-#  quantity       :decimal(6, 2)    default(1.0), not null
+#  quantity       :float            default(1.0), not null
 #  unit           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -80,4 +80,6 @@ chicken_c2_i2:
 
 chicken_c2_i3:
   inputable: green_onion (Recipe)
+  quantity: 100
+  unit: "grams"
   recipe_step: chicken_c2

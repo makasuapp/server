@@ -35,14 +35,14 @@ module Recipe::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def name?; end
 
-  sig { returns(BigDecimal) }
-  def output_quantity; end
+  sig { returns(Float) }
+  def output_qty; end
 
   sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
-  def output_quantity=(value); end
+  def output_qty=(value); end
 
   sig { returns(T::Boolean) }
-  def output_quantity?; end
+  def output_qty?; end
 
   sig { returns(T::Boolean) }
   def publish; end

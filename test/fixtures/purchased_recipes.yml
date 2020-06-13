@@ -4,10 +4,10 @@
 #
 #  id         :bigint           not null, primary key
 #  date       :date             not null
-#  quantity   :integer
+#  quantity   :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  recipe_id  :bigint
+#  recipe_id  :bigint           not null
 #
 # Indexes
 #
@@ -19,3 +19,8 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+chicken:
+  recipe: chicken
+  date: <%= Date.today %>
+  quantity: 4

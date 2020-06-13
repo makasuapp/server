@@ -3,13 +3,13 @@
 #
 # Table name: recipes
 #
-#  id              :bigint           not null, primary key
-#  name            :string           not null
-#  output_quantity :decimal(6, 2)    default(1.0), not null
-#  publish         :boolean          default(FALSE), not null
-#  unit            :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id         :bigint           not null, primary key
+#  name       :string           not null
+#  output_qty :float            default(1.0), not null
+#  publish    :boolean          default(FALSE), not null
+#  unit       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 class Recipe < ApplicationRecord
   extend T::Sig
@@ -39,19 +39,39 @@ class Recipe < ApplicationRecord
       .order("number ASC")
   end
 
-  # sig {returns(T::Array[StepInput])}
-  # #TODO: not great, a lot of db calls
-  # def ingredient_inputs
-  #   steps_to_check = self.recipe_steps.order("step_type DESC, number ASC")
-  #   steps_to_check.each do |step|
-  #     step.inputs.where(inputable_type: InputType::Ingredient)
-  #   end
-  # end
+  sig {returns(T::Array[IngredientAmount])}
+  #TODO: not great, a lot of db calls
+  def ingredient_amounts
+    amounts = []
+    steps_to_check = self.recipe_steps.order("step_type DESC, number ASC")
+    steps_to_check.each do |step|
+      amounts = amounts + step.inputs.ingredient_typed.map { |input| 
+        IngredientAmount.mk(input.inputable_id, input.quantity, input.unit)
+      }
+
+      step.inputs.recipe_typed.each do |recipe_input|
+        child_recipe = recipe_input.inputable
+        num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
+        child_recipe.ingredient_amounts.each do |amount|
+          amounts << amount * num_servings
+        end
+      end
+    end
+
+    amounts
+  end
+
+  sig {params(usage_qty: T.any(Float, Integer, BigDecimal), usage_unit: T.nilable(String)).returns(Float)}
+  def servings_produced(usage_qty, usage_unit = nil)
+    converted_qty = UnitConverter.convert(usage_qty, usage_unit, self.unit)
+    converted_qty / self.output_qty
+  end
 
   sig {returns(T::Boolean)}
   #TODO: not great, a lot of db calls
+  #check if all steps aside from last are inputs to later steps
+  #TODO: check if all ingredients that have units are inputs also with units
   def is_valid?
-    #check if all steps aside from last are inputs to later steps
     steps_to_check = self.recipe_steps.order("step_type DESC, number ASC")
     used_steps = {}
     step_id = ->(step) {"#{step.step_type}#{step.number}"}
@@ -62,7 +82,7 @@ class Recipe < ApplicationRecord
         used_steps[step_id.call(step)] = false
       end
 
-      step.inputs.where(inputable_type: InputType::RecipeStep).each do |input|
+      step.inputs.recipe_step_typed.each do |input|
         used_steps[step_id.call(input.inputable)] = true
       end
     end

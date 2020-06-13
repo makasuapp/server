@@ -5,7 +5,7 @@
 #
 #  id             :bigint           not null, primary key
 #  inputable_type :string           not null
-#  quantity       :decimal(6, 2)    default(1.0), not null
+#  quantity       :float            default(1.0), not null
 #  unit           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -33,17 +33,17 @@ class StepInput < ApplicationRecord
   belongs_to :inputable, polymorphic: true
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
-  def self.recipe_inputs
+  def self.recipe_typed
     self.where(inputable_type: InputType::Recipe)
   end
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
-  def self.recipe_step_inputs
+  def self.recipe_step_typed
     self.where(inputable_type: InputType::RecipeStep)
   end
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
-  def self.ingredient_inputs
+  def self.ingredient_typed
     self.where(inputable_type: InputType::Ingredient)
   end
 

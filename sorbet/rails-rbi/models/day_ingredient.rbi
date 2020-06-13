@@ -17,16 +17,16 @@ module DayIngredient::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def created_at?; end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(Float) }
   def expected_qty; end
 
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
   def expected_qty=(value); end
 
   sig { returns(T::Boolean) }
   def expected_qty?; end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(T.nilable(Float)) }
   def had_qty; end
 
   sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
@@ -44,19 +44,19 @@ module DayIngredient::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def id?; end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(Integer) }
   def ingredient_id; end
 
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
   def ingredient_id=(value); end
 
   sig { returns(T::Boolean) }
   def ingredient_id?; end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(Integer) }
   def op_day_id; end
 
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
   def op_day_id=(value); end
 
   sig { returns(T::Boolean) }

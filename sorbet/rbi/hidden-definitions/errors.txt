@@ -3150,6 +3150,21 @@
 # wrong constant name initialize
 # wrong constant name persisted?
 # wrong constant name <static-init>
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::CLAUSE_METHODS
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::DEFAULT_VALUES
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::FROZEN_EMPTY_ARRAY
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::FROZEN_EMPTY_HASH
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::INVALID_METHODS_FOR_DELETE_ALL
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::MULTI_VALUE_METHODS
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::ONE_AS_ONE
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::ORDER_IGNORE_MESSAGE
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::SINGLE_VALUE_METHODS
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::STRUCTURAL_OR_METHODS
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::VALID_DIRECTIONS
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::VALID_UNSCOPING_VALUES
+# uninitialized constant ActiveRecord::Associations::CollectionProxy::VALUE_METHODS
+# wrong constant name bulk_import
+# wrong constant name import
 # uninitialized constant ActiveRecord::Associations::JoinDependency::JoinAssociation::Elem
 # wrong constant name join_constraints
 # wrong constant name join_type
@@ -3158,6 +3173,7 @@
 # wrong constant name tables
 # wrong constant name tables=
 # wrong constant name <static-init>
+# undefined method `synchronize<defaultArg>1' for class `ActiveRecord::Base'
 # uninitialized constant ActiveRecord::Base::ACTIONS
 # uninitialized constant ActiveRecord::Base::BLACKLISTED_CLASS_METHODS
 # uninitialized constant ActiveRecord::Base::CALLBACKS
@@ -3172,12 +3188,31 @@
 # wrong constant name _ransackers
 # wrong constant name _ransackers=
 # wrong constant name _ransackers?
+# wrong constant name synchronize<defaultArg>1
+# wrong constant name synchronize
+# undefined singleton method `import_with_validations<defaultArg>1' for `ActiveRecord::Base'
+# undefined singleton method `import_without_validations_or_callbacks<defaultArg>1' for `ActiveRecord::Base'
+# undefined singleton method `synchronize<defaultArg>1' for `ActiveRecord::Base'
 # wrong constant name _ransack_aliases
 # wrong constant name _ransack_aliases=
 # wrong constant name _ransack_aliases?
 # wrong constant name _ransackers
 # wrong constant name _ransackers=
 # wrong constant name _ransackers?
+# wrong constant name bulk_import
+# wrong constant name bulk_import!
+# wrong constant name import
+# wrong constant name import!
+# wrong constant name import_helper
+# wrong constant name import_with_validations<defaultArg>1
+# wrong constant name import_with_validations
+# wrong constant name import_without_validations_or_callbacks<defaultArg>1
+# wrong constant name import_without_validations_or_callbacks
+# wrong constant name supports_import?
+# wrong constant name supports_on_duplicate_key_update?
+# wrong constant name supports_setting_primary_key_of_imported_objects?
+# wrong constant name synchronize<defaultArg>1
+# wrong constant name synchronize
 # wrong constant name <static-init>
 # wrong constant name dump
 # wrong constant name load
@@ -3194,10 +3229,110 @@
 # uninitialized constant ActiveRecord::ConnectionAdapters::AbstractAdapter::CALLBACK_FILTER_TYPES
 # uninitialized constant ActiveRecord::ConnectionAdapters::PostgreSQLAdapter::BYTEA_COLUMN_TYPE_OID
 # uninitialized constant ActiveRecord::ConnectionAdapters::PostgreSQLAdapter::CALLBACK_FILTER_TYPES
+# uninitialized constant ActiveRecord::ConnectionAdapters::PostgreSQLAdapter::MIN_VERSION_FOR_UPSERT
 # uninitialized constant ActiveRecord::ConnectionAdapters::PostgreSQLAdapter::MONEY_COLUMN_TYPE_OID
 # uninitialized constant ActiveRecord::ConnectionAdapters::PostgreSQLAdapter::SIMPLE_INT
 # uninitialized constant ActiveRecord::Enum::RUBYGEMS_ACTIVATION_MONITOR
 # wrong constant name find_with_associations
+# wrong constant name <Class:AbstractAdapter>
+# wrong constant name <Class:Connection>
+# wrong constant name <Class:ConnectionAdapters>
+# wrong constant name <Class:ImportSupport>
+# wrong constant name <Class:MissingColumnError>
+# wrong constant name <Class:PostgreSQLAdapter>
+# wrong constant name <Class:Result>
+# wrong constant name <Class:Validator>
+# wrong constant name <Class:ValueSetTooLargeError>
+# wrong constant name <Class:ValueSetsBytesParser>
+# wrong constant name <Class:ValueSetsRecordsParser>
+# wrong constant name <Class:InstanceMethods>
+# undefined method `insert_many<defaultArg>1' for module `ActiveRecord::Import::AbstractAdapter::InstanceMethods'
+# wrong constant name after_import_synchronize
+# wrong constant name increment_locking_column!
+# wrong constant name insert_many<defaultArg>1
+# wrong constant name insert_many
+# wrong constant name next_value_for_sequence
+# wrong constant name post_sql_statements
+# wrong constant name pre_sql_statements
+# wrong constant name supports_on_duplicate_key_update?
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined method `establish_connection<defaultArg>1' for module `ActiveRecord::Import::Connection'
+# wrong constant name establish_connection<defaultArg>1
+# wrong constant name establish_connection
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name supports_import?
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `add_column_for_on_duplicate_key_update<defaultArg>1' for module `ActiveRecord::Import::PostgreSQLAdapter'
+# undefined method `insert_many<defaultArg>1' for module `ActiveRecord::Import::PostgreSQLAdapter'
+# undefined method `sql_for_conflict_target<defaultArg>1' for module `ActiveRecord::Import::PostgreSQLAdapter'
+# wrong constant name add_column_for_on_duplicate_key_update<defaultArg>1
+# wrong constant name add_column_for_on_duplicate_key_update
+# wrong constant name duplicate_key_update_error?
+# wrong constant name insert_many<defaultArg>1
+# wrong constant name insert_many
+# wrong constant name next_value_for_sequence
+# wrong constant name post_sql_statements
+# wrong constant name returning_columns
+# wrong constant name split_ids_and_results
+# wrong constant name sql_for_conflict_target<defaultArg>1
+# wrong constant name sql_for_conflict_target
+# wrong constant name sql_for_default_conflict_target
+# wrong constant name sql_for_on_duplicate_key_ignore
+# wrong constant name sql_for_on_duplicate_key_update
+# wrong constant name sql_for_on_duplicate_key_update_as_array
+# wrong constant name sql_for_on_duplicate_key_update_as_hash
+# wrong constant name supports_on_duplicate_key_update?
+# wrong constant name supports_setting_primary_key_of_imported_objects?
+# wrong constant name <static-init>
+# uninitialized constant ActiveRecord::Import::Result::Elem
+# wrong constant name failed_instances
+# wrong constant name failed_instances=
+# wrong constant name ids
+# wrong constant name ids=
+# wrong constant name num_inserts
+# wrong constant name num_inserts=
+# wrong constant name results
+# wrong constant name results=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# undefined method `initialize<defaultArg>1' for class `ActiveRecord::Import::Validator'
+# Did you mean?  initialize_dup
+# wrong constant name init_validations
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name valid_model?
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `ActiveRecord::Import::ValueSetTooLargeError'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `ActiveRecord::Import::ValueSetTooLargeError'
+# Did you mean?  initialize_dup
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name size
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name max_bytes
+# wrong constant name parse
+# wrong constant name reserved_bytes
+# wrong constant name values
+# wrong constant name <static-init>
+# wrong constant name parse
+# wrong constant name initialize
+# wrong constant name max_records
+# wrong constant name parse
+# wrong constant name values
+# wrong constant name <static-init>
+# wrong constant name parse
+# wrong constant name <static-init>
+# wrong constant name base_adapter
+# wrong constant name load_from_connection_pool
+# wrong constant name require_adapter
 # uninitialized constant ActiveRecord::InternalMetadata::ACTIONS
 # uninitialized constant ActiveRecord::InternalMetadata::BLACKLISTED_CLASS_METHODS
 # uninitialized constant ActiveRecord::InternalMetadata::CALLBACKS
@@ -3249,7 +3384,7 @@
 # A copy of ActiveRecord::InternalMetadata::ActiveRecord_Relation has been removed from the module tree but is still active!
 # wrong constant name <static-init>
 # wrong constant name <static-init>
-# undefined singleton method `page<defaultArg>1' for `#<Class:0x00007fd4f0feb858>'
+# undefined singleton method `page<defaultArg>1' for `#<Class:0x00007fae1a0c2108>'
 # wrong constant name []
 # wrong constant name []=
 # wrong constant name create_table
@@ -3399,6 +3534,7 @@
 # wrong constant name to_sql
 # wrong constant name update_all
 # wrong constant name <static-init>
+# wrong constant name none
 # uninitialized constant ActiveRecord::Relation::DEFAULT_VALUES
 # uninitialized constant ActiveRecord::Relation::FROZEN_EMPTY_ARRAY
 # uninitialized constant ActiveRecord::Relation::FROZEN_EMPTY_HASH
@@ -9011,6 +9147,7 @@
 # wrong constant name before_remove_for_step_inputs
 # wrong constant name before_remove_for_step_inputs=
 # wrong constant name before_remove_for_step_inputs?
+# wrong constant name inherited
 # wrong constant name <Class:Actions>
 # wrong constant name <Class:Base>
 # wrong constant name <Class:BaseHelpers>
@@ -14444,7 +14581,7 @@
 # uninitialized constant Rails::Generators::TestCase::VERSION
 # wrong constant name properties
 # wrong constant name properties=
-# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007fd4f3f6dab8>'
+# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007fae157cb008>'
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=
@@ -18229,7 +18366,6 @@
 # A copy of User::ActiveRecord_Relation has been removed from the module tree but is still active!
 # wrong constant name <static-init>
 # wrong constant name admin
-# wrong constant name manager
 # wrong constant name user
 # wrong constant name <static-init>
 # wrong constant name devise_modules

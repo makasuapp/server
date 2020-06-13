@@ -10,12 +10,6 @@ module User::EnumInstanceMethods
   def user!; end
 
   sig { returns(T::Boolean) }
-  def manager?; end
-
-  sig { void }
-  def manager!; end
-
-  sig { returns(T::Boolean) }
   def admin?; end
 
   sig { void }
@@ -213,19 +207,7 @@ class User < ApplicationRecord
   def self.admin(*args); end
 
   sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
-  def self.manager(*args); end
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
   def self.user(*args); end
-
-  sig { returns(T.nilable(String)) }
-  def role; end
-
-  sig { params(value: T.nilable(T.any(Integer, String, Symbol))).void }
-  def role=(value); end
-
-  sig { returns(T::Boolean) }
-  def role?; end
 end
 
 class User::ActiveRecord_Relation < ActiveRecord::Relation
@@ -236,9 +218,6 @@ class User::ActiveRecord_Relation < ActiveRecord::Relation
 
   sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
   def admin(*args); end
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
-  def manager(*args); end
 
   sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
   def user(*args); end
@@ -254,9 +233,6 @@ class User::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
   def admin(*args); end
 
   sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
-  def manager(*args); end
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
   def user(*args); end
 end
 
@@ -267,9 +243,6 @@ class User::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associatio
 
   sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
   def admin(*args); end
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
-  def manager(*args); end
 
   sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
   def user(*args); end

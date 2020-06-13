@@ -44,7 +44,7 @@ module StepInput::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def inputable_type?; end
 
-  sig { returns(BigDecimal) }
+  sig { returns(Float) }
   def quantity; end
 
   sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
