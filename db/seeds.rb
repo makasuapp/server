@@ -4,7 +4,7 @@
 #
 
 def r(name, quantity = 1, unit = nil, publish = false)
-  Recipe.find_or_create_by!(name: name, output_quantity: quantity, unit: unit, publish: publish)
+  Recipe.find_or_create_by!(name: name, output_qty: quantity, unit: unit, publish: publish)
 end
 
 def i(name)
@@ -93,11 +93,11 @@ if pepper_oil.recipe_steps.empty?
 
   s3 = s(pepper_oil, 3, "Let oil cool until 200, then pour in half of the pepper paste. Stir continuously to not burn it")
   si(s3, "RecipeStep", s2)
-  si(s3, "Recipe", pepper_paste, 1.5)
+  si(s3, "Recipe", pepper_paste, 15, g)
 
   s4 = s(pepper_oil, 4, "Let oil cool until 160, then pour in the other half of the pepper paste and add the sesame back")
   si(s4, "RecipeStep", s3)
-  si(s4, "Recipe", pepper_paste, 1.5)
+  si(s4, "Recipe", pepper_paste, 15, g)
 end
 
 peppercorn_paste = r("Sichuan Peppercorn Paste", 10, g)
@@ -116,7 +116,7 @@ peppercorn_oil = r("Sichuan Peppercorn Oil", 50, g)
 if peppercorn_oil.recipe_steps.empty?
   s1 = s(peppercorn_oil, 1, "Cook on high heat to bring out the fragrance, then lower heat to bring out the flavor inside")
   si(s1, "Ingredient", oil, 40, g)
-  si(s1, "Recipe", peppercorn_paste, 1)
+  si(s1, "Recipe", peppercorn_paste, 10, g)
   s1.tools << wok
   s1.tools << stove
 end
@@ -169,8 +169,8 @@ if sauce.recipe_steps.empty?
 
   s5 = s(sauce, 5, "Add in minced ginger and garlic")
   si(s5, "RecipeStep", s4)
-  si(s5, "Recipe", minced_garlic)
-  si(s5, "Recipe", minced_ginger)
+  si(s5, "Recipe", minced_garlic, 100, g)
+  si(s5, "Recipe", minced_ginger, 100, g)
 end
 
 chicken = r("Mouth Watering Chicken", 2, nil, true)
@@ -189,9 +189,9 @@ if chicken.recipe_steps.empty?
   si(s2, "Ingredient", water)
   si(s2, "Ingredient", dried_peppers, 3)
   si(s2, "Ingredient", sichuan_peppercorn, 10)
-  si(s2, "Ingredient", ginger, 4, "cm")
+  si(s2, "Ingredient", ginger, 4, g)
   si(s2, "Ingredient", green_onion, 1)
-  si(s2, "Ingredient", salt, 5, "tbsp")
+  si(s2, "Ingredient", salt, 5, tbsp)
   s2.tools << pot
 
   s3 = s(chicken, 3, "Cook on low heat for 20 minutes", "prep", 
@@ -212,5 +212,5 @@ if chicken.recipe_steps.empty?
   c2 = s(chicken, 2, "Drizzle on sauce and green onions as garnish", "cook")
   si(c2, "RecipeStep", c1)
   si(c2, "Recipe", sauce)
-  si(c2, "Recipe", chopped_green_onion)
+  si(c2, "Recipe", chopped_green_onion, 100, g)
 end

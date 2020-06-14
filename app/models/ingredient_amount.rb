@@ -17,15 +17,21 @@ class IngredientAmount < T::Struct
     summed = ingredient_amounts.inject({}) do |sum, a|
       existing = sum[a.ingredient_id]
       if existing.nil?
-        sum[a.ingredient_id] = a
+        sum[a.ingredient_id] = [a]
       else
-        sum[a.ingredient_id] = existing + a
+        #only add them together if they both have unit or no unit
+        matches_unit_idx = existing.find_index { |i| UnitConverter.unit_matches?(a.unit, i.unit) }
+        if matches_unit_idx.present?
+          sum[a.ingredient_id][matches_unit_idx] = sum[a.ingredient_id][matches_unit_idx] + a
+        else
+          sum[a.ingredient_id] << a
+        end
       end
 
       sum
     end
 
-    summed.values
+    summed.values.flatten
   end
 
   sig {params(multiplier: T.any(Float, Integer, BigDecimal)).returns(IngredientAmount)}

@@ -70,20 +70,28 @@ class Recipe < ApplicationRecord
   sig {returns(T::Boolean)}
   #TODO: not great, a lot of db calls
   #check if all steps aside from last are inputs to later steps
-  #TODO: check if all ingredients that have units are inputs also with units
+  #check if children recipes' usages match in units
   def is_valid?
     steps_to_check = self.recipe_steps.order("step_type DESC, number ASC")
     used_steps = {}
-    step_id = ->(step) {"#{step.step_type}#{step.number}"}
+    mk_step_id = ->(step) {"#{step.step_type}#{step.number}"}
     last_id = steps_to_check.last.try(:id)
 
     steps_to_check.each do |step|
-      if step.id != last_id && used_steps[step_id.call(step)].nil?
-        used_steps[step_id.call(step)] = false
+      if step.id != last_id && used_steps[mk_step_id.call(step)].nil?
+        used_steps[mk_step_id.call(step)] = false
       end
 
       step.inputs.recipe_step_typed.each do |input|
-        used_steps[step_id.call(input.inputable)] = true
+        used_steps[mk_step_id.call(input.inputable)] = true
+      end
+
+      step.inputs.recipe_typed.each do |recipe_input|
+        child_recipe = recipe_input.inputable
+        if !UnitConverter.unit_matches?(recipe_input.unit, child_recipe.unit)
+          puts "#{child_recipe.name} in #{self.name} is invalid"
+          return false
+        end
       end
     end
 

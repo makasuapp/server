@@ -20,4 +20,17 @@ class UnitConverterTest < ActiveSupport::TestCase
   test "convert of different unit" do
     #TODO(unit_conversion)
   end
+
+  test "unit_matches?=true when both nil" do
+    assert UnitConverter.unit_matches?(nil, nil)
+  end
+
+  test "unit_matches?=true when both units" do
+    assert UnitConverter.unit_matches?("tablespoons", "tablespoons")
+  end
+
+  test "unit_matches?=false when one has units and other doesn't" do
+    assert !UnitConverter.unit_matches?("tablespoons", nil)
+    assert !UnitConverter.unit_matches?(nil, "tablespoons")
+  end
 end
