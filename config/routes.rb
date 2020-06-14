@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :recipes, only: [:index]
     resources :inventory, only: [:index]
+    post 'inventory/:id/save_qty', to: 'inventory#save_qty'
   end
 end
