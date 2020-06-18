@@ -62,6 +62,15 @@ module DayIngredient::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def op_day_id?; end
 
+  sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
+  def qty_updated_at; end
+
+  sig { params(value: T.nilable(T.any(Date, Time, ActiveSupport::TimeWithZone))).void }
+  def qty_updated_at=(value); end
+
+  sig { returns(T::Boolean) }
+  def qty_updated_at?; end
+
   sig { returns(T.nilable(String)) }
   def unit; end
 

@@ -1,7 +1,5 @@
 # typed: ignore
 class Api::InventoryController < ApplicationController
-  before_action :set_day_ingredient, only: [:save_qty]
-
   def index
     # date = Time.now.in_time_zone("America/Toronto").to_date
     # op_day = OpDay.find_or_create_by!(date: date)
@@ -12,17 +10,28 @@ class Api::InventoryController < ApplicationController
   end
 
   def save_qty
-    @day_ingredient.update_attributes!(had_qty: day_ingredient_params[:had_qty])
+    ids = params[:updates].map { |x| x[:id] }.flatten
+    ingredients_map = {}
+    DayIngredient.where(id: ids).each do |i|
+      ingredients_map[i.id.to_s] = i
+    end
+
+    params[:updates].each do |update|
+      update_time = update.try(:[], "time")
+      ingredient = ingredients_map[update.try(:[], "id").to_s]
+
+      if update_time.present? && ingredient.present? && 
+        (ingredient.qty_updated_at.nil? || update_time > ingredient.qty_updated_at.to_i)
+
+        ingredient.had_qty = update[:had_qty]
+        ingredient.qty_updated_at = Time.at(update_time)
+
+        ingredients_map[ingredient.id.to_s] = ingredient
+      end
+    end
+
+    DayIngredient.import ingredients_map.values, on_duplicate_key_update: [:had_qty, :qty_updated_at]
 
     head :ok
-  end
-
-  private
-  def set_day_ingredient
-    @day_ingredient = DayIngredient.find(params[:id])
-  end
-
-  def day_ingredient_params
-    params.require(:day_ingredient).permit(:had_qty)
   end
 end

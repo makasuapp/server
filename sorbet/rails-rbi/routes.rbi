@@ -175,10 +175,17 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_recipes_url(*args, **kwargs); end
 
-  # Sigs for route /api/ingredients(.:format)
+  # Sigs for route /api/inventory(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def api_ingredients_path(*args, **kwargs); end
+  def api_inventory_index_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def api_ingredients_url(*args, **kwargs); end
+  def api_inventory_index_url(*args, **kwargs); end
+
+  # Sigs for route /api/inventory/save_qty(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_inventory_save_qty_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_inventory_save_qty_url(*args, **kwargs); end
 end
