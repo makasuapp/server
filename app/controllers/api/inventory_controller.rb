@@ -17,7 +17,7 @@ class Api::InventoryController < ApplicationController
     end
 
     params[:updates].each do |update|
-      update_time = update.try(:[], "time")
+      update_time = update.try(:[], "time_sec")
       ingredient = ingredients_map[update.try(:[], "id").to_s]
 
       if update_time.present? && ingredient.present? && 

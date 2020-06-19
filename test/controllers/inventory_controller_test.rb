@@ -17,8 +17,8 @@ class InventoryControllerTest < ActionDispatch::IntegrationTest
   test "save_qty updates qty of ingredients that exist" do
     now = DateTime.now.to_i
     updates = []
-    updates << {id: @salt_ingredient.id, had_qty: 1.2, time: now}
-    updates << {id: @chicken_ingredient.id, had_qty: 2.5, time: now}
+    updates << {id: @salt_ingredient.id, had_qty: 1.2, time_sec: now}
+    updates << {id: @chicken_ingredient.id, had_qty: 2.5, time_sec: now}
     updates << {id: 0, had_qty: 2, time: now}
 
     post "/api/inventory/save_qty", params: { 
@@ -35,10 +35,10 @@ class InventoryControllerTest < ActionDispatch::IntegrationTest
   test "save_qty updates to latest" do
     now = DateTime.now
     updates = []
-    updates << {id: @salt_ingredient.id, had_qty: 1.2, time: (now - 2.days).to_i}
-    updates << {id: @chicken_ingredient.id, had_qty: 2, time: (now - 2.hours).to_i}
-    updates << {id: @chicken_ingredient.id, had_qty: 2.5, time: now.to_i}
-    updates << {id: @chicken_ingredient.id, had_qty: 2, time: (now - 1.hour).to_i}
+    updates << {id: @salt_ingredient.id, had_qty: 1.2, time_sec: (now - 2.days).to_i}
+    updates << {id: @chicken_ingredient.id, had_qty: 2, time_sec: (now - 2.hours).to_i}
+    updates << {id: @chicken_ingredient.id, had_qty: 2.5, time_sec: now.to_i}
+    updates << {id: @chicken_ingredient.id, had_qty: 2, time_sec: (now - 1.hour).to_i}
 
     post "/api/inventory/save_qty", params: { 
       updates: updates
