@@ -23,33 +23,57 @@ class Recipe < ApplicationRecord
     self.where(publish: true)
   end
 
-  sig {returns(RecipeStep::ActiveRecord_AssociationRelation)}
+  sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
   def prep_steps
     self.recipe_steps
-      .includes([:tools, :detailed_instructions, {inputs: :inputable}])
-      .where(step_type: StepType::Prep)
+      .includes([:tools, :detailed_instructions, :inputs])
+      .prep
       .order("number ASC")
   end
 
-  sig {returns(RecipeStep::ActiveRecord_AssociationRelation)}
+  sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
   def cook_steps
     self.recipe_steps
-      .includes([:tools, :detailed_instructions, {inputs: :inputable}])
-      .where(step_type: StepType::Cook)
+      .includes([:tools, :detailed_instructions, :inputs])
+      .cook
       .order("number ASC")
+  end
+
+  sig {returns(T::Array[RecipeStep])}
+  #TODO: not great, a lot of db calls
+  def all_steps
+    steps = []
+
+    steps_to_check = self.recipe_steps.includes(:inputs).order("step_type DESC, number ASC")
+    steps_to_check.each do |s|
+      s.inputs.select { |input| 
+        input.inputable_type == InputType::Recipe
+      }.each do |recipe_input|
+        child_recipe = recipe_input.inputable
+        steps = steps + child_recipe.all_steps
+      end
+
+      steps << s
+    end
+
+    steps
   end
 
   sig {returns(T::Array[IngredientAmount])}
   #TODO: not great, a lot of db calls
   def ingredient_amounts
     amounts = []
-    steps_to_check = self.recipe_steps.order("step_type DESC, number ASC")
+    steps_to_check = self.recipe_steps.includes(:inputs).order("step_type DESC, number ASC")
     steps_to_check.each do |step|
-      amounts = amounts + step.inputs.ingredient_typed.map { |input| 
+      amounts = amounts + step.inputs.select { |input| 
+        input.inputable_type == InputType::Ingredient
+      }.map { |input| 
         IngredientAmount.mk(input.inputable_id, input.quantity, input.unit)
       }
 
-      step.inputs.recipe_typed.each do |recipe_input|
+      step.inputs.select { |input| 
+        input.inputable_type == InputType::Recipe
+      }.each do |recipe_input|
         child_recipe = recipe_input.inputable
         num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
         child_recipe.ingredient_amounts.each do |amount|

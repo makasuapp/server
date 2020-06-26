@@ -32,8 +32,20 @@ class RecipeStep < ApplicationRecord
   belongs_to :recipe
   #inputs in this step
   has_many :inputs, class_name: "StepInput", foreign_key: :recipe_step_id
-  #steps where this is an input
-  has_many :step_inputs, as: :inputable
   has_and_belongs_to_many :tools
   has_and_belongs_to_many :detailed_instructions
+
+  #steps where this is an input
+  has_many :step_inputs, as: :inputable
+  has_many :day_preps
+
+  sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
+  def self.prep
+    self.where(step_type: StepType::Prep)
+  end
+
+  sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
+  def self.cook
+    self.where(step_type: StepType::Cook)
+  end
 end

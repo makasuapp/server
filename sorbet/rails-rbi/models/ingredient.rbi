@@ -46,6 +46,15 @@ module Ingredient::GeneratedAttributeMethods
 end
 
 module Ingredient::GeneratedAssociationMethods
+  sig { returns(::DayIngredient::ActiveRecord_Associations_CollectionProxy) }
+  def day_ingredients; end
+
+  sig { returns(T::Array[Integer]) }
+  def day_ingredient_ids; end
+
+  sig { params(value: T::Enumerable[::DayIngredient]).void }
+  def day_ingredients=(value); end
+
   sig { returns(::StepInput::ActiveRecord_Associations_CollectionProxy) }
   def step_inputs; end
 

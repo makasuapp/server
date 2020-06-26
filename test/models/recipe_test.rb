@@ -21,7 +21,7 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "is_valid? is true if multiple steps used in one" do 
     r = recipes(:sauce)
-    recipe_steps = r.recipe_steps.order("number ASC")
+    recipe_steps = r.recipe_steps.order("step_type DESC, number ASC")
     assert recipe_steps.first.inputs.recipe_step_typed.empty?
     assert recipe_steps.second.inputs.recipe_step_typed.empty?
     assert recipe_steps.last.inputs.recipe_step_typed.size == 2
@@ -88,5 +88,23 @@ class RecipeTest < ActiveSupport::TestCase
     r = recipes(:green_onion)
     #TODO(unit_conversion)
     assert r.servings_produced(5, "tablespoons") == 0.05
+  end
+
+  test "all_steps returns steps of recipe and subrecipes" do 
+    step = recipe_steps(:sauce_p2)
+    g = recipes(:green_onion)
+    s = recipes(:sauce)
+    r = recipes(:chicken)
+
+    #green onion is now a subrecipe of chicken and sauce
+    StepInput.create!(inputable_id: g.id, inputable_type: InputType::Recipe, 
+      recipe_step_id: step.id, quantity: 1, unit: "teaspoons")
+
+    assert g.recipe_steps.count == 1
+    assert s.recipe_steps.count == 3
+    assert r.recipe_steps.count == 4
+
+    steps = r.all_steps
+    assert steps.count == 9
   end
 end

@@ -54,6 +54,15 @@ module OpDay::GeneratedAssociationMethods
 
   sig { params(value: T::Enumerable[::DayIngredient]).void }
   def day_ingredients=(value); end
+
+  sig { returns(::DayPrep::ActiveRecord_Associations_CollectionProxy) }
+  def day_preps; end
+
+  sig { returns(T::Array[Integer]) }
+  def day_prep_ids; end
+
+  sig { params(value: T::Enumerable[::DayPrep]).void }
+  def day_preps=(value); end
 end
 
 module OpDay::CustomFinderMethods

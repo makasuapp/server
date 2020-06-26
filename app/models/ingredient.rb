@@ -13,4 +13,5 @@ class Ingredient < ApplicationRecord
 
   #places where this is an input
   has_many :step_inputs, as: :inputable
+  has_many :day_ingredients
 end

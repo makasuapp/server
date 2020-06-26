@@ -43,11 +43,11 @@ sauce_p2:
   number: 2
   step_type: "prep"
 
-sauce_p3:
+sauce_c1:
   recipe: sauce
   instruction: "Mix all together"
-  number: 3
-  step_type: "prep"
+  number: 1
+  step_type: "cook"
 
 chicken_p1:
   recipe: chicken

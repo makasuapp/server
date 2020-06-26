@@ -46,13 +46,13 @@ sauce_p2_i2:
   quantity: 6
   unit: "tablespoons"
 
-sauce_p3_i1:
+sauce_c1_i1:
   inputable: sauce_p1 (RecipeStep)
-  recipe_step: sauce_p3
+  recipe_step: sauce_c1
 
-sauce_p3_i2:
+sauce_c1_i2:
   inputable: sauce_p2 (RecipeStep)
-  recipe_step: sauce_p3
+  recipe_step: sauce_c1
 
 chicken_p1_i1:
   inputable: chicken (Ingredient)

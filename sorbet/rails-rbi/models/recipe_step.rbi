@@ -100,6 +100,15 @@ module RecipeStep::GeneratedAttributeMethods
 end
 
 module RecipeStep::GeneratedAssociationMethods
+  sig { returns(::DayPrep::ActiveRecord_Associations_CollectionProxy) }
+  def day_preps; end
+
+  sig { returns(T::Array[Integer]) }
+  def day_prep_ids; end
+
+  sig { params(value: T::Enumerable[::DayPrep]).void }
+  def day_preps=(value); end
+
   sig { returns(::DetailedInstruction::ActiveRecord_Associations_CollectionProxy) }
   def detailed_instructions; end
 
