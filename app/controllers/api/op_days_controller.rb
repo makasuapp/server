@@ -1,5 +1,5 @@
 # typed: ignore
-class Api::InventoryController < ApplicationController
+class Api::OpDaysController < ApplicationController
   def index
     # date = Time.now.in_time_zone("America/Toronto").to_date
     # op_day = OpDay.find_or_create_by!(date: date)
@@ -9,7 +9,7 @@ class Api::InventoryController < ApplicationController
     render formats: :json
   end
 
-  def save_qty
+  def save_ingredients_qty
     ids = params[:updates].map { |x| x[:id] }.flatten
     ingredients_map = {}
     DayIngredient.where(id: ids).each do |i|

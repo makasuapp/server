@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class InventoryControllerTest < ActionDispatch::IntegrationTest
+class OpDaysControllerTest < ActionDispatch::IntegrationTest
   setup do
     @yesterday = DateTime.now - 1.day
     salt = ingredients(:salt)
@@ -21,7 +21,7 @@ class InventoryControllerTest < ActionDispatch::IntegrationTest
     updates << {id: @chicken_ingredient.id, had_qty: 2.5, time_sec: now}
     updates << {id: 0, had_qty: 2, time: now}
 
-    post "/api/inventory/save_qty", params: { 
+    post "/api/op_days/save_ingredients_qty", params: { 
       updates: updates
     }, as: :json
 
@@ -40,7 +40,7 @@ class InventoryControllerTest < ActionDispatch::IntegrationTest
     updates << {id: @chicken_ingredient.id, had_qty: 2.5, time_sec: now.to_i}
     updates << {id: @chicken_ingredient.id, had_qty: 2, time_sec: (now - 1.hour).to_i}
 
-    post "/api/inventory/save_qty", params: { 
+    post "/api/op_days/save_ingredients_qty", params: { 
       updates: updates
     }, as: :json
 
