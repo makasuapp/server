@@ -5,7 +5,16 @@ class Api::OpDaysController < ApplicationController
     # op_day = OpDay.find_or_create_by!(date: date)
     op_day = OpDay.first
 
-    @ingredients = DayIngredient.where(op_day_id: op_day.id)
+    #TODO: reduce this down to only the ones needed
+    @recipes = Recipe.all
+
+    @ingredients = DayIngredient.where(op_day_id: op_day.id).includes(:ingredient)
+    @preps = DayPrep.where(op_day_id: op_day.id)
+      .includes({recipe_step: [:inputs, :detailed_instructions, :tools]})
+
+    #TODO(day_prep): also pull all DayIngredient/DayPrep where date is > today and joined on RecipeStep, date + min seconds < end of today 
+    #TODO(day_prep): optional = DayIngredient/DayPrep where date is tomorrow 
+
     render formats: :json
   end
 

@@ -1,36 +1,11 @@
-json.extract! recipe, :id, :name, :publish, :unit
-json.output_qty recipe.output_qty
+json.extract! recipe, :id, :name, :publish, :unit, :output_qty
 
-json.prep_steps(recipe.prep_steps) do |step|
-  json.extract! step, :id, :number, :duration_sec, :instruction, :max_before_sec, :min_before_sec
-
-  json.tools(step.tools) do |tool|
-    json.extract! tool, :id, :name
-  end
-
-  json.detailed_instructions(step.detailed_instructions) do |instruction|
-    json.extract! instruction, :id, :instruction
-  end
-
-  json.inputs(step.inputs) do |input|
-    json.extract! input, :id, :inputable_type, :inputable_id, :unit
-    json.quantity input.quantity
-  end
+json.prep_steps do
+  json.array! recipe.recipe_steps.includes([:inputs, :detailed_instructions, :tools])
+    .select { |step| step.step_type == StepType::Prep }, partial: "api/recipe_steps/recipe_step", as: :step
 end
 
-json.cook_steps(recipe.cook_steps) do |step|
-  json.extract! step, :id, :number, :duration_sec, :instruction, :max_before_sec, :min_before_sec
-
-  json.tools(step.tools) do |tool|
-    json.extract! tool, :id, :name
-  end
-
-  json.detailed_instructions(step.detailed_instructions) do |instruction|
-    json.extract! instruction, :id, :instruction
-  end
-  
-  json.inputs(step.inputs) do |input|
-    json.extract! input, :id, :inputable_type, :inputable_id, :unit
-    json.quantity input.quantity
-  end
+json.cook_steps do
+  json.array! recipe.recipe_steps.includes([:inputs, :detailed_instructions, :tools])
+    .select { |step| step.step_type == StepType::Cook}, partial: "api/recipe_steps/recipe_step", as: :step
 end
