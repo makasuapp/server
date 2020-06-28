@@ -14,7 +14,7 @@ end
 
 server {
   listen 80;
-  if ($host = bramper.com) {
+  if ($host = makasu.co) {
       return 301 https://$host$request_uri;
   } # managed by Certbot
 
@@ -61,7 +61,7 @@ server {
     # try_files $uri/index.html $uri @puma_<%= fetch(:nginx_config_name) %>;
 
     set $cors '';
-    if ($http_origin ~ '^https?://(localhost\:[0-9]+|([A-Za-z0-9]+\.)?bramper\.com|([A-Za-z0-9]+\.)?ivyxu\.co|([A-Za-z0-9]+\.)?kuluin\.com|([A-Za-z0-9]+\.)?beta\.camp)') {
+    if ($http_origin ~ '^https?://(localhost\:[0-9]+|([A-Za-z0-9]+\.)?bramper\.com|([A-Za-z0-9]+\.)?makasu\.co)') {
       set $cors 'true';
     }
 

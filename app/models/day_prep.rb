@@ -39,6 +39,7 @@ class DayPrep < ApplicationRecord
       }.flatten
       subrecipe_steps = subrecipes.map(&:all_steps).flatten
 
+      #TODO(day_prep): this is incorrect for subrecipes. you don't just add pr quantity since subrecipe might be adjusted qty
       #aggregates usages of the same step
       (prep_steps + subrecipe_steps).each do |step|
         existing_prep = day_preps[step.id]

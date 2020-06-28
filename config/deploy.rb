@@ -2,8 +2,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.0"
 
-set :application, "kitchen"
-set :repo_url, "git@github.com:wangfowen/kitchen-server.git"
+set :application, "makasu"
+set :repo_url, "git@github.com:makasuapp/server.git"
 set :user, "deploy_user"
 set :deploy_to, '/home/deploy_user/kitchen'
 set :pty, true
@@ -27,8 +27,8 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, true
 
-# for bramper.com domain
-domain_name = "bramper.com"
+# for makasu.co domain
+domain_name = "makasu.co"
 set :nginx_server_name, "#{domain_name}"
 set :nginx_use_ssl, true
 set :nginx_ssl_certificate, "/etc/letsencrypt/live/#{domain_name}/fullchain.pem" 
