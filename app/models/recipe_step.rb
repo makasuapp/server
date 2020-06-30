@@ -9,6 +9,7 @@
 #  max_before_sec :integer
 #  min_before_sec :integer
 #  number         :integer          not null
+#  output_name    :string
 #  step_type      :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -47,5 +48,14 @@ class RecipeStep < ApplicationRecord
   sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
   def self.cook
     self.where(step_type: StepType::Cook)
+  end
+
+  sig {returns(String)}
+  def name
+    if self.output_name.present?
+      T.must(self.output_name)
+    else
+      "#{self.recipe.name} #{self.step_type} step #{self.number}"
+    end
   end
 end

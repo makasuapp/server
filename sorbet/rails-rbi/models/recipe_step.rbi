@@ -71,6 +71,15 @@ module RecipeStep::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def number?; end
 
+  sig { returns(T.nilable(String)) }
+  def output_name; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def output_name=(value); end
+
+  sig { returns(T::Boolean) }
+  def output_name?; end
+
   sig { returns(Integer) }
   def recipe_id; end
 

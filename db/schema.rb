@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_230433) do
+ActiveRecord::Schema.define(version: 2020_06_30_203732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_230433) do
     t.integer "min_before_sec"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "output_name"
     t.index ["recipe_id"], name: "index_recipe_steps_on_recipe_id"
     t.index ["step_type"], name: "index_recipe_steps_on_step_type"
   end

@@ -9,5 +9,5 @@ json.detailed_instructions(step.detailed_instructions) do |instruction|
 end
 
 json.inputs(step.inputs) do |input|
-  json.extract! input, :id, :inputable_type, :inputable_id, :unit, :quantity
+  json.extract! input, :id, :name, :inputable_type, :inputable_id, :unit, :quantity
 end

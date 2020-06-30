@@ -21,12 +21,6 @@ json.prep do
   end
 end
 
-json.recipes do
-  json.array! @recipes do |recipe|
-    json.extract! recipe, :id, :name, :publish, :unit, :output_qty
-  end
-end
-
 json.optional do
   json.ingredients do
     # json.array! @optional_ingredients, partial: "api/op_days/day_ingredients", as: :ingredient

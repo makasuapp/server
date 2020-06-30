@@ -73,4 +73,9 @@ class StepInput < ApplicationRecord
       # errors.add(:inputable_type, "must not be a recipe using this step")
     end
   end
+
+  sig {returns(String)}
+  def name
+    self.inputable.name
+  end
 end
