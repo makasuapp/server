@@ -1,4 +1,4 @@
-json.extract! step, :id, :recipe_id, :number, :duration_sec, :instruction, :max_before_sec, :min_before_sec
+json.extract! step, :id, :recipe_id, :number, :duration_sec, :instruction, :max_before_sec, :min_before_sec, :step_type
 
 json.tools(step.tools) do |tool|
   json.extract! tool, :id, :name
