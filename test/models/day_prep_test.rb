@@ -34,6 +34,16 @@ class DayPrepTest < ActiveSupport::TestCase
   end
 
   test "generate_for aggregates the steps" do
+    sauce_step = recipe_steps(:sauce_p2)
+    chicken_step = recipe_steps(:chicken_p2)
+    g = recipes(:green_onion)
+
+    #green onion is now a subrecipe of chicken twice and sauce once
+    StepInput.create!(inputable_id: g.id, inputable_type: InputType::Recipe, 
+      recipe_step_id: sauce_step.id, quantity: 10, unit: "grams")
+    StepInput.create!(inputable_id: g.id, inputable_type: InputType::Recipe, 
+      recipe_step_id: chicken_step.id, quantity: 30, unit: "teaspoons")
+
     count = DayPrep.count
 
     new_pr = @purchased_recipe.dup
@@ -44,5 +54,10 @@ class DayPrepTest < ActiveSupport::TestCase
 
     assert DayPrep.count == count + 6
     assert DayPrep.last.expected_qty == 7
+
+    green_onion_step = g.recipe_steps.first
+    green_onion_prep = DayPrep.where(recipe_step_id: green_onion_step.id)
+    assert green_onion_prep.count == 1
+    assert green_onion_prep.first.expected_qty == 9.8
   end
 end

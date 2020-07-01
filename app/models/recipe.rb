@@ -39,9 +39,9 @@ class Recipe < ApplicationRecord
       .order("number ASC")
   end
 
-  sig {returns(T::Array[RecipeStep])}
+  sig {returns(T::Array[StepAmount])}
   #TODO: not great, a lot of db calls
-  def all_steps
+  def step_amounts
     steps = []
 
     steps_to_check = self.recipe_steps.includes(:inputs).order("step_type DESC, number ASC")
@@ -50,10 +50,14 @@ class Recipe < ApplicationRecord
         input.inputable_type == InputType::Recipe
       }.each do |recipe_input|
         child_recipe = recipe_input.inputable
-        steps = steps + child_recipe.all_steps
+        child_steps = child_recipe.step_amounts
+
+        num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
+        child_step_amounts = child_steps.map { |x| x * num_servings }
+        steps = steps + child_step_amounts
       end
 
-      steps << s
+      steps << StepAmount.mk(s.id, 1)
     end
 
     steps

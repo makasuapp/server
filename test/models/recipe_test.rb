@@ -90,7 +90,7 @@ class RecipeTest < ActiveSupport::TestCase
     assert r.servings_produced(5, "tablespoons") == 0.05
   end
 
-  test "all_steps returns steps of recipe and subrecipes" do 
+  test "step_amounts returns step amounts of recipe and subrecipes" do 
     step = recipe_steps(:sauce_p2)
     g = recipes(:green_onion)
     s = recipes(:sauce)
@@ -98,13 +98,19 @@ class RecipeTest < ActiveSupport::TestCase
 
     #green onion is now a subrecipe of chicken and sauce
     StepInput.create!(inputable_id: g.id, inputable_type: InputType::Recipe, 
-      recipe_step_id: step.id, quantity: 1, unit: "teaspoons")
+      recipe_step_id: step.id, quantity: 10, unit: "grams")
 
     assert g.recipe_steps.count == 1
     assert s.recipe_steps.count == 3
     assert r.recipe_steps.count == 4
 
-    steps = r.all_steps
-    assert steps.count == 9
+    step_amounts = r.step_amounts
+    assert step_amounts.count == 9
+
+    green_onion_step = g.recipe_steps.first
+    green_onion_amounts = step_amounts.select { |x| x.recipe_step_id == green_onion_step.id }
+    assert green_onion_amounts.count == 2
+    assert green_onion_amounts.first.quantity == 0.1
+    assert green_onion_amounts.last.quantity == 1
   end
 end

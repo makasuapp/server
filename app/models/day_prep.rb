@@ -28,30 +28,38 @@ class DayPrep < ApplicationRecord
     day_preps = {}
 
     purchased_recipes.includes({recipe: {recipe_steps: :inputs}}).each do |pr|
-      #create day prep for prep steps of the recipe
-      prep_steps = pr.recipe.recipe_steps.select { |step| step.step_type == StepType::Prep }
+      recipe = pr.recipe
 
+      #create day prep for prep steps of the recipe
+      prep_step_amounts = recipe.recipe_steps
+        .select { |step| step.step_type == StepType::Prep }
+        .map { |step| StepAmount.mk(step.id, 1) }
+      
       #create day prep for all steps of subrecipes
-      subrecipes = pr.recipe.recipe_steps.map { |step| 
+      subrecipe_step_amounts = recipe.recipe_steps.map { |step| 
         step.inputs.select { |input| 
           input.inputable_type == InputType::Recipe
-        }.map(&:inputable)
-      }.flatten
-      subrecipe_steps = subrecipes.map(&:all_steps).flatten
+        }.map { |recipe_input|
+          child_recipe = recipe_input.inputable
+          child_steps = child_recipe.step_amounts
 
-      #TODO(day_prep): this is incorrect for subrecipes. you don't just add pr quantity since subrecipe might be adjusted qty
-      #aggregates usages of the same step
-      (prep_steps + subrecipe_steps).each do |step|
-        existing_prep = day_preps[step.id]
+          num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
+          child_step_amounts = child_steps.map { |x| x * num_servings }
+        }
+      }.flatten
+
+      (prep_step_amounts + subrecipe_step_amounts).each do |step_amount|
+        existing_prep = day_preps[step_amount.recipe_step_id]
+        additional_qty = step_amount.quantity * pr.quantity
         if existing_prep.nil?
-          day_preps[step.id] = DayPrep.new(
-            expected_qty: pr.quantity,
+          day_preps[step_amount.recipe_step_id] = DayPrep.new(
+            expected_qty: additional_qty,
             op_day_id: op_day.id,
-            recipe_step_id: step.id
+            recipe_step_id: step_amount.recipe_step_id
           )
         else
-          existing_prep.expected_qty = existing_prep.expected_qty + pr.quantity
-          day_preps[step.id] = existing_prep
+          existing_prep.expected_qty = existing_prep.expected_qty + additional_qty
+          day_preps[step_amount.recipe_step_id] = existing_prep
         end
       end
     end

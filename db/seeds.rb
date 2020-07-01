@@ -64,6 +64,7 @@ pot = t("Stock Pot")
 blender = t("Blender")
 knife = t("Chef Knife")
 
+cups = "cups"
 g = "grams"
 tsp = "teaspoons"
 tbsp = "tablespoons"
@@ -180,17 +181,17 @@ if chicken.recipe_steps.empty?
   )
   s1.detailed_instructions << d("Rub salt all over chicken over and under the skin. Store uncovered in a fridge")
   si(s1, "Ingredient", whole_chicken)
-  si(s1, "Ingredient", salt)
+  si(s1, "Ingredient", salt, 20, g)
 
   s2 = s(chicken, 2, 
     "Submerge whole chicken in water with dried peppers, sichuan peppercorn, green onion chunks, ginger chunks, lots of salt. Squeeze the green onions and ginger to get juices into it."
   )
   si(s2, "RecipeStep", s1)
-  si(s2, "Ingredient", water)
+  si(s2, "Ingredient", water, 4, cups)
   si(s2, "Ingredient", dried_peppers, 3)
   si(s2, "Ingredient", sichuan_peppercorn, 10)
-  si(s2, "Ingredient", ginger, 4, g)
-  si(s2, "Ingredient", green_onion, 1)
+  si(s2, "Recipe", minced_ginger, 40, g)
+  si(s2, "Recipe", chopped_green_onion, 100, g)
   si(s2, "Ingredient", salt, 5, tbsp)
   s2.tools << pot
 
@@ -202,6 +203,7 @@ if chicken.recipe_steps.empty?
 
   s4 = s(chicken, 4, "Dunk in ice bath to stop cooking")
   si(s4, "RecipeStep", s3)
+  #TODO: how do we handle reusable ingredients that don't scale with recipes?
   si(s4, "Ingredient", ice)
   si(s4, "Ingredient", water)
 
@@ -209,8 +211,9 @@ if chicken.recipe_steps.empty?
   si(c1, "RecipeStep", s4)
   c1.tools << knife
 
-  c2 = s(chicken, 2, "Drizzle on sauce and green onions as garnish", "cook")
+  c2 = s(chicken, 2, "Drizzle on sauce, minced garlic, green onions as garnish", "cook")
   si(c2, "RecipeStep", c1)
   si(c2, "Recipe", sauce)
+  si(c2, "Recipe", minced_garlic, 10, g)
   si(c2, "Recipe", chopped_green_onion, 100, g)
 end
