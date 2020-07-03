@@ -3,13 +3,14 @@
 #
 # Table name: recipes
 #
-#  id         :bigint           not null, primary key
-#  name       :string           not null
-#  output_qty :float            default(1.0), not null
-#  publish    :boolean          default(FALSE), not null
-#  unit       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                  :bigint           not null, primary key
+#  current_price_cents :integer
+#  name                :string           not null
+#  output_qty          :float            default(1.0), not null
+#  publish             :boolean          default(FALSE), not null
+#  unit                :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 class Recipe < ApplicationRecord
   extend T::Sig
@@ -17,6 +18,10 @@ class Recipe < ApplicationRecord
   has_many :recipe_steps
   #places where this is an input
   has_many :step_inputs, as: :inputable
+  has_many :order_items
+  has_many :item_prices
+
+  after_save :update_price, if: :saved_change_to_current_price_cents
 
   sig {returns(Recipe::ActiveRecord_Relation)}
   def self.published
@@ -124,5 +129,13 @@ class Recipe < ApplicationRecord
     end
 
     used_steps.values.inject(true) { |sum, step| sum && step }
+  end
+
+  private
+  sig {void}
+  def update_price
+    if self.current_price_cents.present?
+      self.item_prices.create!(price_cents: T.must(self.current_price_cents))
+    end
   end
 end

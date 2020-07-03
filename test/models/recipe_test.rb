@@ -3,13 +3,14 @@
 #
 # Table name: recipes
 #
-#  id         :bigint           not null, primary key
-#  name       :string           not null
-#  output_qty :float            default(1.0), not null
-#  publish    :boolean          default(FALSE), not null
-#  unit       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                  :bigint           not null, primary key
+#  current_price_cents :integer
+#  name                :string           not null
+#  output_qty          :float            default(1.0), not null
+#  publish             :boolean          default(FALSE), not null
+#  unit                :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 require 'test_helper'
 

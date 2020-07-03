@@ -17,6 +17,15 @@ module Recipe::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def created_at?; end
 
+  sig { returns(T.nilable(Integer)) }
+  def current_price_cents; end
+
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  def current_price_cents=(value); end
+
+  sig { returns(T::Boolean) }
+  def current_price_cents?; end
+
   sig { returns(Integer) }
   def id; end
 
@@ -73,6 +82,24 @@ module Recipe::GeneratedAttributeMethods
 end
 
 module Recipe::GeneratedAssociationMethods
+  sig { returns(::ItemPrice::ActiveRecord_Associations_CollectionProxy) }
+  def item_prices; end
+
+  sig { returns(T::Array[Integer]) }
+  def item_price_ids; end
+
+  sig { params(value: T::Enumerable[::ItemPrice]).void }
+  def item_prices=(value); end
+
+  sig { returns(::OrderItem::ActiveRecord_Associations_CollectionProxy) }
+  def order_items; end
+
+  sig { returns(T::Array[Integer]) }
+  def order_item_ids; end
+
+  sig { params(value: T::Enumerable[::OrderItem]).void }
+  def order_items=(value); end
+
   sig { returns(::RecipeStep::ActiveRecord_Associations_CollectionProxy) }
   def recipe_steps; end
 

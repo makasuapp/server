@@ -1,3 +1,4 @@
+# typed: true
 class CreateDayPreps < ActiveRecord::Migration[5.2]
   def change
     create_table :day_preps do |t|

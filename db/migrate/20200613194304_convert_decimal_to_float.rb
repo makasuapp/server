@@ -1,3 +1,4 @@
+# typed: true
 class ConvertDecimalToFloat < ActiveRecord::Migration[5.2]
   def change
     change_column :day_ingredients, :expected_qty, :float, null: false

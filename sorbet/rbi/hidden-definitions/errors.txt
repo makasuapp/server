@@ -108,6 +108,307 @@
 # wrong constant name <Class:<root>>
 # wrong constant name <todo sym>
 # wrong constant name <todo sym>
+# undefined method `aasm<defaultArg>1' for module `AASM'
+# wrong constant name <Class:Base>
+# wrong constant name <Class:ClassMethods>
+# wrong constant name <Class:Configuration>
+# wrong constant name <Class:Core>
+# wrong constant name <Class:InstanceBase>
+# wrong constant name <Class:InvalidTransition>
+# wrong constant name <Class:Localizer>
+# wrong constant name <Class:NoDirectAssignmentError>
+# wrong constant name <Class:Persistence>
+# wrong constant name <Class:StateMachine>
+# wrong constant name <Class:StateMachineStore>
+# wrong constant name <Class:UndefinedState>
+# wrong constant name <Class:UnknownStateMachineError>
+# wrong constant name aasm<defaultArg>1
+# wrong constant name aasm
+# undefined method `attribute_name<defaultArg>1' for class `AASM::Base'
+# undefined method `event<defaultArg>1' for class `AASM::Base'
+# undefined method `from_states_for_state<defaultArg>1' for class `AASM::Base'
+# undefined method `initial_state<defaultArg>1' for class `AASM::Base'
+# undefined method `initialize<defaultArg>1' for class `AASM::Base'
+# Did you mean?  initialize_dup
+# wrong constant name after_all_events
+# wrong constant name after_all_transactions
+# wrong constant name after_all_transitions
+# wrong constant name attribute_name<defaultArg>1
+# wrong constant name attribute_name
+# wrong constant name before_all_events
+# wrong constant name before_all_transactions
+# wrong constant name ensure_on_all_events
+# wrong constant name error_on_all_events
+# wrong constant name event<defaultArg>1
+# wrong constant name event
+# wrong constant name events
+# wrong constant name from_states_for_state<defaultArg>1
+# wrong constant name from_states_for_state
+# wrong constant name human_event_name
+# wrong constant name initial_state<defaultArg>1
+# wrong constant name initial_state
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name klass
+# wrong constant name state
+# wrong constant name state_machine
+# wrong constant name state_with_scope
+# wrong constant name state_without_scope
+# wrong constant name states
+# wrong constant name states_for_select
+# wrong constant name <static-init>
+# wrong constant name aasm
+# wrong constant name inherited
+# wrong constant name <static-init>
+# wrong constant name column
+# wrong constant name column=
+# wrong constant name create_scopes
+# wrong constant name create_scopes=
+# wrong constant name enum
+# wrong constant name enum=
+# wrong constant name logger
+# wrong constant name logger=
+# wrong constant name namespace
+# wrong constant name namespace=
+# wrong constant name no_direct_assignment
+# wrong constant name no_direct_assignment=
+# wrong constant name requires_lock
+# wrong constant name requires_lock=
+# wrong constant name requires_new_transaction
+# wrong constant name requires_new_transaction=
+# wrong constant name skip_validation_on_save
+# wrong constant name skip_validation_on_save=
+# wrong constant name use_transactions
+# wrong constant name use_transactions=
+# wrong constant name whiny_persistence
+# wrong constant name whiny_persistence=
+# wrong constant name whiny_transitions
+# wrong constant name whiny_transitions=
+# wrong constant name with_klass
+# wrong constant name with_klass=
+# wrong constant name <static-init>
+# wrong constant name hide_warnings
+# wrong constant name hide_warnings=
+# wrong constant name <Class:Event>
+# wrong constant name <Class:Invoker>
+# wrong constant name <Class:Invokers>
+# wrong constant name <Class:State>
+# wrong constant name <Class:Transition>
+# undefined method `fire<defaultArg>1' for class `AASM::Core::Event'
+# undefined method `fire<defaultArg>2' for class `AASM::Core::Event'
+# undefined method `initialize<defaultArg>1' for class `AASM::Core::Event'
+# Did you mean?  initialize_dup
+# undefined method `may_fire?<defaultArg>1' for class `AASM::Core::Event'
+# undefined method `transitions<defaultArg>1' for class `AASM::Core::Event'
+# wrong constant name ==
+# wrong constant name failed_callbacks
+# wrong constant name fire<defaultArg>1
+# wrong constant name fire<defaultArg>2
+# wrong constant name fire
+# wrong constant name fire_callbacks
+# wrong constant name fire_global_callbacks
+# wrong constant name fire_transition_callbacks
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name may_fire?<defaultArg>1
+# wrong constant name may_fire?
+# wrong constant name name
+# wrong constant name options
+# wrong constant name state_machine
+# wrong constant name transitions<defaultArg>1
+# wrong constant name transitions
+# wrong constant name transitions_from_state
+# wrong constant name transitions_from_state?
+# wrong constant name transitions_to_state
+# wrong constant name transitions_to_state?
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name invoke
+# wrong constant name with_default_return_value
+# wrong constant name with_failures
+# wrong constant name with_options
+# wrong constant name <static-init>
+# wrong constant name <Class:BaseInvoker>
+# wrong constant name <Class:ClassInvoker>
+# wrong constant name <Class:LiteralInvoker>
+# wrong constant name <Class:ProcInvoker>
+# wrong constant name args
+# wrong constant name failures
+# wrong constant name initialize
+# wrong constant name invoke
+# wrong constant name invoke_subject
+# wrong constant name log_failure
+# wrong constant name may_invoke?
+# wrong constant name record
+# wrong constant name result
+# wrong constant name subject
+# wrong constant name with_failures
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `AASM::Core::State'
+# Did you mean?  initialize_dup
+# wrong constant name <=>
+# wrong constant name ==
+# wrong constant name display_name
+# wrong constant name fire_callbacks
+# wrong constant name for_select
+# wrong constant name human_name
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name localized_name
+# wrong constant name name
+# wrong constant name options
+# wrong constant name state_machine
+# wrong constant name <static-init>
+# wrong constant name ==
+# wrong constant name allowed?
+# wrong constant name event
+# wrong constant name execute
+# wrong constant name failures
+# wrong constant name from
+# wrong constant name from?
+# wrong constant name initialize
+# wrong constant name invoke_success_callbacks
+# wrong constant name options
+# wrong constant name opts
+# wrong constant name to
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined method `events<defaultArg>1' for class `AASM::InstanceBase'
+# undefined method `initialize<defaultArg>1' for class `AASM::InstanceBase'
+# Did you mean?  initialize_dup
+# undefined method `states<defaultArg>1' for class `AASM::InstanceBase'
+# wrong constant name current_event
+# wrong constant name current_event=
+# wrong constant name current_state
+# wrong constant name current_state=
+# wrong constant name determine_state_name
+# wrong constant name enter_initial_state
+# wrong constant name events<defaultArg>1
+# wrong constant name events
+# wrong constant name fire
+# wrong constant name fire!
+# wrong constant name from_state
+# wrong constant name from_state=
+# wrong constant name human_state
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name may_fire_event?
+# wrong constant name permitted_transitions
+# wrong constant name set_current_state_with_persistence
+# wrong constant name state_object_for_name
+# wrong constant name states<defaultArg>1
+# wrong constant name states
+# wrong constant name to_state
+# wrong constant name to_state=
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `AASM::InvalidTransition'
+# Did you mean?  initialize_dup
+# wrong constant name event_name
+# wrong constant name failures
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name object
+# wrong constant name originating_state
+# wrong constant name reasoning
+# wrong constant name state_machine_name
+# wrong constant name <static-init>
+# wrong constant name human_event_name
+# wrong constant name human_state_name
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <Class:ActiveRecordPersistence>
+# wrong constant name <Class:Base>
+# wrong constant name <Class:ORM>
+# wrong constant name <Class:PlainPersistence>
+# wrong constant name <Class:ClassMethods>
+# wrong constant name <Class:InstanceMethods>
+# wrong constant name aasm_create_scope
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name included
+# undefined method `aasm_read_state<defaultArg>1' for module `AASM::Persistence::Base'
+# wrong constant name <Class:ClassMethods>
+# wrong constant name aasm_new_record?
+# wrong constant name aasm_read_state<defaultArg>1
+# wrong constant name aasm_read_state
+# undefined method `aasm_column<defaultArg>1' for module `AASM::Persistence::Base::ClassMethods'
+# wrong constant name aasm_column<defaultArg>1
+# wrong constant name aasm_column
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name included
+# undefined method `aasm_write_state<defaultArg>1' for module `AASM::Persistence::ORM'
+# undefined method `aasm_write_state_without_persistence<defaultArg>1' for module `AASM::Persistence::ORM'
+# wrong constant name aasm_write_state<defaultArg>1
+# wrong constant name aasm_write_state
+# wrong constant name aasm_write_state_without_persistence<defaultArg>1
+# wrong constant name aasm_write_state_without_persistence
+# wrong constant name <static-init>
+# undefined method `aasm_read_state<defaultArg>1' for module `AASM::Persistence::PlainPersistence'
+# undefined method `aasm_write_state<defaultArg>1' for module `AASM::Persistence::PlainPersistence'
+# undefined method `aasm_write_state_without_persistence<defaultArg>1' for module `AASM::Persistence::PlainPersistence'
+# wrong constant name aasm_read_state<defaultArg>1
+# wrong constant name aasm_read_state
+# wrong constant name aasm_write_state<defaultArg>1
+# wrong constant name aasm_write_state
+# wrong constant name aasm_write_state_without_persistence<defaultArg>1
+# wrong constant name aasm_write_state_without_persistence
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name load_persistence
+# wrong constant name add_event
+# wrong constant name add_global_callbacks
+# wrong constant name add_state
+# wrong constant name config
+# wrong constant name config=
+# wrong constant name events
+# wrong constant name events=
+# wrong constant name global_callbacks
+# wrong constant name global_callbacks=
+# wrong constant name initial_state
+# wrong constant name initial_state=
+# wrong constant name initialize
+# wrong constant name name
+# wrong constant name name=
+# wrong constant name states
+# wrong constant name states=
+# wrong constant name <static-init>
+# undefined method `register<defaultArg>1' for class `AASM::StateMachineStore'
+# wrong constant name []
+# wrong constant name clone
+# wrong constant name keys
+# wrong constant name machine
+# wrong constant name machine_names
+# wrong constant name register<defaultArg>1
+# wrong constant name register
+# undefined singleton method `[]<defaultArg>1' for `AASM::StateMachineStore'
+# undefined singleton method `[]=<defaultArg>1' for `AASM::StateMachineStore'
+# undefined singleton method `[]=<defaultArg>2' for `AASM::StateMachineStore'
+# undefined singleton method `fetch<defaultArg>1' for `AASM::StateMachineStore'
+# undefined singleton method `register<defaultArg>1' for `AASM::StateMachineStore'
+# undefined singleton method `register<defaultArg>2' for `AASM::StateMachineStore'
+# wrong constant name <static-init>
+# wrong constant name []<defaultArg>1
+# wrong constant name []
+# wrong constant name []=<defaultArg>1
+# wrong constant name []=<defaultArg>2
+# wrong constant name []=
+# wrong constant name fetch<defaultArg>1
+# wrong constant name fetch
+# wrong constant name register<defaultArg>1
+# wrong constant name register<defaultArg>2
+# wrong constant name register
+# wrong constant name stores
+# wrong constant name unregister
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name included
 # wrong constant name initialize
 # wrong constant name <static-init>
 # wrong constant name <Class:RemoteConnections>
@@ -1526,8 +1827,12 @@
 # wrong constant name admin_purchased_recipes_url
 # wrong constant name admin_root_path
 # wrong constant name admin_root_url
-# wrong constant name api_ingredients_path
-# wrong constant name api_ingredients_url
+# wrong constant name api_op_days_path
+# wrong constant name api_op_days_save_ingredients_qty_path
+# wrong constant name api_op_days_save_ingredients_qty_url
+# wrong constant name api_op_days_save_prep_qty_path
+# wrong constant name api_op_days_save_prep_qty_url
+# wrong constant name api_op_days_url
 # wrong constant name api_recipes_path
 # wrong constant name api_recipes_url
 # wrong constant name batch_action_admin_purchased_recipes_path
@@ -3384,7 +3689,7 @@
 # A copy of ActiveRecord::InternalMetadata::ActiveRecord_Relation has been removed from the module tree but is still active!
 # wrong constant name <static-init>
 # wrong constant name <static-init>
-# undefined singleton method `page<defaultArg>1' for `#<Class:0x00007fae1a0c2108>'
+# undefined singleton method `page<defaultArg>1' for `#<Class:0x00007feb500f2ad8>'
 # wrong constant name []
 # wrong constant name []=
 # wrong constant name create_table
@@ -3964,23 +4269,25 @@
 # wrong constant name <static-init>
 # wrong constant name resource_class=
 # wrong constant name <static-init>
-# wrong constant name <Class:IngredientsController>
+# wrong constant name <Class:OpDaysController>
 # wrong constant name <Class:RecipesController>
-# uninitialized constant Api::IngredientsController::ACTION_OPTIONS
-# uninitialized constant Api::IngredientsController::AUTHENTICITY_TOKEN_LENGTH
-# uninitialized constant Api::IngredientsController::CALLBACK_FILTER_TYPES
-# uninitialized constant Api::IngredientsController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
-# uninitialized constant Api::IngredientsController::DEFAULT_SEND_FILE_DISPOSITION
-# uninitialized constant Api::IngredientsController::DEFAULT_SEND_FILE_TYPE
-# uninitialized constant Api::IngredientsController::EXCLUDE_PARAMETERS
-# uninitialized constant Api::IngredientsController::MODULES
-# uninitialized constant Api::IngredientsController::NULL_ORIGIN_MESSAGE
-# uninitialized constant Api::IngredientsController::PROTECTED_IVARS
-# uninitialized constant Api::IngredientsController::REDIRECT_OPTIONS
-# uninitialized constant Api::IngredientsController::RENDERERS
-# uninitialized constant Api::IngredientsController::RENDER_FORMATS_IN_PRIORITY
-# uninitialized constant Api::IngredientsController::URL_OPTIONS
+# uninitialized constant Api::OpDaysController::ACTION_OPTIONS
+# uninitialized constant Api::OpDaysController::AUTHENTICITY_TOKEN_LENGTH
+# uninitialized constant Api::OpDaysController::CALLBACK_FILTER_TYPES
+# uninitialized constant Api::OpDaysController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
+# uninitialized constant Api::OpDaysController::DEFAULT_SEND_FILE_DISPOSITION
+# uninitialized constant Api::OpDaysController::DEFAULT_SEND_FILE_TYPE
+# uninitialized constant Api::OpDaysController::EXCLUDE_PARAMETERS
+# uninitialized constant Api::OpDaysController::MODULES
+# uninitialized constant Api::OpDaysController::NULL_ORIGIN_MESSAGE
+# uninitialized constant Api::OpDaysController::PROTECTED_IVARS
+# uninitialized constant Api::OpDaysController::REDIRECT_OPTIONS
+# uninitialized constant Api::OpDaysController::RENDERERS
+# uninitialized constant Api::OpDaysController::RENDER_FORMATS_IN_PRIORITY
+# uninitialized constant Api::OpDaysController::URL_OPTIONS
 # wrong constant name index
+# wrong constant name save_ingredients_qty
+# wrong constant name save_prep_qty
 # wrong constant name <static-init>
 # uninitialized constant Api::RecipesController::ACTION_OPTIONS
 # uninitialized constant Api::RecipesController::AUTHENTICITY_TOKEN_LENGTH
@@ -5746,6 +6053,82 @@
 # uninitialized constant Continuation
 # uninitialized constant Coverage
 # uninitialized constant Coverage
+# uninitialized constant Customer::ACTIONS
+# uninitialized constant Customer::BLACKLISTED_CLASS_METHODS
+# uninitialized constant Customer::CALLBACKS
+# uninitialized constant Customer::CALLBACK_FILTER_TYPES
+# uninitialized constant Customer::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant Customer::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant Customer::NAME_COMPILABLE_REGEXP
+# uninitialized constant Customer::UNASSIGNABLE_KEYS
+# wrong constant name after_add_for_orders
+# wrong constant name after_add_for_orders=
+# wrong constant name after_add_for_orders?
+# wrong constant name after_remove_for_orders
+# wrong constant name after_remove_for_orders=
+# wrong constant name after_remove_for_orders?
+# wrong constant name autosave_associated_records_for_orders
+# wrong constant name before_add_for_orders
+# wrong constant name before_add_for_orders=
+# wrong constant name before_add_for_orders?
+# wrong constant name before_remove_for_orders
+# wrong constant name before_remove_for_orders=
+# wrong constant name before_remove_for_orders?
+# wrong constant name validate_associated_records_for_orders
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Customer::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name order_ids=
+# wrong constant name <static-init>
+# wrong constant name after_add_for_orders
+# wrong constant name after_add_for_orders=
+# wrong constant name after_add_for_orders?
+# wrong constant name after_remove_for_orders
+# wrong constant name after_remove_for_orders=
+# wrong constant name after_remove_for_orders?
+# wrong constant name before_add_for_orders
+# wrong constant name before_add_for_orders=
+# wrong constant name before_add_for_orders?
+# wrong constant name before_remove_for_orders
+# wrong constant name before_remove_for_orders=
+# wrong constant name before_remove_for_orders?
 # uninitialized constant DBM
 # uninitialized constant DBM
 # uninitialized constant DBMError
@@ -6082,6 +6465,66 @@
 # wrong constant name create_op_day!
 # wrong constant name reload_ingredient
 # wrong constant name reload_op_day
+# wrong constant name <static-init>
+# uninitialized constant DayPrep::ACTIONS
+# uninitialized constant DayPrep::BLACKLISTED_CLASS_METHODS
+# uninitialized constant DayPrep::CALLBACKS
+# uninitialized constant DayPrep::CALLBACK_FILTER_TYPES
+# uninitialized constant DayPrep::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant DayPrep::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant DayPrep::NAME_COMPILABLE_REGEXP
+# uninitialized constant DayPrep::UNASSIGNABLE_KEYS
+# wrong constant name autosave_associated_records_for_op_day
+# wrong constant name autosave_associated_records_for_recipe_step
+# wrong constant name belongs_to_counter_cache_after_update
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name build_op_day
+# wrong constant name build_recipe_step
+# wrong constant name create_op_day
+# wrong constant name create_op_day!
+# wrong constant name create_recipe_step
+# wrong constant name create_recipe_step!
+# wrong constant name reload_op_day
+# wrong constant name reload_recipe_step
 # wrong constant name <static-init>
 # uninitialized constant DetailedInstruction::ACTIONS
 # uninitialized constant DetailedInstruction::BLACKLISTED_CLASS_METHODS
@@ -7203,6 +7646,14 @@
 # undefined singleton method `mktmpdir<defaultArg>1' for `Dir'
 # wrong constant name exists?
 # wrong constant name mktmpdir<defaultArg>1
+# wrong constant name <Class:Proxy>
+# wrong constant name add_options_from_dsl
+# wrong constant name initialize
+# wrong constant name method_missing
+# wrong constant name options
+# wrong constant name options=
+# wrong constant name <static-init>
+# wrong constant name <static-init>
 # undefined method `def_method<defaultArg>1' for class `ERB'
 # undefined method `def_module<defaultArg>1' for class `ERB'
 # wrong constant name def_method<defaultArg>1
@@ -9080,19 +9531,33 @@
 # uninitialized constant Ingredient::MAX_PASSWORD_LENGTH_ALLOWED
 # uninitialized constant Ingredient::NAME_COMPILABLE_REGEXP
 # uninitialized constant Ingredient::UNASSIGNABLE_KEYS
+# wrong constant name after_add_for_day_ingredients
+# wrong constant name after_add_for_day_ingredients=
+# wrong constant name after_add_for_day_ingredients?
 # wrong constant name after_add_for_step_inputs
 # wrong constant name after_add_for_step_inputs=
 # wrong constant name after_add_for_step_inputs?
+# wrong constant name after_remove_for_day_ingredients
+# wrong constant name after_remove_for_day_ingredients=
+# wrong constant name after_remove_for_day_ingredients?
 # wrong constant name after_remove_for_step_inputs
 # wrong constant name after_remove_for_step_inputs=
 # wrong constant name after_remove_for_step_inputs?
+# wrong constant name autosave_associated_records_for_day_ingredients
 # wrong constant name autosave_associated_records_for_step_inputs
+# wrong constant name before_add_for_day_ingredients
+# wrong constant name before_add_for_day_ingredients=
+# wrong constant name before_add_for_day_ingredients?
 # wrong constant name before_add_for_step_inputs
 # wrong constant name before_add_for_step_inputs=
 # wrong constant name before_add_for_step_inputs?
+# wrong constant name before_remove_for_day_ingredients
+# wrong constant name before_remove_for_day_ingredients=
+# wrong constant name before_remove_for_day_ingredients?
 # wrong constant name before_remove_for_step_inputs
 # wrong constant name before_remove_for_step_inputs=
 # wrong constant name before_remove_for_step_inputs?
+# wrong constant name validate_associated_records_for_day_ingredients
 # wrong constant name validate_associated_records_for_step_inputs
 # A copy of Ingredient::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of Ingredient::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
@@ -9133,17 +9598,30 @@
 # A copy of Ingredient::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of Ingredient::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of Ingredient::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name day_ingredient_ids=
 # wrong constant name step_input_ids=
 # wrong constant name <static-init>
+# wrong constant name after_add_for_day_ingredients
+# wrong constant name after_add_for_day_ingredients=
+# wrong constant name after_add_for_day_ingredients?
 # wrong constant name after_add_for_step_inputs
 # wrong constant name after_add_for_step_inputs=
 # wrong constant name after_add_for_step_inputs?
+# wrong constant name after_remove_for_day_ingredients
+# wrong constant name after_remove_for_day_ingredients=
+# wrong constant name after_remove_for_day_ingredients?
 # wrong constant name after_remove_for_step_inputs
 # wrong constant name after_remove_for_step_inputs=
 # wrong constant name after_remove_for_step_inputs?
+# wrong constant name before_add_for_day_ingredients
+# wrong constant name before_add_for_day_ingredients=
+# wrong constant name before_add_for_day_ingredients?
 # wrong constant name before_add_for_step_inputs
 # wrong constant name before_add_for_step_inputs=
 # wrong constant name before_add_for_step_inputs?
+# wrong constant name before_remove_for_day_ingredients
+# wrong constant name before_remove_for_day_ingredients=
+# wrong constant name before_remove_for_day_ingredients?
 # wrong constant name before_remove_for_step_inputs
 # wrong constant name before_remove_for_step_inputs=
 # wrong constant name before_remove_for_step_inputs?
@@ -9292,6 +9770,61 @@
 # uninitialized constant Integer::PETABYTE
 # uninitialized constant Integer::TERABYTE
 # wrong constant name to_bn
+# uninitialized constant ItemPrice::ACTIONS
+# uninitialized constant ItemPrice::BLACKLISTED_CLASS_METHODS
+# uninitialized constant ItemPrice::CALLBACKS
+# uninitialized constant ItemPrice::CALLBACK_FILTER_TYPES
+# uninitialized constant ItemPrice::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant ItemPrice::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant ItemPrice::NAME_COMPILABLE_REGEXP
+# uninitialized constant ItemPrice::UNASSIGNABLE_KEYS
+# wrong constant name autosave_associated_records_for_recipe
+# wrong constant name belongs_to_counter_cache_after_update
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name build_recipe
+# wrong constant name create_recipe
+# wrong constant name create_recipe!
+# wrong constant name reload_recipe
+# wrong constant name <static-init>
 # wrong constant name from_state
 # wrong constant name initialize
 # uninitialized constant Jacobian
@@ -11365,6 +11898,32 @@
 # wrong constant name render_or_call_method_or_proc_on<defaultArg>1
 # wrong constant name render_or_call_method_or_proc_on
 # wrong constant name <static-init>
+# wrong constant name <Class:Mock>
+# wrong constant name assert_mock
+# undefined method `expect<defaultArg>1' for class `Minitest::Mock'
+# undefined method `initialize<defaultArg>1' for class `Minitest::Mock'
+# Did you mean?  initialize_dup
+# undefined method `respond_to?<defaultArg>1' for class `Minitest::Mock'
+# wrong constant name ===
+# wrong constant name __call
+# wrong constant name __respond_to?
+# wrong constant name class
+# wrong constant name expect<defaultArg>1
+# wrong constant name expect
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name inspect
+# wrong constant name instance_eval
+# wrong constant name instance_variables
+# wrong constant name method_missing
+# wrong constant name object_id
+# wrong constant name public_send
+# wrong constant name respond_to?<defaultArg>1
+# wrong constant name respond_to?
+# wrong constant name send
+# wrong constant name to_s
+# wrong constant name verify
+# wrong constant name <static-init>
 # uninitialized constant Minitest::Spec::E
 # uninitialized constant Minitest::Spec::PASSTHROUGH_EXCEPTIONS
 # uninitialized constant Minitest::Spec::SIGNALS
@@ -11373,6 +11932,7 @@
 # uninitialized constant Minitest::Test::E
 # uninitialized constant Minitest::Test::SIGNALS
 # uninitialized constant Minitest::Test::UNDEFINED
+# wrong constant name <static-init>
 # wrong constant name enter
 # wrong constant name exit
 # wrong constant name try_enter
@@ -11724,6 +12284,7 @@
 # uninitialized constant Nokogiri::XML::NodeSet::LOOKS_LIKE_XPATH
 # undefined method `to_yaml<defaultArg>1' for class `Object'
 # uninitialized constant RUBYGEMS_ACTIVATION_MONITOR
+# wrong constant name stub
 # wrong constant name to_yaml<defaultArg>1
 # wrong constant name to_yaml
 # wrong constant name yaml_tag
@@ -11742,17 +12303,31 @@
 # wrong constant name after_add_for_day_ingredients
 # wrong constant name after_add_for_day_ingredients=
 # wrong constant name after_add_for_day_ingredients?
+# wrong constant name after_add_for_day_preps
+# wrong constant name after_add_for_day_preps=
+# wrong constant name after_add_for_day_preps?
 # wrong constant name after_remove_for_day_ingredients
 # wrong constant name after_remove_for_day_ingredients=
 # wrong constant name after_remove_for_day_ingredients?
+# wrong constant name after_remove_for_day_preps
+# wrong constant name after_remove_for_day_preps=
+# wrong constant name after_remove_for_day_preps?
 # wrong constant name autosave_associated_records_for_day_ingredients
+# wrong constant name autosave_associated_records_for_day_preps
 # wrong constant name before_add_for_day_ingredients
 # wrong constant name before_add_for_day_ingredients=
 # wrong constant name before_add_for_day_ingredients?
+# wrong constant name before_add_for_day_preps
+# wrong constant name before_add_for_day_preps=
+# wrong constant name before_add_for_day_preps?
 # wrong constant name before_remove_for_day_ingredients
 # wrong constant name before_remove_for_day_ingredients=
 # wrong constant name before_remove_for_day_ingredients?
+# wrong constant name before_remove_for_day_preps
+# wrong constant name before_remove_for_day_preps=
+# wrong constant name before_remove_for_day_preps?
 # wrong constant name validate_associated_records_for_day_ingredients
+# wrong constant name validate_associated_records_for_day_preps
 # A copy of OpDay::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of OpDay::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of OpDay::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
@@ -11793,19 +12368,32 @@
 # A copy of OpDay::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of OpDay::ActiveRecord_Relation has been removed from the module tree but is still active!
 # wrong constant name day_ingredient_ids=
+# wrong constant name day_prep_ids=
 # wrong constant name <static-init>
 # wrong constant name after_add_for_day_ingredients
 # wrong constant name after_add_for_day_ingredients=
 # wrong constant name after_add_for_day_ingredients?
+# wrong constant name after_add_for_day_preps
+# wrong constant name after_add_for_day_preps=
+# wrong constant name after_add_for_day_preps?
 # wrong constant name after_remove_for_day_ingredients
 # wrong constant name after_remove_for_day_ingredients=
 # wrong constant name after_remove_for_day_ingredients?
+# wrong constant name after_remove_for_day_preps
+# wrong constant name after_remove_for_day_preps=
+# wrong constant name after_remove_for_day_preps?
 # wrong constant name before_add_for_day_ingredients
 # wrong constant name before_add_for_day_ingredients=
 # wrong constant name before_add_for_day_ingredients?
+# wrong constant name before_add_for_day_preps
+# wrong constant name before_add_for_day_preps=
+# wrong constant name before_add_for_day_preps?
 # wrong constant name before_remove_for_day_ingredients
 # wrong constant name before_remove_for_day_ingredients=
 # wrong constant name before_remove_for_day_ingredients?
+# wrong constant name before_remove_for_day_preps
+# wrong constant name before_remove_for_day_preps=
+# wrong constant name before_remove_for_day_preps?
 # wrong constant name indefinite_length
 # wrong constant name indefinite_length=
 # wrong constant name +@
@@ -11842,6 +12430,264 @@
 # uninitialized constant OpenURI
 # uninitialized constant Opus
 # uninitialized constant Opus
+# uninitialized constant Order::ACTIONS
+# uninitialized constant Order::BLACKLISTED_CLASS_METHODS
+# uninitialized constant Order::CALLBACKS
+# uninitialized constant Order::CALLBACK_FILTER_TYPES
+# uninitialized constant Order::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant Order::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant Order::NAME_COMPILABLE_REGEXP
+# uninitialized constant Order::NO_VALUE
+# uninitialized constant Order::UNASSIGNABLE_KEYS
+# Unable to autoload constant Order::VERSION, expected /Users/owen/workspace/kitchen/server/app/models/order/version.rb to define it
+# wrong constant name after_add_for_order_items
+# wrong constant name after_add_for_order_items=
+# wrong constant name after_add_for_order_items?
+# wrong constant name after_add_for_versions
+# wrong constant name after_add_for_versions=
+# wrong constant name after_add_for_versions?
+# wrong constant name after_remove_for_order_items
+# wrong constant name after_remove_for_order_items=
+# wrong constant name after_remove_for_order_items?
+# wrong constant name after_remove_for_versions
+# wrong constant name after_remove_for_versions=
+# wrong constant name after_remove_for_versions?
+# wrong constant name autosave_associated_records_for_customer
+# wrong constant name autosave_associated_records_for_order_items
+# wrong constant name autosave_associated_records_for_versions
+# wrong constant name before_add_for_order_items
+# wrong constant name before_add_for_order_items=
+# wrong constant name before_add_for_order_items?
+# wrong constant name before_add_for_versions
+# wrong constant name before_add_for_versions=
+# wrong constant name before_add_for_versions?
+# wrong constant name before_remove_for_order_items
+# wrong constant name before_remove_for_order_items=
+# wrong constant name before_remove_for_order_items?
+# wrong constant name before_remove_for_versions
+# wrong constant name before_remove_for_versions=
+# wrong constant name before_remove_for_versions?
+# wrong constant name belongs_to_counter_cache_after_update
+# wrong constant name deliver
+# wrong constant name deliver!
+# wrong constant name deliver_without_validation!
+# wrong constant name delivered?
+# wrong constant name done?
+# wrong constant name finish
+# wrong constant name finish!
+# wrong constant name finish_without_validation!
+# wrong constant name may_deliver?
+# wrong constant name may_finish?
+# wrong constant name may_start?
+# wrong constant name new?
+# wrong constant name paper_trail_event
+# wrong constant name paper_trail_event=
+# wrong constant name paper_trail_options
+# wrong constant name paper_trail_options=
+# wrong constant name paper_trail_options?
+# wrong constant name start
+# wrong constant name start!
+# wrong constant name start_without_validation!
+# wrong constant name started?
+# wrong constant name validate_associated_records_for_order_items
+# wrong constant name validate_associated_records_for_versions
+# wrong constant name version
+# wrong constant name version=
+# wrong constant name version_association_name
+# wrong constant name version_association_name=
+# wrong constant name version_association_name?
+# wrong constant name version_class_name
+# wrong constant name version_class_name=
+# wrong constant name version_class_name?
+# wrong constant name versions_association_name
+# wrong constant name versions_association_name=
+# wrong constant name versions_association_name?
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name build_customer
+# wrong constant name create_customer
+# wrong constant name create_customer!
+# wrong constant name order_item_ids=
+# wrong constant name reload_customer
+# wrong constant name version_ids=
+# wrong constant name delivered
+# wrong constant name done
+# wrong constant name started
+# wrong constant name <static-init>
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Order::Version::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name <static-init>
+# wrong constant name after_add_for_order_items
+# wrong constant name after_add_for_order_items=
+# wrong constant name after_add_for_order_items?
+# wrong constant name after_add_for_versions
+# wrong constant name after_add_for_versions=
+# wrong constant name after_add_for_versions?
+# wrong constant name after_remove_for_order_items
+# wrong constant name after_remove_for_order_items=
+# wrong constant name after_remove_for_order_items?
+# wrong constant name after_remove_for_versions
+# wrong constant name after_remove_for_versions=
+# wrong constant name after_remove_for_versions?
+# wrong constant name before_add_for_order_items
+# wrong constant name before_add_for_order_items=
+# wrong constant name before_add_for_order_items?
+# wrong constant name before_add_for_versions
+# wrong constant name before_add_for_versions=
+# wrong constant name before_add_for_versions?
+# wrong constant name before_remove_for_order_items
+# wrong constant name before_remove_for_order_items=
+# wrong constant name before_remove_for_order_items?
+# wrong constant name before_remove_for_versions
+# wrong constant name before_remove_for_versions=
+# wrong constant name before_remove_for_versions?
+# wrong constant name paper_trail_options
+# wrong constant name paper_trail_options=
+# wrong constant name paper_trail_options?
+# wrong constant name version_association_name
+# wrong constant name version_association_name=
+# wrong constant name version_association_name?
+# wrong constant name version_class_name
+# wrong constant name version_class_name=
+# wrong constant name version_class_name?
+# wrong constant name versions_association_name
+# wrong constant name versions_association_name=
+# wrong constant name versions_association_name?
+# uninitialized constant OrderItem::ACTIONS
+# uninitialized constant OrderItem::BLACKLISTED_CLASS_METHODS
+# uninitialized constant OrderItem::CALLBACKS
+# uninitialized constant OrderItem::CALLBACK_FILTER_TYPES
+# uninitialized constant OrderItem::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant OrderItem::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant OrderItem::NAME_COMPILABLE_REGEXP
+# uninitialized constant OrderItem::UNASSIGNABLE_KEYS
+# wrong constant name autosave_associated_records_for_order
+# wrong constant name autosave_associated_records_for_recipe
+# wrong constant name belongs_to_counter_cache_after_update
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name build_order
+# wrong constant name build_recipe
+# wrong constant name create_order
+# wrong constant name create_order!
+# wrong constant name create_recipe
+# wrong constant name create_recipe!
+# wrong constant name reload_order
+# wrong constant name reload_recipe
+# wrong constant name <static-init>
 # wrong constant name <Class:ActiveRecord>
 # wrong constant name <Class:Base>
 # wrong constant name <Class:NotSupportedError>
@@ -13676,6 +14522,230 @@
 # uninitialized constant PStore
 # uninitialized constant PTY
 # uninitialized constant PTY
+# wrong constant name <Class:AttributeSerializers>
+# wrong constant name <Class:Cleaner>
+# wrong constant name <Class:Compatibility>
+# wrong constant name <Class:Config>
+# wrong constant name <Class:Events>
+# wrong constant name <Class:Model>
+# wrong constant name <Class:ModelConfig>
+# wrong constant name <Class:Queries>
+# wrong constant name <Class:Rails>
+# wrong constant name <Class:RecordHistory>
+# wrong constant name <Class:RecordTrail>
+# wrong constant name <Class:Reifier>
+# wrong constant name <Class:Request>
+# wrong constant name <Class:Serializers>
+# wrong constant name <Class:TypeSerializers>
+# wrong constant name <Class:VERSION>
+# wrong constant name <Class:VersionConcern>
+# wrong constant name <Class:AttributeSerializerFactory>
+# wrong constant name <Class:CastAttributeSerializer>
+# wrong constant name <Class:ObjectAttribute>
+# wrong constant name <Class:ObjectChangesAttribute>
+# wrong constant name <static-init>
+# wrong constant name for
+# wrong constant name deserialize
+# wrong constant name initialize
+# wrong constant name serialize
+# wrong constant name <static-init>
+# wrong constant name deserialize
+# wrong constant name initialize
+# wrong constant name serialize
+# wrong constant name <static-init>
+# wrong constant name deserialize
+# wrong constant name initialize
+# wrong constant name serialize
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined method `clean_versions!<defaultArg>1' for module `PaperTrail::Cleaner'
+# wrong constant name clean_versions!<defaultArg>1
+# wrong constant name clean_versions!
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name check_activerecord
+# wrong constant name association_reify_error_behaviour
+# wrong constant name association_reify_error_behaviour=
+# wrong constant name enabled
+# wrong constant name enabled=
+# wrong constant name has_paper_trail_defaults
+# wrong constant name has_paper_trail_defaults=
+# wrong constant name object_changes_adapter
+# wrong constant name object_changes_adapter=
+# wrong constant name serializer
+# wrong constant name serializer=
+# wrong constant name track_associations=
+# wrong constant name track_associations?
+# wrong constant name version_limit
+# wrong constant name version_limit=
+# wrong constant name <static-init>
+# wrong constant name instance
+# wrong constant name <Class:Base>
+# wrong constant name <Class:Create>
+# wrong constant name <Class:Destroy>
+# wrong constant name <Class:Update>
+# wrong constant name changed_notably?
+# wrong constant name initialize
+# wrong constant name <static-init>
+# uninitialized constant PaperTrail::Events::Create::RAILS_GTE_5_1
+# wrong constant name data
+# wrong constant name <static-init>
+# uninitialized constant PaperTrail::Events::Destroy::RAILS_GTE_5_1
+# wrong constant name data
+# wrong constant name <static-init>
+# uninitialized constant PaperTrail::Events::Update::RAILS_GTE_5_1
+# wrong constant name data
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <Class:InstanceMethods>
+# wrong constant name paper_trail
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name included
+# undefined method `on_destroy<defaultArg>1' for class `PaperTrail::ModelConfig'
+# undefined method `setup<defaultArg>1' for class `PaperTrail::ModelConfig'
+# wrong constant name initialize
+# wrong constant name on_create
+# wrong constant name on_destroy<defaultArg>1
+# wrong constant name on_destroy
+# wrong constant name on_touch
+# wrong constant name on_update
+# wrong constant name setup<defaultArg>1
+# wrong constant name setup
+# wrong constant name version_class
+# wrong constant name <static-init>
+# wrong constant name <Class:Versions>
+# wrong constant name <Class:WhereObject>
+# wrong constant name <Class:WhereObjectChanges>
+# wrong constant name execute
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name execute
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <Class:Controller>
+# wrong constant name <Class:Engine>
+# wrong constant name info_for_paper_trail
+# wrong constant name paper_trail_enabled_for_controller
+# wrong constant name user_for_paper_trail
+# wrong constant name <static-init>
+# wrong constant name included
+# uninitialized constant PaperTrail::Rails::Engine::ABSTRACT_RAILTIES
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name index
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `version_at<defaultArg>1' for class `PaperTrail::RecordTrail'
+# wrong constant name clear_rolled_back_versions
+# wrong constant name clear_version_instance
+# wrong constant name data_for_create
+# wrong constant name data_for_destroy
+# wrong constant name data_for_update
+# wrong constant name data_for_update_columns
+# wrong constant name enabled?
+# wrong constant name initialize
+# wrong constant name live?
+# wrong constant name next_version
+# wrong constant name originator
+# wrong constant name previous_version
+# wrong constant name record_create
+# wrong constant name record_destroy
+# wrong constant name record_update
+# wrong constant name record_update_columns
+# wrong constant name reset_timestamp_attrs_for_update_if_needed
+# wrong constant name save_version?
+# wrong constant name save_with_version
+# wrong constant name source_version
+# wrong constant name update_column
+# wrong constant name update_columns
+# wrong constant name version_at<defaultArg>1
+# wrong constant name version_at
+# wrong constant name versions_between
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name reify
+# wrong constant name <Class:InvalidOption>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name controller_info
+# wrong constant name controller_info=
+# wrong constant name disable_model
+# wrong constant name enable_model
+# wrong constant name enabled=
+# wrong constant name enabled?
+# wrong constant name enabled_for_model
+# wrong constant name enabled_for_model?
+# wrong constant name merge
+# wrong constant name set
+# wrong constant name to_h
+# wrong constant name whodunnit
+# wrong constant name whodunnit=
+# wrong constant name with
+# wrong constant name <Class:JSON>
+# wrong constant name <Class:YAML>
+# wrong constant name dump
+# wrong constant name load
+# wrong constant name where_object_changes_condition
+# wrong constant name where_object_condition
+# wrong constant name <static-init>
+# wrong constant name dump
+# wrong constant name load
+# wrong constant name where_object_changes_condition
+# wrong constant name where_object_condition
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <Class:PostgresArraySerializer>
+# wrong constant name deserialize
+# wrong constant name initialize
+# wrong constant name serialize
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# uninitialized constant PaperTrail::Version::ACTIONS
+# uninitialized constant PaperTrail::Version::BLACKLISTED_CLASS_METHODS
+# uninitialized constant PaperTrail::Version::CALLBACKS
+# uninitialized constant PaperTrail::Version::CALLBACK_FILTER_TYPES
+# uninitialized constant PaperTrail::Version::CALL_COMPILABLE_REGEXP
+# uninitialized constant PaperTrail::Version::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant PaperTrail::Version::NAME_COMPILABLE_REGEXP
+# uninitialized constant PaperTrail::Version::UNASSIGNABLE_KEYS
+# wrong constant name autosave_associated_records_for_item
+# wrong constant name belongs_to_counter_cache_after_update
+# wrong constant name reload_item
+# undefined singleton method `page<defaultArg>1' for `PaperTrail::Version(abstract)'
+# wrong constant name page<defaultArg>1
+# wrong constant name page
+# undefined method `reify<defaultArg>1' for module `PaperTrail::VersionConcern'
+# undefined method `sibling_versions<defaultArg>1' for module `PaperTrail::VersionConcern'
+# wrong constant name changeset
+# wrong constant name index
+# wrong constant name next
+# wrong constant name object_deserialized
+# wrong constant name paper_trail_originator
+# wrong constant name previous
+# wrong constant name reify<defaultArg>1
+# wrong constant name reify
+# wrong constant name sibling_versions<defaultArg>1
+# wrong constant name sibling_versions
+# wrong constant name terminator
+# wrong constant name version_author
+# wrong constant name <static-init>
+# undefined singleton method `request<defaultArg>1' for `PaperTrail'
+# wrong constant name config
+# wrong constant name configure
+# wrong constant name enabled=
+# wrong constant name enabled?
+# wrong constant name gem_version
+# wrong constant name request<defaultArg>1
+# wrong constant name request
+# wrong constant name serializer
+# wrong constant name serializer=
+# wrong constant name timestamp_field=
+# wrong constant name version
 # uninitialized constant Parser::Ruby24::Racc_Main_Parsing_Routine
 # uninitialized constant Parser::Ruby24::Racc_Runtime_Core_Id_C
 # uninitialized constant Parser::Ruby24::Racc_Runtime_Core_Revision
@@ -14581,7 +15651,7 @@
 # uninitialized constant Rails::Generators::TestCase::VERSION
 # wrong constant name properties
 # wrong constant name properties=
-# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007fae157cb008>'
+# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007feb504d85a8>'
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=
@@ -15214,32 +16284,60 @@
 # uninitialized constant Recipe::MAX_PASSWORD_LENGTH_ALLOWED
 # uninitialized constant Recipe::NAME_COMPILABLE_REGEXP
 # uninitialized constant Recipe::UNASSIGNABLE_KEYS
+# wrong constant name after_add_for_item_prices
+# wrong constant name after_add_for_item_prices=
+# wrong constant name after_add_for_item_prices?
+# wrong constant name after_add_for_order_items
+# wrong constant name after_add_for_order_items=
+# wrong constant name after_add_for_order_items?
 # wrong constant name after_add_for_recipe_steps
 # wrong constant name after_add_for_recipe_steps=
 # wrong constant name after_add_for_recipe_steps?
 # wrong constant name after_add_for_step_inputs
 # wrong constant name after_add_for_step_inputs=
 # wrong constant name after_add_for_step_inputs?
+# wrong constant name after_remove_for_item_prices
+# wrong constant name after_remove_for_item_prices=
+# wrong constant name after_remove_for_item_prices?
+# wrong constant name after_remove_for_order_items
+# wrong constant name after_remove_for_order_items=
+# wrong constant name after_remove_for_order_items?
 # wrong constant name after_remove_for_recipe_steps
 # wrong constant name after_remove_for_recipe_steps=
 # wrong constant name after_remove_for_recipe_steps?
 # wrong constant name after_remove_for_step_inputs
 # wrong constant name after_remove_for_step_inputs=
 # wrong constant name after_remove_for_step_inputs?
+# wrong constant name autosave_associated_records_for_item_prices
+# wrong constant name autosave_associated_records_for_order_items
 # wrong constant name autosave_associated_records_for_recipe_steps
 # wrong constant name autosave_associated_records_for_step_inputs
+# wrong constant name before_add_for_item_prices
+# wrong constant name before_add_for_item_prices=
+# wrong constant name before_add_for_item_prices?
+# wrong constant name before_add_for_order_items
+# wrong constant name before_add_for_order_items=
+# wrong constant name before_add_for_order_items?
 # wrong constant name before_add_for_recipe_steps
 # wrong constant name before_add_for_recipe_steps=
 # wrong constant name before_add_for_recipe_steps?
 # wrong constant name before_add_for_step_inputs
 # wrong constant name before_add_for_step_inputs=
 # wrong constant name before_add_for_step_inputs?
+# wrong constant name before_remove_for_item_prices
+# wrong constant name before_remove_for_item_prices=
+# wrong constant name before_remove_for_item_prices?
+# wrong constant name before_remove_for_order_items
+# wrong constant name before_remove_for_order_items=
+# wrong constant name before_remove_for_order_items?
 # wrong constant name before_remove_for_recipe_steps
 # wrong constant name before_remove_for_recipe_steps=
 # wrong constant name before_remove_for_recipe_steps?
 # wrong constant name before_remove_for_step_inputs
 # wrong constant name before_remove_for_step_inputs=
 # wrong constant name before_remove_for_step_inputs?
+# wrong constant name validate_associated_records_for_item_prices
+# wrong constant name validate_associated_records_for_order_items
 # wrong constant name validate_associated_records_for_recipe_steps
 # wrong constant name validate_associated_records_for_step_inputs
 # A copy of Recipe::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
@@ -15281,27 +16379,53 @@
 # A copy of Recipe::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of Recipe::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of Recipe::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name item_price_ids=
+# wrong constant name order_item_ids=
 # wrong constant name recipe_step_ids=
 # wrong constant name step_input_ids=
 # wrong constant name <static-init>
+# wrong constant name after_add_for_item_prices
+# wrong constant name after_add_for_item_prices=
+# wrong constant name after_add_for_item_prices?
+# wrong constant name after_add_for_order_items
+# wrong constant name after_add_for_order_items=
+# wrong constant name after_add_for_order_items?
 # wrong constant name after_add_for_recipe_steps
 # wrong constant name after_add_for_recipe_steps=
 # wrong constant name after_add_for_recipe_steps?
 # wrong constant name after_add_for_step_inputs
 # wrong constant name after_add_for_step_inputs=
 # wrong constant name after_add_for_step_inputs?
+# wrong constant name after_remove_for_item_prices
+# wrong constant name after_remove_for_item_prices=
+# wrong constant name after_remove_for_item_prices?
+# wrong constant name after_remove_for_order_items
+# wrong constant name after_remove_for_order_items=
+# wrong constant name after_remove_for_order_items?
 # wrong constant name after_remove_for_recipe_steps
 # wrong constant name after_remove_for_recipe_steps=
 # wrong constant name after_remove_for_recipe_steps?
 # wrong constant name after_remove_for_step_inputs
 # wrong constant name after_remove_for_step_inputs=
 # wrong constant name after_remove_for_step_inputs?
+# wrong constant name before_add_for_item_prices
+# wrong constant name before_add_for_item_prices=
+# wrong constant name before_add_for_item_prices?
+# wrong constant name before_add_for_order_items
+# wrong constant name before_add_for_order_items=
+# wrong constant name before_add_for_order_items?
 # wrong constant name before_add_for_recipe_steps
 # wrong constant name before_add_for_recipe_steps=
 # wrong constant name before_add_for_recipe_steps?
 # wrong constant name before_add_for_step_inputs
 # wrong constant name before_add_for_step_inputs=
 # wrong constant name before_add_for_step_inputs?
+# wrong constant name before_remove_for_item_prices
+# wrong constant name before_remove_for_item_prices=
+# wrong constant name before_remove_for_item_prices?
+# wrong constant name before_remove_for_order_items
+# wrong constant name before_remove_for_order_items=
+# wrong constant name before_remove_for_order_items?
 # wrong constant name before_remove_for_recipe_steps
 # wrong constant name before_remove_for_recipe_steps=
 # wrong constant name before_remove_for_recipe_steps?
@@ -15317,6 +16441,9 @@
 # uninitialized constant RecipeStep::MAX_PASSWORD_LENGTH_ALLOWED
 # uninitialized constant RecipeStep::NAME_COMPILABLE_REGEXP
 # uninitialized constant RecipeStep::UNASSIGNABLE_KEYS
+# wrong constant name after_add_for_day_preps
+# wrong constant name after_add_for_day_preps=
+# wrong constant name after_add_for_day_preps?
 # wrong constant name after_add_for_detailed_instructions
 # wrong constant name after_add_for_detailed_instructions=
 # wrong constant name after_add_for_detailed_instructions?
@@ -15335,6 +16462,9 @@
 # wrong constant name after_add_for_tools
 # wrong constant name after_add_for_tools=
 # wrong constant name after_add_for_tools?
+# wrong constant name after_remove_for_day_preps
+# wrong constant name after_remove_for_day_preps=
+# wrong constant name after_remove_for_day_preps?
 # wrong constant name after_remove_for_detailed_instructions
 # wrong constant name after_remove_for_detailed_instructions=
 # wrong constant name after_remove_for_detailed_instructions?
@@ -15353,6 +16483,7 @@
 # wrong constant name after_remove_for_tools
 # wrong constant name after_remove_for_tools=
 # wrong constant name after_remove_for_tools?
+# wrong constant name autosave_associated_records_for_day_preps
 # wrong constant name autosave_associated_records_for_detailed_instructions
 # wrong constant name autosave_associated_records_for_inputs
 # wrong constant name autosave_associated_records_for_recipe
@@ -15360,6 +16491,9 @@
 # wrong constant name autosave_associated_records_for_recipesteps_tools
 # wrong constant name autosave_associated_records_for_step_inputs
 # wrong constant name autosave_associated_records_for_tools
+# wrong constant name before_add_for_day_preps
+# wrong constant name before_add_for_day_preps=
+# wrong constant name before_add_for_day_preps?
 # wrong constant name before_add_for_detailed_instructions
 # wrong constant name before_add_for_detailed_instructions=
 # wrong constant name before_add_for_detailed_instructions?
@@ -15378,6 +16512,9 @@
 # wrong constant name before_add_for_tools
 # wrong constant name before_add_for_tools=
 # wrong constant name before_add_for_tools?
+# wrong constant name before_remove_for_day_preps
+# wrong constant name before_remove_for_day_preps=
+# wrong constant name before_remove_for_day_preps?
 # wrong constant name before_remove_for_detailed_instructions
 # wrong constant name before_remove_for_detailed_instructions=
 # wrong constant name before_remove_for_detailed_instructions?
@@ -15397,6 +16534,7 @@
 # wrong constant name before_remove_for_tools=
 # wrong constant name before_remove_for_tools?
 # wrong constant name belongs_to_counter_cache_after_update
+# wrong constant name validate_associated_records_for_day_preps
 # wrong constant name validate_associated_records_for_detailed_instructions
 # wrong constant name validate_associated_records_for_inputs
 # wrong constant name validate_associated_records_for_recipesteps_detailed_instructions
@@ -15446,12 +16584,16 @@
 # wrong constant name build_recipe
 # wrong constant name create_recipe
 # wrong constant name create_recipe!
+# wrong constant name day_prep_ids=
 # wrong constant name detailed_instruction_ids=
 # wrong constant name input_ids=
 # wrong constant name reload_recipe
 # wrong constant name step_input_ids=
 # wrong constant name tool_ids=
 # wrong constant name <static-init>
+# wrong constant name after_add_for_day_preps
+# wrong constant name after_add_for_day_preps=
+# wrong constant name after_add_for_day_preps?
 # wrong constant name after_add_for_detailed_instructions
 # wrong constant name after_add_for_detailed_instructions=
 # wrong constant name after_add_for_detailed_instructions?
@@ -15470,6 +16612,9 @@
 # wrong constant name after_add_for_tools
 # wrong constant name after_add_for_tools=
 # wrong constant name after_add_for_tools?
+# wrong constant name after_remove_for_day_preps
+# wrong constant name after_remove_for_day_preps=
+# wrong constant name after_remove_for_day_preps?
 # wrong constant name after_remove_for_detailed_instructions
 # wrong constant name after_remove_for_detailed_instructions=
 # wrong constant name after_remove_for_detailed_instructions?
@@ -15488,6 +16633,9 @@
 # wrong constant name after_remove_for_tools
 # wrong constant name after_remove_for_tools=
 # wrong constant name after_remove_for_tools?
+# wrong constant name before_add_for_day_preps
+# wrong constant name before_add_for_day_preps=
+# wrong constant name before_add_for_day_preps?
 # wrong constant name before_add_for_detailed_instructions
 # wrong constant name before_add_for_detailed_instructions=
 # wrong constant name before_add_for_detailed_instructions?
@@ -15506,6 +16654,9 @@
 # wrong constant name before_add_for_tools
 # wrong constant name before_add_for_tools=
 # wrong constant name before_add_for_tools?
+# wrong constant name before_remove_for_day_preps
+# wrong constant name before_remove_for_day_preps=
+# wrong constant name before_remove_for_day_preps?
 # wrong constant name before_remove_for_detailed_instructions
 # wrong constant name before_remove_for_detailed_instructions=
 # wrong constant name before_remove_for_detailed_instructions?
@@ -15524,6 +16675,27 @@
 # wrong constant name before_remove_for_tools
 # wrong constant name before_remove_for_tools=
 # wrong constant name before_remove_for_tools?
+# wrong constant name <Class:Middleware>
+# wrong constant name <Class:Railtie>
+# wrong constant name call
+# wrong constant name initialize
+# wrong constant name <static-init>
+# uninitialized constant RequestStore::Railtie::ABSTRACT_RAILTIES
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name []=
+# wrong constant name active?
+# wrong constant name begin!
+# wrong constant name clear!
+# wrong constant name delete
+# wrong constant name end!
+# wrong constant name exist?
+# wrong constant name fetch
+# wrong constant name read
+# wrong constant name store
+# wrong constant name store=
+# wrong constant name write
 # wrong constant name <Class:CollectionResponder>
 # wrong constant name <Class:ControllerMethod>
 # wrong constant name <Class:FlashResponder>
@@ -17803,6 +18975,7 @@
 # wrong constant name call
 # wrong constant name instance
 # wrong constant name <static-init>
+# wrong constant name inherited
 # uninitialized constant StepInput::ACTIONS
 # uninitialized constant StepInput::BLACKLISTED_CLASS_METHODS
 # uninitialized constant StepInput::CALLBACKS
@@ -18317,6 +19490,7 @@
 # wrong constant name <Class:GeneratedRelationMethods>
 # uninitialized constant User::MAX_PASSWORD_LENGTH_ALLOWED
 # uninitialized constant User::NAME_COMPILABLE_REGEXP
+# wrong constant name <Class:Role>
 # uninitialized constant User::UNASSIGNABLE_KEYS
 # uninitialized constant User::VALIDATIONS
 # wrong constant name current_password
@@ -18325,6 +19499,8 @@
 # wrong constant name password
 # wrong constant name password_confirmation
 # wrong constant name password_confirmation=
+# wrong constant name typed_role
+# wrong constant name typed_role=
 # A copy of User::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of User::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of User::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
@@ -18368,6 +19544,9 @@
 # wrong constant name admin
 # wrong constant name user
 # wrong constant name <static-init>
+# undefined singleton method `sealed_subclasses' for `User::Role'
+# wrong constant name <static-init>
+# wrong constant name sealed_subclasses
 # wrong constant name devise_modules
 # wrong constant name devise_modules=
 # wrong constant name devise_modules?

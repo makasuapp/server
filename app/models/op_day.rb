@@ -13,6 +13,8 @@
 #  index_op_days_on_date  (date)
 #
 class OpDay < ApplicationRecord
+  extend T::Sig
+
   has_many :day_ingredients, dependent: :delete_all
   has_many :day_preps, dependent: :delete_all
 end
