@@ -58,23 +58,6 @@ class RecipeTest < ActiveSupport::TestCase
     assert ingredients.find { |i| i.ingredient_id == ingredients(:sesame_oil).id }.quantity == 6
   end
 
-  test "ingredient_amounts includes sub-recipes' ingredients" do
-    step = recipe_steps(:sauce_p2)
-    subrecipe = recipes(:green_onion)
-    #TODO(unit_conversion)
-    StepInput.create!(inputable_id: subrecipe.id, inputable_type: InputType::Recipe, 
-      recipe_step_id: step.id, quantity: 250, unit: "teaspoons")
-
-    r = recipes(:chicken)
-    ingredients = r.ingredient_amounts
-    assert ingredients.count == 7
-
-    green_onions = ingredients.select { |i| i.ingredient_id == ingredients(:green_onion).id }
-    assert green_onions.count == 2
-    assert green_onions.find { |i| i.quantity == 250 }.present?
-    assert green_onions.find { |i| i.quantity == 100 }.present?
-  end
-
   test "servings_produced when using less of recipe" do
     r = recipes(:chicken)
     assert r.servings_produced(4.5) == 2.25
@@ -90,28 +73,56 @@ class RecipeTest < ActiveSupport::TestCase
     #TODO(unit_conversion)
     assert r.servings_produced(5, "tablespoons") == 0.05
   end
+end
 
-  test "step_amounts returns step amounts of recipe and subrecipes" do 
+class SubRecipeTest < ActiveSupport::TestCase
+  setup do
     step = recipe_steps(:sauce_p2)
-    g = recipes(:green_onion)
-    s = recipes(:sauce)
-    r = recipes(:chicken)
+    @g = recipes(:green_onion)
+    @s = recipes(:sauce)
+    @r = recipes(:chicken)
 
     #green onion is now a subrecipe of chicken and sauce
-    StepInput.create!(inputable_id: g.id, inputable_type: InputType::Recipe, 
-      recipe_step_id: step.id, quantity: 10, unit: "grams")
+    #TODO(unit_conversion)
+    StepInput.create!(inputable_id: @g.id, inputable_type: InputType::Recipe, 
+      recipe_step_id: step.id, quantity: 250, unit: "teaspoons")
+  end
 
-    assert g.recipe_steps.count == 1
-    assert s.recipe_steps.count == 3
-    assert r.recipe_steps.count == 4
+  test "ingredient_amounts includes sub-recipes' ingredients" do
+    ingredients = @r.ingredient_amounts
+    assert ingredients.count == 7
 
-    step_amounts = r.step_amounts
+    green_onions = ingredients.select { |i| i.ingredient_id == ingredients(:green_onion).id }
+    assert green_onions.count == 2
+    assert green_onions.find { |i| i.quantity == 250 }.present?
+    assert green_onions.find { |i| i.quantity == 100 }.present?
+  end
+
+  test "step_amounts returns step amounts of recipe and subrecipes" do 
+    assert @g.recipe_steps.count == 1
+    assert @s.recipe_steps.count == 3
+    assert @r.recipe_steps.count == 4
+
+    step_amounts = @r.step_amounts
     assert step_amounts.count == 9
 
-    green_onion_step = g.recipe_steps.first
+    green_onion_step = @g.recipe_steps.first
     green_onion_amounts = step_amounts.select { |x| x.recipe_step_id == green_onion_step.id }
     assert green_onion_amounts.count == 2
-    assert green_onion_amounts.first.quantity == 0.1
-    assert green_onion_amounts.last.quantity == 1
+    assert green_onion_amounts.find { |i| i.quantity == 2.5 }.present?
+    assert green_onion_amounts.find { |i| i.quantity == 1 }.present?
+  end
+
+  test "all_in returns the recipes and their subrecipes" do
+    new_r = Recipe.create!(name: "New")
+    not_found = Recipe.create!(name: "Not Found")
+
+    recipes = Recipe.all_in([@r.id, new_r.id])
+    assert recipes.count == 4
+    assert recipes.find { |r| r.id == @r.id }.present?
+    assert recipes.find { |r| r.id == @g.id }.present?
+    assert recipes.find { |r| r.id == @s.id }.present?
+    assert recipes.find { |r| r.id == new_r.id }.present?
+    assert recipes.find { |r| r.id == not_found.id }.nil?
   end
 end

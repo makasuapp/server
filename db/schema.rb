@@ -1,4 +1,3 @@
-# typed: false
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_022645) do
+ActiveRecord::Schema.define(version: 2020_07_03_181125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +114,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_022645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["for_time", "created_at", "aasm_state"], name: "index_orders_on_for_time_and_created_at_and_aasm_state"
   end
 
   create_table "purchased_recipes", force: :cascade do |t|

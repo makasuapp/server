@@ -12,7 +12,8 @@
 #
 # Indexes
 #
-#  index_orders_on_customer_id  (customer_id)
+#  index_orders_on_customer_id                             (customer_id)
+#  index_orders_on_for_time_and_created_at_and_aasm_state  (for_time,created_at,aasm_state)
 #
 
 # This model initially had no columns defined. If you add columns to the

@@ -15,4 +15,15 @@ class Customer < ApplicationRecord
   extend T::Sig
 
   has_many :orders
+
+  sig {returns(T.nilable(String))}
+  def name
+    if self.first_name.present?
+      if self.last_name.present?
+        "#{self.first_name} #{self.last_name}"
+      else
+        self.first_name
+      end
+    end
+  end
 end

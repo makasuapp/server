@@ -20,12 +20,34 @@ class Recipe < ApplicationRecord
   has_many :step_inputs, as: :inputable
   has_many :order_items
   has_many :item_prices
+  has_many :purchased_recipes
 
   after_save :update_price, if: :saved_change_to_current_price_cents
 
   sig {returns(Recipe::ActiveRecord_Relation)}
   def self.published
     self.where(publish: true)
+  end
+
+  sig {params(recipe_ids: T::Array[Integer]).returns(T::Array[Recipe])}
+  def self.all_in(recipe_ids)
+    recipes = []
+
+    Recipe.where(id: recipe_ids).each do |recipe|
+      recipes << recipe
+
+      steps_to_check = recipe.recipe_steps.includes(:inputs)
+      steps_to_check.each do |s|
+        s.inputs.select { |input| 
+          input.inputable_type == InputType::Recipe
+        }.each do |recipe_input|
+          child_recipes = Recipe.all_in([recipe_input.inputable_id])
+          recipes = recipes + child_recipes
+        end
+      end
+    end
+
+    recipes.uniq
   end
 
   sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}

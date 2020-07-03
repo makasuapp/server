@@ -13,7 +13,8 @@
 #
 # Indexes
 #
-#  index_orders_on_customer_id  (customer_id)
+#  index_orders_on_customer_id                             (customer_id)
+#  index_orders_on_for_time_and_created_at_and_aasm_state  (for_time,created_at,aasm_state)
 #
 module OrderType
   Delivery = "delivery"
@@ -53,6 +54,18 @@ class Order < ApplicationRecord
     event :deliver do
       transitions from: :done, to: :delivered
     end
+  end
+
+  sig {params(date: T.any(DateTime, Date))
+    .returns(T.any(Order::ActiveRecord_Relation, Order::ActiveRecord_AssociationRelation))}
+  def self.on_date(date)
+    self
+      .where(for_time: date.beginning_of_day..date.end_of_day)
+      .or(
+        self
+          .where(for_time: nil)
+          .where(created_at: date.beginning_of_day..date.end_of_day)
+      )
   end
 
   private
