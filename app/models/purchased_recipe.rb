@@ -18,24 +18,28 @@
 class PurchasedRecipe < ApplicationRecord
   extend T::Sig
 
-  # after_save :update_op_day
-  # after_destroy :update_op_day
-
   belongs_to :recipe
 
-  #TODO: this assumes we won't update any recipes after already started checking them. not the greatest
-  sig {void}
-  def update_op_day
-    op_day = OpDay.find_or_create_by!(date: self.date)
+  sig {params(date: DateTime).void}
+  def self.create_from_preorders_for(date)
+    #TODO: assumes only preorders, will not be the case later
+    PurchasedRecipe.where(date: date).delete_all
 
-    #clear existing
-    op_day.day_ingredients.delete_all
-    op_day.day_preps.delete_all
+    purchased_recipes = []
+    Order
+      .where(for_time: date.beginning_of_day..date.end_of_day)
+      .includes(:order_items)
+      .each do |preorder|
+      preorder.order_items.each do |oi|
+        purchased_recipes << PurchasedRecipe.new(
+          date: date, quantity: oi.quantity, recipe_id: oi.recipe_id
+        )
+      end
+    end
 
-    #regenerate for all recipes of that date - this ensures we capture both additions and subtractions
-    purchased_recipes = PurchasedRecipe.where(date: self.date)
-    DayIngredient.generate_for(purchased_recipes, op_day)
-    DayPrep.generate_for(purchased_recipes, op_day)
+    PurchasedRecipe.import! purchased_recipes
+
+    OpDay.update_day_for(date)
   end
 
   sig {returns(T::Array[IngredientAmount])}

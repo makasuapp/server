@@ -17,4 +17,18 @@ class OpDay < ApplicationRecord
 
   has_many :day_ingredients, dependent: :delete_all
   has_many :day_preps, dependent: :delete_all
+
+  sig {params(date: T.any(DateTime, Date)).void}
+  def self.update_day_for(date)
+    op_day = OpDay.find_or_create_by!(date: date)
+
+    #clear existing
+    op_day.day_ingredients.delete_all
+    op_day.day_preps.delete_all
+
+    #regenerate for all recipes of that date - this ensures we capture both additions and subtractions
+    purchased_recipes = PurchasedRecipe.where(date: date)
+    DayIngredient.generate_for(purchased_recipes, op_day)
+    DayPrep.generate_for(purchased_recipes, op_day)
+  end
 end
