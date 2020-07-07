@@ -52,4 +52,6 @@ class OrderTest < ActiveSupport::TestCase
     assert orders.find { |o| o.id == for_date.id }.present?
     assert orders.find { |o| o.id == for_on_date.id }.present?
   end
+
+  #TODO: test timezone
 end

@@ -56,15 +56,16 @@ class Order < ApplicationRecord
     end
   end
 
-  sig {params(date: T.any(DateTime, Date))
+  sig {params(date: T.any(DateTime, Date), timezone: String)
     .returns(T.any(Order::ActiveRecord_Relation, Order::ActiveRecord_AssociationRelation))}
-  def self.on_date(date)
+  def self.on_date(date, timezone = "America/Toronto")
+    date_on = date.in_time_zone(timezone)
     self
-      .where(for_time: date.beginning_of_day..date.end_of_day)
+      .where(for_time: date_on.beginning_of_day..date_on.end_of_day)
       .or(
         self
           .where(for_time: nil)
-          .where(created_at: date.beginning_of_day..date.end_of_day)
+          .where(created_at: date_on.beginning_of_day..date_on.end_of_day)
       )
   end
 

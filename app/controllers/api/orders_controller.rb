@@ -22,7 +22,7 @@ class Api::OrdersController < ApplicationController
 
   def update_state
     begin
-      @order.aasm.fire!(params[:action])
+      @order.aasm.fire!(params[:state_action])
       head :ok
     rescue => e
       render json: e, status: :unprocessable_entity and return
