@@ -1,4 +1,4 @@
-# typed: strict
+# typed: false
 # == Schema Information
 #
 # Table name: orders

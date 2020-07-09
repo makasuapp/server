@@ -20,3 +20,13 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+delivery:
+  aasm_state: "new"
+  order_type: "delivery"
+  customer: one
+
+pickup:
+  aasm_state: "new"
+  order_type: "pickup"
+  customer: one

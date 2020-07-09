@@ -14,5 +14,6 @@ Rails.application.routes.draw do
 
     resources :orders, only: [:index]
     post 'orders/:id/update_state', to: 'orders#update_state'
+    post 'orders/update_items', to: 'orders#update_items'
   end
 end

@@ -22,3 +22,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+delivery_item:
+  order: delivery
+  recipe: chicken
+  price_cents: 100
+  quantity: 2
+
+pickup_item:
+  order: pickup
+  recipe: chicken
+  price_cents: 100
+  quantity: 3
