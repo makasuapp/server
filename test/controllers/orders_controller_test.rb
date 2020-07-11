@@ -28,10 +28,10 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     item2.update_attributes!(done_at: now)
 
     updates = []
-    updates << {id: item1.id, done_at: now - 1.hour, time_sec: (now - 2.days).to_i}
-    updates << {id: item2.id, clear_done_at: true, time_sec: (now - 2.hours).to_i}
-    updates << {id: item1.id, done_at: now, time_sec: now.to_i}
-    updates << {id: item1.id, done_at: now - 2.hour, time_sec: (now - 1.hour).to_i}
+    updates << {id: item1.id, done_at: (now - 1.hour).to_i, clear_done_at: nil, time_sec: (now - 2.days).to_i}
+    updates << {id: item2.id, clear_done_at: true, done_at: nil, time_sec: (now - 2.hours).to_i}
+    updates << {id: item1.id, done_at: now.to_i, clear_done_at: nil, time_sec: now.to_i}
+    updates << {id: item1.id, done_at: (now - 2.hour).to_i, clear_done_at: nil, time_sec: (now - 1.hour).to_i}
 
     post "/api/orders/update_items", params: { 
       updates: updates

@@ -42,7 +42,7 @@ class Api::OrdersController < ApplicationController
       update = latest_updates[item.id]
 
       if update[:done_at].present?
-        item.done_at = update[:done_at]
+        item.done_at = Time.at(update[:done_at])
       elsif update[:clear_done_at].present?
         item.done_at = nil
       end
