@@ -43,7 +43,7 @@ module Server
     config.filter_parameters << :password
 
     Raven.configure do |config|
-      config.dsn = 'https://a18e1e23bfc44e04aa25d1e3b3e484da:d59f92f200a3452cbbd06cb10b9f681a@sentry.io/1878971'
+      config.dsn = 'https://547d447dc4fa47068b254b47082ea311:3e1fa8fe27ce48d98a40e8db5e5f5beb@o340561.ingest.sentry.io/5338625'
     end
   end
 end
