@@ -6,6 +6,7 @@ class Api::OrdersController < ApplicationController
     if params[:env] == "dev"
       date = OpDay.first.date
     else
+      #TODO(timezone)
       date = Time.now.in_time_zone("America/Toronto")
     end
 
@@ -16,8 +17,9 @@ class Api::OrdersController < ApplicationController
       .where(recipe_id: @recipes.map(&:id))
       .includes([{inputs: :inputable}, :detailed_instructions, :tools, :recipe])
     
+    #TODO(timezone)
     @orders = Order
-      .on_date(date)
+      .on_date(date.to_date, "America/Toronto")
       .where.not(aasm_state: Order::STATE_DELIVERED)
       .includes([:order_items, :customer])
 
