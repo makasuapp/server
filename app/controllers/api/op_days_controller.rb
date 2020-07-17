@@ -1,9 +1,13 @@
 # typed: ignore
 class Api::OpDaysController < ApplicationController
   def index
-    # date = Time.now.in_time_zone("America/Toronto").to_date
-    # op_day = OpDay.find_or_create_by!(date: date)
-    op_day = OpDay.first
+    #hacky temp solution to have a dev environment
+    if params[:env] == "dev"
+      op_day = OpDay.first
+    else
+      date = Time.now.in_time_zone("America/Toronto").to_date
+      op_day = OpDay.find_or_create_by!(date: date)
+    end
 
     @ingredients = DayIngredient.where(op_day_id: op_day.id).includes(:ingredient)
     @preps = DayPrep.where(op_day_id: op_day.id)

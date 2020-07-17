@@ -2,8 +2,12 @@
 class Api::OrdersController < ApplicationController
   before_action :set_order, only: [:update_state]
   def index
-    # date = Time.now.in_time_zone("America/Toronto")
-    date = OpDay.first.date
+    #hacky temp solution to have a dev environment
+    if params[:env] == "dev"
+      date = OpDay.first.date
+    else
+      date = Time.now.in_time_zone("America/Toronto")
+    end
 
     recipe_ids = PurchasedRecipe.where(date: date).map(&:recipe_id)
     @recipes = Recipe.all_in(recipe_ids)
@@ -16,6 +20,9 @@ class Api::OrdersController < ApplicationController
       .on_date(date)
       .where.not(aasm_state: Order::STATE_DELIVERED)
       .includes([:order_items, :customer])
+
+    #TODO: make this just the ingredients from the recipes
+    @ingredients = Ingredient.all
 
     render formats: :json
   end
