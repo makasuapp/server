@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_181125) do
+ActiveRecord::Schema.define(version: 2020_07_16_190355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_181125) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "volume_weight_ratio"
   end
 
   create_table "item_prices", force: :cascade do |t|
@@ -157,6 +158,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_181125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "current_price_cents"
+    t.float "output_volume_weight_ratio"
   end
 
   create_table "step_inputs", force: :cascade do |t|

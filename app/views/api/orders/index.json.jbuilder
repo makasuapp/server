@@ -34,3 +34,9 @@ end
 json.recipe_steps do
   json.array! @recipe_steps, partial: "api/recipe_steps/recipe_step", as: :step
 end
+
+json.ingredients do
+  json.array!(@ingredients) do |ingredient|
+    json.extract! ingredient, :id, :name, :volume_weight_ratio
+  end
+end

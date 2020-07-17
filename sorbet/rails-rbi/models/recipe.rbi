@@ -53,6 +53,15 @@ module Recipe::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def output_qty?; end
 
+  sig { returns(T.nilable(Float)) }
+  def output_volume_weight_ratio; end
+
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  def output_volume_weight_ratio=(value); end
+
+  sig { returns(T::Boolean) }
+  def output_volume_weight_ratio?; end
+
   sig { returns(T::Boolean) }
   def publish; end
 
@@ -99,6 +108,15 @@ module Recipe::GeneratedAssociationMethods
 
   sig { params(value: T::Enumerable[::OrderItem]).void }
   def order_items=(value); end
+
+  sig { returns(::PurchasedRecipe::ActiveRecord_Associations_CollectionProxy) }
+  def purchased_recipes; end
+
+  sig { returns(T::Array[Integer]) }
+  def purchased_recipe_ids; end
+
+  sig { params(value: T::Enumerable[::PurchasedRecipe]).void }
+  def purchased_recipes=(value); end
 
   sig { returns(::RecipeStep::ActiveRecord_Associations_CollectionProxy) }
   def recipe_steps; end

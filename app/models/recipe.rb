@@ -3,23 +3,24 @@
 #
 # Table name: recipes
 #
-#  id                  :bigint           not null, primary key
-#  current_price_cents :integer
-#  name                :string           not null
-#  output_qty          :float            default(1.0), not null
-#  publish             :boolean          default(FALSE), not null
-#  unit                :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
+#  id                         :bigint           not null, primary key
+#  current_price_cents        :integer
+#  name                       :string           not null
+#  output_qty                 :float            default(1.0), not null
+#  output_volume_weight_ratio :float
+#  publish                    :boolean          default(FALSE), not null
+#  unit                       :string
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
 #
 class Recipe < ApplicationRecord
   extend T::Sig
 
-  has_many :recipe_steps
+  has_many :recipe_steps, dependent: :destroy
   #places where this is an input
   has_many :step_inputs, as: :inputable
-  has_many :order_items
-  has_many :item_prices
+  has_many :order_items, dependent: :destroy
+  has_many :item_prices, dependent: :destroy
   has_many :purchased_recipes
 
   after_save :update_price, if: :saved_change_to_current_price_cents
@@ -88,6 +89,20 @@ class Recipe < ApplicationRecord
     end
 
     steps
+  end
+
+  sig {returns(T.nilable(Float))}
+  def volume_weight_ratio
+    if self.output_volume_weight_ratio.nil?
+      if self.step_inputs.length == 1
+        input = T.must(self.step_inputs.first)
+        if input.inputable_type == InputType::Ingredient
+          return input.inputable.volume_weight_ratio
+        end
+      end
+    end
+
+    self.output_volume_weight_ratio
   end
 
   sig {returns(T::Array[IngredientAmount])}

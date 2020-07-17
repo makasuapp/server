@@ -32,7 +32,7 @@ class RecipeStep < ApplicationRecord
 
   belongs_to :recipe
   #inputs in this step
-  has_many :inputs, class_name: "StepInput", foreign_key: :recipe_step_id
+  has_many :inputs, class_name: "StepInput", foreign_key: :recipe_step_id, dependent: :destroy
   has_and_belongs_to_many :tools
   has_and_belongs_to_many :detailed_instructions
 

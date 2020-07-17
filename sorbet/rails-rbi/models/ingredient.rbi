@@ -43,6 +43,15 @@ module Ingredient::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def updated_at?; end
+
+  sig { returns(T.nilable(Float)) }
+  def volume_weight_ratio; end
+
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  def volume_weight_ratio=(value); end
+
+  sig { returns(T::Boolean) }
+  def volume_weight_ratio?; end
 end
 
 module Ingredient::GeneratedAssociationMethods

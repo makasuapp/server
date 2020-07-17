@@ -195,4 +195,25 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_op_days_save_prep_qty_url(*args, **kwargs); end
+
+  # Sigs for route /api/orders(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_orders_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_orders_url(*args, **kwargs); end
+
+  # Sigs for route /api/orders/:id/update_state(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_url(*args, **kwargs); end
+
+  # Sigs for route /api/orders/update_items(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_orders_update_items_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_orders_update_items_url(*args, **kwargs); end
 end
