@@ -20,14 +20,15 @@ class PurchasedRecipe < ApplicationRecord
 
   belongs_to :recipe
 
-  sig {params(date: DateTime).void}
+  sig {params(date: T.any(DateTime, Date)).void}
   def self.create_from_preorders_for(date)
     #TODO: assumes only preorders, will not be the case later
     PurchasedRecipe.where(date: date).delete_all
 
     purchased_recipes = []
+    #TODO(timezone)
     Order
-      .where(for_time: date.beginning_of_day..date.end_of_day)
+      .on_date(date, "America/Toronto")
       .includes(:order_items)
       .each do |preorder|
       preorder.order_items.each do |oi|
