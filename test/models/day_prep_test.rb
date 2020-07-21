@@ -47,6 +47,7 @@ class DayPrepTest < ActiveSupport::TestCase
 
     count = DayPrep.count
 
+    #7 total now
     new_pr = @purchased_recipe.dup
     new_pr.quantity = 3
     new_pr.save!
@@ -54,11 +55,13 @@ class DayPrepTest < ActiveSupport::TestCase
     DayPrep.generate_for(PurchasedRecipe.all, @today)
 
     assert DayPrep.count == count + 6
+    #recipe serves 2, so we want 7/2 of it
     assert DayPrep.last.expected_qty == 3.5
 
     green_onion_step = g.recipe_steps.first
     green_onion_prep = DayPrep.where(recipe_step_id: green_onion_step.id)
     assert green_onion_prep.count == 1
+    #7/2 * (10/100 of recipe + 30/100 of recipe + 100/100 of recipe)
     assert green_onion_prep.first.expected_qty == 4.9
   end
 end

@@ -47,14 +47,8 @@ class PurchasedRecipe < ApplicationRecord
   def ingredient_amounts
     recipe = self.recipe
     recipe_amounts = recipe.ingredient_amounts
+    recipe_servings = recipe.servings_produced(self.quantity)
 
-    if recipe.unit == nil
-      qty = self.quantity / recipe.output_qty
-    else
-      Raven.capture_exception("purchased recipe #{self.id} has recipe with unit. what do?")
-      qty = self.quantity
-    end
-
-    recipe_amounts.map { |amount| amount * qty }
+    recipe_amounts.map { |amount| amount * recipe_servings }
   end
 end

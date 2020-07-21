@@ -370,7 +370,7 @@ if true
   c1.tools << stove
 
   c2 = s(dan_dan, 2, "Combine sauce, roasted peanuts, green onions, pork", "cook")
-  si(c2, "Recipe", dd_sauce, 0.25)
+  si(c2, "Recipe", dd_sauce, 1)
   si(c2, "Recipe", chopped_green_onion, 4, g)
   si(c2, "Ingredient", roasted_peanuts, 0.5, tbsp)
   si(c2, "RecipeStep", s2)

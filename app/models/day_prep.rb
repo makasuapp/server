@@ -29,6 +29,7 @@ class DayPrep < ApplicationRecord
 
     purchased_recipes.includes({recipe: {recipe_steps: :inputs}}).each do |pr|
       recipe = pr.recipe
+      recipe_servings = recipe.servings_produced(pr.quantity)
 
       #create day prep for prep steps of the recipe
       prep_step_amounts = recipe.recipe_steps
@@ -50,13 +51,7 @@ class DayPrep < ApplicationRecord
 
       (prep_step_amounts + subrecipe_step_amounts).each do |step_amount|
         existing_prep = day_preps[step_amount.recipe_step_id]
-        if recipe.unit == nil
-          pr_qty = pr.quantity / recipe.output_qty
-        else
-          Raven.capture_exception("purchased recipe #{pr.id} has recipe with unit. what do?")
-          pr_qty = pr.quantity
-        end
-        additional_qty = step_amount.quantity * pr_qty
+        additional_qty = step_amount.quantity * recipe_servings
 
         if existing_prep.nil?
           day_preps[step_amount.recipe_step_id] = DayPrep.new(

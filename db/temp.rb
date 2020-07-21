@@ -3,10 +3,9 @@
 date = DateTime.now
 
 op_day = OpDay.find_or_create_by!(date: date)
-ingredients = DayIngredient.where(op_day_id: op_day.id)
-preps = DayPrep.where(op_day_id: op_day.id)
-ingredients.delete_all
-preps.delete_all
+DayIngredient.where(op_day_id: op_day.id).delete_all
+DayPrep.where(op_day_id: op_day.id).delete_all
+PurchasedRecipe.where(date: date).delete_all
 
 o = Order.create!(order_type: "pickup", customer_id: 1)
 [
