@@ -22,19 +22,21 @@ class PurchasedRecipeTest < ActiveSupport::TestCase
     @purchased_recipe = purchased_recipes(:chicken)
   end
 
-  test "ingredient_amounts returns recipes' ingredient_amounts * quantity" do
+  test "ingredient_amounts returns ingredients needed by purchased recipe quantity" do
+    #recipe serves 2, we want 4, so just 2x
+    assert @purchased_recipe.quantity == 4
+    assert @purchased_recipe.recipe.output_qty == 2
+
     amounts = [
       IngredientAmount.mk(1, 1.5),
       IngredientAmount.mk(1, 2.5),
       IngredientAmount.mk(2, 1.4)
     ]
     Recipe.any_instance.expects(:ingredient_amounts).once.returns(amounts)
-
     pr_amounts = @purchased_recipe.ingredient_amounts
-    assert @purchased_recipe.quantity == 4
 
-    assert pr_amounts[0].serialize == IngredientAmount.mk(1, 6.0).serialize
-    assert pr_amounts[1].serialize == IngredientAmount.mk(1, 10.0).serialize
-    assert pr_amounts[2].serialize == IngredientAmount.mk(2, 5.6).serialize
+    assert pr_amounts[0].serialize == IngredientAmount.mk(1, 3.0).serialize
+    assert pr_amounts[1].serialize == IngredientAmount.mk(1, 5.0).serialize
+    assert pr_amounts[2].serialize == IngredientAmount.mk(2, 2.8).serialize
   end
 end

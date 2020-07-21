@@ -31,7 +31,7 @@ class DayPrepTest < ActiveSupport::TestCase
     DayPrep.generate_for(PurchasedRecipe.all, @today)
 
     assert DayPrep.count == count + 6
-    assert DayPrep.last.expected_qty == 4
+    assert DayPrep.last.expected_qty == 2
   end
 
   test "generate_for aggregates the steps" do
@@ -54,11 +54,11 @@ class DayPrepTest < ActiveSupport::TestCase
     DayPrep.generate_for(PurchasedRecipe.all, @today)
 
     assert DayPrep.count == count + 6
-    assert DayPrep.last.expected_qty == 7
+    assert DayPrep.last.expected_qty == 3.5
 
     green_onion_step = g.recipe_steps.first
     green_onion_prep = DayPrep.where(recipe_step_id: green_onion_step.id)
     assert green_onion_prep.count == 1
-    assert green_onion_prep.first.expected_qty == 9.8
+    assert green_onion_prep.first.expected_qty == 4.9
   end
 end

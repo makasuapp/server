@@ -45,7 +45,16 @@ class PurchasedRecipe < ApplicationRecord
 
   sig {returns(T::Array[IngredientAmount])}
   def ingredient_amounts
-    recipe_amounts = self.recipe.ingredient_amounts
-    recipe_amounts.map { |amount| amount * self.quantity }
+    recipe = self.recipe
+    recipe_amounts = recipe.ingredient_amounts
+
+    if recipe.unit == nil
+      qty = self.quantity / recipe.output_qty
+    else
+      Raven.capture_exception("purchased recipe #{self.id} has recipe with unit. what do?")
+      qty = self.quantity
+    end
+
+    recipe_amounts.map { |amount| amount * qty }
   end
 end
