@@ -4,7 +4,14 @@
 #
 
 def r(name, quantity = 1, unit = nil, publish = false)
-  Recipe.find_or_create_by!(name: name, output_qty: quantity, unit: unit, publish: publish)
+  recipe = Recipe.find_or_initialize_by(name: name)
+
+  recipe.output_qty = quantity
+  recipe.unit = unit
+  recipe.publish = publish
+  recipe.save!
+
+  recipe
 end
 
 def i(name)
@@ -20,12 +27,16 @@ def d(instruction)
 end
 
 def s(recipe, number, instruction, type = "prep", params = {})
-  step = RecipeStep.new(params)
-  step.recipe_id = recipe.id
-  step.number = number
-  step.step_type = type
+  step = RecipeStep.find_or_initialize_by(recipe_id: recipe.id, number: number, step_type: type)
   step.instruction = instruction
+  params.each do |k, v|
+    step[k] = v
+  end
   step.save!
+
+  step.inputs.each(&:destroy)
+  step.tools.delete_all
+  step.detailed_instructions.delete_all
 
   step
 end
@@ -91,7 +102,7 @@ tbsp = "tablespoons"
 oz = "ounces"
 
 pepper_paste = r("Sichuan Pepper Paste", 10, g)
-if pepper_paste.recipe_steps.empty?
+if true
   s1 = s(pepper_paste, 1, "Cook dried peppers taking it on and off the heat to prevent any burning. Cook until the fragrance comes out.")
   si(s1, "Ingredient", dried_peppers, 10, g)
   s1.tools << wok
@@ -103,7 +114,7 @@ if pepper_paste.recipe_steps.empty?
 end
 
 pepper_oil = r("Sichuan Pepper Oil", 130, g)
-if pepper_oil.recipe_steps.empty?
+if true
   s1 = s(pepper_oil, 1, "Heat oil until 220 degrees F")
   si(s1, "Ingredient", oil, 90, g)
   s1.tools << wok
@@ -123,7 +134,7 @@ if pepper_oil.recipe_steps.empty?
 end
 
 peppercorn_paste = r("Sichuan Peppercorn Paste", 10, g)
-if peppercorn_paste.recipe_steps.empty?
+if true
   s1 = s(peppercorn_paste, 1, "Cook sichuan peppers taking it on and off the heat to prevent any burning. Cook until the peppercorns are easily crushable.")
   si(s1, "Ingredient", sichuan_peppercorn, 10, g)
   s1.tools << wok
@@ -135,7 +146,7 @@ if peppercorn_paste.recipe_steps.empty?
 end
 
 peppercorn_oil = r("Sichuan Peppercorn Oil", 50, g)
-if peppercorn_oil.recipe_steps.empty?
+if true
   s1 = s(peppercorn_oil, 1, "Cook on high heat to bring out the fragrance, then lower heat to bring out the flavor inside")
   si(s1, "Ingredient", oil, 40, g)
   si(s1, "Recipe", peppercorn_paste, 10, g)
@@ -143,64 +154,64 @@ if peppercorn_oil.recipe_steps.empty?
   s1.tools << stove
 end
 
-chopped_green_onion = r("Chopped Green Onions", 100, g)
-if chopped_green_onion.recipe_steps.empty?
+chopped_green_onion = r("Chopped Green Onions", 10, g)
+if true
   s1 = s(chopped_green_onion, 1, "Chop green onions")
-  si(s1, "Ingredient", green_onion, 100, g)
+  si(s1, "Ingredient", green_onion, 10, g)
   s1.tools << knife
 end
 
-green_onion_chunks = r("Green Onion Chunks", 100, g)
-if green_onion_chunks.recipe_steps.empty?
+green_onion_chunks = r("Green Onion Chunks", 10, g)
+if true
   s1 = s(green_onion_chunks, 1, "Chop green onions into 1/2 inch pieces")
-  si(s1, "Ingredient", green_onion, 100, g)
+  si(s1, "Ingredient", green_onion, 10, g)
   s1.tools << knife
 end
 
-bell_pepper_chunks = r("Bell Pepper Chunks", 100, g)
-if bell_pepper_chunks.recipe_steps.empty?
+bell_pepper_chunks = r("Bell Pepper Chunks", 10, g)
+if true
   s1 = s(bell_pepper_chunks, 1, "Chop bell peppers into 1/2 inch pieces")
-  si(s1, "Ingredient", bell_pepper, 100, g)
+  si(s1, "Ingredient", bell_pepper, 10, g)
   s1.tools << knife
 end
 
-minced_ginger = r("Minced Ginger", 100, g)
-if minced_ginger.recipe_steps.empty?
+minced_ginger = r("Minced Ginger", 10, g)
+if true
   s1 = s(minced_ginger, 1, "Mince ginger")
-  si(s1, "Ingredient", ginger, 100, g)
+  si(s1, "Ingredient", ginger, 10, g)
   s1.tools << knife
 end
 
-minced_garlic = r("Minced Garlic", 100, g)
-if minced_garlic.recipe_steps.empty?
+minced_garlic = r("Minced Garlic", 10, g)
+if true
   s1 = s(minced_garlic, 1, "Mince garlic")
-  si(s1, "Ingredient", garlic, 100, g)
+  si(s1, "Ingredient", garlic, 10, g)
   s1.tools << knife
 end
 
-sliced_onion = r("Sliced Onion", 100, g)
-if sliced_onion.recipe_steps.empty?
+sliced_onion = r("Sliced Onion", 10, g)
+if true
   s1 = s(sliced_onion, 1, "Slice onion thinly")
-  si(s1, "Ingredient", onion, 100, g)
+  si(s1, "Ingredient", onion, 10, g)
   s1.tools << knife
 end
 
-sliced_ginger = r("Sliced Ginger", 100, g)
-if sliced_ginger.recipe_steps.empty?
+sliced_ginger = r("Sliced Ginger", 10, g)
+if true
   s1 = s(sliced_ginger, 1, "Slice ginger thinly")
-  si(s1, "Ingredient", ginger, 100, g)
+  si(s1, "Ingredient", ginger, 10, g)
   s1.tools << knife
 end
 
-sliced_garlic = r("Sliced Garlic", 100, g)
-if sliced_garlic.recipe_steps.empty?
+sliced_garlic = r("Sliced Garlic", 10, g)
+if true
   s1 = s(sliced_garlic, 1, "Slice garlic thinly")
-  si(s1, "Ingredient", garlic, 100, g)
+  si(s1, "Ingredient", garlic, 10, g)
   s1.tools << knife
 end
 
 sauce = r("Mouth Watering Chicken Sauce")
-if sauce.recipe_steps.empty?
+if true
   s1 = s(sauce, 1, "Mix salt, MSG, sugar 1:1:3")
   si(s1, "Ingredient", salt, 1, tsp)
   si(s1, "Ingredient", msg, 1, tsp)
@@ -230,7 +241,7 @@ if sauce.recipe_steps.empty?
 end
 
 chicken = r("Mouth Watering Chicken", 2, nil, true)
-if chicken.recipe_steps.empty?
+if true
   s1 = s(chicken, 1, "Dry brine chicken overnight", "prep",
     {min_before_sec: 60 * 60 * 8}
   )
@@ -245,7 +256,7 @@ if chicken.recipe_steps.empty?
   si(s2, "Ingredient", water, 8, cups)
   si(s2, "Ingredient", dried_peppers, 3)
   si(s2, "Ingredient", sichuan_peppercorn, 10)
-  si(s2, "Recipe", ginger, 2, g)
+  si(s2, "Ingredient", ginger, 2, g)
   si(s2, "Ingredient", green_onion, 1)
   si(s2, "Ingredient", salt, 3, tbsp)
   s2.tools << pot
@@ -272,11 +283,11 @@ if chicken.recipe_steps.empty?
 end
 
 two_pork = r("Twice Cooked Pork", 1, nil, true)
-if two_pork.recipe_steps.empty?
+if true
   s1 = s(two_pork, 1, "Boil pork belly for an hour. Let it cool, then freeze it", "prep",
     {min_before_sec: 60 * 60 * 3, duration_sec: 60 * 80}
   )
-  si(s1, "Ingredient", pork_belly)
+  si(s1, "Ingredient", pork_belly, 250, g)
   s1.tools << pot
   s1.tools << stove
 
@@ -296,9 +307,9 @@ if two_pork.recipe_steps.empty?
     {duration_sec: 90}
   )
   si(c2, "RecipeStep", c1)
-  si(c2, "Recipe", sliced_onion, 60, g)
-  si(c2, "Recipe", bell_pepper_chunks, 100, g)
-  si(c2, "Recipe", green_onion_chunks, 100, g)
+  si(c2, "Recipe", sliced_onion, 300, g)
+  si(c2, "Recipe", bell_pepper_chunks, 200, g)
+  si(c2, "Recipe", green_onion_chunks, 20, g)
 
   c3 = s(two_pork, 3, "Small heat, small oil, stir fry garlic, ginger, red oil chili paste, sweet bean paste", "cook")
   si(c3, "Ingredient", oil, 1, tsp)
@@ -318,36 +329,38 @@ if two_pork.recipe_steps.empty?
 
   c5 = s(two_pork, 5, "Finish with some pepper oil", "cook")
   si(c5, "RecipeStep", c4)
-  si(c5, "Ingredient", pepper_oil, 1, tbsp)
+  si(c5, "Recipe", pepper_oil, 1, tbsp)
 end
 
 dd_sauce = r("Dan Dan Sauce", 4)
-if dd_sauce.recipe_steps.empty?
+if true
   s1 = s(dd_sauce, 1, "Mix ingredients")
   si(s1, "Ingredient", salt, 1, tsp)
   si(s1, "Ingredient", msg, 1, tsp)
   si(s1, "Ingredient", soy_sauce, 1, tbsp)
   si(s1, "Ingredient", black_vinegar, 3, tbsp)
   si(s1, "Ingredient", sugar, 1, tbsp)
-  si(s1, "Recipe", pepper_oil, 0.5, cups)
-  si(s1, "Recipe", peppercorn_oil, 2, tbsp)
+  si(s1, "Recipe", pepper_oil, 2, tbsp)
+  si(s1, "Recipe", peppercorn_oil, 1, tbsp)
   si(s1, "Ingredient", sesame_paste, 2, tbsp)
   si(s1, "Ingredient", sesame_oil, 4, tbsp)
 end
 
 dan_dan = r("Dan Dan Noodles", 1, nil, true)
-if dan_dan.recipe_steps.empty?
-  s1 = s(dan_dan, 1, "High heat cook the pork")
-  si(s1, "Ingredient", ground_pork, 50, g)
+if true
+  s1 = s(dan_dan, 1, "High heat cook the pork with some cooking wine and salt")
+  si(s1, "Ingredient", ground_pork, 30, g)
   si(s1, "Ingredient", oil, 2, tsp)
+  si(s1, "Ingredient", cooking_wine, 1, tsp)
+  si(s1, "Ingredient", salt, 1, tsp)
   s1.tools << wok
   s1.tools << stove
 
   s2 = s(dan_dan, 2, "Add in peppercorn, ya cai, garlic. Once fragrant take off the heat")
   si(s2, "RecipeStep", s1)
   si(s2, "Recipe", peppercorn_paste, 1, tsp)
-  si(s2, "Recipe", minced_garlic, 1, tsp)
-  si(s2, "Ingredient", yacai, 1, tbsp)
+  si(s2, "Recipe", minced_garlic, 0.25, tsp)
+  si(s2, "Ingredient", yacai, 15, g)
 
   c1 = s(dan_dan, 1, "Boil noodles. After cooked, run through cold water", "cook",
     {max_before_sec: 60 * 20}
@@ -358,8 +371,8 @@ if dan_dan.recipe_steps.empty?
 
   c2 = s(dan_dan, 2, "Combine sauce, roasted peanuts, green onions, pork", "cook")
   si(c2, "Recipe", dd_sauce, 0.25)
-  si(c2, "Recipe", chopped_green_onion, 10, g)
-  si(c2, "Ingredient", roasted_peanuts, 1, tbsp)
+  si(c2, "Recipe", chopped_green_onion, 4, g)
+  si(c2, "Ingredient", roasted_peanuts, 0.5, tbsp)
   si(c2, "RecipeStep", s2)
 
   c3 = s(dan_dan, 3, "Combine and serve", "cook")
@@ -368,14 +381,13 @@ if dan_dan.recipe_steps.empty?
 end
 
 yx_sauce = r("Yuxiang Sauce")
-if yx_sauce.recipe_steps.empty?
+if true
   s1 = s(yx_sauce, 1, "Mix ingredients")
   si(s1, "Ingredient", salt, 1, g)
   si(s1, "Ingredient", black_vinegar, 35, g)
   si(s1, "Ingredient", sugar, 40, g)
   si(s1, "Ingredient", ground_pepper, 0.5, g)
   si(s1, "Ingredient", soy_sauce, 5, g)
-  si(s1, "Ingredient", cooking_wine, 5, g)
 
   s2 = s(yx_sauce, 2, "Mix corn starch with cold water")
   si(s2, "Ingredient", corn_starch, 2, g)
@@ -387,22 +399,25 @@ if yx_sauce.recipe_steps.empty?
 end
 
 yuxiang = r("Yuxiang Eggplant", 1, nil, true)
-if yuxiang.recipe_steps.empty?
+if true
   s1 = s(yuxiang, 1, "Cut eggplant into long strips, soak in salty water for 15 minutes, dry it off after")
   si(s1, "Ingredient", eggplant, 2)
   si(s1, "Ingredient", salt, 2, tbsp)
   si(s1, "Ingredient", water, 4, cups)
   s1.tools << knife
 
-  s2 = s(yuxiang, 2, "Sprinkle eggplant with corn starch. Heat up oil to medium and put eggplant in semi-frying until crispy")
+  s2 = s(yuxiang, 2, "Sprinkle eggplant with corn starch. Heat up oil to medium and semi-fry eggplant until crispy")
+  s1.detailed_instructions << d("Do it in batches, don't overcrowd it. Put in 1-2 tbsp of oil per batch to cover bottom and fry until eggplant changes color.")
   si(s2, "RecipeStep", s1)
   si(s2, "Ingredient", corn_starch, 2, tbsp)
   si(s2, "Ingredient", oil, 0.25, cups)
   s2.tools << wok
   s2.tools << stove
 
-  c1 = s(yuxiang, 1, "High heat cook the pork", "cook")
+  c1 = s(yuxiang, 1, "High heat cook the pork with cooking wine and salt", "cook")
   si(c1, "Ingredient", ground_pork, 100, g)
+  si(c1, "Ingredient", cooking_wine, 1, tsp)
+  si(c1, "Ingredient", salt, 1, tsp)
   si(c1, "Ingredient", oil, 2, tbsp)
   c1.tools << wok
   c1.tools << stove
@@ -411,7 +426,7 @@ if yuxiang.recipe_steps.empty?
   si(c2, "RecipeStep", c1)
   si(c2, "Recipe", minced_ginger, 1, tbsp)
   si(c2, "Recipe", minced_garlic, 1, tbsp)
-  si(c2, "Recipe", chopped_green_onion, 50, g)
+  si(c2, "Recipe", chopped_green_onion, 20, g)
   si(c2, "Ingredient", pickled_pepper, 3)
   si(c2, "Recipe", yx_sauce)
 
