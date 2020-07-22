@@ -26,25 +26,25 @@ green_onion_p1:
   inputable: green_onion (Ingredient)
   recipe_step: green_onion_p1
   quantity: 100
-  unit: "grams"
+  unit: "g"
 
 sauce_p1:
   inputable: salt (Ingredient)
   recipe_step: sauce_p1
   quantity: 1
-  unit: "teaspoons"
+  unit: "tsp"
 
 sauce_p2_i1:
   inputable: sesame_paste (Ingredient)
   recipe_step: sauce_p2
   quantity: 3
-  unit: "tablespoons"
+  unit: "tbsp"
 
 sauce_p2_i2:
   inputable: sesame_oil (Ingredient)
   recipe_step: sauce_p2
   quantity: 6
-  unit: "tablespoons"
+  unit: "tbsp"
 
 sauce_c1_i1:
   inputable: sauce_p1 (RecipeStep)
@@ -81,5 +81,5 @@ chicken_c2_i2:
 chicken_c2_i3:
   inputable: green_onion (Recipe)
   quantity: 100
-  unit: "grams"
+  unit: "g"
   recipe_step: chicken_c2

@@ -20,7 +20,7 @@ class IngredientAmount < T::Struct
         sum[a.ingredient_id] = [a]
       else
         #only add them together if they both have unit or no unit
-        matches_unit_idx = existing.find_index { |i| UnitConverter.unit_matches?(a.unit, i.unit) }
+        matches_unit_idx = existing.find_index { |i| UnitConverter.can_convert?(a.unit, i.unit) }
         if matches_unit_idx.present?
           sum[a.ingredient_id][matches_unit_idx] = sum[a.ingredient_id][matches_unit_idx] + a
         else

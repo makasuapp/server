@@ -72,7 +72,7 @@ class RecipeTest < ActiveSupport::TestCase
   test "servings_produced when using different unit" do
     r = recipes(:green_onion)
     #TODO(unit_conversion)
-    assert r.servings_produced(5, "tablespoons") == 0.05
+    assert r.servings_produced(5, "tbsp") == 0.05
   end
 end
 
@@ -86,7 +86,7 @@ class SubRecipeTest < ActiveSupport::TestCase
     #green onion is now a subrecipe of chicken and sauce
     #TODO(unit_conversion)
     StepInput.create!(inputable_id: @g.id, inputable_type: InputType::Recipe, 
-      recipe_step_id: step.id, quantity: 250, unit: "teaspoons")
+      recipe_step_id: step.id, quantity: 250, unit: "tsp")
   end
 
   test "ingredient_amounts includes sub-recipes' ingredients" do

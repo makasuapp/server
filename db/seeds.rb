@@ -95,11 +95,11 @@ pot = t("Stock Pot")
 blender = t("Blender")
 knife = t("Chef Knife")
 
-cups = "cups"
-g = "grams"
-tsp = "teaspoons"
-tbsp = "tablespoons"
-oz = "ounces"
+cup = T.must(UnitConverter.volume_units[:cup]).short
+g = T.must(UnitConverter.weight_units[:g]).short
+tsp = T.must(UnitConverter.volume_units[:tsp]).short
+tbsp = T.must(UnitConverter.volume_units[:tbsp]).short
+oz = T.must(UnitConverter.weight_units[:oz]).short
 
 pepper_paste = r("Sichuan Pepper Paste", 10, g)
 if true
@@ -253,7 +253,7 @@ if true
     "Submerge whole chicken in water with dried peppers, sichuan peppercorn, green onion chunks, ginger chunks, lots of salt. Squeeze the green onions and ginger to get juices into it."
   )
   si(s2, "RecipeStep", s1)
-  si(s2, "Ingredient", water, 8, cups)
+  si(s2, "Ingredient", water, 8, cup)
   si(s2, "Ingredient", dried_peppers, 3)
   si(s2, "Ingredient", sichuan_peppercorn, 10)
   si(s2, "Ingredient", ginger, 2, g)
@@ -403,14 +403,14 @@ if true
   s1 = s(yuxiang, 1, "Cut eggplant into long strips, soak in salty water for 15 minutes, dry it off after")
   si(s1, "Ingredient", eggplant, 2)
   si(s1, "Ingredient", salt, 2, tbsp)
-  si(s1, "Ingredient", water, 4, cups)
+  si(s1, "Ingredient", water, 4, cup)
   s1.tools << knife
 
   s2 = s(yuxiang, 2, "Sprinkle eggplant with corn starch. Heat up oil to medium and semi-fry eggplant until crispy")
   s1.detailed_instructions << d("Do it in batches, don't overcrowd it. Put in 1-2 tbsp of oil per batch to cover bottom and fry until eggplant changes color.")
   si(s2, "RecipeStep", s1)
   si(s2, "Ingredient", corn_starch, 2, tbsp)
-  si(s2, "Ingredient", oil, 0.25, cups)
+  si(s2, "Ingredient", oil, 0.25, cup)
   s2.tools << wok
   s2.tools << stove
 

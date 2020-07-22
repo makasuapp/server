@@ -25,7 +25,7 @@ chicken:
 green_onion:
   name: "Chopped Green Onion"
   output_qty: 100
-  unit: "grams"
+  unit: "g"
 
 sauce:
   name: "Mouth Watering Chicken Sauce"
