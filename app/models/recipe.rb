@@ -133,7 +133,7 @@ class Recipe < ApplicationRecord
 
   sig {params(usage_qty: T.any(Float, Integer, BigDecimal), usage_unit: T.nilable(String)).returns(Float)}
   def servings_produced(usage_qty, usage_unit = nil)
-    converted_qty = UnitConverter.convert(usage_qty, usage_unit, self.unit)
+    converted_qty = UnitConverter.convert(usage_qty, usage_unit, self.unit, self.volume_weight_ratio)
     converted_qty / self.output_qty
   end
 

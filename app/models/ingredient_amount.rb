@@ -45,7 +45,8 @@ class IngredientAmount < T::Struct
     if added_amount.ingredient_id != self.ingredient_id
       raise "Can't add different ingredients"
     else
-      added_qty = UnitConverter.convert(added_amount.quantity, added_amount.unit, self.unit)
+      ingredient = Ingredient.find(self.ingredient_id)
+      added_qty = UnitConverter.convert(added_amount.quantity, added_amount.unit, self.unit, ingredient.volume_weight_ratio)
       IngredientAmount.mk(self.ingredient_id, self.quantity + added_qty, self.unit)
     end
   end

@@ -3,19 +3,25 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-def r(name, quantity = 1, unit = nil, publish = false)
+def r(name, quantity = 1, unit = nil, publish = false, output_volume_weight_ratio = nil)
   recipe = Recipe.find_or_initialize_by(name: name)
 
   recipe.output_qty = quantity
   recipe.unit = unit
   recipe.publish = publish
+  recipe.output_volume_weight_ratio = output_volume_weight_ratio
   recipe.save!
 
   recipe
 end
 
-def i(name)
-  Ingredient.find_or_create_by!(name: name)
+def i(name, volume_weight_ratio = nil)
+  i = Ingredient.find_or_create_by!(name: name)
+
+  i.volume_weight_ratio = volume_weight_ratio
+  i.save!
+
+  i
 end
 
 def t(name)
