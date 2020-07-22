@@ -112,6 +112,7 @@ if true
   si(s2, "RecipeStep", s1)
   s2.tools << blender
 end
+raise if !pepper_paste.is_valid?
 
 pepper_oil = r("Sichuan Pepper Oil", 130, g)
 if true
@@ -132,6 +133,7 @@ if true
   si(s4, "RecipeStep", s3)
   si(s4, "Recipe", pepper_paste, 15, g)
 end
+raise if !pepper_oil.is_valid?
 
 peppercorn_paste = r("Sichuan Peppercorn Paste", 10, g)
 if true
@@ -144,6 +146,7 @@ if true
   si(s2, "RecipeStep", s1)
   s2.tools << blender
 end
+raise if !peppercorn_paste.is_valid?
 
 peppercorn_oil = r("Sichuan Peppercorn Oil", 50, g)
 if true
@@ -153,6 +156,7 @@ if true
   s1.tools << wok
   s1.tools << stove
 end
+raise if !peppercorn_oil.is_valid?
 
 chopped_green_onion = r("Chopped Green Onions", 10, g)
 if true
@@ -160,6 +164,7 @@ if true
   si(s1, "Ingredient", green_onion, 10, g)
   s1.tools << knife
 end
+raise if !chopped_green_onion.is_valid?
 
 green_onion_chunks = r("Green Onion Chunks", 10, g)
 if true
@@ -167,6 +172,7 @@ if true
   si(s1, "Ingredient", green_onion, 10, g)
   s1.tools << knife
 end
+raise if !green_onion_chunks.is_valid?
 
 bell_pepper_chunks = r("Bell Pepper Chunks", 10, g)
 if true
@@ -174,6 +180,7 @@ if true
   si(s1, "Ingredient", bell_pepper, 10, g)
   s1.tools << knife
 end
+raise if !bell_pepper_chunks.is_valid?
 
 minced_ginger = r("Minced Ginger", 10, g)
 if true
@@ -181,6 +188,7 @@ if true
   si(s1, "Ingredient", ginger, 10, g)
   s1.tools << knife
 end
+raise if !minced_ginger.is_valid?
 
 minced_garlic = r("Minced Garlic", 10, g)
 if true
@@ -188,6 +196,7 @@ if true
   si(s1, "Ingredient", garlic, 10, g)
   s1.tools << knife
 end
+raise if !minced_garlic.is_valid?
 
 sliced_onion = r("Sliced Onion", 10, g)
 if true
@@ -195,6 +204,7 @@ if true
   si(s1, "Ingredient", onion, 10, g)
   s1.tools << knife
 end
+raise if !sliced_onion.is_valid?
 
 sliced_ginger = r("Sliced Ginger", 10, g)
 if true
@@ -202,6 +212,7 @@ if true
   si(s1, "Ingredient", ginger, 10, g)
   s1.tools << knife
 end
+raise if !sliced_ginger.is_valid?
 
 sliced_garlic = r("Sliced Garlic", 10, g)
 if true
@@ -209,6 +220,7 @@ if true
   si(s1, "Ingredient", garlic, 10, g)
   s1.tools << knife
 end
+raise if !sliced_garlic.is_valid?
 
 sauce = r("Mouth Watering Chicken Sauce")
 if true
@@ -239,6 +251,7 @@ if true
   si(s5, "Recipe", minced_garlic, 1, tbsp)
   si(s5, "Recipe", minced_ginger, 1, tsp)
 end
+raise if !sauce.is_valid?
 
 chicken = r("Mouth Watering Chicken", 2, nil, true)
 if true
@@ -281,6 +294,7 @@ if true
   si(c2, "Recipe", sauce)
   si(c2, "Recipe", chopped_green_onion, 10, g)
 end
+raise if !chicken.is_valid?
 
 two_pork = r("Twice Cooked Pork", 1, nil, true)
 if true
@@ -331,6 +345,7 @@ if true
   si(c5, "RecipeStep", c4)
   si(c5, "Recipe", pepper_oil, 1, tbsp)
 end
+raise if !two_pork.is_valid?
 
 dd_sauce = r("Dan Dan Sauce", 4)
 if true
@@ -345,6 +360,7 @@ if true
   si(s1, "Ingredient", sesame_paste, 2, tbsp)
   si(s1, "Ingredient", sesame_oil, 4, tbsp)
 end
+raise if !dd_sauce.is_valid?
 
 dan_dan = r("Dan Dan Noodles", 1, nil, true)
 if true
@@ -379,6 +395,7 @@ if true
   si(c3, "RecipeStep", c1)
   si(c3, "RecipeStep", c2)
 end
+raise if !dan_dan.is_valid?
 
 yx_sauce = r("Yuxiang Sauce")
 if true
@@ -397,6 +414,7 @@ if true
   si(s3, "RecipeStep", s1)
   si(s3, "RecipeStep", s2)
 end
+raise if !yx_sauce.is_valid?
 
 yuxiang = r("Yuxiang Eggplant", 1, nil, true)
 if true
@@ -435,3 +453,4 @@ if true
   si(c3, "RecipeStep", s2)
   si(c2, "Ingredient", coriander, 10, g)
 end
+raise if !yuxiang.is_valid?

@@ -159,7 +159,7 @@ class Recipe < ApplicationRecord
       step.inputs.recipe_typed.each do |recipe_input|
         child_recipe = recipe_input.inputable
         if !UnitConverter.can_convert?(recipe_input.unit, child_recipe.unit)
-          puts "#{child_recipe.name} in #{self.name} is invalid"
+          puts "#{child_recipe.name} in #{self.name} can't convert #{recipe_input.unit} to #{child_recipe.unit}"
           return false
         end
       end

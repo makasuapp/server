@@ -18,7 +18,16 @@
 class PurchasedRecipe < ApplicationRecord
   extend T::Sig
 
+  validate :recipe_can_purchase
+
   belongs_to :recipe
+
+  sig {void}
+  def recipe_can_purchase
+    if self.recipe.unit.present?
+      errors.add(:recipe_id, "must be for a recipe that doesn't have units")
+    end
+  end
 
   sig {params(date: T.any(DateTime, Date)).void}
   def self.create_from_preorders_for(date)
