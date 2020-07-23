@@ -37,6 +37,10 @@ class UnitConverterTest < ActiveSupport::TestCase
     assert UnitConverter.can_convert?(nil, nil)
   end
 
+  test "can_convert?=true when both not weight/volume" do
+    assert UnitConverter.can_convert?("handful", "handful")
+  end
+
   test "can_convert?=false when one has units and other doesn't" do
     assert !UnitConverter.can_convert?("tbsp", nil)
     assert !UnitConverter.can_convert?(nil, "tbsp")

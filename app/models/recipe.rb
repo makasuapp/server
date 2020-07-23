@@ -95,9 +95,9 @@ class Recipe < ApplicationRecord
   def volume_weight_ratio
     if self.output_volume_weight_ratio.nil?
       if self.recipe_steps.length == 1
-        step = self.recipe_steps.first
+        step = T.must(self.recipe_steps.first)
         if step.inputs.length == 1
-          input = step.inputs.first
+          input = T.must(step.inputs.first)
           if input.inputable_type == InputType::Ingredient
             return input.inputable.volume_weight_ratio
           end

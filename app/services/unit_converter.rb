@@ -111,6 +111,6 @@ class UnitConverter
 
   sig {params(tbsp_amount: T.any(Float, Integer), g_amount: T.any(Float, Integer)).returns(Float)}
   def self.tbsp_to_g_ratio(tbsp_amount, g_amount)
-      g_amount.to_f  / tbsp_amount.to_f / self.volume_units[:tbsp].to_ml
+      g_amount.to_f  / tbsp_amount.to_f / T.must(self.volume_units[:tbsp]).to_ml
   end
 end
