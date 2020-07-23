@@ -105,7 +105,7 @@ class UnitConverter
     two_is_v = self.get_volume(unit_2).present?
     two_is_w = self.get_weight(unit_2).present?
 
-    (unit_1.nil? && unit_2.nil?) || (one_is_v && two_is_v) || (one_is_w && two_is_w) ||
+    (unit_1 == unit_2) || (one_is_v && two_is_v) || (one_is_w && two_is_w) ||
       (((one_is_v && two_is_w) || (one_is_w && two_is_v)) && volume_weight_ratio.present?)
   end
 
