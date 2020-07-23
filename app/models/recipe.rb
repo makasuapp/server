@@ -94,10 +94,13 @@ class Recipe < ApplicationRecord
   sig {returns(T.nilable(Float))}
   def volume_weight_ratio
     if self.output_volume_weight_ratio.nil?
-      if self.step_inputs.length == 1
-        input = T.must(self.step_inputs.first)
-        if input.inputable_type == InputType::Ingredient
-          return input.inputable.volume_weight_ratio
+      if self.recipe_steps.length == 1
+        step = self.recipe_steps.first
+        if step.inputs.length == 1
+          input = step.inputs.first
+          if input.inputable_type == InputType::Ingredient
+            return input.inputable.volume_weight_ratio
+          end
         end
       end
     end
@@ -158,7 +161,7 @@ class Recipe < ApplicationRecord
 
       step.inputs.recipe_typed.each do |recipe_input|
         child_recipe = recipe_input.inputable
-        if !UnitConverter.can_convert?(recipe_input.unit, child_recipe.unit)
+        if !UnitConverter.can_convert?(recipe_input.unit, child_recipe.unit, child_recipe.volume_weight_ratio)
           puts "#{child_recipe.name} in #{self.name} can't convert #{recipe_input.unit} to #{child_recipe.unit}"
           return false
         end

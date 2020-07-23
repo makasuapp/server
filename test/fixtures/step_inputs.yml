@@ -77,9 +77,10 @@ chicken_c2_i1:
 chicken_c2_i2:
   inputable: sauce (Recipe)
   recipe_step: chicken_c2
+  quantity: 0.5
 
 chicken_c2_i3:
   inputable: green_onion (Recipe)
-  quantity: 100
+  quantity: 80
   unit: "g"
   recipe_step: chicken_c2

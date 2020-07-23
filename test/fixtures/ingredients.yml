@@ -25,6 +25,7 @@ sesame_oil:
 
 green_onion:
   name: "Green Onion"
+  volume_weight_ratio: 0.4057618178129438
 
 chicken:
   name: "Whole Chicken"

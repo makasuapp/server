@@ -50,6 +50,13 @@ class RecipeTest < ActiveSupport::TestCase
     assert r.is_valid? == false
   end
 
+  test "volume_weight_ratio returns volume_weight_ratio of ingredient if is a recipe with just one input" do
+    r = recipes(:green_onion)
+    i = ingredients(:green_onion)
+    assert i.volume_weight_ratio.present?
+    assert r.volume_weight_ratio == i.volume_weight_ratio
+  end
+
   test "ingredient_amounts gets all ingredients used in recipe" do
     r = recipes(:sauce)
     ingredients = r.ingredient_amounts
@@ -71,8 +78,8 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "servings_produced when using different unit" do
     r = recipes(:green_onion)
-    #TODO(unit_conversion)
-    assert r.servings_produced(5, "tbsp") == 0.05
+    #1tbsp = 6g, so 50*6/100 = 3
+    assert r.servings_produced(50, "tbsp").round == 3
   end
 end
 
@@ -84,19 +91,20 @@ class SubRecipeTest < ActiveSupport::TestCase
     @r = recipes(:chicken)
 
     #green onion is now a subrecipe of chicken and sauce
-    #TODO(unit_conversion)
+    #0.5 * 10 = 5 tbsp needed for sauce = 30g = 0.3 prep
     StepInput.create!(inputable_id: @g.id, inputable_type: InputType::Recipe, 
-      recipe_step_id: step.id, quantity: 250, unit: "tsp")
+      recipe_step_id: step.id, quantity: 10, unit: "tbsp")
   end
 
   test "ingredient_amounts includes sub-recipes' ingredients" do
     ingredients = @r.ingredient_amounts
     assert ingredients.count == 7
 
+    #should be the 1tsp 
     green_onions = ingredients.select { |i| i.ingredient_id == ingredients(:green_onion).id }
     assert green_onions.count == 2
-    assert green_onions.find { |i| i.quantity == 250 }.present?
-    assert green_onions.find { |i| i.quantity == 100 }.present?
+    assert green_onions.find { |i| i.quantity.round == 30 && i.unit == "g" }.present?
+    assert green_onions.find { |i| i.quantity == 80 && i.unit == "g" }.present?
   end
 
   test "step_amounts returns step amounts of recipe and subrecipes" do 
@@ -110,8 +118,8 @@ class SubRecipeTest < ActiveSupport::TestCase
     green_onion_step = @g.recipe_steps.first
     green_onion_amounts = step_amounts.select { |x| x.recipe_step_id == green_onion_step.id }
     assert green_onion_amounts.count == 2
-    assert green_onion_amounts.find { |i| i.quantity == 2.5 }.present?
-    assert green_onion_amounts.find { |i| i.quantity == 1 }.present?
+    assert green_onion_amounts.find { |i| i.quantity.round(1) == 0.3 }.present?
+    assert green_onion_amounts.find { |i| i.quantity == 0.8 }.present?
   end
 
   test "all_in returns the recipes and their subrecipes" do

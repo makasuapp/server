@@ -63,37 +63,37 @@ ground_pork = i("Ground Pork")
 
 noodles = i("Chinese Noodles")
 
-ginger = i("Ginger")
-garlic = i("Garlic")
-green_onion = i("Green Onion")
-onion = i("Onion")
-bell_pepper = i("Bell Pepper")
+ginger = i("Ginger", 0.3563941299790356)
+garlic = i("Garlic", 0.5829444782579292)
+green_onion = i("Green Onion", 0.4057618178129438)
+onion = i("Onion", 0.21978765131534456)
+bell_pepper = i("Bell Pepper", 0.6289308176100629)
 eggplant = i("Eggplant")
 pickled_pepper = i("Pickled Red Pepper")
 yacai = i("Preserved Vegetables")
 
-soy_sauce = i("Soy Sauce")
-black_vinegar = i("Black Vinegar")
-cooking_wine = i("Cooking Wine")
-sesame_oil = i("Sesame Oil")
+soy_sauce = i("Soy Sauce", 1.08203151416785)
+black_vinegar = i("Black Vinegar", 0.9738283627510651)
+cooking_wine = i("Cooking Wine", 0.9941164536417122)
+sesame_oil = i("Sesame Oil", 0.9217555961317373)
 red_oil_chili_paste = i("Red Oil Chili Paste")
 sweet_bean_paste = i("Sweet Bean Paste")
 
-dried_peppers = i("Dried Peppers")
-sichuan_peppercorn = i("Sichuan Peppercorn")
-sesame = i("White Sesame")
+dried_peppers = i("Dried Peppers", 0.4057618178129438)
+sichuan_peppercorn = i("Sichuan Peppercorn", 0.4057618178129438)
+sesame = i("White Sesame", 0.5999904557212417)
 sesame_paste = i("Sesame Paste")
 roasted_peanuts = i("Roasted Peanuts")
 coriander = i("Coriander")
 
-salt = i("Salt")
-ground_pepper = i("Ground Pepper")
+salt = i("Salt", 1.154392371677825)
+ground_pepper = i("Ground Pepper", 0.4057618178129438)
 msg = i("MSG")
-sugar = i("Sugar")
+sugar = i("Sugar", 0.8520862920132548)
 corn_starch = i("Corn Starch")
 ice = i("Ice")
-water = i("Water")
-oil = i("Vegetable Oil")
+water = i("Water", 1)
+oil = i("Vegetable Oil", 0.9217555961317373)
 
 stove = t("Stove")
 wok = t("Wok")
@@ -107,7 +107,7 @@ tsp = T.must(UnitConverter.volume_units[:tsp]).short
 tbsp = T.must(UnitConverter.volume_units[:tbsp]).short
 oz = T.must(UnitConverter.weight_units[:oz]).short
 
-pepper_paste = r("Sichuan Pepper Paste", 10, g)
+pepper_paste = r("Sichuan Pepper Paste", 10, g, false, 0.4057618178129438)
 if true
   s1 = s(pepper_paste, 1, "Cook dried peppers taking it on and off the heat to prevent any burning. Cook until the fragrance comes out.")
   si(s1, "Ingredient", dried_peppers, 10, g)
@@ -120,7 +120,7 @@ if true
 end
 raise if !pepper_paste.is_valid?
 
-pepper_oil = r("Sichuan Pepper Oil", 130, g)
+pepper_oil = r("Sichuan Pepper Oil", 130, g, false, 1)
 if true
   s1 = s(pepper_oil, 1, "Heat oil until 220 degrees F")
   si(s1, "Ingredient", oil, 90, g)
@@ -141,7 +141,7 @@ if true
 end
 raise if !pepper_oil.is_valid?
 
-peppercorn_paste = r("Sichuan Peppercorn Paste", 10, g)
+peppercorn_paste = r("Sichuan Peppercorn Paste", 10, g, false, 0.4057618178129438)
 if true
   s1 = s(peppercorn_paste, 1, "Cook sichuan peppers taking it on and off the heat to prevent any burning. Cook until the peppercorns are easily crushable.")
   si(s1, "Ingredient", sichuan_peppercorn, 10, g)
@@ -154,7 +154,7 @@ if true
 end
 raise if !peppercorn_paste.is_valid?
 
-peppercorn_oil = r("Sichuan Peppercorn Oil", 50, g)
+peppercorn_oil = r("Sichuan Peppercorn Oil", 50, g, false, 1)
 if true
   s1 = s(peppercorn_oil, 1, "Cook on high heat to bring out the fragrance, then lower heat to bring out the flavor inside")
   si(s1, "Ingredient", oil, 40, g)
