@@ -1,6 +1,6 @@
 # typed: strict
 
-date = DateTime.now
+date = DateTime.now.in_time_zone("America/Toronto")
 
 op_day = OpDay.find_or_create_by!(date: date)
 DayIngredient.where(op_day_id: op_day.id).delete_all
@@ -19,4 +19,4 @@ o = Order.create!(order_type: "pickup", customer_id: 1)
     price_cents: 0
   )
 end
-PurchasedRecipe.create_from_preorders_for(date)
+PurchasedRecipe.create_from_preorders_for(date.to_date)
