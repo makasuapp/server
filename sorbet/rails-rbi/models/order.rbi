@@ -76,6 +76,15 @@ module Order::GeneratedAssociationMethods
   sig { returns(::Customer) }
   def customer; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Customer).void)).returns(::Customer) }
+  def build_customer(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Customer).void)).returns(::Customer) }
+  def create_customer(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Customer).void)).returns(::Customer) }
+  def create_customer!(*args, &block); end
+
   sig { params(value: ::Customer).void }
   def customer=(value); end
 

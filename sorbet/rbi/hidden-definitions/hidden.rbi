@@ -1295,7 +1295,6 @@ class ActionDispatch::Routing::RouteWrapper
   def assets_prefix=(val); end
 
   def assets_prefix?(); end
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
 end
 
 class ActionDispatch::Routing::RouteWrapper
@@ -1356,10 +1355,6 @@ end
 class ActionDispatch::Session::CacheStore
 end
 
-class ActionDispatch::Session::CookieStore::SessionId
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
-
 class ActionDispatch::Session::MemCacheStore
   include ::ActionDispatch::Session::Compatibility
   include ::ActionDispatch::Session::StaleSessionCheck
@@ -1397,10 +1392,6 @@ class ActionMailer::Base
   PROTECTED_IVARS = ::T.let(nil, ::T.untyped)
 end
 
-class ActionMailer::Base::LateAttachmentsProxy
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
-
 class ActionMailer::InlinePreviewInterceptor
   PATTERN = ::T.let(nil, ::T.untyped)
 end
@@ -1411,14 +1402,6 @@ class ActionMailer::LogSubscriber
   def process(event); end
 
   def receive(event); end
-end
-
-class ActionMailer::MessageDelivery
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
-
-class ActionMailer::Parameterized::MessageDelivery
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
 end
 
 module ActionMailer::VERSION
@@ -2990,7 +2973,6 @@ class ActiveAdmin::HasManyBuilder
   def without_wrapper(); end
 
   def wrap_div_or_li(html); end
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
 end
 
 class ActiveAdmin::HasManyBuilder
@@ -3059,9 +3041,21 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def api_op_days_url(*args); end
 
+  def api_orders_path(*args); end
+
+  def api_orders_update_items_path(*args); end
+
+  def api_orders_update_items_url(*args); end
+
+  def api_orders_url(*args); end
+
+  def api_path(*args); end
+
   def api_recipes_path(*args); end
 
   def api_recipes_url(*args); end
+
+  def api_url(*args); end
 
   def batch_action_admin_purchased_recipes_path(*args); end
 
@@ -6289,10 +6283,6 @@ end
 
 ActiveRecord::ConnectionAdapters::PostgreSQLAdapter::OID = ActiveRecord::ConnectionAdapters::PostgreSQL::OID
 
-class ActiveRecord::ConnectionAdapters::PostgreSQLTypeMetadata
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
-
 ActiveRecord::ConnectionAdapters::SchemaCreation = ActiveRecord::ConnectionAdapters::AbstractAdapter::SchemaCreation
 
 class ActiveRecord::ConnectionAdapters::StatementPool
@@ -6565,10 +6555,6 @@ end
 
 module ActiveRecord::LegacyYamlAdapter
   def self.convert(klass, coder); end
-end
-
-class ActiveRecord::Locking::LockingType
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
 end
 
 class ActiveRecord::LogSubscriber
@@ -6903,6 +6889,10 @@ class ActiveRecord::StatementCache
   def self.unsupported_value?(value); end
 end
 
+class ActiveRecord::SuppressorRegistry
+  def self.suppressed(*args, &block); end
+end
+
 module ActiveRecord::Tasks::DatabaseTasks
   def charset(*arguments); end
 
@@ -7094,14 +7084,6 @@ ActiveRecord::Type::Float = ActiveModel::Type::Float
 ActiveRecord::Type::Helpers = ActiveModel::Type::Helpers
 
 ActiveRecord::Type::Integer = ActiveModel::Type::Integer
-
-class ActiveRecord::Type::Serialized
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
-
-class ActiveRecord::Type::Time::Value
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
 
 module ActiveRecord::VERSION
   MAJOR = ::T.let(nil, ::T.untyped)
@@ -7745,6 +7727,209 @@ end
 module Admin
 end
 
+module Airbrussh
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module Airbrussh::Colors
+  ANSI_CODES = ::T.let(nil, ::T.untyped)
+end
+
+module Airbrussh::Colors
+  def self.blue(string); end
+
+  def self.gray(string); end
+
+  def self.green(string); end
+
+  def self.red(string); end
+
+  def self.yellow(string); end
+end
+
+class Airbrussh::CommandFormatter
+  include ::Airbrussh::Colors
+  def exit_message(); end
+
+  def format_output(line); end
+
+  def initialize(command, position); end
+
+  def start_message(); end
+end
+
+class Airbrussh::CommandFormatter
+end
+
+class Airbrussh::Configuration
+  def apply_options(options); end
+
+  def banner(); end
+
+  def banner=(banner); end
+
+  def banner_message(); end
+
+  def color(); end
+
+  def color=(color); end
+
+  def command_output(); end
+
+  def command_output=(command_output); end
+
+  def context(); end
+
+  def context=(context); end
+
+  def formatters(io); end
+
+  def log_file(); end
+
+  def log_file=(log_file); end
+
+  def monkey_patch_rake(); end
+
+  def monkey_patch_rake=(monkey_patch_rake); end
+
+  def show_command_output?(sym); end
+
+  def task_prefix(); end
+
+  def task_prefix=(task_prefix); end
+
+  def truncate(); end
+
+  def truncate=(truncate); end
+end
+
+class Airbrussh::Configuration
+end
+
+class Airbrussh::Console
+  def <<(string); end
+
+  def config(); end
+
+  def console_width(); end
+
+  def initialize(output, config=T.unsafe(nil)); end
+
+  def output(); end
+
+  def print_line(obj=T.unsafe(nil)); end
+
+  def strip_ascii_color(string); end
+
+  def truncate_to_console_width(string); end
+
+  def write(string); end
+end
+
+class Airbrussh::Console
+end
+
+class Airbrussh::ConsoleFormatter
+  include ::Airbrussh::Colors
+  def config(); end
+
+  def context(); end
+
+  def current_task_name(*args, &block); end
+
+  def initialize(io, config=T.unsafe(nil)); end
+
+  def log_command_data(command, stream_type, string); end
+
+  def register_new_command(*args, &block); end
+
+  def write(obj); end
+
+  def write_banner(); end
+end
+
+class Airbrussh::ConsoleFormatter
+end
+
+class Airbrussh::DelegatingFormatter
+  def <<(command_or_log_message); end
+
+  def debug(*args); end
+
+  def error(*args); end
+
+  def fatal(*args); end
+
+  def formatters(); end
+
+  def info(*args); end
+
+  def initialize(formatters); end
+
+  def log(*args); end
+
+  def log_command_data(*args); end
+
+  def log_command_exit(*args); end
+
+  def log_command_start(*args); end
+
+  def warn(*args); end
+
+  def write(command_or_log_message); end
+  DUP_AND_FORWARD_METHODS = ::T.let(nil, ::T.untyped)
+  FORWARD_METHODS = ::T.let(nil, ::T.untyped)
+end
+
+class Airbrussh::DelegatingFormatter
+end
+
+class Airbrussh::Formatter
+  def initialize(io, options_or_config_object=T.unsafe(nil)); end
+end
+
+class Airbrussh::Formatter
+end
+
+class Airbrussh::LogFileFormatter
+  def initialize(path, formatter_class=T.unsafe(nil)); end
+
+  def path(); end
+end
+
+class Airbrussh::LogFileFormatter
+end
+
+module Airbrussh::Rake
+end
+
+class Airbrussh::Rake::Context
+  def current_task_name(); end
+
+  def initialize(config=T.unsafe(nil)); end
+
+  def position(command); end
+
+  def register_new_command(command); end
+end
+
+class Airbrussh::Rake::Context
+  def self.current_task_name(); end
+
+  def self.current_task_name=(current_task_name); end
+
+  def self.install_monkey_patch(); end
+end
+
+module Airbrussh::Rake
+end
+
+module Airbrussh
+  def self.configuration(options=T.unsafe(nil)); end
+
+  def self.configure(); end
+end
+
 module Annotate::Constants
   ALL_ANNOTATE_OPTIONS = ::T.let(nil, ::T.untyped)
   FLAG_OPTIONS = ::T.let(nil, ::T.untyped)
@@ -7813,6 +7998,17 @@ class Api::OpDaysController
 end
 
 class Api::OpDaysController
+end
+
+class Api::OrdersController
+  def index(); end
+
+  def update_items(); end
+
+  def update_state(); end
+end
+
+class Api::OrdersController
 end
 
 class Api::RecipesController
@@ -9418,6 +9614,10 @@ class Bundler::Env
   def self.write(io); end
 end
 
+class Bundler::FeatureFlag
+  def github_https?(); end
+end
+
 class Bundler::Fetcher
   def fetch_spec(spec); end
 
@@ -9904,6 +10104,7 @@ class Bundler::Retry
 end
 
 class Bundler::RubyGemsGemInstaller
+  def initialize(gem, options=T.unsafe(nil)); end
 end
 
 class Bundler::RubyGemsGemInstaller
@@ -10275,8 +10476,6 @@ end
 class CSV::Row
   def empty?(*args, &block); end
 
-  def initialize(headers, fields, header_row=T.unsafe(nil)); end
-
   def length(*args, &block); end
 
   def size(*args, &block); end
@@ -10294,6 +10493,8 @@ class CSV::Table
   def length(*args, &block); end
 
   def size(*args, &block); end
+
+  def table(); end
 end
 
 class CSV::Table
@@ -10641,15 +10842,7 @@ class Concurrent::RubyThreadPoolExecutor
   DEFAULT_THREAD_IDLETIMEOUT = ::T.let(nil, ::T.untyped)
 end
 
-class Concurrent::SerializedExecutionDelegator
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
-
 Concurrent::Synchronization::Volatile = Concurrent::Synchronization::MriAttrVolatile
-
-class Concurrent::SynchronizedDelegator
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
 
 module Concurrent::ThreadSafe::Util
   CPU_COUNT = ::T.let(nil, ::T.untyped)
@@ -10750,6 +10943,8 @@ module Customer::GeneratedRelationMethods
 end
 
 class Customer
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
   def self.after_add_for_orders(); end
 
   def self.after_add_for_orders=(val); end
@@ -11127,18 +11322,6 @@ class DayIngredient::ActiveRecord_Relation
 end
 
 module DayIngredient::GeneratedAssociationMethods
-  def build_ingredient(*args, &block); end
-
-  def build_op_day(*args, &block); end
-
-  def create_ingredient(*args, &block); end
-
-  def create_ingredient!(*args, &block); end
-
-  def create_op_day(*args, &block); end
-
-  def create_op_day!(*args, &block); end
-
   def reload_ingredient(); end
 
   def reload_op_day(); end
@@ -11179,18 +11362,6 @@ class DayPrep::ActiveRecord_Relation
 end
 
 module DayPrep::GeneratedAssociationMethods
-  def build_op_day(*args, &block); end
-
-  def build_recipe_step(*args, &block); end
-
-  def create_op_day(*args, &block); end
-
-  def create_op_day!(*args, &block); end
-
-  def create_recipe_step(*args, &block); end
-
-  def create_recipe_step!(*args, &block); end
-
   def reload_op_day(); end
 
   def reload_recipe_step(); end
@@ -11205,10 +11376,6 @@ end
 class DayPrep
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
-end
-
-class Delegator
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
 end
 
 class DetailedInstruction
@@ -16056,25 +16223,15 @@ module Gem
   USE_BUNDLER_FOR_GEMDEPS = ::T.let(nil, ::T.untyped)
 end
 
-module Gem::BundlerVersionFinder
-  def self.without_filtering(); end
-end
-
 class Gem::DependencyInstaller
   def _deprecated_add_found_dependencies(to_do, dependency_list); end
 
   def _deprecated_gather_dependencies(); end
 
-  def _deprecated_gems_to_install(); end
-
   def add_found_dependencies(*args, &block); end
 
   def gather_dependencies(*args, &block); end
-
-  def gems_to_install(*args, &block); end
 end
-
-Gem::DependencyResolver = Gem::Resolver
 
 class Gem::Exception
   extend ::Gem::Deprecate
@@ -16096,17 +16253,9 @@ end
 Gem::Ext::ExtConfBuilder::FileEntry = FileUtils::Entry_
 
 class Gem::Ext::ExtConfBuilder
-  def self.build(extension, directory, dest_path, results, args=T.unsafe(nil), lib_dir=T.unsafe(nil)); end
+  def self.build(extension, dest_path, results, args=T.unsafe(nil), lib_dir=T.unsafe(nil)); end
 
   def self.get_relative_path(path); end
-end
-
-class Gem::Installer
-  def verify_spec_name(); end
-end
-
-class Gem::Package
-  def realpath(file); end
 end
 
 class Gem::Package::DigestIO
@@ -16221,6 +16370,8 @@ end
 class Gem::Package::TarHeader
   def self.from(stream); end
 
+  def self.oct_or_256based(str); end
+
   def self.strict_oct(str); end
 end
 
@@ -16247,13 +16398,17 @@ class Gem::Package::TarReader::Entry
 
   def initialize(header, io); end
 
+  def length(); end
+
   def pos(); end
 
   def read(len=T.unsafe(nil)); end
 
-  def readpartial(len=T.unsafe(nil)); end
+  def readpartial(maxlen=T.unsafe(nil), outbuf=T.unsafe(nil)); end
 
   def rewind(); end
+
+  def size(); end
 
   def symlink?(); end
 end
@@ -16283,24 +16438,11 @@ class Gem::PathSupport
   def spec_cache_dir(); end
 end
 
-class Gem::RemoteFetcher
-  def api_endpoint(uri); end
-
-  def correct_for_windows_path(path); end
-
-  def s3_expiration(); end
-
-  def sign_s3_url(uri, expiration=T.unsafe(nil)); end
-  BASE64_URI_TRANSLATE = ::T.let(nil, ::T.untyped)
-end
-
 class Gem::Request
   extend ::Gem::UserInteraction
   extend ::Gem::DefaultUserInteraction
   extend ::Gem::Text
 end
-
-Gem::RequestSet::GemDepedencyAPI = Gem::RequestSet::GemDependencyAPI
 
 class Gem::Resolver::ActivationRequest
   def others_possible?(); end
@@ -16311,6 +16453,8 @@ end
 
 class Gem::Resolver::CurrentSet
 end
+
+Gem::Resolver::DependencyConflict = Gem::Resolver::Conflict
 
 class Gem::Resolver::LocalSpecification
 end
@@ -16416,6 +16560,9 @@ class Gem::Security::Policy
 end
 
 class Gem::Security::Signer
+  include ::Gem::UserInteraction
+  include ::Gem::DefaultUserInteraction
+  include ::Gem::Text
   def cert_chain(); end
 
   def cert_chain=(cert_chain); end
@@ -16426,7 +16573,7 @@ class Gem::Security::Signer
 
   def extract_name(cert); end
 
-  def initialize(key, cert_chain, passphrase=T.unsafe(nil)); end
+  def initialize(key, cert_chain, passphrase=T.unsafe(nil), options=T.unsafe(nil)); end
 
   def key(); end
 
@@ -16434,9 +16581,15 @@ class Gem::Security::Signer
 
   def load_cert_chain(); end
 
-  def re_sign_key(); end
+  def options(); end
+
+  def re_sign_key(expiration_length: T.unsafe(nil)); end
 
   def sign(data); end
+end
+
+class Gem::Security::Signer
+  def self.re_sign_cert(expired_cert, expired_cert_path, private_key); end
 end
 
 class Gem::Security::TrustDir
@@ -16485,10 +16638,6 @@ module Gem::Security
   def self.write(pemmable, path, permissions=T.unsafe(nil), passphrase=T.unsafe(nil), cipher=T.unsafe(nil)); end
 end
 
-class Gem::Source
-  def api_uri(); end
-end
-
 class Gem::SpecFetcher
   include ::Gem::UserInteraction
   include ::Gem::DefaultUserInteraction
@@ -16525,13 +16674,7 @@ end
 class Gem::Specification
   include ::Bundler::MatchPlatform
   include ::Bundler::GemHelpers
-  def bundled_gem_in_old_ruby?(); end
-
-  def rubyforge_project(); end
-
   def to_ruby(); end
-
-  def warning(statement); end
 end
 
 class Gem::Specification
@@ -16542,6 +16685,32 @@ class Gem::Specification
   def self.add_specs(*specs); end
 
   def self.remove_spec(spec); end
+end
+
+class Gem::SpecificationPolicy
+  def initialize(specification); end
+
+  def packaging(); end
+
+  def packaging=(packaging); end
+
+  def validate(strict=T.unsafe(nil)); end
+
+  def validate_dependencies(); end
+
+  def validate_metadata(); end
+
+  def validate_permissions(); end
+  HOMEPAGE_URI_PATTERN = ::T.let(nil, ::T.untyped)
+  LAZY = ::T.let(nil, ::T.untyped)
+  LAZY_PATTERN = ::T.let(nil, ::T.untyped)
+  METADATA_LINK_KEYS = ::T.let(nil, ::T.untyped)
+  SPECIAL_CHARACTERS = ::T.let(nil, ::T.untyped)
+  VALID_NAME_PATTERN = ::T.let(nil, ::T.untyped)
+  VALID_URI_PATTERN = ::T.let(nil, ::T.untyped)
+end
+
+class Gem::SpecificationPolicy
 end
 
 class Gem::StreamUI
@@ -16582,17 +16751,20 @@ class Gem::StubSpecification
   def self.gemspec_stub(filename, base_dir, gems_dir); end
 end
 
-Gem::UnsatisfiableDepedencyError = Gem::UnsatisfiableDependencyError
+class Gem::UninstallError
+  def spec(); end
 
-module Gem::Util
-  NULL_DEVICE = ::T.let(nil, ::T.untyped)
+  def spec=(spec); end
 end
+
+class Gem::UninstallError
+end
+
+Gem::UnsatisfiableDepedencyError = Gem::UnsatisfiableDependencyError
 
 Gem::Version::Requirement = Gem::Requirement
 
 module Gem
-  def self._deprecated_datadir(gem_name); end
-
   def self.default_gems_use_full_paths?(); end
 
   def self.remove_unresolved_default_spec(spec); end
@@ -16614,6 +16786,48 @@ module GeneratedUrlHelpers
   def rails_mailers_path(*args); end
 
   def rails_mailers_url(*args); end
+end
+
+module GetText
+end
+
+class GetText::PoParser
+  def _(x); end
+
+  def _reduce_10(val, _values, result); end
+
+  def _reduce_12(val, _values, result); end
+
+  def _reduce_13(val, _values, result); end
+
+  def _reduce_14(val, _values, result); end
+
+  def _reduce_15(val, _values, result); end
+
+  def _reduce_5(val, _values, result); end
+
+  def _reduce_8(val, _values, result); end
+
+  def _reduce_9(val, _values, result); end
+
+  def _reduce_none(val, _values, result); end
+
+  def on_comment(comment); end
+
+  def on_message(msgid, msgstr); end
+
+  def parse(str, data, ignore_fuzzy=T.unsafe(nil)); end
+
+  def unescape(orig); end
+  Racc_arg = ::T.let(nil, ::T.untyped)
+  Racc_debug_parser = ::T.let(nil, ::T.untyped)
+  Racc_token_to_s_table = ::T.let(nil, ::T.untyped)
+end
+
+class GetText::PoParser
+end
+
+module GetText
 end
 
 module GlobalID::Locator
@@ -17013,6 +17227,8 @@ module I18n::Gettext
   def self.plural_keys(*args); end
 end
 
+I18n::JSON = ActiveSupport::JSON
+
 module I18n::Locale
 end
 
@@ -17145,6 +17361,32 @@ module INotify
 end
 
 class IO
+  def beep(); end
+
+  def cooked(); end
+
+  def cooked!(); end
+
+  def cursor(); end
+
+  def cursor=(); end
+
+  def echo=(echo); end
+
+  def echo?(); end
+
+  def getch(*_); end
+
+  def getpass(*_); end
+
+  def goto(); end
+
+  def iflush(); end
+
+  def ioflush(); end
+
+  def noecho(); end
+
   def nonblock(*_); end
 
   def nonblock=(nonblock); end
@@ -17153,7 +17395,15 @@ class IO
 
   def nread(); end
 
+  def oflush(); end
+
   def pathconf(_); end
+
+  def pressed?(); end
+
+  def raw(*_); end
+
+  def raw!(*_); end
 
   def ready?(); end
 
@@ -17162,11 +17412,19 @@ class IO
   def wait_readable(*_); end
 
   def wait_writable(*_); end
+
+  def winsize(); end
+
+  def winsize=(winsize); end
 end
 
 IO::EWOULDBLOCKWaitReadable = IO::EAGAINWaitReadable
 
 IO::EWOULDBLOCKWaitWritable = IO::EAGAINWaitWritable
+
+class IO
+  def self.console(*_); end
+end
 
 class IPAddr
   def ==(other); end
@@ -17766,7 +18024,6 @@ class Integer
   include ::JSON::Ext::Generator::GeneratorMethods::Integer
   include ::ActiveSupport::NumericWithFormat
   def to_bn(); end
-  GMP_VERSION = ::T.let(nil, ::T.untyped)
 end
 
 class ItemPrice
@@ -17791,12 +18048,6 @@ class ItemPrice::ActiveRecord_Relation
 end
 
 module ItemPrice::GeneratedAssociationMethods
-  def build_recipe(*args, &block); end
-
-  def create_recipe(*args, &block); end
-
-  def create_recipe!(*args, &block); end
-
   def reload_recipe(); end
 end
 
@@ -19453,10 +19704,6 @@ end
 module Mail::Parsers
 end
 
-class Mail::PartsList
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
-
 class Mail::PhraseList
   def initialize(string); end
 
@@ -20122,7 +20369,138 @@ Net::POPSession = Net::POP3
 
 Net::ProtocRetryError = Net::ProtoRetriableError
 
+class Net::SCP
+  include ::Net::SSH::Loggable
+  include ::Net::SCP::Download
+  include ::Net::SCP::Upload
+  def download(remote, local, options=T.unsafe(nil), &progress); end
+
+  def download!(remote, local=T.unsafe(nil), options=T.unsafe(nil), &progress); end
+
+  def initialize(session); end
+
+  def session(); end
+
+  def upload(local, remote, options=T.unsafe(nil), &progress); end
+
+  def upload!(local, remote, options=T.unsafe(nil), &progress); end
+end
+
+module Net::SCP::Download
+end
+
+module Net::SCP::Download
+end
+
+class Net::SCP::Error
+end
+
+class Net::SCP::Error
+end
+
+module Net::SCP::Upload
+  DEFAULT_CHUNK_SIZE = ::T.let(nil, ::T.untyped)
+end
+
+module Net::SCP::Upload
+end
+
+class Net::SCP
+  def self.download!(host, username, remote, local=T.unsafe(nil), options=T.unsafe(nil), &progress); end
+
+  def self.start(host, username, options=T.unsafe(nil)); end
+
+  def self.upload!(host, username, local, remote, options=T.unsafe(nil), &progress); end
+end
+
 Net::SMTPSession = Net::SMTP
+
+class Net::SSH::Authentication::KeyManager
+  def add_keycert(keycert_file); end
+
+  def keycert_files(); end
+end
+
+class Net::SSH::Connection::Session
+  def scp(); end
+end
+
+class Net::SSH::KnownHosts
+  def match(host, pattern); end
+end
+
+class Net::SSH::Proxy::Command
+  def close_on_error(io); end
+
+  def command_line(); end
+
+  def command_line_template(); end
+
+  def initialize(command_line_template); end
+
+  def open(host, port, connection_options=T.unsafe(nil)); end
+
+  def timeout(); end
+
+  def timeout=(timeout); end
+end
+
+class Net::SSH::Proxy::Command
+end
+
+class Net::SSH::Transport::Algorithms
+  DEFAULT_ALGORITHMS = ::T.let(nil, ::T.untyped)
+end
+
+module Net::SSH::Transport::Constants
+  KEXDH_GEX_GROUP = ::T.let(nil, ::T.untyped)
+  KEXDH_GEX_INIT = ::T.let(nil, ::T.untyped)
+  KEXDH_GEX_REPLY = ::T.let(nil, ::T.untyped)
+  KEXDH_GEX_REQUEST = ::T.let(nil, ::T.untyped)
+end
+
+class Net::SSH::Transport::HMAC::Abstract
+  def etm(); end
+end
+
+class Net::SSH::Transport::HMAC::Abstract
+  def self.etm(*v); end
+end
+
+class Net::SSH::Transport::HMAC::SHA2_256_Etm
+end
+
+class Net::SSH::Transport::HMAC::SHA2_256_Etm
+end
+
+class Net::SSH::Transport::HMAC::SHA2_512_Etm
+end
+
+class Net::SSH::Transport::HMAC::SHA2_512_Etm
+end
+
+class Net::SSH::Transport::Kex::Abstract
+  include ::Net::SSH::Loggable
+  include ::Net::SSH::Transport::Constants
+  def digester(); end
+end
+
+class Net::SSH::Transport::Kex::Abstract5656
+  def curve_name(); end
+
+  def ecdh(); end
+end
+
+module Net::SSH::Transport::Kex::Curve25519Sha256Loader
+  ERROR = ::T.let(nil, ::T.untyped)
+  LOADED = ::T.let(nil, ::T.untyped)
+end
+
+module Net::SSH::Transport::Kex::Curve25519Sha256Loader
+  def self.dependenciesRequiredForX25519(); end
+
+  def self.raiseUnlessLoaded(message); end
+end
 
 class NilClass
   include ::JSON::Ext::Generator::GeneratorMethods::NilClass
@@ -20512,6 +20890,8 @@ module OpDay::GeneratedRelationMethods
 end
 
 class OpDay
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
   def self.after_add_for_day_ingredients(); end
 
   def self.after_add_for_day_ingredients=(val); end
@@ -20575,6 +20955,8 @@ class OpenSSL::BN
   def /(_); end
 
   def negative?(); end
+
+  def to_ssh(); end
 end
 
 module OpenSSL::Buffering
@@ -20604,12 +20986,63 @@ end
 
 OpenSSL::PKCS7::Signer = OpenSSL::PKCS7::SignerInfo
 
+class OpenSSL::PKey::DH
+  def valid?(); end
+end
+
+class OpenSSL::PKey::DSA
+  def ssh_do_sign(data); end
+
+  def ssh_do_verify(sig, data); end
+
+  def ssh_signature_type(); end
+
+  def ssh_type(); end
+
+  def to_blob(); end
+end
+
 class OpenSSL::PKey::EC
+  def ssh_do_sign(data); end
+
+  def ssh_do_verify(sig, data); end
+
+  def ssh_signature_type(); end
+
+  def ssh_type(); end
+
+  def to_blob(); end
+  CurveNameAlias = ::T.let(nil, ::T.untyped)
+  CurveNameAliasInv = ::T.let(nil, ::T.untyped)
   EXPLICIT_CURVE = ::T.let(nil, ::T.untyped)
 end
 
 class OpenSSL::PKey::EC::Point
+  def ssh_type(); end
+
+  def to_blob(); end
+
   def to_octet_string(_); end
+end
+
+class OpenSSL::PKey::EC
+  def self.read_keyblob(curve_name_in_type, buffer); end
+end
+
+class OpenSSL::PKey::PKey
+  include ::Net::SSH::Authentication::PubKeyFingerprint
+end
+
+class OpenSSL::PKey::RSA
+  def ssh_do_sign(data); end
+
+  def ssh_do_verify(sig, data); end
+
+  def ssh_signature_type(); end
+
+  def ssh_type(); end
+
+  def to_blob(); end
 end
 
 module OpenSSL::SSL
@@ -20817,12 +21250,6 @@ class Order::ActiveRecord_Relation
 end
 
 module Order::GeneratedAssociationMethods
-  def build_customer(*args, &block); end
-
-  def create_customer(*args, &block); end
-
-  def create_customer!(*args, &block); end
-
   def order_item_ids=(ids); end
 
   def reload_customer(); end
@@ -20866,6 +21293,8 @@ class Order
   extend ::AASM::ClassMethods
   extend ::AASM::Persistence::Base::ClassMethods
   extend ::AASM::Persistence::ActiveRecordPersistence::ClassMethods
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
   def self.after_add_for_order_items(); end
 
   def self.after_add_for_order_items=(val); end
@@ -20963,18 +21392,6 @@ class OrderItem::ActiveRecord_Relation
 end
 
 module OrderItem::GeneratedAssociationMethods
-  def build_order(*args, &block); end
-
-  def build_recipe(*args, &block); end
-
-  def create_order(*args, &block); end
-
-  def create_order!(*args, &block); end
-
-  def create_recipe(*args, &block); end
-
-  def create_recipe!(*args, &block); end
-
   def reload_order(); end
 
   def reload_recipe(); end
@@ -21871,6 +22288,7 @@ module PG::Constants
   PG_DIAG_STATEMENT_POSITION = ::T.let(nil, ::T.untyped)
   PG_DIAG_TABLE_NAME = ::T.let(nil, ::T.untyped)
   PQERRORS_DEFAULT = ::T.let(nil, ::T.untyped)
+  PQERRORS_SQLSTATE = ::T.let(nil, ::T.untyped)
   PQERRORS_TERSE = ::T.let(nil, ::T.untyped)
   PQERRORS_VERBOSE = ::T.let(nil, ::T.untyped)
   PQPING_NO_ATTEMPT = ::T.let(nil, ::T.untyped)
@@ -24380,6 +24798,26 @@ module Parser
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
+class Parser::AST::Processor
+  def on_find_pattern(node); end
+
+  def on_forward_arg(node); end
+end
+
+class Parser::Builders::Default
+  def find_pattern(lbrack_t, elements, rbrack_t); end
+
+  def forward_arg(dots_t); end
+
+  def forward_only_args(begin_t, dots_t, end_t); end
+end
+
+class Parser::Builders::Default
+  def self.emit_forward_arg(); end
+
+  def self.emit_forward_arg=(emit_forward_arg); end
+end
+
 Parser::CurrentRuby = Parser::Ruby25
 
 class Parser::Diagnostic
@@ -24414,12 +24852,108 @@ class Parser::Rewriter
 end
 
 class Parser::Ruby24
+  def _reduce_333(val, _values, result); end
+
+  def _reduce_337(val, _values, result); end
+
+  def _reduce_341(val, _values, result); end
+
+  def _reduce_343(val, _values, result); end
+
+  def _reduce_349(val, _values, result); end
+
+  def _reduce_369(val, _values, result); end
+
+  def _reduce_378(val, _values, result); end
+
+  def _reduce_389(val, _values, result); end
+
+  def _reduce_425(val, _values, result); end
+
+  def _reduce_429(val, _values, result); end
+
+  def _reduce_432(val, _values, result); end
+
+  def _reduce_434(val, _values, result); end
+
+  def _reduce_473(val, _values, result); end
+
+  def _reduce_531(val, _values, result); end
+
+  def _reduce_547(val, _values, result); end
+
+  def _reduce_557(val, _values, result); end
+
+  def _reduce_561(val, _values, result); end
+
+  def _reduce_566(val, _values, result); end
+
+  def _reduce_569(val, _values, result); end
+
+  def _reduce_576(val, _values, result); end
+
+  def _reduce_590(val, _values, result); end
+
+  def _reduce_596(val, _values, result); end
+
+  def _reduce_600(val, _values, result); end
+
+  def _reduce_604(val, _values, result); end
   Racc_arg = ::T.let(nil, ::T.untyped)
   Racc_debug_parser = ::T.let(nil, ::T.untyped)
   Racc_token_to_s_table = ::T.let(nil, ::T.untyped)
 end
 
 class Parser::Ruby25
+  def _reduce_333(val, _values, result); end
+
+  def _reduce_335(val, _values, result); end
+
+  def _reduce_338(val, _values, result); end
+
+  def _reduce_342(val, _values, result); end
+
+  def _reduce_344(val, _values, result); end
+
+  def _reduce_350(val, _values, result); end
+
+  def _reduce_370(val, _values, result); end
+
+  def _reduce_379(val, _values, result); end
+
+  def _reduce_390(val, _values, result); end
+
+  def _reduce_426(val, _values, result); end
+
+  def _reduce_430(val, _values, result); end
+
+  def _reduce_433(val, _values, result); end
+
+  def _reduce_435(val, _values, result); end
+
+  def _reduce_474(val, _values, result); end
+
+  def _reduce_532(val, _values, result); end
+
+  def _reduce_548(val, _values, result); end
+
+  def _reduce_558(val, _values, result); end
+
+  def _reduce_562(val, _values, result); end
+
+  def _reduce_567(val, _values, result); end
+
+  def _reduce_570(val, _values, result); end
+
+  def _reduce_577(val, _values, result); end
+
+  def _reduce_591(val, _values, result); end
+
+  def _reduce_597(val, _values, result); end
+
+  def _reduce_601(val, _values, result); end
+
+  def _reduce_605(val, _values, result); end
   Racc_arg = ::T.let(nil, ::T.untyped)
   Racc_debug_parser = ::T.let(nil, ::T.untyped)
   Racc_token_to_s_table = ::T.let(nil, ::T.untyped)
@@ -24439,9 +24973,22 @@ class Parser::Source::Rewriter
 end
 
 class Parser::Source::TreeRewriter
+  def as_nested_actions(); end
+
+  def as_replacements(); end
+
+  def import!(foreign_rewriter, offset: T.unsafe(nil)); end
   ACTIONS = ::T.let(nil, ::T.untyped)
   DEPRECATION_WARNING = ::T.let(nil, ::T.untyped)
   POLICY_TO_LEVEL = ::T.let(nil, ::T.untyped)
+end
+
+class Parser::Source::TreeRewriter::Action
+  def contract(); end
+
+  def moved(source_buffer, offset); end
+
+  def nested_actions(); end
 end
 
 class Parser::StaticEnvironment
@@ -24646,44 +25193,106 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70324265801220
+module Polyfill::Module::M70134368145520
 end
 
-module Polyfill::Module::M70324265801220
+module Polyfill::Module::M70134368145520
 end
 
-module Polyfill::Module::M70324265865360
+module Polyfill::Module::M70134380446940
 end
 
-module Polyfill::Module::M70324265865360
+module Polyfill::Module::M70134380446940
 end
 
-module Polyfill::Module::M70324265928040
+module Polyfill::Module::M70134425104540
 end
 
-module Polyfill::Module::M70324265928040
+module Polyfill::Module::M70134425104540
 end
 
-module Polyfill::Module::M70324269655060
+module Polyfill::Module::M70134425154600
 end
 
-module Polyfill::Module::M70324269655060
+module Polyfill::Module::M70134425154600
 end
 
-module Polyfill::Module::M70324298301520
+module Polyfill::Module::M70134442155940
 end
 
-module Polyfill::Module::M70324298301520
+module Polyfill::Module::M70134442155940
 end
 
-module Polyfill::Module::M70324298581920
+module Polyfill::Module::M70134442284040
 end
 
-module Polyfill::Module::M70324298581920
+module Polyfill::Module::M70134442284040
 end
 
 class Proc
   def clone(); end
+end
+
+class ProcurementItem
+  include ::ProcurementItem::GeneratedAssociationMethods
+end
+
+class ProcurementItem::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ProcurementItem::GeneratedRelationMethods
+end
+
+class ProcurementItem::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ProcurementItem::GeneratedRelationMethods
+end
+
+class ProcurementItem::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ProcurementItem::GeneratedRelationMethods
+end
+
+module ProcurementItem::GeneratedAssociationMethods
+end
+
+module ProcurementItem::GeneratedAssociationMethods
+end
+
+module ProcurementItem::GeneratedRelationMethods
+end
+
+module ProcurementItem::GeneratedRelationMethods
+end
+
+class ProcurementOrder
+  include ::ProcurementOrder::GeneratedAssociationMethods
+end
+
+class ProcurementOrder::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ProcurementOrder::GeneratedRelationMethods
+end
+
+class ProcurementOrder::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ProcurementOrder::GeneratedRelationMethods
+end
+
+class ProcurementOrder::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ProcurementOrder::GeneratedRelationMethods
+end
+
+module ProcurementOrder::GeneratedAssociationMethods
+end
+
+module ProcurementOrder::GeneratedAssociationMethods
+end
+
+module ProcurementOrder::GeneratedRelationMethods
+end
+
+module ProcurementOrder::GeneratedRelationMethods
 end
 
 module Psych
@@ -25031,12 +25640,6 @@ class PurchasedRecipe::ActiveRecord_Relation
 end
 
 module PurchasedRecipe::GeneratedAssociationMethods
-  def build_recipe(*args, &block); end
-
-  def create_recipe(*args, &block); end
-
-  def create_recipe!(*args, &block); end
-
   def reload_recipe(); end
 end
 
@@ -25390,10 +25993,6 @@ end
 
 class Rack::Session::Abstract::SessionHash
   Unspecified = ::T.let(nil, ::T.untyped)
-end
-
-class Rack::Session::Cookie::SessionId
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
 end
 
 class Rack::Session::Dalli
@@ -26803,6 +27402,12 @@ class Recipe
 
   def after_add_for_order_items?(); end
 
+  def after_add_for_purchased_recipes(); end
+
+  def after_add_for_purchased_recipes=(val); end
+
+  def after_add_for_purchased_recipes?(); end
+
   def after_add_for_recipe_steps(); end
 
   def after_add_for_recipe_steps=(val); end
@@ -26827,6 +27432,12 @@ class Recipe
 
   def after_remove_for_order_items?(); end
 
+  def after_remove_for_purchased_recipes(); end
+
+  def after_remove_for_purchased_recipes=(val); end
+
+  def after_remove_for_purchased_recipes?(); end
+
   def after_remove_for_recipe_steps(); end
 
   def after_remove_for_recipe_steps=(val); end
@@ -26843,6 +27454,8 @@ class Recipe
 
   def autosave_associated_records_for_order_items(*args); end
 
+  def autosave_associated_records_for_purchased_recipes(*args); end
+
   def autosave_associated_records_for_recipe_steps(*args); end
 
   def autosave_associated_records_for_step_inputs(*args); end
@@ -26858,6 +27471,12 @@ class Recipe
   def before_add_for_order_items=(val); end
 
   def before_add_for_order_items?(); end
+
+  def before_add_for_purchased_recipes(); end
+
+  def before_add_for_purchased_recipes=(val); end
+
+  def before_add_for_purchased_recipes?(); end
 
   def before_add_for_recipe_steps(); end
 
@@ -26883,6 +27502,12 @@ class Recipe
 
   def before_remove_for_order_items?(); end
 
+  def before_remove_for_purchased_recipes(); end
+
+  def before_remove_for_purchased_recipes=(val); end
+
+  def before_remove_for_purchased_recipes?(); end
+
   def before_remove_for_recipe_steps(); end
 
   def before_remove_for_recipe_steps=(val); end
@@ -26898,6 +27523,8 @@ class Recipe
   def validate_associated_records_for_item_prices(*args); end
 
   def validate_associated_records_for_order_items(*args); end
+
+  def validate_associated_records_for_purchased_recipes(*args); end
 
   def validate_associated_records_for_recipe_steps(*args); end
 
@@ -26923,6 +27550,8 @@ module Recipe::GeneratedAssociationMethods
   def item_price_ids=(ids); end
 
   def order_item_ids=(ids); end
+
+  def purchased_recipe_ids=(ids); end
 
   def recipe_step_ids=(ids); end
 
@@ -26950,6 +27579,12 @@ class Recipe
 
   def self.after_add_for_order_items?(); end
 
+  def self.after_add_for_purchased_recipes(); end
+
+  def self.after_add_for_purchased_recipes=(val); end
+
+  def self.after_add_for_purchased_recipes?(); end
+
   def self.after_add_for_recipe_steps(); end
 
   def self.after_add_for_recipe_steps=(val); end
@@ -26973,6 +27608,12 @@ class Recipe
   def self.after_remove_for_order_items=(val); end
 
   def self.after_remove_for_order_items?(); end
+
+  def self.after_remove_for_purchased_recipes(); end
+
+  def self.after_remove_for_purchased_recipes=(val); end
+
+  def self.after_remove_for_purchased_recipes?(); end
 
   def self.after_remove_for_recipe_steps(); end
 
@@ -26998,6 +27639,12 @@ class Recipe
 
   def self.before_add_for_order_items?(); end
 
+  def self.before_add_for_purchased_recipes(); end
+
+  def self.before_add_for_purchased_recipes=(val); end
+
+  def self.before_add_for_purchased_recipes?(); end
+
   def self.before_add_for_recipe_steps(); end
 
   def self.before_add_for_recipe_steps=(val); end
@@ -27021,6 +27668,12 @@ class Recipe
   def self.before_remove_for_order_items=(val); end
 
   def self.before_remove_for_order_items?(); end
+
+  def self.before_remove_for_purchased_recipes(); end
+
+  def self.before_remove_for_purchased_recipes=(val); end
+
+  def self.before_remove_for_purchased_recipes?(); end
 
   def self.before_remove_for_recipe_steps(); end
 
@@ -27240,7 +27893,6 @@ end
 class RecipeStep::ActiveRecord_AssociationRelation
   include ::ActiveRecord::Delegation::ClassSpecificRelation
   include ::RecipeStep::GeneratedRelationMethods
-  def name(*args, &block); end
 end
 
 class RecipeStep::ActiveRecord_Associations_CollectionProxy
@@ -27254,12 +27906,6 @@ class RecipeStep::ActiveRecord_Relation
 end
 
 module RecipeStep::GeneratedAssociationMethods
-  def build_recipe(*args, &block); end
-
-  def create_recipe(*args, &block); end
-
-  def create_recipe!(*args, &block); end
-
   def day_prep_ids=(ids); end
 
   def detailed_instruction_ids=(ids); end
@@ -28566,6 +29212,763 @@ module RubyToken
   def self.def_token(token_n, super_token=T.unsafe(nil), reading=T.unsafe(nil), *opts); end
 end
 
+module SSHKit
+  PARSERS = ::T.let(nil, ::T.untyped)
+end
+
+module SSHKit::Backend
+end
+
+class SSHKit::Backend::Abstract
+  def as(who, &_block); end
+
+  def background(*args); end
+
+  def capture(*args); end
+
+  def debug(*args, &block); end
+
+  def download!(_remote, _local=T.unsafe(nil), _options=T.unsafe(nil)); end
+
+  def error(*args, &block); end
+
+  def execute(*args); end
+
+  def fatal(*args, &block); end
+
+  def host(); end
+
+  def info(*args, &block); end
+
+  def initialize(host, &block); end
+
+  def log(*args, &block); end
+
+  def make(commands=T.unsafe(nil)); end
+
+  def rake(commands=T.unsafe(nil)); end
+
+  def redact(arg); end
+
+  def run(); end
+
+  def test(*args); end
+
+  def upload!(_local, _remote, _options=T.unsafe(nil)); end
+
+  def warn(*args, &block); end
+
+  def with(environment, &_block); end
+
+  def within(directory, &_block); end
+end
+
+class SSHKit::Backend::Abstract
+  extend ::Forwardable
+  def self.config(); end
+
+  def self.configure(); end
+end
+
+class SSHKit::Backend::ConnectionPool
+  def caches(); end
+
+  def close_connections(); end
+
+  def flush_connections(); end
+
+  def idle_timeout(); end
+
+  def idle_timeout=(idle_timeout); end
+
+  def initialize(idle_timeout=T.unsafe(nil)); end
+
+  def timed_out_connections(); end
+
+  def with(connection_factory, *args); end
+end
+
+class SSHKit::Backend::ConnectionPool::Cache
+  def clear(); end
+
+  def closer(); end
+
+  def connections(); end
+
+  def evict(); end
+
+  def idle_timeout(); end
+
+  def initialize(key, idle_timeout, closer); end
+
+  def key(); end
+
+  def key=(key); end
+
+  def pop(); end
+
+  def push(conn); end
+
+  def same_key?(other_key); end
+end
+
+class SSHKit::Backend::ConnectionPool::Cache
+end
+
+class SSHKit::Backend::ConnectionPool::NilCache
+  def closer(); end
+
+  def closer=(_); end
+
+  def pop(); end
+
+  def push(conn); end
+
+  def same_key?(_key); end
+end
+
+class SSHKit::Backend::ConnectionPool::NilCache
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class SSHKit::Backend::ConnectionPool
+end
+
+class SSHKit::Backend::Local
+  def download!(remote, local=T.unsafe(nil), _options=T.unsafe(nil)); end
+
+  def initialize(_=T.unsafe(nil), &block); end
+
+  def upload!(local, remote, options=T.unsafe(nil)); end
+end
+
+class SSHKit::Backend::Local
+end
+
+class SSHKit::Backend::MethodUnavailableError
+end
+
+class SSHKit::Backend::MethodUnavailableError
+end
+
+class SSHKit::Backend::Netssh
+  def download!(remote, local=T.unsafe(nil), options=T.unsafe(nil)); end
+
+  def upload!(local, remote, options=T.unsafe(nil)); end
+end
+
+class SSHKit::Backend::Netssh::Configuration
+  def connection_timeout(); end
+
+  def connection_timeout=(connection_timeout); end
+
+  def pty(); end
+
+  def pty=(pty); end
+
+  def ssh_options(); end
+
+  def ssh_options=(ssh_options); end
+end
+
+class SSHKit::Backend::Netssh::Configuration
+end
+
+class SSHKit::Backend::Netssh::KnownHosts
+  include ::Mutex_m
+  def add(*args); end
+
+  def initialize(); end
+
+  def lock(); end
+
+  def locked?(); end
+
+  def search_for(host, options=T.unsafe(nil)); end
+
+  def synchronize(&block); end
+
+  def try_lock(); end
+
+  def unlock(); end
+end
+
+class SSHKit::Backend::Netssh::KnownHosts
+end
+
+class SSHKit::Backend::Netssh::KnownHostsKeys
+  include ::Mutex_m
+  def initialize(path); end
+
+  def keys_for(hostlist); end
+
+  def lock(); end
+
+  def locked?(); end
+
+  def synchronize(&block); end
+
+  def try_lock(); end
+
+  def unlock(); end
+end
+
+class SSHKit::Backend::Netssh::KnownHostsKeys
+end
+
+class SSHKit::Backend::Netssh
+  def self.pool(); end
+
+  def self.pool=(pool); end
+end
+
+class SSHKit::Backend::Printer
+  def download!(*args); end
+
+  def execute_command(cmd); end
+
+  def test(*_); end
+
+  def upload!(*args); end
+end
+
+class SSHKit::Backend::Printer
+end
+
+class SSHKit::Backend::Skipper
+  def debug(_messages); end
+
+  def download!(*args); end
+
+  def error(_messages); end
+
+  def execute_command(cmd); end
+
+  def fatal(_messages); end
+
+  def info(_messages); end
+
+  def initialize(&block); end
+
+  def log(_messages); end
+
+  def upload!(*args); end
+end
+
+class SSHKit::Backend::Skipper
+end
+
+module SSHKit::Backend
+  def self.current(); end
+end
+
+class SSHKit::Color
+  def colorize(obj, color, mode=T.unsafe(nil)); end
+
+  def colorize?(); end
+
+  def initialize(output, env=T.unsafe(nil)); end
+  COLOR_CODES = ::T.let(nil, ::T.untyped)
+end
+
+class SSHKit::Color
+end
+
+class SSHKit::Command
+  def args(); end
+
+  def command(); end
+
+  def complete?(); end
+
+  def environment_hash(); end
+
+  def environment_string(); end
+
+  def exit_status(); end
+
+  def exit_status=(new_exit_status); end
+
+  def failed?(); end
+
+  def failure?(); end
+
+  def finished?(); end
+
+  def full_stderr(); end
+
+  def full_stdout(); end
+
+  def group(&_block); end
+
+  def host(); end
+
+  def in_background(&_block); end
+
+  def initialize(*args); end
+
+  def on_stderr(channel, data); end
+
+  def on_stdout(channel, data); end
+
+  def options(); end
+
+  def runtime(); end
+
+  def should_map?(); end
+
+  def started(); end
+
+  def started=(new_started); end
+
+  def started?(); end
+
+  def started_at(); end
+
+  def stderr(); end
+
+  def stderr=(new_value); end
+
+  def stdout(); end
+
+  def stdout=(new_value); end
+
+  def success?(); end
+
+  def successful?(); end
+
+  def to_command(); end
+
+  def to_hash(); end
+
+  def umask(&_block); end
+
+  def user(&_block); end
+
+  def uuid(); end
+
+  def verbosity(); end
+
+  def with(&_block); end
+
+  def with_redaction(); end
+
+  def within(&_block); end
+end
+
+class SSHKit::Command::Failed
+end
+
+class SSHKit::Command::Failed
+end
+
+class SSHKit::Command
+  def self.shellescape_except_tilde(file); end
+end
+
+class SSHKit::CommandMap
+  def [](command); end
+
+  def []=(command, new_command); end
+
+  def clear(); end
+
+  def defaults(); end
+
+  def initialize(value=T.unsafe(nil)); end
+
+  def prefix(); end
+  TO_VALUE = ::T.let(nil, ::T.untyped)
+end
+
+class SSHKit::CommandMap::CommandHash
+  def [](key); end
+
+  def []=(key, value); end
+
+  def initialize(defaults=T.unsafe(nil)); end
+end
+
+class SSHKit::CommandMap::CommandHash
+end
+
+class SSHKit::CommandMap::PrefixProvider
+  def [](command); end
+end
+
+class SSHKit::CommandMap::PrefixProvider
+end
+
+class SSHKit::CommandMap
+end
+
+class SSHKit::Configuration
+  def backend(); end
+
+  def backend=(backend); end
+
+  def command_map(); end
+
+  def command_map=(value); end
+
+  def default_env(); end
+
+  def default_env=(default_env); end
+
+  def default_runner(); end
+
+  def default_runner=(default_runner); end
+
+  def default_runner_config(); end
+
+  def default_runner_config=(config_hash); end
+
+  def deprecation_logger(); end
+
+  def deprecation_output=(out); end
+
+  def format=(format); end
+
+  def output(); end
+
+  def output=(output); end
+
+  def output_verbosity(); end
+
+  def output_verbosity=(verbosity); end
+
+  def umask(); end
+
+  def umask=(umask); end
+
+  def use_format(formatter, *args); end
+end
+
+class SSHKit::Configuration
+end
+
+class SSHKit::Coordinator
+  def each(options=T.unsafe(nil), &block); end
+
+  def hosts(); end
+
+  def hosts=(hosts); end
+
+  def initialize(raw_hosts); end
+end
+
+class SSHKit::Coordinator
+end
+
+module SSHKit::DSL
+  def on(hosts, options=T.unsafe(nil), &block); end
+
+  def run_locally(&block); end
+end
+
+module SSHKit::DSL
+end
+
+class SSHKit::DeprecationLogger
+  def initialize(out); end
+
+  def log(message); end
+end
+
+class SSHKit::DeprecationLogger
+end
+
+module SSHKit::Formatter
+end
+
+class SSHKit::Formatter::Abstract
+  def <<(obj); end
+
+  def colorize(*args, &block); end
+
+  def debug(message); end
+
+  def error(message); end
+
+  def fatal(message); end
+
+  def info(message); end
+
+  def initialize(output, options=T.unsafe(nil)); end
+
+  def log(message); end
+
+  def log_command_data(command, _stream_type, _stream_data); end
+
+  def log_command_exit(command); end
+
+  def log_command_start(command); end
+
+  def options(); end
+
+  def original_output(); end
+
+  def read(*args, &block); end
+
+  def rewind(*args, &block); end
+
+  def warn(message); end
+
+  def write(_obj); end
+end
+
+class SSHKit::Formatter::Abstract
+  extend ::Forwardable
+end
+
+class SSHKit::Formatter::BlackHole
+end
+
+class SSHKit::Formatter::BlackHole
+end
+
+class SSHKit::Formatter::Dot
+end
+
+class SSHKit::Formatter::Dot
+end
+
+class SSHKit::Formatter::Pretty
+  def format_message(verbosity, message, uuid=T.unsafe(nil)); end
+
+  def log_command_data(command, stream_type, stream_data); end
+
+  def write(obj); end
+  LEVEL_COLORS = ::T.let(nil, ::T.untyped)
+  LEVEL_NAMES = ::T.let(nil, ::T.untyped)
+end
+
+class SSHKit::Formatter::Pretty
+end
+
+class SSHKit::Formatter::SimpleText
+  def colorize(obj, _color, _mode=T.unsafe(nil)); end
+
+  def format_message(_verbosity, message, _uuid=T.unsafe(nil)); end
+end
+
+class SSHKit::Formatter::SimpleText
+end
+
+module SSHKit::Formatter
+end
+
+class SSHKit::Host
+  def ==(other_host); end
+
+  def eql?(other_host); end
+
+  def equal?(other_host); end
+
+  def first_suitable_parser(host); end
+
+  def hostname(); end
+
+  def hostname=(hostname); end
+
+  def initialize(host_string_or_options_hash); end
+
+  def key=(new_key); end
+
+  def keys(); end
+
+  def keys=(new_keys); end
+
+  def local?(); end
+
+  def netssh_options(); end
+
+  def password(); end
+
+  def password=(password); end
+
+  def port(); end
+
+  def port=(port); end
+
+  def properties(); end
+
+  def ssh_options(); end
+
+  def ssh_options=(ssh_options); end
+
+  def user(); end
+
+  def user=(user); end
+
+  def username(); end
+end
+
+class SSHKit::Host
+end
+
+class SSHKit::HostWithPortParser
+end
+
+class SSHKit::HostWithPortParser
+end
+
+class SSHKit::HostWithUsernameAndPortParser
+end
+
+class SSHKit::HostWithUsernameAndPortParser
+end
+
+class SSHKit::HostWithUsernameParser
+end
+
+class SSHKit::HostWithUsernameParser
+end
+
+class SSHKit::IPv6HostWithPortParser
+  IPV6_REGEX = ::T.let(nil, ::T.untyped)
+end
+
+class SSHKit::IPv6HostWithPortParser
+end
+
+class SSHKit::LogMessage
+  def initialize(verbosity, message); end
+
+  def message(); end
+
+  def verbosity(); end
+end
+
+class SSHKit::LogMessage
+end
+
+class SSHKit::Logger
+  DEBUG = ::T.let(nil, ::T.untyped)
+  ERROR = ::T.let(nil, ::T.untyped)
+  FATAL = ::T.let(nil, ::T.untyped)
+  INFO = ::T.let(nil, ::T.untyped)
+  WARN = ::T.let(nil, ::T.untyped)
+end
+
+class SSHKit::Logger
+end
+
+class SSHKit::MappingInteractionHandler
+  def initialize(mapping, log_level=T.unsafe(nil)); end
+
+  def on_data(_command, stream_name, data, channel); end
+end
+
+class SSHKit::MappingInteractionHandler
+end
+
+module SSHKit::Redaction
+end
+
+module SSHKit::Redaction
+end
+
+module SSHKit::Runner
+end
+
+class SSHKit::Runner::Abstract
+  def block(); end
+
+  def hosts(); end
+
+  def initialize(hosts, options=T.unsafe(nil), &block); end
+
+  def options(); end
+end
+
+class SSHKit::Runner::Abstract
+end
+
+class SSHKit::Runner::ExecuteError
+  def initialize(cause); end
+end
+
+class SSHKit::Runner::ExecuteError
+end
+
+class SSHKit::Runner::Group
+  def group_size(); end
+
+  def group_size=(group_size); end
+end
+
+class SSHKit::Runner::Group
+end
+
+class SSHKit::Runner::Null
+  def execute(); end
+end
+
+class SSHKit::Runner::Null
+end
+
+class SSHKit::Runner::Parallel
+  def execute(); end
+end
+
+class SSHKit::Runner::Parallel
+end
+
+class SSHKit::Runner::Sequential
+  def execute(); end
+
+  def wait_interval(); end
+
+  def wait_interval=(wait_interval); end
+end
+
+class SSHKit::Runner::Sequential
+end
+
+module SSHKit::Runner
+end
+
+class SSHKit::SimpleHostParser
+  def attributes(); end
+
+  def hostname(); end
+
+  def initialize(host_string); end
+
+  def port(); end
+
+  def username(); end
+end
+
+class SSHKit::SimpleHostParser
+  def self.suitable?(host_string); end
+end
+
+class SSHKit::StandardError
+end
+
+class SSHKit::StandardError
+end
+
+class SSHKit::UnparsableHostStringError
+end
+
+class SSHKit::UnparsableHostStringError
+end
+
+module SSHKit
+  def self.config(); end
+
+  def self.config=(config); end
+
+  def self.configure(); end
+
+  def self.reset_configuration!(); end
+end
+
 module SassC
   VERSION = ::T.let(nil, ::T.untyped)
 end
@@ -29621,10 +31024,6 @@ class Set
   InspectKey = ::T.let(nil, ::T.untyped)
 end
 
-class SimpleDelegator
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
-
 module Singleton
   def _dump(depth=T.unsafe(nil)); end
 
@@ -30534,7 +31933,160 @@ module Socket::Constants
   TCP_NOPUSH = ::T.let(nil, ::T.untyped)
 end
 
+class SorbetRails::Config
+  def job_generator_class(*args, &blk); end
+
+  def job_generator_class=(job_generator_class); end
+
+  def mailer_generator_class(*args, &blk); end
+
+  def mailer_generator_class=(mailer_generator_class); end
+end
+
+class SorbetRails::JobRbiFormatter
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def job_class(*args, &blk); end
+
+  def populate_rbi(*args, &blk); end
+
+  def rbi_generator(*args, &blk); end
+end
+
+SorbetRails::JobRbiFormatter::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::JobRbiFormatter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class SorbetRails::MailerRbiFormatter
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def mailer_class(*args, &blk); end
+
+  def populate_rbi(*args, &blk); end
+
+  def rbi_generator(*args, &blk); end
+end
+
+SorbetRails::MailerRbiFormatter::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::MailerRbiFormatter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module SorbetRails::ModelColumnUtils
+  def active_record_type_to_sorbet_type(*args, &blk); end
+
+  def attribute_has_unconditional_presence_validation?(*args, &blk); end
+
+  def model_class(*args, &blk); end
+
+  def nilable_column?(*args, &blk); end
+
+  def time_zone_aware_column?(*args, &blk); end
+
+  def type_for_column_def(*args, &blk); end
+end
+
+class SorbetRails::ModelColumnUtils::ColumnType
+  def array_type(); end
+
+  def base_type(); end
+
+  def initialize(hash=T.unsafe(nil)); end
+
+  def nilable(); end
+
+  def to_s(*args, &blk); end
+end
+
+class SorbetRails::ModelColumnUtils::ColumnType
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.inherited(s); end
+end
+
+module SorbetRails::ModelColumnUtils
+  extend ::T::Sig
+  extend ::T::Helpers
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class SorbetRails::ModelPlugins::Base
+  include ::SorbetRails::ModelColumnUtils
+end
+
 SorbetRails::ModelPlugins::Base::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::ModelRbiFormatter
+  include ::SorbetRails::ModelColumnUtils
+end
+
+module SorbetRails::ModelUtils
+  include ::SorbetRails::ModelColumnUtils
+end
+
+module SorbetRails::SorbetUtils
+  include ::Kernel
+end
+
+class SorbetRails::SorbetUtils::ParsedParamDef
+  def default(); end
+
+  def default=(val); end
+
+  def initialize(hash=T.unsafe(nil)); end
+
+  def kind(); end
+
+  def name(); end
+
+  def prefix(); end
+
+  def prefix=(val); end
+
+  def suffix(); end
+
+  def suffix=(val); end
+
+  def type_str(); end
+end
+
+class SorbetRails::SorbetUtils::ParsedParamDef
+  def self.inherited(s); end
+end
+
+class SorbetRails::SorbetUtils::UnexpectedParam
+end
+
+class SorbetRails::SorbetUtils::UnexpectedParam
+end
+
+module SorbetRails::SorbetUtils
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.extract_default_value_for_params!(*args, &blk); end
+
+  def self.get_ordered_parameters_with_type(*args, &blk); end
+
+  def self.node_to_s(*args, &blk); end
+
+  def self.parameters_from_method_def(*args, &blk); end
+end
 
 module SorbetRails
   extend ::T::Private::Methods::SingletonMethodHooks
@@ -30983,7 +32535,6 @@ class Sprockets::Context::ENVProxy
   def fetch(key, *_); end
 
   def initialize(context); end
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
 end
 
 class Sprockets::Context::ENVProxy
@@ -32254,12 +33805,6 @@ class StepInput::ActiveRecord_Relation
 end
 
 module StepInput::GeneratedAssociationMethods
-  def build_recipe_step(*args, &block); end
-
-  def create_recipe_step(*args, &block); end
-
-  def create_recipe_step!(*args, &block); end
-
   def reload_inputable(); end
 
   def reload_recipe_step(); end
@@ -32301,10 +33846,6 @@ Struct::Passwd = Etc::Passwd
 
 Struct::Tms = Process::Tms
 
-class SynchronizedDelegator
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
-end
-
 module TZInfo::RubyCoreSupport
   HALF_DAYS_IN_DAY = ::T.let(nil, ::T.untyped)
 end
@@ -32323,7 +33864,6 @@ class Tempfile
   def _close(); end
 
   def inspect(); end
-  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
 end
 
 class Tempfile::Remover
@@ -33235,6 +34775,43 @@ class User
   def self.devise_modules?(); end
 end
 
+class Vendor
+  include ::Vendor::GeneratedAssociationMethods
+end
+
+class Vendor::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Vendor::GeneratedRelationMethods
+end
+
+class Vendor::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Vendor::GeneratedRelationMethods
+end
+
+class Vendor::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Vendor::GeneratedRelationMethods
+end
+
+module Vendor::GeneratedAssociationMethods
+end
+
+module Vendor::GeneratedAssociationMethods
+end
+
+module Vendor::GeneratedRelationMethods
+end
+
+module Vendor::GeneratedRelationMethods
+end
+
+class VolumeUnit
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.inherited(s); end
+end
+
 module Warden
 end
 
@@ -33931,6 +35508,12 @@ end
 
 module WebSocket::HTTP
   def self.normalize_header(name); end
+end
+
+class WeightUnit
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.inherited(s); end
 end
 
 class Zlib::Deflate

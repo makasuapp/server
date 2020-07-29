@@ -11,6 +11,15 @@ module PaperTrail::Version::GeneratedAssociationMethods
   sig { returns(T.nilable(T.untyped)) }
   def item; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def build_item(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_item(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_item!(*args, &block); end
+
   sig { params(value: T.nilable(T.untyped)).void }
   def item=(value); end
 end

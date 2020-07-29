@@ -1,3 +1,4 @@
+# typed: true
 class AddVolumeWeightRatio < ActiveRecord::Migration[5.2]
   def change
     add_column :ingredients, :volume_weight_ratio, :float

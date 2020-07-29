@@ -31,11 +31,29 @@ module RecipeStep::HABTM_DetailedInstructions::GeneratedAssociationMethods
   sig { returns(::DetailedInstruction) }
   def detailed_instruction; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::DetailedInstruction).void)).returns(::DetailedInstruction) }
+  def build_detailed_instruction(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::DetailedInstruction).void)).returns(::DetailedInstruction) }
+  def create_detailed_instruction(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::DetailedInstruction).void)).returns(::DetailedInstruction) }
+  def create_detailed_instruction!(*args, &block); end
+
   sig { params(value: ::DetailedInstruction).void }
   def detailed_instruction=(value); end
 
   sig { returns(T.nilable(::RecipeStep)) }
   def left_side; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def build_left_side(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def create_left_side(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def create_left_side!(*args, &block); end
 
   sig { params(value: T.nilable(::RecipeStep)).void }
   def left_side=(value); end

@@ -76,6 +76,15 @@ module Order::Version::GeneratedAssociationMethods
   sig { returns(T.untyped) }
   def item; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def build_item(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_item(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_item!(*args, &block); end
+
   sig { params(value: T.untyped).void }
   def item=(value); end
 end

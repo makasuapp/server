@@ -94,11 +94,29 @@ module DayIngredient::GeneratedAssociationMethods
   sig { returns(::Ingredient) }
   def ingredient; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Ingredient).void)).returns(::Ingredient) }
+  def build_ingredient(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Ingredient).void)).returns(::Ingredient) }
+  def create_ingredient(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Ingredient).void)).returns(::Ingredient) }
+  def create_ingredient!(*args, &block); end
+
   sig { params(value: ::Ingredient).void }
   def ingredient=(value); end
 
   sig { returns(::OpDay) }
   def op_day; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::OpDay).void)).returns(::OpDay) }
+  def build_op_day(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::OpDay).void)).returns(::OpDay) }
+  def create_op_day(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::OpDay).void)).returns(::OpDay) }
+  def create_op_day!(*args, &block); end
 
   sig { params(value: ::OpDay).void }
   def op_day=(value); end

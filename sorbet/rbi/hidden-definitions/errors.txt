@@ -9,6 +9,8 @@
 # wrong constant name <Magic>
 # wrong constant name <Magic>
 # wrong constant name <Class:<Magic>>
+# wrong constant name <PackageRegistry>
+# wrong constant name <PackageRegistry>
 # wrong constant name <RESERVED_0>
 # wrong constant name <RESERVED_10>
 # wrong constant name <RESERVED_11>
@@ -85,20 +87,8 @@
 # wrong constant name <RESERVED_76>
 # wrong constant name <RESERVED_77>
 # wrong constant name <RESERVED_78>
-# wrong constant name <RESERVED_79>
 # wrong constant name <RESERVED_7>
-# wrong constant name <RESERVED_80>
-# wrong constant name <RESERVED_81>
-# wrong constant name <RESERVED_82>
-# wrong constant name <RESERVED_83>
-# wrong constant name <RESERVED_84>
-# wrong constant name <RESERVED_85>
-# wrong constant name <RESERVED_86>
-# wrong constant name <RESERVED_87>
-# wrong constant name <RESERVED_88>
-# wrong constant name <RESERVED_89>
 # wrong constant name <RESERVED_8>
-# wrong constant name <RESERVED_90>
 # wrong constant name <RESERVED_9>
 # wrong constant name <TypeAlias>
 # wrong constant name <TypeAlias>
@@ -1833,8 +1823,14 @@
 # wrong constant name api_op_days_save_prep_qty_path
 # wrong constant name api_op_days_save_prep_qty_url
 # wrong constant name api_op_days_url
+# wrong constant name api_orders_path
+# wrong constant name api_orders_update_items_path
+# wrong constant name api_orders_update_items_url
+# wrong constant name api_orders_url
+# wrong constant name api_path
 # wrong constant name api_recipes_path
 # wrong constant name api_recipes_url
+# wrong constant name api_url
 # wrong constant name batch_action_admin_purchased_recipes_path
 # wrong constant name batch_action_admin_purchased_recipes_url
 # wrong constant name cancel_user_registration_path
@@ -3689,7 +3685,7 @@
 # A copy of ActiveRecord::InternalMetadata::ActiveRecord_Relation has been removed from the module tree but is still active!
 # wrong constant name <static-init>
 # wrong constant name <static-init>
-# undefined singleton method `page<defaultArg>1' for `#<Class:0x00007feb500f2ad8>'
+# undefined singleton method `page<defaultArg>1' for `#<Class:0x00007f92dd66a6d0>'
 # wrong constant name []
 # wrong constant name []=
 # wrong constant name create_table
@@ -3887,6 +3883,7 @@
 # wrong constant name partial_query
 # wrong constant name query
 # wrong constant name unsupported_value?
+# wrong constant name suppressed
 # undefined method `charset_current<defaultArg>1' for module `ActiveRecord::Tasks::DatabaseTasks'
 # Did you mean?  charset_current
 # undefined method `collation_current<defaultArg>1' for module `ActiveRecord::Tasks::DatabaseTasks'
@@ -4269,7 +4266,123 @@
 # wrong constant name <static-init>
 # wrong constant name resource_class=
 # wrong constant name <static-init>
+# wrong constant name <Class:Colors>
+# wrong constant name <Class:CommandFormatter>
+# wrong constant name <Class:Configuration>
+# wrong constant name <Class:Console>
+# wrong constant name <Class:ConsoleFormatter>
+# wrong constant name <Class:DelegatingFormatter>
+# wrong constant name <Class:Formatter>
+# wrong constant name <Class:LogFileFormatter>
+# wrong constant name <Class:Rake>
+# wrong constant name <static-init>
+# wrong constant name blue
+# wrong constant name gray
+# wrong constant name green
+# wrong constant name red
+# wrong constant name yellow
+# uninitialized constant ANSI_CODES
+# wrong constant name exit_message
+# wrong constant name format_output
+# wrong constant name initialize
+# wrong constant name start_message
+# wrong constant name <static-init>
+# wrong constant name apply_options
+# wrong constant name banner
+# wrong constant name banner=
+# wrong constant name banner_message
+# wrong constant name color
+# wrong constant name color=
+# wrong constant name command_output
+# wrong constant name command_output=
+# wrong constant name context
+# wrong constant name context=
+# wrong constant name formatters
+# wrong constant name log_file
+# wrong constant name log_file=
+# wrong constant name monkey_patch_rake
+# wrong constant name monkey_patch_rake=
+# wrong constant name show_command_output?
+# wrong constant name task_prefix
+# wrong constant name task_prefix=
+# wrong constant name truncate
+# wrong constant name truncate=
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Airbrussh::Console'
+# Did you mean?  initialize_dup
+# undefined method `print_line<defaultArg>1' for class `Airbrussh::Console'
+# wrong constant name <<
+# wrong constant name config
+# wrong constant name console_width
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name output
+# wrong constant name print_line<defaultArg>1
+# wrong constant name print_line
+# wrong constant name strip_ascii_color
+# wrong constant name truncate_to_console_width
+# wrong constant name write
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Airbrussh::ConsoleFormatter'
+# Did you mean?  initialize_dup
+# uninitialized constant Airbrussh::ConsoleFormatter::ANSI_CODES
+# wrong constant name config
+# wrong constant name context
+# wrong constant name current_task_name
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name log_command_data
+# wrong constant name register_new_command
+# wrong constant name write
+# wrong constant name write_banner
+# wrong constant name <static-init>
+# wrong constant name <<
+# wrong constant name debug
+# wrong constant name error
+# wrong constant name fatal
+# wrong constant name formatters
+# wrong constant name info
+# wrong constant name initialize
+# wrong constant name log
+# wrong constant name log_command_data
+# wrong constant name log_command_exit
+# wrong constant name log_command_start
+# wrong constant name warn
+# wrong constant name write
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Airbrussh::Formatter'
+# Did you mean?  initialize_dup
+# uninitialized constant Airbrussh::Formatter::DUP_AND_FORWARD_METHODS
+# uninitialized constant Airbrussh::Formatter::FORWARD_METHODS
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Airbrussh::LogFileFormatter'
+# Did you mean?  initialize_dup
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name path
+# wrong constant name <static-init>
+# wrong constant name <Class:Context>
+# undefined method `initialize<defaultArg>1' for class `Airbrussh::Rake::Context'
+# Did you mean?  initialize_dup
+# wrong constant name current_task_name
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name position
+# wrong constant name register_new_command
+# wrong constant name <static-init>
+# wrong constant name current_task_name
+# wrong constant name current_task_name=
+# wrong constant name install_monkey_patch
+# wrong constant name <static-init>
+# undefined singleton method `configuration<defaultArg>1' for `Airbrussh'
+# wrong constant name <static-init>
+# wrong constant name configuration<defaultArg>1
+# wrong constant name configuration
+# wrong constant name configure
 # wrong constant name <Class:OpDaysController>
+# wrong constant name <Class:OrdersController>
 # wrong constant name <Class:RecipesController>
 # uninitialized constant Api::OpDaysController::ACTION_OPTIONS
 # uninitialized constant Api::OpDaysController::AUTHENTICITY_TOKEN_LENGTH
@@ -4288,6 +4401,24 @@
 # wrong constant name index
 # wrong constant name save_ingredients_qty
 # wrong constant name save_prep_qty
+# wrong constant name <static-init>
+# uninitialized constant Api::OrdersController::ACTION_OPTIONS
+# uninitialized constant Api::OrdersController::AUTHENTICITY_TOKEN_LENGTH
+# uninitialized constant Api::OrdersController::CALLBACK_FILTER_TYPES
+# uninitialized constant Api::OrdersController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
+# uninitialized constant Api::OrdersController::DEFAULT_SEND_FILE_DISPOSITION
+# uninitialized constant Api::OrdersController::DEFAULT_SEND_FILE_TYPE
+# uninitialized constant Api::OrdersController::EXCLUDE_PARAMETERS
+# uninitialized constant Api::OrdersController::MODULES
+# uninitialized constant Api::OrdersController::NULL_ORIGIN_MESSAGE
+# uninitialized constant Api::OrdersController::PROTECTED_IVARS
+# uninitialized constant Api::OrdersController::REDIRECT_OPTIONS
+# uninitialized constant Api::OrdersController::RENDERERS
+# uninitialized constant Api::OrdersController::RENDER_FORMATS_IN_PRIORITY
+# uninitialized constant Api::OrdersController::URL_OPTIONS
+# wrong constant name index
+# wrong constant name update_items
+# wrong constant name update_state
 # wrong constant name <static-init>
 # uninitialized constant Api::RecipesController::ACTION_OPTIONS
 # uninitialized constant Api::RecipesController::AUTHENTICITY_TOKEN_LENGTH
@@ -5264,6 +5395,7 @@
 # wrong constant name report<defaultArg>1
 # wrong constant name report
 # wrong constant name write
+# wrong constant name github_https?
 # wrong constant name <Class:Base>
 # wrong constant name <Class:CompactIndex>
 # wrong constant name <Class:Dependency>
@@ -5396,7 +5528,6 @@
 # wrong constant name install_tasks
 # wrong constant name instance
 # wrong constant name instance=
-# uninitialized constant Bundler::GemRemoteFetcher::BASE64_URI_TRANSLATE
 # wrong constant name <static-init>
 # undefined method `initialize<defaultArg>1' for class `Bundler::GemVersionPromoter'
 # Did you mean?  initialize_dup
@@ -5549,7 +5680,11 @@
 # wrong constant name attempts
 # wrong constant name default_attempts
 # wrong constant name default_retries
+# undefined method `initialize<defaultArg>1' for class `Bundler::RubyGemsGemInstaller'
+# Did you mean?  initialize_dup
 # uninitialized constant Bundler::RubyGemsGemInstaller::ENV_PATHS
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
 # wrong constant name <static-init>
 # undefined method `initialize<defaultArg>1' for class `Bundler::Settings::Mirror'
 # Did you mean?  initialize_dup
@@ -5656,6 +5791,8 @@
 # wrong constant name empty?
 # wrong constant name for
 # wrong constant name for_many
+# uninitialized constant Bundler::YAMLSerializer
+# uninitialized constant Bundler::YAMLSerializer
 # wrong constant name <Class:ThreadsTable>
 # wrong constant name <static-init>
 # undefined method `a<defaultArg>1' for module `CGI::HtmlExtension'
@@ -5856,13 +5993,13 @@
 # Did you mean?  initialize_dup
 # wrong constant name empty?
 # wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
 # wrong constant name length
 # wrong constant name size
 # wrong constant name empty?
 # wrong constant name initialize
 # wrong constant name length
 # wrong constant name size
+# wrong constant name table
 # wrong constant name <Class:Ability>
 # wrong constant name <Class:AccessDenied>
 # wrong constant name <Class:AuthorizationNotPerformed>
@@ -6034,12 +6171,6 @@
 # uninitialized constant Concurrent::RubyThreadPoolExecutor::INFO
 # uninitialized constant Concurrent::RubyThreadPoolExecutor::UNKNOWN
 # uninitialized constant Concurrent::RubyThreadPoolExecutor::WARN
-# uninitialized constant DEBUG
-# uninitialized constant ERROR
-# uninitialized constant FATAL
-# uninitialized constant INFO
-# uninitialized constant UNKNOWN
-# uninitialized constant WARN
 # uninitialized constant Concurrent::TimerTask::DEBUG
 # uninitialized constant Concurrent::TimerTask::ERROR
 # uninitialized constant Concurrent::TimerTask::FALLBACK_POLICIES
@@ -6457,12 +6588,6 @@
 # A copy of DayIngredient::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of DayIngredient::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of DayIngredient::ActiveRecord_Relation has been removed from the module tree but is still active!
-# wrong constant name build_ingredient
-# wrong constant name build_op_day
-# wrong constant name create_ingredient
-# wrong constant name create_ingredient!
-# wrong constant name create_op_day
-# wrong constant name create_op_day!
 # wrong constant name reload_ingredient
 # wrong constant name reload_op_day
 # wrong constant name <static-init>
@@ -6517,12 +6642,6 @@
 # A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of DayPrep::ActiveRecord_Relation has been removed from the module tree but is still active!
-# wrong constant name build_op_day
-# wrong constant name build_recipe_step
-# wrong constant name create_op_day
-# wrong constant name create_op_day!
-# wrong constant name create_recipe_step
-# wrong constant name create_recipe_step!
 # wrong constant name reload_op_day
 # wrong constant name reload_recipe_step
 # wrong constant name <static-init>
@@ -8704,19 +8823,18 @@
 # uninitialized constant GDBMFatalError
 # wrong constant name <Class:RuntimeRequirementNotMetError>
 # wrong constant name <Class:SpecFetcher>
-# wrong constant name without_filtering
+# wrong constant name <Class:SpecificationPolicy>
+# wrong constant name <Class:UninstallError>
 # undefined method `find_gems_with_sources<defaultArg>1' for class `Gem::DependencyInstaller'
 # undefined method `find_spec_by_name_and_version<defaultArg>1' for class `Gem::DependencyInstaller'
 # undefined method `find_spec_by_name_and_version<defaultArg>2' for class `Gem::DependencyInstaller'
 # wrong constant name _deprecated_add_found_dependencies
 # wrong constant name _deprecated_gather_dependencies
-# wrong constant name _deprecated_gems_to_install
 # wrong constant name add_found_dependencies
 # wrong constant name find_gems_with_sources<defaultArg>1
 # wrong constant name find_spec_by_name_and_version<defaultArg>1
 # wrong constant name find_spec_by_name_and_version<defaultArg>2
 # wrong constant name gather_dependencies
-# wrong constant name gems_to_install
 # wrong constant name <static-init>
 # wrong constant name redirector
 # uninitialized constant Gem::Ext::ExtConfBuilder::CHDIR_MONITOR
@@ -8728,16 +8846,6 @@
 # wrong constant name build<defaultArg>2
 # wrong constant name build
 # wrong constant name get_relative_path
-# undefined method `verify_gem_home<defaultArg>1' for class `Gem::Installer'
-# wrong constant name verify_gem_home<defaultArg>1
-# wrong constant name verify_spec_name
-# wrong constant name <Class:DigestIO>
-# wrong constant name <Class:FileSource>
-# wrong constant name <Class:IOSource>
-# wrong constant name <Class:Old>
-# wrong constant name <Class:Source>
-# wrong constant name <Class:TarHeader>
-# wrong constant name realpath
 # wrong constant name digests
 # wrong constant name initialize
 # wrong constant name write
@@ -8784,9 +8892,11 @@
 # wrong constant name version
 # wrong constant name <static-init>
 # wrong constant name from
+# wrong constant name oct_or_256based
 # wrong constant name strict_oct
 # undefined method `read<defaultArg>1' for class `Gem::Package::TarReader::Entry'
 # undefined method `readpartial<defaultArg>1' for class `Gem::Package::TarReader::Entry'
+# undefined method `readpartial<defaultArg>2' for class `Gem::Package::TarReader::Entry'
 # wrong constant name bytes_read
 # wrong constant name check_closed
 # wrong constant name close
@@ -8798,12 +8908,15 @@
 # wrong constant name getc
 # wrong constant name header
 # wrong constant name initialize
+# wrong constant name length
 # wrong constant name pos
 # wrong constant name read<defaultArg>1
 # wrong constant name read
 # wrong constant name readpartial<defaultArg>1
+# wrong constant name readpartial<defaultArg>2
 # wrong constant name readpartial
 # wrong constant name rewind
+# wrong constant name size
 # wrong constant name symlink?
 # wrong constant name <static-init>
 # wrong constant name new
@@ -8815,12 +8928,6 @@
 # wrong constant name initialize
 # wrong constant name path
 # wrong constant name spec_cache_dir
-# undefined method `sign_s3_url<defaultArg>1' for class `Gem::RemoteFetcher'
-# wrong constant name api_endpoint
-# wrong constant name correct_for_windows_path
-# wrong constant name s3_expiration
-# wrong constant name sign_s3_url<defaultArg>1
-# wrong constant name sign_s3_url
 # undefined method `initialize<defaultArg>1' for class `Gem::Resolver::ActivationRequest'
 # Did you mean?  initialize_dup
 # wrong constant name initialize<defaultArg>1
@@ -8842,8 +8949,6 @@
 # wrong constant name suggestion
 # wrong constant name suggestion=
 # wrong constant name <static-init>
-# uninitialized constant Gem::S3URISigner
-# uninitialized constant Gem::S3URISigner
 # wrong constant name <static-init>
 # undefined method `initialize<defaultArg>1' for class `Gem::Security::Policy'
 # Did you mean?  initialize_dup
@@ -8885,18 +8990,25 @@
 # wrong constant name <static-init>
 # undefined method `initialize<defaultArg>1' for class `Gem::Security::Signer'
 # Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Gem::Security::Signer'
+# Did you mean?  initialize_dup
+# undefined method `re_sign_key<defaultArg>1' for class `Gem::Security::Signer'
 # wrong constant name cert_chain
 # wrong constant name cert_chain=
 # wrong constant name digest_algorithm
 # wrong constant name digest_name
 # wrong constant name extract_name
 # wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
 # wrong constant name initialize
 # wrong constant name key
 # wrong constant name key=
 # wrong constant name load_cert_chain
+# wrong constant name options
+# wrong constant name re_sign_key<defaultArg>1
 # wrong constant name re_sign_key
 # wrong constant name sign
+# wrong constant name re_sign_cert
 # undefined method `initialize<defaultArg>1' for class `Gem::Security::TrustDir'
 # Did you mean?  initialize_dup
 # wrong constant name cert_path
@@ -8957,8 +9069,6 @@
 # wrong constant name write<defaultArg>2
 # wrong constant name write<defaultArg>3
 # wrong constant name write
-# wrong constant name <=>
-# wrong constant name api_uri
 # undefined method `detect<defaultArg>1' for class `Gem::SpecFetcher'
 # undefined method `initialize<defaultArg>1' for class `Gem::SpecFetcher'
 # Did you mean?  initialize_dup
@@ -8989,13 +9099,20 @@
 # wrong constant name <=>
 # uninitialized constant Gem::Specification::GENERICS
 # uninitialized constant Gem::Specification::GENERIC_CACHE
-# wrong constant name bundled_gem_in_old_ruby?
-# wrong constant name rubyforge_project
 # wrong constant name to_ruby
-# wrong constant name warning
 # wrong constant name add_spec
 # wrong constant name add_specs
 # wrong constant name remove_spec
+# undefined method `validate<defaultArg>1' for class `Gem::SpecificationPolicy'
+# wrong constant name initialize
+# wrong constant name packaging
+# wrong constant name packaging=
+# wrong constant name validate<defaultArg>1
+# wrong constant name validate
+# wrong constant name validate_dependencies
+# wrong constant name validate_metadata
+# wrong constant name validate_permissions
+# wrong constant name <static-init>
 # uninitialized constant Gem::Stream
 # uninitialized constant Gem::Stream
 # wrong constant name _deprecated_debug
@@ -9013,11 +9130,13 @@
 # wrong constant name version
 # wrong constant name default_gemspec_stub
 # wrong constant name gemspec_stub
+# wrong constant name spec
+# wrong constant name spec=
+# wrong constant name <static-init>
 # uninitialized constant Gem::UriParser
 # uninitialized constant Gem::UriParser
 # uninitialized constant Gem::UriParsing
 # uninitialized constant Gem::UriParsing
-# wrong constant name _deprecated_datadir
 # wrong constant name default_gems_use_full_paths?
 # wrong constant name remove_unresolved_default_spec
 # wrong constant name rails_info_path
@@ -9028,6 +9147,37 @@
 # wrong constant name rails_info_url
 # wrong constant name rails_mailers_path
 # wrong constant name rails_mailers_url
+# wrong constant name <Class:PoParser>
+# undefined method `parse<defaultArg>1' for class `GetText::PoParser'
+# uninitialized constant GetText::PoParser::Racc_Main_Parsing_Routine
+# uninitialized constant GetText::PoParser::Racc_Runtime_Core_Id_C
+# uninitialized constant GetText::PoParser::Racc_Runtime_Core_Revision
+# uninitialized constant GetText::PoParser::Racc_Runtime_Core_Revision_C
+# uninitialized constant GetText::PoParser::Racc_Runtime_Core_Revision_R
+# uninitialized constant GetText::PoParser::Racc_Runtime_Core_Version
+# uninitialized constant GetText::PoParser::Racc_Runtime_Core_Version_C
+# uninitialized constant GetText::PoParser::Racc_Runtime_Core_Version_R
+# uninitialized constant GetText::PoParser::Racc_Runtime_Revision
+# uninitialized constant GetText::PoParser::Racc_Runtime_Type
+# uninitialized constant GetText::PoParser::Racc_Runtime_Version
+# uninitialized constant GetText::PoParser::Racc_YY_Parse_Method
+# wrong constant name _
+# wrong constant name _reduce_10
+# wrong constant name _reduce_12
+# wrong constant name _reduce_13
+# wrong constant name _reduce_14
+# wrong constant name _reduce_15
+# wrong constant name _reduce_5
+# wrong constant name _reduce_8
+# wrong constant name _reduce_9
+# wrong constant name _reduce_none
+# wrong constant name on_comment
+# wrong constant name on_message
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name unescape
+# wrong constant name <static-init>
+# wrong constant name <static-init>
 # uninitialized constant GetoptLong
 # uninitialized constant GetoptLong
 # wrong constant name <Class:BaseLocator>
@@ -9337,17 +9487,37 @@
 # wrong constant name perform_caching?
 # undefined method `read_nonblock<defaultArg>1' for class `IO'
 # undefined method `read_nonblock<defaultArg>2' for class `IO'
+# wrong constant name beep
+# wrong constant name cooked
+# wrong constant name cooked!
+# wrong constant name cursor
+# wrong constant name cursor=
+# wrong constant name echo=
+# wrong constant name echo?
+# wrong constant name getch
+# wrong constant name getpass
+# wrong constant name goto
+# wrong constant name iflush
+# wrong constant name ioflush
+# wrong constant name noecho
 # wrong constant name nonblock
 # wrong constant name nonblock=
 # wrong constant name nonblock?
 # wrong constant name nread
+# wrong constant name oflush
 # wrong constant name pathconf
+# wrong constant name pressed?
+# wrong constant name raw
+# wrong constant name raw!
 # wrong constant name read_nonblock<defaultArg>1
 # wrong constant name read_nonblock<defaultArg>2
 # wrong constant name ready?
 # wrong constant name wait
 # wrong constant name wait_readable
 # wrong constant name wait_writable
+# wrong constant name winsize
+# wrong constant name winsize=
+# wrong constant name console
 # undefined method `initialize<defaultArg>1' for class `IPAddr'
 # Did you mean?  initialize_dup
 # undefined method `initialize<defaultArg>2' for class `IPAddr'
@@ -9820,9 +9990,6 @@
 # A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of ItemPrice::ActiveRecord_Relation has been removed from the module tree but is still active!
-# wrong constant name build_recipe
-# wrong constant name create_recipe
-# wrong constant name create_recipe!
 # wrong constant name reload_recipe
 # wrong constant name <static-init>
 # wrong constant name from_state
@@ -12189,10 +12356,133 @@
 # wrong constant name uidl
 # wrong constant name unique_id
 # wrong constant name <static-init>
+# undefined method `download<defaultArg>1' for class `Net::SCP'
+# undefined method `download!<defaultArg>1' for class `Net::SCP'
+# undefined method `download!<defaultArg>2' for class `Net::SCP'
+# undefined method `upload<defaultArg>1' for class `Net::SCP'
+# undefined method `upload!<defaultArg>1' for class `Net::SCP'
+# uninitialized constant Net::SCP::DEFAULT_CHUNK_SIZE
+# wrong constant name <Class:Download>
+# wrong constant name <Class:Error>
+# wrong constant name <Class:Upload>
+# wrong constant name download<defaultArg>1
+# wrong constant name download
+# wrong constant name download!<defaultArg>1
+# wrong constant name download!<defaultArg>2
+# wrong constant name download!
+# wrong constant name initialize
+# wrong constant name session
+# wrong constant name upload<defaultArg>1
+# wrong constant name upload
+# wrong constant name upload!<defaultArg>1
+# wrong constant name upload!
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined singleton method `download!<defaultArg>1' for `Net::SCP'
+# undefined singleton method `download!<defaultArg>2' for `Net::SCP'
+# undefined singleton method `start<defaultArg>1' for `Net::SCP'
+# undefined singleton method `upload!<defaultArg>1' for `Net::SCP'
+# wrong constant name <static-init>
+# wrong constant name download!<defaultArg>1
+# wrong constant name download!<defaultArg>2
+# wrong constant name download!
+# wrong constant name start<defaultArg>1
+# wrong constant name start
+# wrong constant name upload!<defaultArg>1
+# wrong constant name upload!
 # uninitialized constant Net::SFTP
 # uninitialized constant Net::SFTP
-# uninitialized constant Net::SSH
-# uninitialized constant Net::SSH
+# wrong constant name add_keycert
+# wrong constant name keycert_files
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_CLOSE
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_DATA
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_EOF
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_EXTENDED_DATA
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_FAILURE
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_OPEN
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_OPEN_CONFIRMATION
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_OPEN_FAILURE
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_REQUEST
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_SUCCESS
+# uninitialized constant Net::SSH::Connection::Session::CHANNEL_WINDOW_ADJUST
+# uninitialized constant Net::SSH::Connection::Session::GLOBAL_REQUEST
+# uninitialized constant Net::SSH::Connection::Session::REQUEST_FAILURE
+# uninitialized constant Net::SSH::Connection::Session::REQUEST_SUCCESS
+# wrong constant name scp
+# undefined method `keys_for<defaultArg>1' for class `Net::SSH::KnownHosts'
+# wrong constant name keys_for<defaultArg>1
+# wrong constant name match
+# undefined method `open<defaultArg>1' for class `Net::SSH::Proxy::Command'
+# wrong constant name close_on_error
+# wrong constant name command_line
+# wrong constant name command_line_template
+# wrong constant name initialize
+# wrong constant name open<defaultArg>1
+# wrong constant name open
+# wrong constant name timeout
+# wrong constant name timeout=
+# wrong constant name <static-init>
+# uninitialized constant Net::SSH::Proxy::HTTP
+# uninitialized constant Net::SSH::Proxy::HTTP
+# uninitialized constant Net::SSH::Transport::Algorithms::DEBUG
+# uninitialized constant Net::SSH::Transport::Algorithms::DISCONNECT
+# uninitialized constant Net::SSH::Transport::Algorithms::IGNORE
+# uninitialized constant Net::SSH::Transport::Algorithms::KEXDH_GEX_GROUP
+# uninitialized constant Net::SSH::Transport::Algorithms::KEXDH_GEX_INIT
+# uninitialized constant Net::SSH::Transport::Algorithms::KEXDH_GEX_REPLY
+# uninitialized constant Net::SSH::Transport::Algorithms::KEXDH_GEX_REQUEST
+# uninitialized constant Net::SSH::Transport::Algorithms::KEXDH_INIT
+# uninitialized constant Net::SSH::Transport::Algorithms::KEXDH_REPLY
+# uninitialized constant Net::SSH::Transport::Algorithms::KEXECDH_INIT
+# uninitialized constant Net::SSH::Transport::Algorithms::KEXECDH_REPLY
+# uninitialized constant Net::SSH::Transport::Algorithms::KEXINIT
+# uninitialized constant Net::SSH::Transport::Algorithms::NEWKEYS
+# uninitialized constant Net::SSH::Transport::Algorithms::SERVICE_ACCEPT
+# uninitialized constant Net::SSH::Transport::Algorithms::SERVICE_REQUEST
+# uninitialized constant Net::SSH::Transport::Algorithms::UNIMPLEMENTED
+# wrong constant name etm
+# wrong constant name etm
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::DEBUG
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::DISCONNECT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::IGNORE
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::KEXDH_GEX_GROUP
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::KEXDH_GEX_INIT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::KEXDH_GEX_REPLY
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::KEXDH_GEX_REQUEST
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::KEXDH_INIT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::KEXDH_REPLY
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::KEXECDH_INIT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::KEXECDH_REPLY
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::KEXINIT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::NEWKEYS
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::SERVICE_ACCEPT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::SERVICE_REQUEST
+# uninitialized constant Net::SSH::Transport::Kex::Abstract::UNIMPLEMENTED
+# wrong constant name digester
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::DEBUG
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::DISCONNECT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::IGNORE
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::KEXDH_GEX_GROUP
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::KEXDH_GEX_INIT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::KEXDH_GEX_REPLY
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::KEXDH_GEX_REQUEST
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::KEXDH_INIT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::KEXDH_REPLY
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::KEXECDH_INIT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::KEXECDH_REPLY
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::KEXINIT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::NEWKEYS
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::SERVICE_ACCEPT
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::SERVICE_REQUEST
+# uninitialized constant Net::SSH::Transport::Kex::Abstract5656::UNIMPLEMENTED
+# wrong constant name curve_name
+# wrong constant name ecdh
+# wrong constant name <static-init>
+# wrong constant name dependenciesRequiredForX25519
+# wrong constant name raiseUnlessLoaded
 # uninitialized constant Net::WriteTimeout
 # uninitialized constant Net::WriteTimeout
 # uninitialized constant Newton
@@ -12400,6 +12690,7 @@
 # wrong constant name -@
 # wrong constant name /
 # wrong constant name negative?
+# wrong constant name to_ssh
 # uninitialized constant OpenSSL::Digest::DSS
 # uninitialized constant OpenSSL::Digest::DSS
 # uninitialized constant OpenSSL::Digest::DSS1
@@ -12415,9 +12706,28 @@
 # wrong constant name signed?
 # uninitialized constant OpenSSL::PKCS5::PKCS5Error
 # uninitialized constant OpenSSL::PKCS5::PKCS5Error
+# wrong constant name valid?
+# wrong constant name ssh_do_sign
+# wrong constant name ssh_do_verify
+# wrong constant name ssh_signature_type
+# wrong constant name ssh_type
+# wrong constant name to_blob
+# wrong constant name ssh_do_sign
+# wrong constant name ssh_do_verify
+# wrong constant name ssh_signature_type
+# wrong constant name ssh_type
+# wrong constant name to_blob
 # undefined method `to_bn<defaultArg>1' for class `OpenSSL::PKey::EC::Point'
+# wrong constant name ssh_type
+# wrong constant name to_blob
 # wrong constant name to_bn<defaultArg>1
 # wrong constant name to_octet_string
+# wrong constant name read_keyblob
+# wrong constant name ssh_do_sign
+# wrong constant name ssh_do_verify
+# wrong constant name ssh_signature_type
+# wrong constant name ssh_type
+# wrong constant name to_blob
 # wrong constant name ==
 # wrong constant name ==
 # wrong constant name ==
@@ -12440,7 +12750,7 @@
 # uninitialized constant Order::NAME_COMPILABLE_REGEXP
 # uninitialized constant Order::NO_VALUE
 # uninitialized constant Order::UNASSIGNABLE_KEYS
-# Unable to autoload constant Order::VERSION, expected /Users/owen/workspace/kitchen/server/app/models/order/version.rb to define it
+# Unable to autoload constant Order::VERSION, expected /Users/owen/workspace/makasu/server/app/models/order/version.rb to define it
 # wrong constant name after_add_for_order_items
 # wrong constant name after_add_for_order_items=
 # wrong constant name after_add_for_order_items?
@@ -12542,9 +12852,6 @@
 # A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of Order::ActiveRecord_Relation has been removed from the module tree but is still active!
-# wrong constant name build_customer
-# wrong constant name create_customer
-# wrong constant name create_customer!
 # wrong constant name order_item_ids=
 # wrong constant name reload_customer
 # wrong constant name version_ids=
@@ -12679,12 +12986,6 @@
 # A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of OrderItem::ActiveRecord_Relation has been removed from the module tree but is still active!
-# wrong constant name build_order
-# wrong constant name build_recipe
-# wrong constant name create_order
-# wrong constant name create_order!
-# wrong constant name create_recipe
-# wrong constant name create_recipe!
 # wrong constant name reload_order
 # wrong constant name reload_recipe
 # wrong constant name <static-init>
@@ -12972,6 +13273,7 @@
 # uninitialized constant PG::PG_DIAG_STATEMENT_POSITION
 # uninitialized constant PG::PG_DIAG_TABLE_NAME
 # uninitialized constant PG::PQERRORS_DEFAULT
+# uninitialized constant PG::PQERRORS_SQLSTATE
 # uninitialized constant PG::PQERRORS_TERSE
 # uninitialized constant PG::PQERRORS_VERBOSE
 # uninitialized constant PG::PQPING_NO_ATTEMPT
@@ -13437,6 +13739,7 @@
 # uninitialized constant PG::Connection::PG_DIAG_STATEMENT_POSITION
 # uninitialized constant PG::Connection::PG_DIAG_TABLE_NAME
 # uninitialized constant PG::Connection::PQERRORS_DEFAULT
+# uninitialized constant PG::Connection::PQERRORS_SQLSTATE
 # uninitialized constant PG::Connection::PQERRORS_TERSE
 # uninitialized constant PG::Connection::PQERRORS_VERBOSE
 # uninitialized constant PG::Connection::PQPING_NO_ATTEMPT
@@ -13900,6 +14203,7 @@
 # uninitialized constant PG::Result::PG_DIAG_STATEMENT_POSITION
 # uninitialized constant PG::Result::PG_DIAG_TABLE_NAME
 # uninitialized constant PG::Result::PQERRORS_DEFAULT
+# uninitialized constant PG::Result::PQERRORS_SQLSTATE
 # uninitialized constant PG::Result::PQERRORS_TERSE
 # uninitialized constant PG::Result::PQERRORS_VERBOSE
 # uninitialized constant PG::Result::PQPING_NO_ATTEMPT
@@ -14522,6 +14826,9 @@
 # uninitialized constant PStore
 # uninitialized constant PTY
 # uninitialized constant PTY
+# uninitialized constant PackageSpec
+# uninitialized constant PackageSpec
+# wrong constant name <Class:PackageSpec>
 # wrong constant name <Class:AttributeSerializers>
 # wrong constant name <Class:Cleaner>
 # wrong constant name <Class:Compatibility>
@@ -14746,6 +15053,13 @@
 # wrong constant name serializer=
 # wrong constant name timestamp_field=
 # wrong constant name version
+# wrong constant name on_find_pattern
+# wrong constant name on_forward_arg
+# wrong constant name find_pattern
+# wrong constant name forward_arg
+# wrong constant name forward_only_args
+# wrong constant name emit_forward_arg
+# wrong constant name emit_forward_arg=
 # uninitialized constant Parser::Ruby24::Racc_Main_Parsing_Routine
 # uninitialized constant Parser::Ruby24::Racc_Runtime_Core_Id_C
 # uninitialized constant Parser::Ruby24::Racc_Runtime_Core_Revision
@@ -14758,6 +15072,30 @@
 # uninitialized constant Parser::Ruby24::Racc_Runtime_Type
 # uninitialized constant Parser::Ruby24::Racc_Runtime_Version
 # uninitialized constant Parser::Ruby24::Racc_YY_Parse_Method
+# wrong constant name _reduce_333
+# wrong constant name _reduce_337
+# wrong constant name _reduce_341
+# wrong constant name _reduce_343
+# wrong constant name _reduce_349
+# wrong constant name _reduce_369
+# wrong constant name _reduce_378
+# wrong constant name _reduce_389
+# wrong constant name _reduce_425
+# wrong constant name _reduce_429
+# wrong constant name _reduce_432
+# wrong constant name _reduce_434
+# wrong constant name _reduce_473
+# wrong constant name _reduce_531
+# wrong constant name _reduce_547
+# wrong constant name _reduce_557
+# wrong constant name _reduce_561
+# wrong constant name _reduce_566
+# wrong constant name _reduce_569
+# wrong constant name _reduce_576
+# wrong constant name _reduce_590
+# wrong constant name _reduce_596
+# wrong constant name _reduce_600
+# wrong constant name _reduce_604
 # uninitialized constant Parser::Ruby25::Racc_Main_Parsing_Routine
 # uninitialized constant Parser::Ruby25::Racc_Runtime_Core_Id_C
 # uninitialized constant Parser::Ruby25::Racc_Runtime_Core_Revision
@@ -14770,6 +15108,39 @@
 # uninitialized constant Parser::Ruby25::Racc_Runtime_Type
 # uninitialized constant Parser::Ruby25::Racc_Runtime_Version
 # uninitialized constant Parser::Ruby25::Racc_YY_Parse_Method
+# wrong constant name _reduce_333
+# wrong constant name _reduce_335
+# wrong constant name _reduce_338
+# wrong constant name _reduce_342
+# wrong constant name _reduce_344
+# wrong constant name _reduce_350
+# wrong constant name _reduce_370
+# wrong constant name _reduce_379
+# wrong constant name _reduce_390
+# wrong constant name _reduce_426
+# wrong constant name _reduce_430
+# wrong constant name _reduce_433
+# wrong constant name _reduce_435
+# wrong constant name _reduce_474
+# wrong constant name _reduce_532
+# wrong constant name _reduce_548
+# wrong constant name _reduce_558
+# wrong constant name _reduce_562
+# wrong constant name _reduce_567
+# wrong constant name _reduce_570
+# wrong constant name _reduce_577
+# wrong constant name _reduce_591
+# wrong constant name _reduce_597
+# wrong constant name _reduce_601
+# wrong constant name _reduce_605
+# undefined method `import!<defaultArg>1' for class `Parser::Source::TreeRewriter'
+# wrong constant name as_nested_actions
+# wrong constant name as_replacements
+# wrong constant name import!<defaultArg>1
+# wrong constant name import!
+# wrong constant name contract
+# wrong constant name moved
+# wrong constant name nested_actions
 # undefined method `children<defaultArg>1' for class `Pathname'
 # undefined method `find<defaultArg>1' for class `Pathname'
 # wrong constant name children<defaultArg>1
@@ -14904,6 +15275,108 @@
 # uninitialized constant Proc8
 # uninitialized constant Proc9
 # uninitialized constant Proc9
+# uninitialized constant ProcurementItem::ACTIONS
+# uninitialized constant ProcurementItem::BLACKLISTED_CLASS_METHODS
+# uninitialized constant ProcurementItem::CALLBACKS
+# uninitialized constant ProcurementItem::CALLBACK_FILTER_TYPES
+# uninitialized constant ProcurementItem::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedAssociationMethods>
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant ProcurementItem::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant ProcurementItem::NAME_COMPILABLE_REGEXP
+# uninitialized constant ProcurementItem::UNASSIGNABLE_KEYS
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# uninitialized constant ProcurementOrder::ACTIONS
+# uninitialized constant ProcurementOrder::BLACKLISTED_CLASS_METHODS
+# uninitialized constant ProcurementOrder::CALLBACKS
+# uninitialized constant ProcurementOrder::CALLBACK_FILTER_TYPES
+# uninitialized constant ProcurementOrder::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedAssociationMethods>
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant ProcurementOrder::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant ProcurementOrder::NAME_COMPILABLE_REGEXP
+# uninitialized constant ProcurementOrder::UNASSIGNABLE_KEYS
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name <static-init>
+# wrong constant name <static-init>
 # wrong constant name <Class:FALLBACK>
 # uninitialized constant Psych::FALLBACK::Elem
 # wrong constant name to_ruby
@@ -15349,9 +15822,6 @@
 # A copy of PurchasedRecipe::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of PurchasedRecipe::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of PurchasedRecipe::ActiveRecord_Relation has been removed from the module tree but is still active!
-# wrong constant name build_recipe
-# wrong constant name create_recipe
-# wrong constant name create_recipe!
 # wrong constant name reload_recipe
 # wrong constant name <static-init>
 # uninitialized constant RDoc::Constant::RDoc
@@ -15651,7 +16121,7 @@
 # uninitialized constant Rails::Generators::TestCase::VERSION
 # wrong constant name properties
 # wrong constant name properties=
-# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007feb504d85a8>'
+# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007f92eac33258>'
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=
@@ -16290,6 +16760,9 @@
 # wrong constant name after_add_for_order_items
 # wrong constant name after_add_for_order_items=
 # wrong constant name after_add_for_order_items?
+# wrong constant name after_add_for_purchased_recipes
+# wrong constant name after_add_for_purchased_recipes=
+# wrong constant name after_add_for_purchased_recipes?
 # wrong constant name after_add_for_recipe_steps
 # wrong constant name after_add_for_recipe_steps=
 # wrong constant name after_add_for_recipe_steps?
@@ -16302,6 +16775,9 @@
 # wrong constant name after_remove_for_order_items
 # wrong constant name after_remove_for_order_items=
 # wrong constant name after_remove_for_order_items?
+# wrong constant name after_remove_for_purchased_recipes
+# wrong constant name after_remove_for_purchased_recipes=
+# wrong constant name after_remove_for_purchased_recipes?
 # wrong constant name after_remove_for_recipe_steps
 # wrong constant name after_remove_for_recipe_steps=
 # wrong constant name after_remove_for_recipe_steps?
@@ -16310,6 +16786,7 @@
 # wrong constant name after_remove_for_step_inputs?
 # wrong constant name autosave_associated_records_for_item_prices
 # wrong constant name autosave_associated_records_for_order_items
+# wrong constant name autosave_associated_records_for_purchased_recipes
 # wrong constant name autosave_associated_records_for_recipe_steps
 # wrong constant name autosave_associated_records_for_step_inputs
 # wrong constant name before_add_for_item_prices
@@ -16318,6 +16795,9 @@
 # wrong constant name before_add_for_order_items
 # wrong constant name before_add_for_order_items=
 # wrong constant name before_add_for_order_items?
+# wrong constant name before_add_for_purchased_recipes
+# wrong constant name before_add_for_purchased_recipes=
+# wrong constant name before_add_for_purchased_recipes?
 # wrong constant name before_add_for_recipe_steps
 # wrong constant name before_add_for_recipe_steps=
 # wrong constant name before_add_for_recipe_steps?
@@ -16330,6 +16810,9 @@
 # wrong constant name before_remove_for_order_items
 # wrong constant name before_remove_for_order_items=
 # wrong constant name before_remove_for_order_items?
+# wrong constant name before_remove_for_purchased_recipes
+# wrong constant name before_remove_for_purchased_recipes=
+# wrong constant name before_remove_for_purchased_recipes?
 # wrong constant name before_remove_for_recipe_steps
 # wrong constant name before_remove_for_recipe_steps=
 # wrong constant name before_remove_for_recipe_steps?
@@ -16338,6 +16821,7 @@
 # wrong constant name before_remove_for_step_inputs?
 # wrong constant name validate_associated_records_for_item_prices
 # wrong constant name validate_associated_records_for_order_items
+# wrong constant name validate_associated_records_for_purchased_recipes
 # wrong constant name validate_associated_records_for_recipe_steps
 # wrong constant name validate_associated_records_for_step_inputs
 # A copy of Recipe::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
@@ -16381,6 +16865,7 @@
 # A copy of Recipe::ActiveRecord_Relation has been removed from the module tree but is still active!
 # wrong constant name item_price_ids=
 # wrong constant name order_item_ids=
+# wrong constant name purchased_recipe_ids=
 # wrong constant name recipe_step_ids=
 # wrong constant name step_input_ids=
 # wrong constant name <static-init>
@@ -16390,6 +16875,9 @@
 # wrong constant name after_add_for_order_items
 # wrong constant name after_add_for_order_items=
 # wrong constant name after_add_for_order_items?
+# wrong constant name after_add_for_purchased_recipes
+# wrong constant name after_add_for_purchased_recipes=
+# wrong constant name after_add_for_purchased_recipes?
 # wrong constant name after_add_for_recipe_steps
 # wrong constant name after_add_for_recipe_steps=
 # wrong constant name after_add_for_recipe_steps?
@@ -16402,6 +16890,9 @@
 # wrong constant name after_remove_for_order_items
 # wrong constant name after_remove_for_order_items=
 # wrong constant name after_remove_for_order_items?
+# wrong constant name after_remove_for_purchased_recipes
+# wrong constant name after_remove_for_purchased_recipes=
+# wrong constant name after_remove_for_purchased_recipes?
 # wrong constant name after_remove_for_recipe_steps
 # wrong constant name after_remove_for_recipe_steps=
 # wrong constant name after_remove_for_recipe_steps?
@@ -16414,6 +16905,9 @@
 # wrong constant name before_add_for_order_items
 # wrong constant name before_add_for_order_items=
 # wrong constant name before_add_for_order_items?
+# wrong constant name before_add_for_purchased_recipes
+# wrong constant name before_add_for_purchased_recipes=
+# wrong constant name before_add_for_purchased_recipes?
 # wrong constant name before_add_for_recipe_steps
 # wrong constant name before_add_for_recipe_steps=
 # wrong constant name before_add_for_recipe_steps?
@@ -16426,6 +16920,9 @@
 # wrong constant name before_remove_for_order_items
 # wrong constant name before_remove_for_order_items=
 # wrong constant name before_remove_for_order_items?
+# wrong constant name before_remove_for_purchased_recipes
+# wrong constant name before_remove_for_purchased_recipes=
+# wrong constant name before_remove_for_purchased_recipes?
 # wrong constant name before_remove_for_recipe_steps
 # wrong constant name before_remove_for_recipe_steps=
 # wrong constant name before_remove_for_recipe_steps?
@@ -16554,7 +17051,6 @@
 # A copy of RecipeStep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of RecipeStep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of RecipeStep::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
-# wrong constant name name
 # A copy of RecipeStep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
 # A copy of RecipeStep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
 # A copy of RecipeStep::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
@@ -16581,9 +17077,6 @@
 # A copy of RecipeStep::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of RecipeStep::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of RecipeStep::ActiveRecord_Relation has been removed from the module tree but is still active!
-# wrong constant name build_recipe
-# wrong constant name create_recipe
-# wrong constant name create_recipe!
 # wrong constant name day_prep_ids=
 # wrong constant name detailed_instruction_ids=
 # wrong constant name input_ids=
@@ -17113,6 +17606,410 @@
 # uninitialized constant SDBM
 # uninitialized constant SDBMError
 # uninitialized constant SDBMError
+# wrong constant name <Class:Backend>
+# wrong constant name <Class:Color>
+# wrong constant name <Class:Command>
+# wrong constant name <Class:CommandMap>
+# wrong constant name <Class:Configuration>
+# wrong constant name <Class:Coordinator>
+# wrong constant name <Class:DSL>
+# wrong constant name <Class:DeprecationLogger>
+# wrong constant name <Class:Formatter>
+# wrong constant name <Class:Host>
+# wrong constant name <Class:HostWithPortParser>
+# wrong constant name <Class:HostWithUsernameAndPortParser>
+# wrong constant name <Class:HostWithUsernameParser>
+# wrong constant name <Class:IPv6HostWithPortParser>
+# wrong constant name <Class:LogMessage>
+# wrong constant name <Class:Logger>
+# wrong constant name <Class:MappingInteractionHandler>
+# wrong constant name <Class:Redaction>
+# wrong constant name <Class:Runner>
+# wrong constant name <Class:SimpleHostParser>
+# wrong constant name <Class:StandardError>
+# wrong constant name <Class:UnparsableHostStringError>
+# wrong constant name <Class:Abstract>
+# wrong constant name <Class:ConnectionPool>
+# wrong constant name <Class:Local>
+# wrong constant name <Class:MethodUnavailableError>
+# wrong constant name <Class:Netssh>
+# wrong constant name <Class:Printer>
+# wrong constant name <Class:Skipper>
+# undefined method `download!<defaultArg>1' for class `SSHKit::Backend::Abstract'
+# undefined method `download!<defaultArg>2' for class `SSHKit::Backend::Abstract'
+# undefined method `make<defaultArg>1' for class `SSHKit::Backend::Abstract'
+# undefined method `rake<defaultArg>1' for class `SSHKit::Backend::Abstract'
+# undefined method `upload!<defaultArg>1' for class `SSHKit::Backend::Abstract'
+# wrong constant name as
+# wrong constant name background
+# wrong constant name capture
+# wrong constant name debug
+# wrong constant name download!<defaultArg>1
+# wrong constant name download!<defaultArg>2
+# wrong constant name download!
+# wrong constant name error
+# wrong constant name execute
+# wrong constant name fatal
+# wrong constant name host
+# wrong constant name info
+# wrong constant name initialize
+# wrong constant name log
+# wrong constant name make<defaultArg>1
+# wrong constant name make
+# wrong constant name rake<defaultArg>1
+# wrong constant name rake
+# wrong constant name redact
+# wrong constant name run
+# wrong constant name test
+# wrong constant name upload!<defaultArg>1
+# wrong constant name upload!
+# wrong constant name warn
+# wrong constant name with
+# wrong constant name within
+# wrong constant name <static-init>
+# wrong constant name config
+# wrong constant name configure
+# undefined method `initialize<defaultArg>1' for class `SSHKit::Backend::ConnectionPool'
+# Did you mean?  initialize_dup
+# wrong constant name <Class:Cache>
+# wrong constant name <Class:NilCache>
+# wrong constant name caches
+# wrong constant name close_connections
+# wrong constant name flush_connections
+# wrong constant name idle_timeout
+# wrong constant name idle_timeout=
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name timed_out_connections
+# wrong constant name with
+# wrong constant name clear
+# wrong constant name closer
+# wrong constant name connections
+# wrong constant name evict
+# wrong constant name idle_timeout
+# wrong constant name initialize
+# wrong constant name key
+# wrong constant name key=
+# wrong constant name pop
+# wrong constant name push
+# wrong constant name same_key?
+# wrong constant name <static-init>
+# uninitialized constant SSHKit::Backend::ConnectionPool::NilCache::Elem
+# wrong constant name closer
+# wrong constant name closer=
+# wrong constant name pop
+# wrong constant name push
+# wrong constant name same_key?
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# undefined method `download!<defaultArg>1' for class `SSHKit::Backend::Local'
+# undefined method `download!<defaultArg>2' for class `SSHKit::Backend::Local'
+# undefined method `initialize<defaultArg>1' for class `SSHKit::Backend::Local'
+# Did you mean?  initialize_dup
+# undefined method `upload!<defaultArg>1' for class `SSHKit::Backend::Local'
+# wrong constant name download!<defaultArg>1
+# wrong constant name download!<defaultArg>2
+# wrong constant name download!
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name upload!<defaultArg>1
+# wrong constant name upload!
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined method `download!<defaultArg>1' for class `SSHKit::Backend::Netssh'
+# undefined method `download!<defaultArg>2' for class `SSHKit::Backend::Netssh'
+# undefined method `upload!<defaultArg>1' for class `SSHKit::Backend::Netssh'
+# wrong constant name <Class:Configuration>
+# wrong constant name <Class:KnownHosts>
+# wrong constant name <Class:KnownHostsKeys>
+# wrong constant name download!<defaultArg>1
+# wrong constant name download!<defaultArg>2
+# wrong constant name download!
+# wrong constant name upload!<defaultArg>1
+# wrong constant name upload!
+# wrong constant name connection_timeout
+# wrong constant name connection_timeout=
+# wrong constant name pty
+# wrong constant name pty=
+# wrong constant name ssh_options
+# wrong constant name ssh_options=
+# wrong constant name <static-init>
+# undefined method `search_for<defaultArg>1' for class `SSHKit::Backend::Netssh::KnownHosts'
+# wrong constant name add
+# wrong constant name initialize
+# wrong constant name lock
+# wrong constant name locked?
+# wrong constant name search_for<defaultArg>1
+# wrong constant name search_for
+# wrong constant name synchronize
+# wrong constant name try_lock
+# wrong constant name unlock
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name keys_for
+# wrong constant name lock
+# wrong constant name locked?
+# wrong constant name synchronize
+# wrong constant name try_lock
+# wrong constant name unlock
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name pool
+# wrong constant name pool=
+# wrong constant name download!
+# wrong constant name execute_command
+# wrong constant name test
+# wrong constant name upload!
+# wrong constant name <static-init>
+# wrong constant name debug
+# wrong constant name download!
+# wrong constant name error
+# wrong constant name execute_command
+# wrong constant name fatal
+# wrong constant name info
+# wrong constant name initialize
+# wrong constant name log
+# wrong constant name upload!
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name current
+# undefined method `colorize<defaultArg>1' for class `SSHKit::Color'
+# undefined method `initialize<defaultArg>1' for class `SSHKit::Color'
+# Did you mean?  initialize_dup
+# wrong constant name colorize<defaultArg>1
+# wrong constant name colorize
+# wrong constant name colorize?
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name <Class:Failed>
+# wrong constant name args
+# wrong constant name command
+# wrong constant name complete?
+# wrong constant name environment_hash
+# wrong constant name environment_string
+# wrong constant name exit_status
+# wrong constant name exit_status=
+# wrong constant name failed?
+# wrong constant name failure?
+# wrong constant name finished?
+# wrong constant name full_stderr
+# wrong constant name full_stdout
+# wrong constant name group
+# wrong constant name host
+# wrong constant name in_background
+# wrong constant name initialize
+# wrong constant name on_stderr
+# wrong constant name on_stdout
+# wrong constant name options
+# wrong constant name runtime
+# wrong constant name should_map?
+# wrong constant name started
+# wrong constant name started=
+# wrong constant name started?
+# wrong constant name started_at
+# wrong constant name stderr
+# wrong constant name stderr=
+# wrong constant name stdout
+# wrong constant name stdout=
+# wrong constant name success?
+# wrong constant name successful?
+# wrong constant name to_command
+# wrong constant name to_hash
+# wrong constant name umask
+# wrong constant name user
+# wrong constant name uuid
+# wrong constant name verbosity
+# wrong constant name with
+# wrong constant name with_redaction
+# wrong constant name within
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name shellescape_except_tilde
+# undefined method `initialize<defaultArg>1' for class `SSHKit::CommandMap'
+# Did you mean?  initialize_dup
+# wrong constant name <Class:CommandHash>
+# wrong constant name <Class:PrefixProvider>
+# wrong constant name []
+# wrong constant name []=
+# wrong constant name clear
+# wrong constant name defaults
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name prefix
+# undefined method `initialize<defaultArg>1' for class `SSHKit::CommandMap::CommandHash'
+# Did you mean?  initialize_dup
+# wrong constant name []
+# wrong constant name []=
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name backend
+# wrong constant name backend=
+# wrong constant name command_map
+# wrong constant name command_map=
+# wrong constant name default_env
+# wrong constant name default_env=
+# wrong constant name default_runner
+# wrong constant name default_runner=
+# wrong constant name default_runner_config
+# wrong constant name default_runner_config=
+# wrong constant name deprecation_logger
+# wrong constant name deprecation_output=
+# wrong constant name format=
+# wrong constant name output
+# wrong constant name output=
+# wrong constant name output_verbosity
+# wrong constant name output_verbosity=
+# wrong constant name umask
+# wrong constant name umask=
+# wrong constant name use_format
+# wrong constant name <static-init>
+# undefined method `each<defaultArg>1' for class `SSHKit::Coordinator'
+# wrong constant name each<defaultArg>1
+# wrong constant name each
+# wrong constant name hosts
+# wrong constant name hosts=
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `on<defaultArg>1' for module `SSHKit::DSL'
+# wrong constant name on<defaultArg>1
+# wrong constant name on
+# wrong constant name run_locally
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name log
+# wrong constant name <static-init>
+# wrong constant name <Class:Abstract>
+# wrong constant name <Class:BlackHole>
+# wrong constant name <Class:Dot>
+# wrong constant name <Class:Pretty>
+# wrong constant name <Class:SimpleText>
+# undefined method `initialize<defaultArg>1' for class `SSHKit::Formatter::Abstract'
+# Did you mean?  initialize_dup
+# wrong constant name <<
+# wrong constant name colorize
+# wrong constant name debug
+# wrong constant name error
+# wrong constant name fatal
+# wrong constant name info
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name log
+# wrong constant name log_command_data
+# wrong constant name log_command_exit
+# wrong constant name log_command_start
+# wrong constant name options
+# wrong constant name original_output
+# wrong constant name read
+# wrong constant name rewind
+# wrong constant name warn
+# wrong constant name write
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined method `format_message<defaultArg>1' for class `SSHKit::Formatter::Pretty'
+# wrong constant name format_message<defaultArg>1
+# wrong constant name format_message
+# wrong constant name log_command_data
+# wrong constant name write
+# wrong constant name <static-init>
+# undefined method `colorize<defaultArg>1' for class `SSHKit::Formatter::SimpleText'
+# undefined method `format_message<defaultArg>1' for class `SSHKit::Formatter::SimpleText'
+# uninitialized constant SSHKit::Formatter::SimpleText::LEVEL_COLORS
+# uninitialized constant SSHKit::Formatter::SimpleText::LEVEL_NAMES
+# wrong constant name colorize<defaultArg>1
+# wrong constant name colorize
+# wrong constant name format_message<defaultArg>1
+# wrong constant name format_message
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name ==
+# wrong constant name eql?
+# wrong constant name equal?
+# wrong constant name first_suitable_parser
+# wrong constant name hostname
+# wrong constant name hostname=
+# wrong constant name initialize
+# wrong constant name key=
+# wrong constant name keys
+# wrong constant name keys=
+# wrong constant name local?
+# wrong constant name netssh_options
+# wrong constant name password
+# wrong constant name password=
+# wrong constant name port
+# wrong constant name port=
+# wrong constant name properties
+# wrong constant name ssh_options
+# wrong constant name ssh_options=
+# wrong constant name user
+# wrong constant name user=
+# wrong constant name username
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name message
+# wrong constant name verbosity
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `SSHKit::MappingInteractionHandler'
+# Did you mean?  initialize_dup
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name on_data
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <Class:Abstract>
+# wrong constant name <Class:ExecuteError>
+# wrong constant name <Class:Group>
+# wrong constant name <Class:Null>
+# wrong constant name <Class:Parallel>
+# wrong constant name <Class:Sequential>
+# undefined method `initialize<defaultArg>1' for class `SSHKit::Runner::Abstract'
+# Did you mean?  initialize_dup
+# wrong constant name block
+# wrong constant name hosts
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name options
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name group_size
+# wrong constant name group_size=
+# wrong constant name <static-init>
+# wrong constant name execute
+# wrong constant name <static-init>
+# wrong constant name execute
+# wrong constant name <static-init>
+# wrong constant name execute
+# wrong constant name wait_interval
+# wrong constant name wait_interval=
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name attributes
+# wrong constant name hostname
+# wrong constant name initialize
+# wrong constant name port
+# wrong constant name username
+# wrong constant name <static-init>
+# wrong constant name suitable?
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name config
+# wrong constant name config=
+# wrong constant name configure
+# wrong constant name reset_configuration!
 # wrong constant name <Class:BaseError>
 # wrong constant name <Class:Dependency>
 # wrong constant name <Class:Engine>
@@ -17971,6 +18868,58 @@
 # uninitialized constant Socket::SYNC
 # uninitialized constant Socket::TRUNC
 # uninitialized constant Socket::WRONLY
+# wrong constant name job_generator_class
+# wrong constant name job_generator_class=
+# wrong constant name mailer_generator_class
+# wrong constant name mailer_generator_class=
+# wrong constant name generate_rbi
+# wrong constant name initialize
+# wrong constant name job_class
+# wrong constant name populate_rbi
+# wrong constant name rbi_generator
+# wrong constant name <static-init>
+# wrong constant name generate_rbi
+# wrong constant name initialize
+# wrong constant name mailer_class
+# wrong constant name populate_rbi
+# wrong constant name rbi_generator
+# wrong constant name <static-init>
+# wrong constant name <Class:ColumnType>
+# wrong constant name active_record_type_to_sorbet_type
+# wrong constant name attribute_has_unconditional_presence_validation?
+# wrong constant name model_class
+# wrong constant name nilable_column?
+# wrong constant name time_zone_aware_column?
+# wrong constant name type_for_column_def
+# wrong constant name array_type
+# wrong constant name base_type
+# wrong constant name initialize
+# wrong constant name nilable
+# wrong constant name to_s
+# wrong constant name <static-init>
+# wrong constant name inherited
+# wrong constant name <static-init>
+# wrong constant name <Class:ParsedParamDef>
+# uninitialized constant SorbetRails::SorbetUtils::RUBYGEMS_ACTIVATION_MONITOR
+# wrong constant name <Class:UnexpectedParam>
+# wrong constant name default
+# wrong constant name default=
+# wrong constant name initialize
+# wrong constant name kind
+# wrong constant name name
+# wrong constant name prefix
+# wrong constant name prefix=
+# wrong constant name suffix
+# wrong constant name suffix=
+# wrong constant name type_str
+# wrong constant name <static-init>
+# wrong constant name inherited
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name extract_default_value_for_params!
+# wrong constant name get_ordered_parameters_with_type
+# wrong constant name node_to_s
+# wrong constant name parameters_from_method_def
 # uninitialized constant SortedSet::InspectKey
 # wrong constant name initialize
 # wrong constant name setup
@@ -19027,9 +19976,6 @@
 # A copy of StepInput::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of StepInput::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of StepInput::ActiveRecord_Relation has been removed from the module tree but is still active!
-# wrong constant name build_recipe_step
-# wrong constant name create_recipe_step
-# wrong constant name create_recipe_step!
 # wrong constant name reload_inputable
 # wrong constant name reload_recipe_step
 # wrong constant name <static-init>
@@ -19552,6 +20498,58 @@
 # wrong constant name devise_modules?
 # uninitialized constant Vector
 # uninitialized constant Vector
+# uninitialized constant Vendor::ACTIONS
+# uninitialized constant Vendor::BLACKLISTED_CLASS_METHODS
+# uninitialized constant Vendor::CALLBACKS
+# uninitialized constant Vendor::CALLBACK_FILTER_TYPES
+# uninitialized constant Vendor::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedAssociationMethods>
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant Vendor::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant Vendor::NAME_COMPILABLE_REGEXP
+# uninitialized constant Vendor::UNASSIGNABLE_KEYS
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Vendor::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name inherited
 # wrong constant name <Class:Config>
 # wrong constant name <Class:Hooks>
 # wrong constant name <Class:Manager>
@@ -20006,6 +21004,7 @@
 # wrong constant name <static-init>
 # wrong constant name <static-init>
 # wrong constant name normalize_header
+# wrong constant name inherited
 # wrong constant name initialize
 # wrong constant name initialize
 # wrong constant name initialize

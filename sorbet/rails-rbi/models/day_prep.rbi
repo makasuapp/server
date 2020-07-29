@@ -85,11 +85,29 @@ module DayPrep::GeneratedAssociationMethods
   sig { returns(::OpDay) }
   def op_day; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::OpDay).void)).returns(::OpDay) }
+  def build_op_day(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::OpDay).void)).returns(::OpDay) }
+  def create_op_day(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::OpDay).void)).returns(::OpDay) }
+  def create_op_day!(*args, &block); end
+
   sig { params(value: ::OpDay).void }
   def op_day=(value); end
 
   sig { returns(::RecipeStep) }
   def recipe_step; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def build_recipe_step(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def create_recipe_step(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def create_recipe_step!(*args, &block); end
 
   sig { params(value: ::RecipeStep).void }
   def recipe_step=(value); end

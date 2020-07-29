@@ -31,11 +31,29 @@ module Tool::HABTM_RecipeSteps::GeneratedAssociationMethods
   sig { returns(T.nilable(::Tool)) }
   def left_side; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Tool).void)).returns(::Tool) }
+  def build_left_side(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Tool).void)).returns(::Tool) }
+  def create_left_side(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Tool).void)).returns(::Tool) }
+  def create_left_side!(*args, &block); end
+
   sig { params(value: T.nilable(::Tool)).void }
   def left_side=(value); end
 
   sig { returns(::RecipeStep) }
   def recipe_step; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def build_recipe_step(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def create_recipe_step(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def create_recipe_step!(*args, &block); end
 
   sig { params(value: ::RecipeStep).void }
   def recipe_step=(value); end

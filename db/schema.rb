@@ -1,3 +1,4 @@
+# typed: false
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_190355) do
+ActiveRecord::Schema.define(version: 2020_07_29_213750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +119,30 @@ ActiveRecord::Schema.define(version: 2020_07_16_190355) do
     t.index ["for_time", "created_at", "aasm_state"], name: "index_orders_on_for_time_and_created_at_and_aasm_state"
   end
 
+  create_table "procurement_items", force: :cascade do |t|
+    t.bigint "procurement_order_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.float "quantity", null: false
+    t.string "unit"
+    t.string "price_unit"
+    t.integer "price_cents"
+    t.float "got_qty"
+    t.string "got_unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_procurement_items_on_ingredient_id"
+    t.index ["procurement_order_id"], name: "index_procurement_items_on_procurement_order_id"
+  end
+
+  create_table "procurement_orders", force: :cascade do |t|
+    t.bigint "vendor_id", null: false
+    t.datetime "for_date", null: false
+    t.string "order_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["vendor_id"], name: "index_procurement_orders_on_vendor_id"
+  end
+
   create_table "purchased_recipes", force: :cascade do |t|
     t.date "date", null: false
     t.integer "quantity", null: false
@@ -198,6 +223,12 @@ ActiveRecord::Schema.define(version: 2020_07_16_190355) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vendors", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

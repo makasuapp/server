@@ -139,6 +139,15 @@ module RecipeStep::GeneratedAssociationMethods
   sig { returns(::Recipe) }
   def recipe; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Recipe).void)).returns(::Recipe) }
+  def build_recipe(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Recipe).void)).returns(::Recipe) }
+  def create_recipe(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Recipe).void)).returns(::Recipe) }
+  def create_recipe!(*args, &block); end
+
   sig { params(value: ::Recipe).void }
   def recipe=(value); end
 

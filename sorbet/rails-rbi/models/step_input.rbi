@@ -85,11 +85,29 @@ module StepInput::GeneratedAssociationMethods
   sig { returns(T.untyped) }
   def inputable; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def build_inputable(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_inputable(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_inputable!(*args, &block); end
+
   sig { params(value: T.untyped).void }
   def inputable=(value); end
 
   sig { returns(::RecipeStep) }
   def recipe_step; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def build_recipe_step(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def create_recipe_step(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::RecipeStep).void)).returns(::RecipeStep) }
+  def create_recipe_step!(*args, &block); end
 
   sig { params(value: ::RecipeStep).void }
   def recipe_step=(value); end
