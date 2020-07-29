@@ -56,7 +56,7 @@ class Order < ApplicationRecord
     end
   end
 
-  sig {params(date: T.any(DateTime, Date), timezone: String)
+  sig {params(date: T.any(DateTime, Date, ActiveSupport::TimeWithZone), timezone: String)
     .returns(T.any(Order::ActiveRecord_Relation, Order::ActiveRecord_AssociationRelation))}
   def self.on_date(date, timezone = "America/Toronto")
     date_on = date.in_time_zone(timezone)

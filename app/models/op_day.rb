@@ -18,7 +18,7 @@ class OpDay < ApplicationRecord
   has_many :day_ingredients, dependent: :delete_all
   has_many :day_preps, dependent: :delete_all
 
-  sig {params(date: T.any(DateTime, Date)).void}
+  sig {params(date: T.any(DateTime, Date, ActiveSupport::TimeWithZone)).void}
   def self.update_day_for(date)
     op_day = OpDay.find_or_create_by!(date: date)
 

@@ -12,6 +12,7 @@
 #
 # Indexes
 #
+#  index_procurement_orders_on_for_date   (for_date)
 #  index_procurement_orders_on_vendor_id  (vendor_id)
 #
 class ProcurementOrder < ApplicationRecord
@@ -20,4 +21,26 @@ class ProcurementOrder < ApplicationRecord
   validates :order_type, inclusion: { in: %w(manual delivery), message: "%{value} is not a valid type" }
   belongs_to :vendor
   has_many :procurement_items
+
+  sig {params(
+    day_ingredients: T.any(
+      DayIngredient::ActiveRecord_Relation, 
+      DayIngredient::ActiveRecord_AssociationRelation,
+      T::Array[DayIngredient]), 
+    vendor: Vendor, date: T.any(DateTime, ActiveSupport::TimeWithZone)).void}
+  def self.create_from(day_ingredients, vendor, date)
+    po = ProcurementOrder
+    po = ProcurementOrder.create!(
+      for_date: date, 
+      order_type: "manual",
+      vendor_id: vendor.id
+    )
+    day_ingredients.each do |di|
+      po.procurement_items.create!(
+        ingredient_id: di.ingredient_id, 
+        quantity: di.expected_qty,
+        unit: di.unit
+      )
+    end
+  end
 end

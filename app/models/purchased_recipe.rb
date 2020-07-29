@@ -29,7 +29,7 @@ class PurchasedRecipe < ApplicationRecord
     end
   end
 
-  sig {params(date: T.any(DateTime, Date)).void}
+  sig {params(date: T.any(DateTime, Date, ActiveSupport::TimeWithZone)).void}
   def self.create_from_preorders_for(date)
     #TODO: assumes only preorders, will not be the case later
     PurchasedRecipe.where(date: date).delete_all

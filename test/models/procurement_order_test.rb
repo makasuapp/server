@@ -12,6 +12,7 @@
 #
 # Indexes
 #
+#  index_procurement_orders_on_for_date   (for_date)
 #  index_procurement_orders_on_vendor_id  (vendor_id)
 #
 require 'test_helper'
