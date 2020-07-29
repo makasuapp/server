@@ -23,7 +23,7 @@ PurchasedRecipe.create_from_preorders_for(date.to_date)
 
 v = Vendor.create!(name: "Costco")
 po = ProcurementOrder.create!(
-  for_date: OpDay.first.date, 
+  for_date: OpDay.first.date.in_time_zone("America/Toronto").beginning_of_day, 
   order_type: "manual",
   vendor_id: v.id
 )
