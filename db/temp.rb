@@ -21,7 +21,7 @@ o = Order.create!(order_type: "pickup", customer_id: 1)
 end
 PurchasedRecipe.create_from_preorders_for(date.to_date)
 
-v = Vendor.create!(name: "Costco")
+v = Vendor.create!(name: "Loblaws")
 po = ProcurementOrder.create!(
   for_date: OpDay.first.date.in_time_zone("America/Toronto").beginning_of_day, 
   order_type: "manual",
@@ -30,7 +30,9 @@ po = ProcurementOrder.create!(
 [
   {ingredient_id: 1, quantity: 1},
   {ingredient_id: 2, quantity: 200, unit: "g"},
-  {ingredient_id: 6, quantity: 5, unit: "tbsp"}
+  {ingredient_id: 6, quantity: 5, unit: "tbsp"},
+  {ingredient_id: 1, quantity: 2, unit: "handful"},
+  {ingredient_id: 3, quantity: 10},
 ].each do |x|
   po.procurement_items.create!(
     ingredient_id: x[:ingredient_id], 
