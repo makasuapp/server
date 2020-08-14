@@ -28,7 +28,7 @@ set :puma_init_active_record, true
 set :puma_preload_app, true
 
 # for makasu.co domain
-domain_name = "makasu.co"
+domain_name = "api.makasu.co"
 set :nginx_server_name, "#{domain_name}"
 set :nginx_use_ssl, true
 set :nginx_ssl_certificate, "/etc/letsencrypt/live/#{domain_name}/fullchain.pem" 

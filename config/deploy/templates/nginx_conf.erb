@@ -14,7 +14,7 @@ end
 
 server {
   listen 80;
-  if ($host = makasu.co) {
+  if ($host = api.makasu.co) {
       return 301 https://$host$request_uri;
   } # managed by Certbot
 
