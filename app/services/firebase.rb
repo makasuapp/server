@@ -10,15 +10,13 @@ class Firebase
     @fcm = FCM.new(ENV["FCM_SERVER_KEY"])
   end
 
-  sig { params(topic_name: String, data: T.untyped).void }
-  def send_data(topic_name, data)
-    #should we type the response instead of void?
-    @fcm.send_to_topic(topic_name, data: data)
+  sig { params(topic_name: String, json_data: T.untyped).returns(T.untyped)}
+  def send_data(topic_name, json_data)
+    @fcm.send_to_topic(topic_name, data: json_data)
   end
 
-  sig { params(topic_name: String, body: String, title: T.nilable(String)).void }
+  sig { params(topic_name: String, body: String, title: T.nilable(String)).returns(T.untyped)}
   def send_notification(topic_name, body, title = nil)
-    #should we type the response instead of void?
     @fcm.send_to_topic(topic_name, notification: {title: title, body: body})
   end
 end

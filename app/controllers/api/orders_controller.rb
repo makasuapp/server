@@ -29,7 +29,7 @@ class Api::OrdersController < ApplicationController
           order_json = ActionController::Base.new.view_context.render(
             partial: "api/orders/order", locals: {order: @order})
 
-          Firebase.new.send_data(@order.topic_name, order_json)
+          Firebase.new.send_data(@order.topic_name, JSON.parse(order_json))
         rescue => e
           Raven.capture_exception(e)
         end
