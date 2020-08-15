@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     post 'op_days/save_ingredients_qty', to: 'op_days#save_ingredients_qty'
     post 'op_days/save_prep_qty', to: 'op_days#save_prep_qty'
 
-    resources :orders, only: [:index]
+    resources :orders, only: [:create, :index]
     post 'orders/:id/update_state', to: 'orders#update_state'
     post 'orders/update_items', to: 'orders#update_items'
 

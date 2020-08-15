@@ -69,6 +69,12 @@ class Order < ApplicationRecord
       )
   end
 
+  #TODO(multi-kitchen): change to orders_<kitchen_id>
+  sig {returns(String)}
+  def topic_name
+    "orders"
+  end
+
   private
 
   sig {void}

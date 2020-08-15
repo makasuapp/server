@@ -1,6 +1,48 @@
 # typed: ignore
 class Api::OrdersController < ApplicationController
   before_action :set_order, only: [:update_state]
+
+  def create
+    @customer = Customer.find_by(phone_number: customer_params[:phone_number]) ||
+      Customer.find_by(email: customer_params[:email]) || 
+      Customer.new(customer_params)
+    @customer.assign_attributes(customer_params)
+
+    if @customer.save
+      @order = Order.new(base_order_params)
+      @order.customer_id = @customer.id
+
+      if @order.save
+        if order_params[:order_items].present?
+          #might have to change this when we change it to an internet form
+          order_params[:order_items].each do |item_params|
+            @item = OrderItem.new
+            @item.assign_attributes(item_params)
+            @item.order_id = @order.id
+
+            # should it do a soft save instead and render error?
+            @item.save!
+          end
+        end
+
+        begin
+          order_json = ActionController::Base.new.view_context.render(
+            partial: "api/orders/order", locals: {order: @order})
+
+          Firebase.new.send_data(@order.topic_name, order_json)
+        rescue => e
+          Raven.capture_exception(e)
+        end
+
+        render :show, status: :created
+      else
+        render json: @order.errors, status: :unprocessable_entity
+      end
+    else
+      render json: @customer.errors, status: :unprocessable_entity
+    end
+  end
+
   def index
     #hacky temp solution to have a dev environment
     if params[:env] == "dev"
@@ -68,5 +110,19 @@ class Api::OrdersController < ApplicationController
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def base_order_params
+    params.require(:order).permit(:order_type, :for_time)
+  end
+
+  def order_params
+    params.require(:order).permit(:order_type, :for_time, order_items: [
+      :price_cents, :quantity, :recipe_id
+    ])
+  end
+
+  def customer_params
+    params.require(:customer).permit(:email, :first_name, :last_name, :phone_number)
   end
 end

@@ -63,6 +63,6 @@ class DayPrepTest < ActiveSupport::TestCase
     green_onion_prep = DayPrep.where(recipe_step_id: green_onion_step.id)
     assert green_onion_prep.count == 1
     #7/2 * ((0.5 * 10)/100 of recipe + (3 * 6)/100 of recipe + 80/100 of recipe)
-    assert green_onion_prep.first.expected_qty == 3.605
+    assert green_onion_prep.first.expected_qty.round(3) == 3.605
   end
 end

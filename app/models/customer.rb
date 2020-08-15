@@ -11,6 +11,11 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
+# Indexes
+#
+#  index_customers_on_email         (email)
+#  index_customers_on_phone_number  (phone_number)
+#
 class Customer < ApplicationRecord
   extend T::Sig
 
