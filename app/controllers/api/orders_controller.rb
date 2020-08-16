@@ -3,9 +3,15 @@ class Api::OrdersController < ApplicationController
   before_action :set_order, only: [:update_state]
 
   def create
-    @customer = Customer.find_by(phone_number: customer_params[:phone_number]) ||
-      Customer.find_by(email: customer_params[:email]) || 
-      Customer.new(customer_params)
+    if customer_params[:phone_number].present?
+      @customer = Customer.find_by(phone_number: customer_params[:phone_number]) 
+    end
+    if @customer.nil? && customer_params[:email].present?
+      @customer = Customer.find_by(email: customer_params[:email])
+    end
+    if @customer.nil?
+      @customer = Customer.new(customer_params)
+    end
     @customer.assign_attributes(customer_params)
 
     if @customer.save
@@ -15,7 +21,7 @@ class Api::OrdersController < ApplicationController
       if @order.save
         if order_params[:order_items].present?
           #might have to change this when we change it to an internet form
-          order_params[:order_items].each do |item_params|
+          order_params[:order_items].each do |idx, item_params|
             @item = OrderItem.new
             @item.assign_attributes(item_params)
             @item.order_id = @order.id
