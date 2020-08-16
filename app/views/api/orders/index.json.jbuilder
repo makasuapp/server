@@ -1,6 +1,5 @@
 json.orders do
   json.array! @orders, partial: "api/orders/order", as: :order
-  end
 end
 
 json.recipes do
