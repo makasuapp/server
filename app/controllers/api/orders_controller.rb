@@ -36,8 +36,6 @@ class Api::OrdersController < ApplicationController
             partial: "api/orders/order", locals: {order: @order})
 
           response = Firebase.new.send_data(@order.topic_name, JSON.parse(order_json))
-
-          puts ">>> sent data to #{@order.topic_name}: #{order_json}: #{response.to_json}"
         rescue => e
           Raven.capture_exception(e)
         end
