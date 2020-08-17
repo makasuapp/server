@@ -10,9 +10,9 @@ class Firebase
     @fcm = FCM.new(ENV["FCM_SERVER_KEY"])
   end
 
-  sig { params(topic_name: String, json_data: T.untyped).returns(T.untyped)}
-  def send_data(topic_name, json_data)
-    @fcm.send_to_topic(topic_name, data: json_data)
+  sig { params(topic_name: String, json_str: String).returns(T.untyped)}
+  def send_data(topic_name, json_str)
+    @fcm.send_to_topic(topic_name, data: {content: json_str})
   end
 
   sig { params(topic_name: String, body: String, title: T.nilable(String)).returns(T.untyped)}
