@@ -12,6 +12,11 @@
 #  unit                       :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
+#  kitchen_id                 :bigint
+#
+# Indexes
+#
+#  index_recipes_on_kitchen_id  (kitchen_id)
 #
 require 'test_helper'
 

@@ -53,6 +53,33 @@ module Order::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def id?; end
 
+  sig { returns(T.nilable(Integer)) }
+  def integration_id; end
+
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  def integration_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def integration_id?; end
+
+  sig { returns(T.nilable(String)) }
+  def integration_order_id; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def integration_order_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def integration_order_id?; end
+
+  sig { returns(T.nilable(Integer)) }
+  def kitchen_id; end
+
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  def kitchen_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def kitchen_id?; end
+
   sig { returns(String) }
   def order_type; end
 

@@ -2,18 +2,21 @@
 #
 # Table name: orders
 #
-#  id          :bigint           not null, primary key
-#  aasm_state  :string           not null
-#  for_time    :datetime
-#  order_type  :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  customer_id :bigint           not null
+#  id                   :bigint           not null, primary key
+#  aasm_state           :string           not null
+#  for_time             :datetime
+#  order_type           :string           not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  customer_id          :bigint           not null
+#  integration_id       :bigint
+#  integration_order_id :string
+#  kitchen_id           :bigint
 #
 # Indexes
 #
-#  index_orders_on_customer_id                             (customer_id)
-#  index_orders_on_for_time_and_created_at_and_aasm_state  (for_time,created_at,aasm_state)
+#  idx_kitchen_time             (kitchen_id,for_time,created_at,aasm_state)
+#  index_orders_on_customer_id  (customer_id)
 #
 
 # This model initially had no columns defined. If you add columns to the

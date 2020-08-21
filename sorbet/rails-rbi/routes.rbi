@@ -216,4 +216,18 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_orders_update_items_url(*args, **kwargs); end
+
+  # Sigs for route /api/procurement(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_procurement_index_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_procurement_index_url(*args, **kwargs); end
+
+  # Sigs for route /api/procurement/update_items(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_procurement_update_items_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_procurement_update_items_url(*args, **kwargs); end
 end

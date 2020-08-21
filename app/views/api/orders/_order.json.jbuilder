@@ -1,9 +1,13 @@
-json.extract! order, :id, :order_type
+json.extract! order, :id, :order_id, :order_type
 json.created_at order.created_at.to_i
 if order.for_time.present?
   json.for_time order.for_time.to_i
 end
 json.state order.aasm_state
+
+if order.integration_id.present?
+  json.integration_type order.integration.integration_type
+end
 
 json.customer do
   json.extract! order.customer, :id, :email, :name, :phone_number

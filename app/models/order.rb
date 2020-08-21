@@ -3,18 +3,21 @@
 #
 # Table name: orders
 #
-#  id          :bigint           not null, primary key
-#  aasm_state  :string           not null
-#  for_time    :datetime
-#  order_type  :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  customer_id :bigint           not null
+#  id                   :bigint           not null, primary key
+#  aasm_state           :string           not null
+#  for_time             :datetime
+#  order_type           :string           not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  customer_id          :bigint           not null
+#  integration_id       :bigint
+#  integration_order_id :string
+#  kitchen_id           :bigint
 #
 # Indexes
 #
-#  index_orders_on_customer_id                             (customer_id)
-#  index_orders_on_for_time_and_created_at_and_aasm_state  (for_time,created_at,aasm_state)
+#  idx_kitchen_time             (kitchen_id,for_time,created_at,aasm_state)
+#  index_orders_on_customer_id  (customer_id)
 #
 module OrderType
   Delivery = "delivery"
@@ -33,6 +36,8 @@ class Order < ApplicationRecord
   }
 
   belongs_to :customer
+  belongs_to :kitchen
+  belongs_to :integration, optional: true
   has_many :order_items
 
   aasm do
@@ -69,10 +74,14 @@ class Order < ApplicationRecord
       )
   end
 
-  #TODO(multi-kitchen): change to orders_<kitchen_id>
+  sig {returns(String)}
+  def order_id
+    self.integration_order_id || self.id.to_s
+  end
+
   sig {returns(String)}
   def topic_name
-    "orders"
+    "orders_#{self.kitchen_id}"
   end
 
   private

@@ -58,7 +58,7 @@ class Api::OrdersController < ApplicationController
       date = Time.now.in_time_zone("America/Toronto")
     end
 
-    recipe_ids = PurchasedRecipe.where(date: date).map(&:recipe_id)
+    recipe_ids = PurchasedRecipe.where(date: date, kitchen_id: params[:kitchen_id]).map(&:recipe_id)
     @recipes = Recipe.all_in(recipe_ids)
     
     @recipe_steps = RecipeStep
@@ -67,9 +67,10 @@ class Api::OrdersController < ApplicationController
     
     #TODO(timezone)
     @orders = Order
+      .where(kitchen_id: params[:kitchen_id])
       .on_date(date.to_date, "America/Toronto")
       .where.not(aasm_state: Order::STATE_DELIVERED)
-      .includes([:order_items, :customer])
+      .includes([:order_items, :customer, :integration])
 
     #TODO: make this just the ingredients from the recipes
     @ingredients = Ingredient.all
@@ -119,11 +120,11 @@ class Api::OrdersController < ApplicationController
   end
 
   def base_order_params
-    params.require(:order).permit(:order_type, :for_time)
+    params.require(:order).permit(:order_type, :for_time, :kitchen_id)
   end
 
   def order_params
-    params.require(:order).permit(:order_type, :for_time, order_items: [
+    params.require(:order).permit(:order_type, :for_time, :kitchen_id, order_items: [
       :price_cents, :quantity, :recipe_id
     ])
   end

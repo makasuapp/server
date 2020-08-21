@@ -108,6 +108,38 @@ module ProcurementItem::GeneratedAttributeMethods
   def updated_at?; end
 end
 
+module ProcurementItem::GeneratedAssociationMethods
+  sig { returns(::Ingredient) }
+  def ingredient; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Ingredient).void)).returns(::Ingredient) }
+  def build_ingredient(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Ingredient).void)).returns(::Ingredient) }
+  def create_ingredient(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Ingredient).void)).returns(::Ingredient) }
+  def create_ingredient!(*args, &block); end
+
+  sig { params(value: ::Ingredient).void }
+  def ingredient=(value); end
+
+  sig { returns(::ProcurementOrder) }
+  def procurement_order; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::ProcurementOrder).void)).returns(::ProcurementOrder) }
+  def build_procurement_order(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::ProcurementOrder).void)).returns(::ProcurementOrder) }
+  def create_procurement_order(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::ProcurementOrder).void)).returns(::ProcurementOrder) }
+  def create_procurement_order!(*args, &block); end
+
+  sig { params(value: ::ProcurementOrder).void }
+  def procurement_order=(value); end
+end
+
 module ProcurementItem::CustomFinderMethods
   sig { params(limit: Integer).returns(T::Array[ProcurementItem]) }
   def first_n(limit); end
@@ -127,6 +159,7 @@ end
 
 class ProcurementItem < ApplicationRecord
   include ProcurementItem::GeneratedAttributeMethods
+  include ProcurementItem::GeneratedAssociationMethods
   extend ProcurementItem::CustomFinderMethods
   extend ProcurementItem::QueryMethodsReturningRelation
   RelationType = T.type_alias { T.any(ProcurementItem::ActiveRecord_Relation, ProcurementItem::ActiveRecord_Associations_CollectionProxy, ProcurementItem::ActiveRecord_AssociationRelation) }

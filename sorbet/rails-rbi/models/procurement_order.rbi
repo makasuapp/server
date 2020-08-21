@@ -35,6 +35,15 @@ module ProcurementOrder::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def id?; end
 
+  sig { returns(T.nilable(Integer)) }
+  def kitchen_id; end
+
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  def kitchen_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def kitchen_id?; end
+
   sig { returns(String) }
   def order_type; end
 
@@ -63,6 +72,32 @@ module ProcurementOrder::GeneratedAttributeMethods
   def vendor_id?; end
 end
 
+module ProcurementOrder::GeneratedAssociationMethods
+  sig { returns(::ProcurementItem::ActiveRecord_Associations_CollectionProxy) }
+  def procurement_items; end
+
+  sig { returns(T::Array[Integer]) }
+  def procurement_item_ids; end
+
+  sig { params(value: T::Enumerable[::ProcurementItem]).void }
+  def procurement_items=(value); end
+
+  sig { returns(::Vendor) }
+  def vendor; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Vendor).void)).returns(::Vendor) }
+  def build_vendor(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Vendor).void)).returns(::Vendor) }
+  def create_vendor(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Vendor).void)).returns(::Vendor) }
+  def create_vendor!(*args, &block); end
+
+  sig { params(value: ::Vendor).void }
+  def vendor=(value); end
+end
+
 module ProcurementOrder::CustomFinderMethods
   sig { params(limit: Integer).returns(T::Array[ProcurementOrder]) }
   def first_n(limit); end
@@ -82,6 +117,7 @@ end
 
 class ProcurementOrder < ApplicationRecord
   include ProcurementOrder::GeneratedAttributeMethods
+  include ProcurementOrder::GeneratedAssociationMethods
   extend ProcurementOrder::CustomFinderMethods
   extend ProcurementOrder::QueryMethodsReturningRelation
   RelationType = T.type_alias { T.any(ProcurementOrder::ActiveRecord_Relation, ProcurementOrder::ActiveRecord_Associations_CollectionProxy, ProcurementOrder::ActiveRecord_AssociationRelation) }

@@ -3051,6 +3051,14 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def api_path(*args); end
 
+  def api_procurement_index_path(*args); end
+
+  def api_procurement_index_url(*args); end
+
+  def api_procurement_update_items_path(*args); end
+
+  def api_procurement_update_items_url(*args); end
+
   def api_recipes_path(*args); end
 
   def api_recipes_url(*args); end
@@ -8001,6 +8009,8 @@ class Api::OpDaysController
 end
 
 class Api::OrdersController
+  def create(); end
+
   def index(); end
 
   def update_items(); end
@@ -8009,6 +8019,15 @@ class Api::OrdersController
 end
 
 class Api::OrdersController
+end
+
+class Api::ProcurementController
+  def index(); end
+
+  def update_items(); end
+end
+
+class Api::ProcurementController
 end
 
 class Api::RecipesController
@@ -13609,6 +13628,69 @@ end
 class ExitCalledError
 end
 
+class FCM
+  def add(key_name, project_id, notification_key, registration_ids); end
+
+  def add_registration_ids(key_name, project_id, notification_key, registration_ids); end
+
+  def api_key(); end
+
+  def api_key=(api_key); end
+
+  def batch_subscribe_instance_ids_to_topic(instance_ids, topic_name); end
+
+  def batch_topic_subscription(topic, registration_ids); end
+
+  def batch_topic_unsubscription(topic, registration_ids); end
+
+  def batch_unsubscribe_instance_ids_from_topic(instance_ids, topic_name); end
+
+  def create(key_name, project_id, registration_ids=T.unsafe(nil)); end
+
+  def create_notification_key(key_name, project_id, registration_ids=T.unsafe(nil)); end
+
+  def get_instance_id_info(iid_token, options=T.unsafe(nil)); end
+
+  def initialize(api_key, client_options=T.unsafe(nil)); end
+
+  def manage_topics_relationship(topic, registration_ids, action); end
+
+  def recover_notification_key(key_name, project_id); end
+
+  def remove(key_name, project_id, notification_key, registration_ids); end
+
+  def remove_registration_ids(key_name, project_id, notification_key, registration_ids); end
+
+  def send(registration_ids, options=T.unsafe(nil)); end
+
+  def send_notification(registration_ids, options=T.unsafe(nil)); end
+
+  def send_to_topic(topic, options=T.unsafe(nil)); end
+
+  def send_to_topic_condition(condition, options=T.unsafe(nil)); end
+
+  def send_with_notification_key(notification_key, options=T.unsafe(nil)); end
+
+  def subscribe_instance_id_to_topic(iid_token, topic_name); end
+
+  def timeout(); end
+
+  def timeout=(timeout); end
+
+  def topic_subscription(topic, registration_id); end
+
+  def unsubscribe_instance_id_from_topic(iid_token, topic_name); end
+  BASE_URI = ::T.let(nil, ::T.untyped)
+  DEFAULT_TIMEOUT = ::T.let(nil, ::T.untyped)
+  FORMAT = ::T.let(nil, ::T.untyped)
+  GROUP_NOTIFICATION_BASE_URI = ::T.let(nil, ::T.untyped)
+  INSTANCE_ID_API = ::T.let(nil, ::T.untyped)
+  TOPIC_REGEX = ::T.let(nil, ::T.untyped)
+end
+
+class FCM
+end
+
 module FFI
   CURRENT_PROCESS = ::T.let(nil, ::T.untyped)
   SizeTypes = ::T.let(nil, ::T.untyped)
@@ -14248,6 +14330,11 @@ end
 
 module FileUtils
   extend ::FileUtils::StreamUtils_
+end
+
+class Firebase
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Float
@@ -18026,6 +18113,37 @@ class Integer
   def to_bn(); end
 end
 
+class Integration
+  def autosave_associated_records_for_kitchen(*args); end
+
+  def belongs_to_counter_cache_after_update(reflection); end
+end
+
+class Integration::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Integration::GeneratedRelationMethods
+end
+
+class Integration::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Integration::GeneratedRelationMethods
+end
+
+class Integration::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Integration::GeneratedRelationMethods
+end
+
+module Integration::GeneratedAssociationMethods
+  def reload_kitchen(); end
+end
+
+module Integration::GeneratedRelationMethods
+end
+
+module Integration::GeneratedRelationMethods
+end
+
 class ItemPrice
   def autosave_associated_records_for_recipe(*args); end
 
@@ -18539,6 +18657,357 @@ end
 
 class KeyError
   include ::DidYouMean::Correctable
+end
+
+class Kitchen
+  def after_add_for_integrations(); end
+
+  def after_add_for_integrations=(val); end
+
+  def after_add_for_integrations?(); end
+
+  def after_add_for_op_days(); end
+
+  def after_add_for_op_days=(val); end
+
+  def after_add_for_op_days?(); end
+
+  def after_add_for_orders(); end
+
+  def after_add_for_orders=(val); end
+
+  def after_add_for_orders?(); end
+
+  def after_add_for_procurement_orders(); end
+
+  def after_add_for_procurement_orders=(val); end
+
+  def after_add_for_procurement_orders?(); end
+
+  def after_add_for_purchased_recipes(); end
+
+  def after_add_for_purchased_recipes=(val); end
+
+  def after_add_for_purchased_recipes?(); end
+
+  def after_add_for_recipes(); end
+
+  def after_add_for_recipes=(val); end
+
+  def after_add_for_recipes?(); end
+
+  def after_remove_for_integrations(); end
+
+  def after_remove_for_integrations=(val); end
+
+  def after_remove_for_integrations?(); end
+
+  def after_remove_for_op_days(); end
+
+  def after_remove_for_op_days=(val); end
+
+  def after_remove_for_op_days?(); end
+
+  def after_remove_for_orders(); end
+
+  def after_remove_for_orders=(val); end
+
+  def after_remove_for_orders?(); end
+
+  def after_remove_for_procurement_orders(); end
+
+  def after_remove_for_procurement_orders=(val); end
+
+  def after_remove_for_procurement_orders?(); end
+
+  def after_remove_for_purchased_recipes(); end
+
+  def after_remove_for_purchased_recipes=(val); end
+
+  def after_remove_for_purchased_recipes?(); end
+
+  def after_remove_for_recipes(); end
+
+  def after_remove_for_recipes=(val); end
+
+  def after_remove_for_recipes?(); end
+
+  def autosave_associated_records_for_integrations(*args); end
+
+  def autosave_associated_records_for_op_days(*args); end
+
+  def autosave_associated_records_for_orders(*args); end
+
+  def autosave_associated_records_for_procurement_orders(*args); end
+
+  def autosave_associated_records_for_purchased_recipes(*args); end
+
+  def autosave_associated_records_for_recipes(*args); end
+
+  def before_add_for_integrations(); end
+
+  def before_add_for_integrations=(val); end
+
+  def before_add_for_integrations?(); end
+
+  def before_add_for_op_days(); end
+
+  def before_add_for_op_days=(val); end
+
+  def before_add_for_op_days?(); end
+
+  def before_add_for_orders(); end
+
+  def before_add_for_orders=(val); end
+
+  def before_add_for_orders?(); end
+
+  def before_add_for_procurement_orders(); end
+
+  def before_add_for_procurement_orders=(val); end
+
+  def before_add_for_procurement_orders?(); end
+
+  def before_add_for_purchased_recipes(); end
+
+  def before_add_for_purchased_recipes=(val); end
+
+  def before_add_for_purchased_recipes?(); end
+
+  def before_add_for_recipes(); end
+
+  def before_add_for_recipes=(val); end
+
+  def before_add_for_recipes?(); end
+
+  def before_remove_for_integrations(); end
+
+  def before_remove_for_integrations=(val); end
+
+  def before_remove_for_integrations?(); end
+
+  def before_remove_for_op_days(); end
+
+  def before_remove_for_op_days=(val); end
+
+  def before_remove_for_op_days?(); end
+
+  def before_remove_for_orders(); end
+
+  def before_remove_for_orders=(val); end
+
+  def before_remove_for_orders?(); end
+
+  def before_remove_for_procurement_orders(); end
+
+  def before_remove_for_procurement_orders=(val); end
+
+  def before_remove_for_procurement_orders?(); end
+
+  def before_remove_for_purchased_recipes(); end
+
+  def before_remove_for_purchased_recipes=(val); end
+
+  def before_remove_for_purchased_recipes?(); end
+
+  def before_remove_for_recipes(); end
+
+  def before_remove_for_recipes=(val); end
+
+  def before_remove_for_recipes?(); end
+
+  def validate_associated_records_for_integrations(*args); end
+
+  def validate_associated_records_for_op_days(*args); end
+
+  def validate_associated_records_for_orders(*args); end
+
+  def validate_associated_records_for_procurement_orders(*args); end
+
+  def validate_associated_records_for_purchased_recipes(*args); end
+
+  def validate_associated_records_for_recipes(*args); end
+end
+
+class Kitchen::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Kitchen::GeneratedRelationMethods
+end
+
+class Kitchen::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Kitchen::GeneratedRelationMethods
+end
+
+class Kitchen::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Kitchen::GeneratedRelationMethods
+end
+
+module Kitchen::GeneratedAssociationMethods
+  def integration_ids=(ids); end
+
+  def op_day_ids=(ids); end
+
+  def order_ids=(ids); end
+
+  def procurement_order_ids=(ids); end
+
+  def purchased_recipe_ids=(ids); end
+
+  def recipe_ids=(ids); end
+end
+
+module Kitchen::GeneratedRelationMethods
+end
+
+module Kitchen::GeneratedRelationMethods
+end
+
+class Kitchen
+  def self.after_add_for_integrations(); end
+
+  def self.after_add_for_integrations=(val); end
+
+  def self.after_add_for_integrations?(); end
+
+  def self.after_add_for_op_days(); end
+
+  def self.after_add_for_op_days=(val); end
+
+  def self.after_add_for_op_days?(); end
+
+  def self.after_add_for_orders(); end
+
+  def self.after_add_for_orders=(val); end
+
+  def self.after_add_for_orders?(); end
+
+  def self.after_add_for_procurement_orders(); end
+
+  def self.after_add_for_procurement_orders=(val); end
+
+  def self.after_add_for_procurement_orders?(); end
+
+  def self.after_add_for_purchased_recipes(); end
+
+  def self.after_add_for_purchased_recipes=(val); end
+
+  def self.after_add_for_purchased_recipes?(); end
+
+  def self.after_add_for_recipes(); end
+
+  def self.after_add_for_recipes=(val); end
+
+  def self.after_add_for_recipes?(); end
+
+  def self.after_remove_for_integrations(); end
+
+  def self.after_remove_for_integrations=(val); end
+
+  def self.after_remove_for_integrations?(); end
+
+  def self.after_remove_for_op_days(); end
+
+  def self.after_remove_for_op_days=(val); end
+
+  def self.after_remove_for_op_days?(); end
+
+  def self.after_remove_for_orders(); end
+
+  def self.after_remove_for_orders=(val); end
+
+  def self.after_remove_for_orders?(); end
+
+  def self.after_remove_for_procurement_orders(); end
+
+  def self.after_remove_for_procurement_orders=(val); end
+
+  def self.after_remove_for_procurement_orders?(); end
+
+  def self.after_remove_for_purchased_recipes(); end
+
+  def self.after_remove_for_purchased_recipes=(val); end
+
+  def self.after_remove_for_purchased_recipes?(); end
+
+  def self.after_remove_for_recipes(); end
+
+  def self.after_remove_for_recipes=(val); end
+
+  def self.after_remove_for_recipes?(); end
+
+  def self.before_add_for_integrations(); end
+
+  def self.before_add_for_integrations=(val); end
+
+  def self.before_add_for_integrations?(); end
+
+  def self.before_add_for_op_days(); end
+
+  def self.before_add_for_op_days=(val); end
+
+  def self.before_add_for_op_days?(); end
+
+  def self.before_add_for_orders(); end
+
+  def self.before_add_for_orders=(val); end
+
+  def self.before_add_for_orders?(); end
+
+  def self.before_add_for_procurement_orders(); end
+
+  def self.before_add_for_procurement_orders=(val); end
+
+  def self.before_add_for_procurement_orders?(); end
+
+  def self.before_add_for_purchased_recipes(); end
+
+  def self.before_add_for_purchased_recipes=(val); end
+
+  def self.before_add_for_purchased_recipes?(); end
+
+  def self.before_add_for_recipes(); end
+
+  def self.before_add_for_recipes=(val); end
+
+  def self.before_add_for_recipes?(); end
+
+  def self.before_remove_for_integrations(); end
+
+  def self.before_remove_for_integrations=(val); end
+
+  def self.before_remove_for_integrations?(); end
+
+  def self.before_remove_for_op_days(); end
+
+  def self.before_remove_for_op_days=(val); end
+
+  def self.before_remove_for_op_days?(); end
+
+  def self.before_remove_for_orders(); end
+
+  def self.before_remove_for_orders=(val); end
+
+  def self.before_remove_for_orders?(); end
+
+  def self.before_remove_for_procurement_orders(); end
+
+  def self.before_remove_for_procurement_orders=(val); end
+
+  def self.before_remove_for_procurement_orders?(); end
+
+  def self.before_remove_for_purchased_recipes(); end
+
+  def self.before_remove_for_purchased_recipes=(val); end
+
+  def self.before_remove_for_purchased_recipes?(); end
+
+  def self.before_remove_for_recipes(); end
+
+  def self.before_remove_for_recipes=(val); end
+
+  def self.before_remove_for_recipes?(); end
 end
 
 module Launchy
@@ -25193,40 +25662,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70134368145520
+module Polyfill::Module::M70272237239600
 end
 
-module Polyfill::Module::M70134368145520
+module Polyfill::Module::M70272237239600
 end
 
-module Polyfill::Module::M70134380446940
+module Polyfill::Module::M70272243443740
 end
 
-module Polyfill::Module::M70134380446940
+module Polyfill::Module::M70272243443740
 end
 
-module Polyfill::Module::M70134425104540
+module Polyfill::Module::M70272251259000
 end
 
-module Polyfill::Module::M70134425104540
+module Polyfill::Module::M70272251259000
 end
 
-module Polyfill::Module::M70134425154600
+module Polyfill::Module::M70272252119200
 end
 
-module Polyfill::Module::M70134425154600
+module Polyfill::Module::M70272252119200
 end
 
-module Polyfill::Module::M70134442155940
+module Polyfill::Module::M70272252142860
 end
 
-module Polyfill::Module::M70134442155940
+module Polyfill::Module::M70272252142860
 end
 
-module Polyfill::Module::M70134442284040
+module Polyfill::Module::M70272284571520
 end
 
-module Polyfill::Module::M70134442284040
+module Polyfill::Module::M70272284571520
 end
 
 class Proc
@@ -25234,7 +25703,11 @@ class Proc
 end
 
 class ProcurementItem
-  include ::ProcurementItem::GeneratedAssociationMethods
+  def autosave_associated_records_for_ingredient(*args); end
+
+  def autosave_associated_records_for_procurement_order(*args); end
+
+  def belongs_to_counter_cache_after_update(reflection); end
 end
 
 class ProcurementItem::ActiveRecord_AssociationRelation
@@ -25253,9 +25726,9 @@ class ProcurementItem::ActiveRecord_Relation
 end
 
 module ProcurementItem::GeneratedAssociationMethods
-end
+  def reload_ingredient(); end
 
-module ProcurementItem::GeneratedAssociationMethods
+  def reload_procurement_order(); end
 end
 
 module ProcurementItem::GeneratedRelationMethods
@@ -25265,7 +25738,37 @@ module ProcurementItem::GeneratedRelationMethods
 end
 
 class ProcurementOrder
-  include ::ProcurementOrder::GeneratedAssociationMethods
+  def after_add_for_procurement_items(); end
+
+  def after_add_for_procurement_items=(val); end
+
+  def after_add_for_procurement_items?(); end
+
+  def after_remove_for_procurement_items(); end
+
+  def after_remove_for_procurement_items=(val); end
+
+  def after_remove_for_procurement_items?(); end
+
+  def autosave_associated_records_for_procurement_items(*args); end
+
+  def autosave_associated_records_for_vendor(*args); end
+
+  def before_add_for_procurement_items(); end
+
+  def before_add_for_procurement_items=(val); end
+
+  def before_add_for_procurement_items?(); end
+
+  def before_remove_for_procurement_items(); end
+
+  def before_remove_for_procurement_items=(val); end
+
+  def before_remove_for_procurement_items?(); end
+
+  def belongs_to_counter_cache_after_update(reflection); end
+
+  def validate_associated_records_for_procurement_items(*args); end
 end
 
 class ProcurementOrder::ActiveRecord_AssociationRelation
@@ -25284,15 +25787,43 @@ class ProcurementOrder::ActiveRecord_Relation
 end
 
 module ProcurementOrder::GeneratedAssociationMethods
+  def procurement_item_ids=(ids); end
+
+  def reload_vendor(); end
 end
 
-module ProcurementOrder::GeneratedAssociationMethods
+module ProcurementOrder::GeneratedRelationMethods
 end
 
 module ProcurementOrder::GeneratedRelationMethods
 end
 
-module ProcurementOrder::GeneratedRelationMethods
+class ProcurementOrder
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.after_add_for_procurement_items(); end
+
+  def self.after_add_for_procurement_items=(val); end
+
+  def self.after_add_for_procurement_items?(); end
+
+  def self.after_remove_for_procurement_items(); end
+
+  def self.after_remove_for_procurement_items=(val); end
+
+  def self.after_remove_for_procurement_items?(); end
+
+  def self.before_add_for_procurement_items(); end
+
+  def self.before_add_for_procurement_items=(val); end
+
+  def self.before_add_for_procurement_items?(); end
+
+  def self.before_remove_for_procurement_items(); end
+
+  def self.before_remove_for_procurement_items=(val); end
+
+  def self.before_remove_for_procurement_items?(); end
 end
 
 module Psych

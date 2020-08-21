@@ -1,23 +1,19 @@
 # == Schema Information
 #
-# Table name: op_days
+# Table name: kitchens
 #
 #  id         :bigint           not null, primary key
-#  date       :date             not null
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  kitchen_id :bigint
-#
-# Indexes
-#
-#  index_op_days_on_date                 (date)
-#  index_op_days_on_date_and_kitchen_id  (date,kitchen_id)
 #
 
 # This model initially had no columns defined. If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-
-today:
-  date: <%= Date.today %>
+one: {}
+# column: value
+#
+two: {}
+# column: value

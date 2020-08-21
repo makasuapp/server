@@ -35,6 +35,15 @@ module OpDay::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def id?; end
 
+  sig { returns(T.nilable(Integer)) }
+  def kitchen_id; end
+
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  def kitchen_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def kitchen_id?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def updated_at; end
 

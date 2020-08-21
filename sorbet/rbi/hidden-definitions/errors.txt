@@ -1828,6 +1828,10 @@
 # wrong constant name api_orders_update_items_url
 # wrong constant name api_orders_url
 # wrong constant name api_path
+# wrong constant name api_procurement_index_path
+# wrong constant name api_procurement_index_url
+# wrong constant name api_procurement_update_items_path
+# wrong constant name api_procurement_update_items_url
 # wrong constant name api_recipes_path
 # wrong constant name api_recipes_url
 # wrong constant name api_url
@@ -3685,7 +3689,7 @@
 # A copy of ActiveRecord::InternalMetadata::ActiveRecord_Relation has been removed from the module tree but is still active!
 # wrong constant name <static-init>
 # wrong constant name <static-init>
-# undefined singleton method `page<defaultArg>1' for `#<Class:0x00007f92dd66a6d0>'
+# undefined singleton method `page<defaultArg>1' for `#<Class:0x00007fd31d659300>'
 # wrong constant name []
 # wrong constant name []=
 # wrong constant name create_table
@@ -4383,6 +4387,7 @@
 # wrong constant name configure
 # wrong constant name <Class:OpDaysController>
 # wrong constant name <Class:OrdersController>
+# wrong constant name <Class:ProcurementController>
 # wrong constant name <Class:RecipesController>
 # uninitialized constant Api::OpDaysController::ACTION_OPTIONS
 # uninitialized constant Api::OpDaysController::AUTHENTICITY_TOKEN_LENGTH
@@ -4416,9 +4421,27 @@
 # uninitialized constant Api::OrdersController::RENDERERS
 # uninitialized constant Api::OrdersController::RENDER_FORMATS_IN_PRIORITY
 # uninitialized constant Api::OrdersController::URL_OPTIONS
+# wrong constant name create
 # wrong constant name index
 # wrong constant name update_items
 # wrong constant name update_state
+# wrong constant name <static-init>
+# uninitialized constant Api::ProcurementController::ACTION_OPTIONS
+# uninitialized constant Api::ProcurementController::AUTHENTICITY_TOKEN_LENGTH
+# uninitialized constant Api::ProcurementController::CALLBACK_FILTER_TYPES
+# uninitialized constant Api::ProcurementController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
+# uninitialized constant Api::ProcurementController::DEFAULT_SEND_FILE_DISPOSITION
+# uninitialized constant Api::ProcurementController::DEFAULT_SEND_FILE_TYPE
+# uninitialized constant Api::ProcurementController::EXCLUDE_PARAMETERS
+# uninitialized constant Api::ProcurementController::MODULES
+# uninitialized constant Api::ProcurementController::NULL_ORIGIN_MESSAGE
+# uninitialized constant Api::ProcurementController::PROTECTED_IVARS
+# uninitialized constant Api::ProcurementController::REDIRECT_OPTIONS
+# uninitialized constant Api::ProcurementController::RENDERERS
+# uninitialized constant Api::ProcurementController::RENDER_FORMATS_IN_PRIORITY
+# uninitialized constant Api::ProcurementController::URL_OPTIONS
+# wrong constant name index
+# wrong constant name update_items
 # wrong constant name <static-init>
 # uninitialized constant Api::RecipesController::ACTION_OPTIONS
 # uninitialized constant Api::RecipesController::AUTHENTICITY_TOKEN_LENGTH
@@ -7856,6 +7879,52 @@
 # wrong constant name extend_object
 # wrong constant name message
 # wrong constant name <static-init>
+# undefined method `create<defaultArg>1' for class `FCM'
+# undefined method `create_notification_key<defaultArg>1' for class `FCM'
+# undefined method `get_instance_id_info<defaultArg>1' for class `FCM'
+# undefined method `initialize<defaultArg>1' for class `FCM'
+# Did you mean?  initialize_dup
+# undefined method `send<defaultArg>1' for class `FCM'
+# undefined method `send_notification<defaultArg>1' for class `FCM'
+# undefined method `send_to_topic<defaultArg>1' for class `FCM'
+# undefined method `send_to_topic_condition<defaultArg>1' for class `FCM'
+# undefined method `send_with_notification_key<defaultArg>1' for class `FCM'
+# wrong constant name add
+# wrong constant name add_registration_ids
+# wrong constant name api_key
+# wrong constant name api_key=
+# wrong constant name batch_subscribe_instance_ids_to_topic
+# wrong constant name batch_topic_subscription
+# wrong constant name batch_topic_unsubscription
+# wrong constant name batch_unsubscribe_instance_ids_from_topic
+# wrong constant name create<defaultArg>1
+# wrong constant name create
+# wrong constant name create_notification_key<defaultArg>1
+# wrong constant name create_notification_key
+# wrong constant name get_instance_id_info<defaultArg>1
+# wrong constant name get_instance_id_info
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name manage_topics_relationship
+# wrong constant name recover_notification_key
+# wrong constant name remove
+# wrong constant name remove_registration_ids
+# wrong constant name send<defaultArg>1
+# wrong constant name send
+# wrong constant name send_notification<defaultArg>1
+# wrong constant name send_notification
+# wrong constant name send_to_topic<defaultArg>1
+# wrong constant name send_to_topic
+# wrong constant name send_to_topic_condition<defaultArg>1
+# wrong constant name send_to_topic_condition
+# wrong constant name send_with_notification_key<defaultArg>1
+# wrong constant name send_with_notification_key
+# wrong constant name subscribe_instance_id_to_topic
+# wrong constant name timeout
+# wrong constant name timeout=
+# wrong constant name topic_subscription
+# wrong constant name unsubscribe_instance_id_from_topic
+# wrong constant name <static-init>
 # wrong constant name <Class:NativeType>
 # wrong constant name <Class:NullPointerError>
 # wrong constant name <static-init>
@@ -9940,6 +10009,58 @@
 # uninitialized constant Integer::PETABYTE
 # uninitialized constant Integer::TERABYTE
 # wrong constant name to_bn
+# uninitialized constant Integration::ACTIONS
+# uninitialized constant Integration::BLACKLISTED_CLASS_METHODS
+# uninitialized constant Integration::CALLBACKS
+# uninitialized constant Integration::CALLBACK_FILTER_TYPES
+# uninitialized constant Integration::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant Integration::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant Integration::NAME_COMPILABLE_REGEXP
+# uninitialized constant Integration::UNASSIGNABLE_KEYS
+# wrong constant name autosave_associated_records_for_kitchen
+# wrong constant name belongs_to_counter_cache_after_update
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Integration::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name reload_kitchen
+# wrong constant name <static-init>
 # uninitialized constant ItemPrice::ACTIONS
 # uninitialized constant ItemPrice::BLACKLISTED_CLASS_METHODS
 # uninitialized constant ItemPrice::CALLBACKS
@@ -10289,6 +10410,217 @@
 # wrong constant name at_exit
 # wrong constant name load
 # wrong constant name require
+# uninitialized constant Kitchen::ACTIONS
+# uninitialized constant Kitchen::BLACKLISTED_CLASS_METHODS
+# uninitialized constant Kitchen::CALLBACKS
+# uninitialized constant Kitchen::CALLBACK_FILTER_TYPES
+# uninitialized constant Kitchen::CALL_COMPILABLE_REGEXP
+# wrong constant name <Class:GeneratedRelationMethods>
+# uninitialized constant Kitchen::MAX_PASSWORD_LENGTH_ALLOWED
+# uninitialized constant Kitchen::NAME_COMPILABLE_REGEXP
+# uninitialized constant Kitchen::UNASSIGNABLE_KEYS
+# wrong constant name after_add_for_integrations
+# wrong constant name after_add_for_integrations=
+# wrong constant name after_add_for_integrations?
+# wrong constant name after_add_for_op_days
+# wrong constant name after_add_for_op_days=
+# wrong constant name after_add_for_op_days?
+# wrong constant name after_add_for_orders
+# wrong constant name after_add_for_orders=
+# wrong constant name after_add_for_orders?
+# wrong constant name after_add_for_procurement_orders
+# wrong constant name after_add_for_procurement_orders=
+# wrong constant name after_add_for_procurement_orders?
+# wrong constant name after_add_for_purchased_recipes
+# wrong constant name after_add_for_purchased_recipes=
+# wrong constant name after_add_for_purchased_recipes?
+# wrong constant name after_add_for_recipes
+# wrong constant name after_add_for_recipes=
+# wrong constant name after_add_for_recipes?
+# wrong constant name after_remove_for_integrations
+# wrong constant name after_remove_for_integrations=
+# wrong constant name after_remove_for_integrations?
+# wrong constant name after_remove_for_op_days
+# wrong constant name after_remove_for_op_days=
+# wrong constant name after_remove_for_op_days?
+# wrong constant name after_remove_for_orders
+# wrong constant name after_remove_for_orders=
+# wrong constant name after_remove_for_orders?
+# wrong constant name after_remove_for_procurement_orders
+# wrong constant name after_remove_for_procurement_orders=
+# wrong constant name after_remove_for_procurement_orders?
+# wrong constant name after_remove_for_purchased_recipes
+# wrong constant name after_remove_for_purchased_recipes=
+# wrong constant name after_remove_for_purchased_recipes?
+# wrong constant name after_remove_for_recipes
+# wrong constant name after_remove_for_recipes=
+# wrong constant name after_remove_for_recipes?
+# wrong constant name autosave_associated_records_for_integrations
+# wrong constant name autosave_associated_records_for_op_days
+# wrong constant name autosave_associated_records_for_orders
+# wrong constant name autosave_associated_records_for_procurement_orders
+# wrong constant name autosave_associated_records_for_purchased_recipes
+# wrong constant name autosave_associated_records_for_recipes
+# wrong constant name before_add_for_integrations
+# wrong constant name before_add_for_integrations=
+# wrong constant name before_add_for_integrations?
+# wrong constant name before_add_for_op_days
+# wrong constant name before_add_for_op_days=
+# wrong constant name before_add_for_op_days?
+# wrong constant name before_add_for_orders
+# wrong constant name before_add_for_orders=
+# wrong constant name before_add_for_orders?
+# wrong constant name before_add_for_procurement_orders
+# wrong constant name before_add_for_procurement_orders=
+# wrong constant name before_add_for_procurement_orders?
+# wrong constant name before_add_for_purchased_recipes
+# wrong constant name before_add_for_purchased_recipes=
+# wrong constant name before_add_for_purchased_recipes?
+# wrong constant name before_add_for_recipes
+# wrong constant name before_add_for_recipes=
+# wrong constant name before_add_for_recipes?
+# wrong constant name before_remove_for_integrations
+# wrong constant name before_remove_for_integrations=
+# wrong constant name before_remove_for_integrations?
+# wrong constant name before_remove_for_op_days
+# wrong constant name before_remove_for_op_days=
+# wrong constant name before_remove_for_op_days?
+# wrong constant name before_remove_for_orders
+# wrong constant name before_remove_for_orders=
+# wrong constant name before_remove_for_orders?
+# wrong constant name before_remove_for_procurement_orders
+# wrong constant name before_remove_for_procurement_orders=
+# wrong constant name before_remove_for_procurement_orders?
+# wrong constant name before_remove_for_purchased_recipes
+# wrong constant name before_remove_for_purchased_recipes=
+# wrong constant name before_remove_for_purchased_recipes?
+# wrong constant name before_remove_for_recipes
+# wrong constant name before_remove_for_recipes=
+# wrong constant name before_remove_for_recipes?
+# wrong constant name validate_associated_records_for_integrations
+# wrong constant name validate_associated_records_for_op_days
+# wrong constant name validate_associated_records_for_orders
+# wrong constant name validate_associated_records_for_procurement_orders
+# wrong constant name validate_associated_records_for_purchased_recipes
+# wrong constant name validate_associated_records_for_recipes
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Associations_CollectionProxy has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# A copy of Kitchen::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name integration_ids=
+# wrong constant name op_day_ids=
+# wrong constant name order_ids=
+# wrong constant name procurement_order_ids=
+# wrong constant name purchased_recipe_ids=
+# wrong constant name recipe_ids=
+# wrong constant name <static-init>
+# wrong constant name after_add_for_integrations
+# wrong constant name after_add_for_integrations=
+# wrong constant name after_add_for_integrations?
+# wrong constant name after_add_for_op_days
+# wrong constant name after_add_for_op_days=
+# wrong constant name after_add_for_op_days?
+# wrong constant name after_add_for_orders
+# wrong constant name after_add_for_orders=
+# wrong constant name after_add_for_orders?
+# wrong constant name after_add_for_procurement_orders
+# wrong constant name after_add_for_procurement_orders=
+# wrong constant name after_add_for_procurement_orders?
+# wrong constant name after_add_for_purchased_recipes
+# wrong constant name after_add_for_purchased_recipes=
+# wrong constant name after_add_for_purchased_recipes?
+# wrong constant name after_add_for_recipes
+# wrong constant name after_add_for_recipes=
+# wrong constant name after_add_for_recipes?
+# wrong constant name after_remove_for_integrations
+# wrong constant name after_remove_for_integrations=
+# wrong constant name after_remove_for_integrations?
+# wrong constant name after_remove_for_op_days
+# wrong constant name after_remove_for_op_days=
+# wrong constant name after_remove_for_op_days?
+# wrong constant name after_remove_for_orders
+# wrong constant name after_remove_for_orders=
+# wrong constant name after_remove_for_orders?
+# wrong constant name after_remove_for_procurement_orders
+# wrong constant name after_remove_for_procurement_orders=
+# wrong constant name after_remove_for_procurement_orders?
+# wrong constant name after_remove_for_purchased_recipes
+# wrong constant name after_remove_for_purchased_recipes=
+# wrong constant name after_remove_for_purchased_recipes?
+# wrong constant name after_remove_for_recipes
+# wrong constant name after_remove_for_recipes=
+# wrong constant name after_remove_for_recipes?
+# wrong constant name before_add_for_integrations
+# wrong constant name before_add_for_integrations=
+# wrong constant name before_add_for_integrations?
+# wrong constant name before_add_for_op_days
+# wrong constant name before_add_for_op_days=
+# wrong constant name before_add_for_op_days?
+# wrong constant name before_add_for_orders
+# wrong constant name before_add_for_orders=
+# wrong constant name before_add_for_orders?
+# wrong constant name before_add_for_procurement_orders
+# wrong constant name before_add_for_procurement_orders=
+# wrong constant name before_add_for_procurement_orders?
+# wrong constant name before_add_for_purchased_recipes
+# wrong constant name before_add_for_purchased_recipes=
+# wrong constant name before_add_for_purchased_recipes?
+# wrong constant name before_add_for_recipes
+# wrong constant name before_add_for_recipes=
+# wrong constant name before_add_for_recipes?
+# wrong constant name before_remove_for_integrations
+# wrong constant name before_remove_for_integrations=
+# wrong constant name before_remove_for_integrations?
+# wrong constant name before_remove_for_op_days
+# wrong constant name before_remove_for_op_days=
+# wrong constant name before_remove_for_op_days?
+# wrong constant name before_remove_for_orders
+# wrong constant name before_remove_for_orders=
+# wrong constant name before_remove_for_orders?
+# wrong constant name before_remove_for_procurement_orders
+# wrong constant name before_remove_for_procurement_orders=
+# wrong constant name before_remove_for_procurement_orders?
+# wrong constant name before_remove_for_purchased_recipes
+# wrong constant name before_remove_for_purchased_recipes=
+# wrong constant name before_remove_for_purchased_recipes?
+# wrong constant name before_remove_for_recipes
+# wrong constant name before_remove_for_recipes=
+# wrong constant name before_remove_for_recipes?
 # uninitialized constant LUSolve
 # uninitialized constant LUSolve
 # wrong constant name location
@@ -15280,11 +15612,13 @@
 # uninitialized constant ProcurementItem::CALLBACKS
 # uninitialized constant ProcurementItem::CALLBACK_FILTER_TYPES
 # uninitialized constant ProcurementItem::CALL_COMPILABLE_REGEXP
-# wrong constant name <Class:GeneratedAssociationMethods>
 # wrong constant name <Class:GeneratedRelationMethods>
 # uninitialized constant ProcurementItem::MAX_PASSWORD_LENGTH_ALLOWED
 # uninitialized constant ProcurementItem::NAME_COMPILABLE_REGEXP
 # uninitialized constant ProcurementItem::UNASSIGNABLE_KEYS
+# wrong constant name autosave_associated_records_for_ingredient
+# wrong constant name autosave_associated_records_for_procurement_order
+# wrong constant name belongs_to_counter_cache_after_update
 # A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of ProcurementItem::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
@@ -15324,18 +15658,34 @@
 # A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of ProcurementItem::ActiveRecord_Relation has been removed from the module tree but is still active!
-# wrong constant name <static-init>
+# wrong constant name reload_ingredient
+# wrong constant name reload_procurement_order
 # wrong constant name <static-init>
 # uninitialized constant ProcurementOrder::ACTIONS
 # uninitialized constant ProcurementOrder::BLACKLISTED_CLASS_METHODS
 # uninitialized constant ProcurementOrder::CALLBACKS
 # uninitialized constant ProcurementOrder::CALLBACK_FILTER_TYPES
 # uninitialized constant ProcurementOrder::CALL_COMPILABLE_REGEXP
-# wrong constant name <Class:GeneratedAssociationMethods>
 # wrong constant name <Class:GeneratedRelationMethods>
 # uninitialized constant ProcurementOrder::MAX_PASSWORD_LENGTH_ALLOWED
 # uninitialized constant ProcurementOrder::NAME_COMPILABLE_REGEXP
 # uninitialized constant ProcurementOrder::UNASSIGNABLE_KEYS
+# wrong constant name after_add_for_procurement_items
+# wrong constant name after_add_for_procurement_items=
+# wrong constant name after_add_for_procurement_items?
+# wrong constant name after_remove_for_procurement_items
+# wrong constant name after_remove_for_procurement_items=
+# wrong constant name after_remove_for_procurement_items?
+# wrong constant name autosave_associated_records_for_procurement_items
+# wrong constant name autosave_associated_records_for_vendor
+# wrong constant name before_add_for_procurement_items
+# wrong constant name before_add_for_procurement_items=
+# wrong constant name before_add_for_procurement_items?
+# wrong constant name before_remove_for_procurement_items
+# wrong constant name before_remove_for_procurement_items=
+# wrong constant name before_remove_for_procurement_items?
+# wrong constant name belongs_to_counter_cache_after_update
+# wrong constant name validate_associated_records_for_procurement_items
 # A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
 # A copy of ProcurementOrder::ActiveRecord_AssociationRelation has been removed from the module tree but is still active!
@@ -15375,8 +15725,21 @@
 # A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
 # A copy of ProcurementOrder::ActiveRecord_Relation has been removed from the module tree but is still active!
+# wrong constant name procurement_item_ids=
+# wrong constant name reload_vendor
 # wrong constant name <static-init>
-# wrong constant name <static-init>
+# wrong constant name after_add_for_procurement_items
+# wrong constant name after_add_for_procurement_items=
+# wrong constant name after_add_for_procurement_items?
+# wrong constant name after_remove_for_procurement_items
+# wrong constant name after_remove_for_procurement_items=
+# wrong constant name after_remove_for_procurement_items?
+# wrong constant name before_add_for_procurement_items
+# wrong constant name before_add_for_procurement_items=
+# wrong constant name before_add_for_procurement_items?
+# wrong constant name before_remove_for_procurement_items
+# wrong constant name before_remove_for_procurement_items=
+# wrong constant name before_remove_for_procurement_items?
 # wrong constant name <Class:FALLBACK>
 # uninitialized constant Psych::FALLBACK::Elem
 # wrong constant name to_ruby
@@ -16121,7 +16484,7 @@
 # uninitialized constant Rails::Generators::TestCase::VERSION
 # wrong constant name properties
 # wrong constant name properties=
-# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007f92eac33258>'
+# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007fd31d5dd048>'
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=

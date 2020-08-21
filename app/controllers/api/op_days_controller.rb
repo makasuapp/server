@@ -6,7 +6,7 @@ class Api::OpDaysController < ApplicationController
       op_day = OpDay.first
     else
       date = Time.now.in_time_zone("America/Toronto").to_date
-      op_day = OpDay.find_or_create_by!(date: date)
+      op_day = OpDay.find_or_create_by!(date: date, kitchen_id: params[:kitchen_id])
     end
 
     @ingredients = DayIngredient.where(op_day_id: op_day.id).includes(:ingredient)

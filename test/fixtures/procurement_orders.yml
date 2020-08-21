@@ -7,12 +7,13 @@
 #  order_type :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  kitchen_id :bigint
 #  vendor_id  :bigint           not null
 #
 # Indexes
 #
-#  index_procurement_orders_on_for_date   (for_date)
-#  index_procurement_orders_on_vendor_id  (vendor_id)
+#  index_procurement_orders_on_kitchen_id_and_for_date  (kitchen_id,for_date)
+#  index_procurement_orders_on_vendor_id                (vendor_id)
 #
 
 # This model initially had no columns defined. If you add columns to the

@@ -9,6 +9,7 @@ class Api::ProcurementController < ApplicationController
     end
 
     @procurement_orders = ProcurementOrder
+      .where(kitchen_id: params[:kitchen_id])
       .where("for_date >= ?", 
         date.in_time_zone("America/Toronto").beginning_of_day)
       .includes([:vendor, :procurement_items])

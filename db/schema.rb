@@ -1,3 +1,4 @@
+# typed: false
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_165137) do
+ActiveRecord::Schema.define(version: 2020_08_20_200827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +72,16 @@ ActiveRecord::Schema.define(version: 2020_08_15_165137) do
     t.float "volume_weight_ratio"
   end
 
+  create_table "integrations", force: :cascade do |t|
+    t.bigint "kitchen_id", null: false
+    t.string "integration_type", null: false
+    t.string "wix_app_instance_id"
+    t.string "wix_restaurant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kitchen_id"], name: "index_integrations_on_kitchen_id"
+  end
+
   create_table "item_prices", force: :cascade do |t|
     t.bigint "recipe_id"
     t.integer "price_cents", null: false
@@ -79,10 +90,18 @@ ActiveRecord::Schema.define(version: 2020_08_15_165137) do
     t.index ["recipe_id"], name: "index_item_prices_on_recipe_id"
   end
 
+  create_table "kitchens", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "op_days", force: :cascade do |t|
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "kitchen_id"
+    t.index ["date", "kitchen_id"], name: "index_op_days_on_date_and_kitchen_id"
     t.index ["date"], name: "index_op_days_on_date"
   end
 
@@ -116,8 +135,11 @@ ActiveRecord::Schema.define(version: 2020_08_15_165137) do
     t.bigint "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "kitchen_id"
+    t.bigint "integration_id"
+    t.string "integration_order_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
-    t.index ["for_time", "created_at", "aasm_state"], name: "index_orders_on_for_time_and_created_at_and_aasm_state"
+    t.index ["kitchen_id", "for_time", "created_at", "aasm_state"], name: "idx_kitchen_time"
   end
 
   create_table "procurement_items", force: :cascade do |t|
@@ -141,7 +163,8 @@ ActiveRecord::Schema.define(version: 2020_08_15_165137) do
     t.string "order_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["for_date"], name: "index_procurement_orders_on_for_date"
+    t.bigint "kitchen_id"
+    t.index ["kitchen_id", "for_date"], name: "index_procurement_orders_on_kitchen_id_and_for_date"
     t.index ["vendor_id"], name: "index_procurement_orders_on_vendor_id"
   end
 
@@ -151,6 +174,8 @@ ActiveRecord::Schema.define(version: 2020_08_15_165137) do
     t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "kitchen_id"
+    t.index ["date", "kitchen_id"], name: "index_purchased_recipes_on_date_and_kitchen_id"
     t.index ["date"], name: "index_purchased_recipes_on_date"
     t.index ["recipe_id"], name: "index_purchased_recipes_on_recipe_id"
   end
@@ -186,6 +211,8 @@ ActiveRecord::Schema.define(version: 2020_08_15_165137) do
     t.datetime "updated_at", null: false
     t.integer "current_price_cents"
     t.float "output_volume_weight_ratio"
+    t.bigint "kitchen_id"
+    t.index ["kitchen_id"], name: "index_recipes_on_kitchen_id"
   end
 
   create_table "step_inputs", force: :cascade do |t|
