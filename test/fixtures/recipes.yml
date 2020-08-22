@@ -15,7 +15,7 @@
 #
 # Indexes
 #
-#  index_recipes_on_kitchen_id  (kitchen_id)
+#  index_recipes_on_kitchen_id_and_name  (kitchen_id,name)
 #
 
 # This model initially had no columns defined. If you add columns to the

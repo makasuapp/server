@@ -31,3 +31,5 @@ Order.update_all(kitchen_id: kitchen.id)
 ProcurementOrder.update_all(kitchen_id: kitchen.id)
 PurchasedRecipe.update_all(kitchen_id: kitchen.id)
 Recipe.update_all(kitchen_id: kitchen.id)
+
+kitchen.integrations.create!(integration_type: "wix", wix_restaurant_id: "252491363672592")

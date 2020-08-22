@@ -230,4 +230,11 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_procurement_update_items_url(*args, **kwargs); end
+
+  # Sigs for route /api/wix/orders(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_wix_orders_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_wix_orders_url(*args, **kwargs); end
 end

@@ -3065,6 +3065,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def api_url(*args); end
 
+  def api_wix_orders_path(*args); end
+
+  def api_wix_orders_url(*args); end
+
   def batch_action_admin_purchased_recipes_path(*args); end
 
   def batch_action_admin_purchased_recipes_url(*args); end
@@ -7994,9 +7998,6 @@ module AnnotateRoutes::Helpers
   MAGIC_COMMENT_MATCHER = ::T.let(nil, ::T.untyped)
 end
 
-module Api
-end
-
 class Api::OpDaysController
   def index(); end
 
@@ -8037,7 +8038,7 @@ end
 class Api::RecipesController
 end
 
-module Api
+class Api::WixController
 end
 
 module ApplicationCable
@@ -9347,6 +9348,251 @@ end
 
 class Array
   def self.try_convert(_); end
+end
+
+module Axiom
+end
+
+module Axiom::Types
+  Contradiction = ::T.let(nil, ::T.untyped)
+  Tautology = ::T.let(nil, ::T.untyped)
+  Undefined = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class Axiom::Types::Array
+end
+
+class Axiom::Types::Array
+end
+
+class Axiom::Types::Boolean
+end
+
+class Axiom::Types::Boolean
+end
+
+class Axiom::Types::Class
+end
+
+class Axiom::Types::Class
+end
+
+class Axiom::Types::Collection
+end
+
+class Axiom::Types::Collection
+  def self.member_type(*args); end
+end
+
+class Axiom::Types::Date
+end
+
+class Axiom::Types::Date
+  extend ::Axiom::Types::ValueComparable
+  def self.maximum(*args); end
+
+  def self.minimum(*args); end
+end
+
+class Axiom::Types::DateTime
+  MAXIMUM_SECONDS = ::T.let(nil, ::T.untyped)
+end
+
+class Axiom::Types::DateTime
+  extend ::Axiom::Types::ValueComparable
+  def self.maximum(*args); end
+
+  def self.minimum(*args); end
+end
+
+class Axiom::Types::Decimal
+end
+
+class Axiom::Types::Decimal
+end
+
+module Axiom::Types::Encodable
+  def finalize(); end
+end
+
+module Axiom::Types::Encodable
+end
+
+class Axiom::Types::Float
+end
+
+class Axiom::Types::Float
+end
+
+class Axiom::Types::Hash
+end
+
+class Axiom::Types::Hash
+  def self.key_type(*args); end
+
+  def self.value_type(*args); end
+end
+
+class Axiom::Types::Infinity
+  include ::Singleton
+  include ::Comparable
+  def coerce(other); end
+
+  def succ(); end
+end
+
+class Axiom::Types::Infinity
+  extend ::DescendantsTracker
+  extend ::Axiom::Types::Options
+  extend ::Singleton::SingletonClassMethods
+  def self.instance(); end
+
+  def self.inverse(*args); end
+
+  def self.number(*args); end
+end
+
+class Axiom::Types::Integer
+end
+
+class Axiom::Types::Integer
+end
+
+module Axiom::Types::LengthComparable
+  def finalize(); end
+
+  def range(); end
+end
+
+module Axiom::Types::LengthComparable
+  def self.extended(descendant); end
+end
+
+class Axiom::Types::NegativeInfinity
+end
+
+class Axiom::Types::NegativeInfinity
+end
+
+class Axiom::Types::Numeric
+end
+
+class Axiom::Types::Numeric
+  extend ::Axiom::Types::ValueComparable
+  def self.maximum(*args); end
+
+  def self.minimum(*args); end
+end
+
+class Axiom::Types::Object
+end
+
+class Axiom::Types::Object
+  def self.coercion_method(*args); end
+
+  def self.primitive(*args); end
+end
+
+module Axiom::Types::Options
+  def accept_options(*new_options); end
+
+  def setup_option(new_option); end
+end
+
+class Axiom::Types::Options::ReservedMethodError
+end
+
+class Axiom::Types::Options::ReservedMethodError
+end
+
+module Axiom::Types::Options
+end
+
+class Axiom::Types::Set
+end
+
+class Axiom::Types::Set
+end
+
+class Axiom::Types::String
+end
+
+class Axiom::Types::String
+  extend ::Axiom::Types::Encodable
+  extend ::Axiom::Types::LengthComparable
+  def self.encoding(*args); end
+
+  def self.maximum_length(*args); end
+
+  def self.minimum_length(*args); end
+end
+
+class Axiom::Types::Symbol
+end
+
+class Axiom::Types::Symbol
+  extend ::Axiom::Types::Encodable
+  extend ::Axiom::Types::LengthComparable
+  def self.encoding(*args); end
+
+  def self.maximum_length(*args); end
+
+  def self.minimum_length(*args); end
+end
+
+class Axiom::Types::Time
+  MAXIMUM_SECONDS = ::T.let(nil, ::T.untyped)
+  MINIMUM_SECONDS = ::T.let(nil, ::T.untyped)
+end
+
+class Axiom::Types::Time
+  extend ::Axiom::Types::ValueComparable
+  def self.maximum(*args); end
+
+  def self.minimum(*args); end
+end
+
+class Axiom::Types::Type
+end
+
+class Axiom::Types::Type
+  extend ::DescendantsTracker
+  extend ::Axiom::Types::Options
+  def self.base(); end
+
+  def self.base?(); end
+
+  def self.constraint(constraint=T.unsafe(nil), &block); end
+
+  def self.finalize(); end
+
+  def self.include?(object); end
+
+  def self.includes(*members); end
+
+  def self.infer(object); end
+
+  def self.new(*args, &block); end
+end
+
+module Axiom::Types::ValueComparable
+  def finalize(); end
+
+  def range(); end
+end
+
+module Axiom::Types::ValueComparable
+  def self.extended(descendant); end
+end
+
+module Axiom::Types
+  def self.finalize(); end
+
+  def self.infer(object); end
+end
+
+module Axiom
 end
 
 module BCrypt
@@ -10800,6 +11046,265 @@ class Class
   def json_creatable?(); end
 end
 
+module Coercible
+  EXTRA_CONST_ARGS = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class Coercible::Coercer
+  def [](klass); end
+
+  def coercers(); end
+
+  def config(); end
+
+  def initialize(config, coercers=T.unsafe(nil)); end
+end
+
+class Coercible::Coercer::Array
+  def to_set(value); end
+  TIME_SEGMENTS = ::T.let(nil, ::T.untyped)
+end
+
+class Coercible::Coercer::Array
+end
+
+module Coercible::Coercer::Configurable
+  def config(&block); end
+
+  def config_name(); end
+
+  def configuration_class(); end
+end
+
+module Coercible::Coercer::Configurable
+  def self.extended(coercer); end
+end
+
+class Coercible::Coercer::Date
+  include ::Coercible::Coercer::TimeCoercions
+end
+
+class Coercible::Coercer::Date
+end
+
+class Coercible::Coercer::DateTime
+  include ::Coercible::Coercer::TimeCoercions
+end
+
+class Coercible::Coercer::DateTime
+end
+
+class Coercible::Coercer::Decimal
+  FLOAT_FORMAT = ::T.let(nil, ::T.untyped)
+end
+
+class Coercible::Coercer::Decimal
+end
+
+class Coercible::Coercer::FalseClass
+end
+
+class Coercible::Coercer::FalseClass
+end
+
+class Coercible::Coercer::Float
+  def to_datetime(value); end
+end
+
+class Coercible::Coercer::Float
+end
+
+class Coercible::Coercer::Hash
+  def to_date(value); end
+
+  def to_datetime(value); end
+
+  def to_time(value); end
+  TIME_SEGMENTS = ::T.let(nil, ::T.untyped)
+end
+
+class Coercible::Coercer::Hash
+end
+
+class Coercible::Coercer::Integer
+  def boolean_map(); end
+
+  def datetime_format(); end
+
+  def datetime_proc(); end
+
+  def initialize(coercer=T.unsafe(nil), config=T.unsafe(nil)); end
+
+  def to_boolean(value); end
+
+  def to_datetime(value); end
+end
+
+class Coercible::Coercer::Integer
+  extend ::Coercible::Coercer::Configurable
+  def self.config(); end
+
+  def self.config_keys(value=T.unsafe(nil)); end
+end
+
+class Coercible::Coercer::Numeric
+  def to_decimal(value); end
+
+  def to_float(value); end
+end
+
+class Coercible::Coercer::Numeric
+end
+
+class Coercible::Coercer::Object
+  def coerced?(value); end
+
+  def coercers(); end
+
+  def initialize(coercers=T.unsafe(nil)); end
+
+  def to_array(value); end
+
+  def to_hash(value); end
+
+  def to_integer(value); end
+
+  def to_string(value); end
+  COERCION_METHOD_REGEXP = ::T.let(nil, ::T.untyped)
+end
+
+class Coercible::Coercer::Object
+  extend ::Coercible::Options
+  extend ::DescendantsTracker
+  extend ::Coercible::TypeLookup
+  def self.primitive(value=T.unsafe(nil)); end
+end
+
+class Coercible::Coercer::String
+  def boolean_map(); end
+
+  def initialize(coercer=T.unsafe(nil), config=T.unsafe(nil)); end
+
+  def to_boolean(value); end
+
+  def to_constant(value); end
+
+  def to_date(value); end
+
+  def to_datetime(value); end
+
+  def to_decimal(value); end
+
+  def to_float(value); end
+
+  def to_symbol(value); end
+
+  def to_time(value); end
+  BOOLEAN_MAP = ::T.let(nil, ::T.untyped)
+  EXPONENT_REGEXP = ::T.let(nil, ::T.untyped)
+  FALSE_VALUES = ::T.let(nil, ::T.untyped)
+  FRACTIONAL_REGEXP = ::T.let(nil, ::T.untyped)
+  INTEGER_REGEXP = ::T.let(nil, ::T.untyped)
+  NUMERIC_REGEXP = ::T.let(nil, ::T.untyped)
+  TRUE_VALUES = ::T.let(nil, ::T.untyped)
+end
+
+class Coercible::Coercer::String
+  extend ::Coercible::Coercer::Configurable
+  def self.config(); end
+
+  def self.config_keys(value=T.unsafe(nil)); end
+end
+
+class Coercible::Coercer::Symbol
+end
+
+class Coercible::Coercer::Symbol
+end
+
+class Coercible::Coercer::Time
+  include ::Coercible::Coercer::TimeCoercions
+end
+
+class Coercible::Coercer::Time
+end
+
+module Coercible::Coercer::TimeCoercions
+  def to_date(value); end
+
+  def to_datetime(value); end
+
+  def to_string(value); end
+
+  def to_time(value); end
+end
+
+module Coercible::Coercer::TimeCoercions
+end
+
+class Coercible::Coercer::TrueClass
+end
+
+class Coercible::Coercer::TrueClass
+end
+
+class Coercible::Coercer
+  def self.new(&block); end
+end
+
+class Coercible::Configuration
+end
+
+class Coercible::Configuration
+  def self.build(keys, &block); end
+end
+
+module Coercible::Options
+  def accept_options(*new_options); end
+
+  def accepted_options(); end
+
+  def add_accepted_options(new_options); end
+
+  def define_option_method(option); end
+
+  def options(); end
+
+  def set_options(new_options); end
+end
+
+class Coercible::Options::Undefined
+end
+
+class Coercible::Options::Undefined
+end
+
+module Coercible::Options
+  def self.extended(descendant); end
+end
+
+module Coercible::TypeLookup
+  def determine_type(class_or_name); end
+
+  def primitive(); end
+  TYPE_FORMAT = ::T.let(nil, ::T.untyped)
+end
+
+module Coercible::TypeLookup
+  def self.extended(model); end
+end
+
+class Coercible::UnsupportedCoercion
+end
+
+class Coercible::UnsupportedCoercion
+end
+
+module Coercible
+  def self.rbx?(); end
+end
+
 module Concurrent
   NULL = ::T.let(nil, ::T.untyped)
   NULL_LOGGER = ::T.let(nil, ::T.untyped)
@@ -11395,6 +11900,158 @@ end
 class DayPrep
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module Declarative
+end
+
+module Declarative::Callable
+end
+
+module Declarative::Callable
+end
+
+module Declarative::DeepDup
+end
+
+module Declarative::DeepDup
+  def self.call(args); end
+
+  def self.dup_items(arr); end
+end
+
+class Declarative::Defaults
+  def call(name, given_options); end
+
+  def handle_array_and_deprecate(variables); end
+
+  def merge!(hash=T.unsafe(nil), &block); end
+end
+
+class Declarative::Defaults
+  def self.wrap_arrays(variables); end
+end
+
+class Declarative::Definitions
+  def add(name, options=T.unsafe(nil), &block); end
+
+  def each(&block); end
+
+  def get(name); end
+
+  def initialize(definition_class); end
+end
+
+class Declarative::Definitions::Definition
+  def [](name); end
+
+  def initialize(name, options=T.unsafe(nil)); end
+
+  def merge(hash); end
+
+  def merge!(hash); end
+end
+
+class Declarative::Definitions::Definition
+end
+
+class Declarative::Definitions
+end
+
+class Declarative::Heritage
+  def call(inheritor, &block); end
+
+  def record(method, *args, &block); end
+end
+
+module Declarative::Heritage::DSL
+  def heritage(); end
+end
+
+module Declarative::Heritage::DSL
+end
+
+module Declarative::Heritage::Included
+  def included(mod); end
+end
+
+module Declarative::Heritage::Included
+end
+
+module Declarative::Heritage::Inherited
+  def inherited(subclass); end
+end
+
+module Declarative::Heritage::Inherited
+end
+
+class Declarative::Heritage
+end
+
+class Declarative::Option
+  def call(value, options=T.unsafe(nil)); end
+end
+
+class Declarative::Option
+end
+
+module Declarative::Schema
+end
+
+module Declarative::Schema::DSL
+  def defaults(options=T.unsafe(nil), &block); end
+
+  def definition_class(); end
+
+  def definitions(); end
+
+  def property(name, options=T.unsafe(nil), &block); end
+  NestedBuilder = ::T.let(nil, ::T.untyped)
+end
+
+module Declarative::Schema::DSL
+end
+
+module Declarative::Schema::Feature
+  def feature(*mods); end
+end
+
+module Declarative::Schema::Feature
+end
+
+module Declarative::Schema
+  def self.extended(extender); end
+end
+
+class Declarative::Variables
+end
+
+class Declarative::Variables::Proc
+end
+
+class Declarative::Variables::Proc
+end
+
+class Declarative::Variables
+  def self.Append(appended_array); end
+
+  def self.Merge(merged_hash); end
+
+  def self.merge(defaults, overrides); end
+end
+
+module Declarative
+  def self.Option(value, options=T.unsafe(nil)); end
+end
+
+module DescendantsTracker
+  def add_descendant(descendant); end
+
+  def descendants(); end
+end
+
+module DescendantsTracker
+  def self.setup(descendant); end
 end
 
 class DetailedInstruction
@@ -13430,6 +14087,22 @@ class Enumerator::Generator
   def each(*_, &blk); end
 
   def initialize(*_); end
+end
+
+class Equalizer
+  def initialize(*keys); end
+end
+
+module Equalizer::Methods
+  def ==(other); end
+
+  def eql?(other); end
+end
+
+module Equalizer::Methods
+end
+
+class Equalizer
 end
 
 class Errno::EAUTH
@@ -17755,6 +18428,141 @@ module IRB
   def self.setup(ap_path, argv: T.unsafe(nil)); end
 end
 
+module IceNine
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class IceNine::Freezer
+end
+
+class IceNine::Freezer::Array
+end
+
+class IceNine::Freezer::Array
+  def self.guarded_deep_freeze(array, recursion_guard); end
+end
+
+IceNine::Freezer::BasicObject = IceNine::Freezer::Object
+
+class IceNine::Freezer::FalseClass
+end
+
+class IceNine::Freezer::FalseClass
+end
+
+class IceNine::Freezer::Hash
+end
+
+class IceNine::Freezer::Hash::State
+end
+
+class IceNine::Freezer::Hash::State
+end
+
+class IceNine::Freezer::Hash
+  def self.guarded_deep_freeze(hash, recursion_guard); end
+end
+
+class IceNine::Freezer::Module
+end
+
+class IceNine::Freezer::Module
+end
+
+class IceNine::Freezer::NilClass
+end
+
+class IceNine::Freezer::NilClass
+end
+
+class IceNine::Freezer::NoFreeze
+end
+
+class IceNine::Freezer::NoFreeze
+  def self.guarded_deep_freeze(object, _recursion_guard); end
+end
+
+class IceNine::Freezer::Numeric
+end
+
+class IceNine::Freezer::Numeric
+end
+
+class IceNine::Freezer::Object
+end
+
+class IceNine::Freezer::Object
+end
+
+class IceNine::Freezer::Range
+end
+
+class IceNine::Freezer::Range
+  def self.guarded_deep_freeze(range, recursion_guard); end
+end
+
+class IceNine::Freezer::Rubinius
+end
+
+class IceNine::Freezer::Rubinius
+end
+
+class IceNine::Freezer::Struct
+end
+
+class IceNine::Freezer::Struct
+end
+
+class IceNine::Freezer::Symbol
+end
+
+class IceNine::Freezer::Symbol
+end
+
+class IceNine::Freezer::TrueClass
+end
+
+class IceNine::Freezer::TrueClass
+end
+
+class IceNine::Freezer
+  def self.[](mod); end
+
+  def self.const_lookup(namespace); end
+
+  def self.deep_freeze(object); end
+
+  def self.deep_freeze!(object); end
+
+  def self.guarded_deep_freeze(object, recursion_guard); end
+end
+
+class IceNine::RecursionGuard
+end
+
+class IceNine::RecursionGuard::Frozen
+  def guard(object); end
+end
+
+class IceNine::RecursionGuard::Frozen
+end
+
+class IceNine::RecursionGuard::ObjectSet
+  def guard(object); end
+end
+
+class IceNine::RecursionGuard::ObjectSet
+end
+
+class IceNine::RecursionGuard
+end
+
+module IceNine
+  def self.deep_freeze(object); end
+
+  def self.deep_freeze!(object); end
+end
+
 class Ingredient
   def after_add_for_day_ingredients(); end
 
@@ -20509,6 +21317,112 @@ class MonitorMixin::ConditionVariable
   def initialize(monitor); end
 end
 
+module MultiJson
+  include ::MultiJson::Options
+  def adapter(); end
+
+  def adapter=(new_adapter); end
+
+  def cached_options(*_); end
+
+  def current_adapter(options=T.unsafe(nil)); end
+
+  def decode(string, options=T.unsafe(nil)); end
+
+  def default_adapter(); end
+
+  def default_engine(); end
+
+  def default_options(); end
+
+  def default_options=(value); end
+
+  def dump(object, options=T.unsafe(nil)); end
+
+  def encode(object, options=T.unsafe(nil)); end
+
+  def engine(); end
+
+  def engine=(new_adapter); end
+
+  def load(string, options=T.unsafe(nil)); end
+
+  def load_adapter(new_adapter); end
+
+  def reset_cached_options!(*_); end
+
+  def use(new_adapter); end
+
+  def with_adapter(new_adapter); end
+
+  def with_engine(new_adapter); end
+  ALIASES = ::T.let(nil, ::T.untyped)
+  REQUIREMENT_MAP = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class MultiJson::AdapterError
+end
+
+class MultiJson::AdapterError
+  def self.build(original_exception); end
+end
+
+MultiJson::DecodeError = MultiJson::ParseError
+
+MultiJson::LoadError = MultiJson::ParseError
+
+module MultiJson::Options
+  def default_dump_options(); end
+
+  def default_load_options(); end
+
+  def dump_options(*args); end
+
+  def dump_options=(options); end
+
+  def load_options(*args); end
+
+  def load_options=(options); end
+end
+
+module MultiJson::Options
+end
+
+module MultiJson::OptionsCache
+  def fetch(type, key, &block); end
+
+  def reset(); end
+  MAX_CACHE_SIZE = ::T.let(nil, ::T.untyped)
+end
+
+module MultiJson::OptionsCache
+  extend ::MultiJson::OptionsCache
+end
+
+class MultiJson::ParseError
+  def data(); end
+end
+
+class MultiJson::ParseError
+  def self.build(original_exception, data); end
+end
+
+class MultiJson::Version
+  MAJOR = ::T.let(nil, ::T.untyped)
+  MINOR = ::T.let(nil, ::T.untyped)
+  PATCH = ::T.let(nil, ::T.untyped)
+  PRE = ::T.let(nil, ::T.untyped)
+end
+
+class MultiJson::Version
+end
+
+module MultiJson
+  extend ::MultiJson
+  extend ::MultiJson::Options
+end
+
 module NIO
   ENGINE = ::T.let(nil, ::T.untyped)
   VERSION = ::T.let(nil, ::T.untyped)
@@ -21302,6 +22216,8 @@ class OpDay
 
   def autosave_associated_records_for_day_preps(*args); end
 
+  def autosave_associated_records_for_kitchen(*args); end
+
   def before_add_for_day_ingredients(); end
 
   def before_add_for_day_ingredients=(val); end
@@ -21325,6 +22241,8 @@ class OpDay
   def before_remove_for_day_preps=(val); end
 
   def before_remove_for_day_preps?(); end
+
+  def belongs_to_counter_cache_after_update(reflection); end
 
   def validate_associated_records_for_day_ingredients(*args); end
 
@@ -21350,6 +22268,8 @@ module OpDay::GeneratedAssociationMethods
   def day_ingredient_ids=(ids); end
 
   def day_prep_ids=(ids); end
+
+  def reload_kitchen(); end
 end
 
 module OpDay::GeneratedRelationMethods
@@ -21600,6 +22520,10 @@ class Order
 
   def autosave_associated_records_for_customer(*args); end
 
+  def autosave_associated_records_for_integration(*args); end
+
+  def autosave_associated_records_for_kitchen(*args); end
+
   def autosave_associated_records_for_order_items(*args); end
 
   def autosave_associated_records_for_versions(*args); end
@@ -21722,6 +22646,10 @@ module Order::GeneratedAssociationMethods
   def order_item_ids=(ids); end
 
   def reload_customer(); end
+
+  def reload_integration(); end
+
+  def reload_kitchen(); end
 
   def version_ids=(ids); end
 end
@@ -25662,40 +26590,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70272237239600
+module Polyfill::Module::M70267966390140
 end
 
-module Polyfill::Module::M70272237239600
+module Polyfill::Module::M70267966390140
 end
 
-module Polyfill::Module::M70272243443740
+module Polyfill::Module::M70267974059300
 end
 
-module Polyfill::Module::M70272243443740
+module Polyfill::Module::M70267974059300
 end
 
-module Polyfill::Module::M70272251259000
+module Polyfill::Module::M70267974113000
 end
 
-module Polyfill::Module::M70272251259000
+module Polyfill::Module::M70267974113000
 end
 
-module Polyfill::Module::M70272252119200
+module Polyfill::Module::M70267974161800
 end
 
-module Polyfill::Module::M70272252119200
+module Polyfill::Module::M70267974161800
 end
 
-module Polyfill::Module::M70272252142860
+module Polyfill::Module::M70267977511460
 end
 
-module Polyfill::Module::M70272252142860
+module Polyfill::Module::M70267977511460
 end
 
-module Polyfill::Module::M70272284571520
+module Polyfill::Module::M70267982081180
 end
 
-module Polyfill::Module::M70272284571520
+module Polyfill::Module::M70267982081180
 end
 
 class Proc
@@ -25750,6 +26678,8 @@ class ProcurementOrder
 
   def after_remove_for_procurement_items?(); end
 
+  def autosave_associated_records_for_kitchen(*args); end
+
   def autosave_associated_records_for_procurement_items(*args); end
 
   def autosave_associated_records_for_vendor(*args); end
@@ -25788,6 +26718,8 @@ end
 
 module ProcurementOrder::GeneratedAssociationMethods
   def procurement_item_ids=(ids); end
+
+  def reload_kitchen(); end
 
   def reload_vendor(); end
 end
@@ -26150,6 +27082,8 @@ module Pundit
 end
 
 class PurchasedRecipe
+  def autosave_associated_records_for_kitchen(*args); end
+
   def autosave_associated_records_for_recipe(*args); end
 
   def belongs_to_counter_cache_after_update(reflection); end
@@ -26171,6 +27105,8 @@ class PurchasedRecipe::ActiveRecord_Relation
 end
 
 module PurchasedRecipe::GeneratedAssociationMethods
+  def reload_kitchen(); end
+
   def reload_recipe(); end
 end
 
@@ -27983,6 +28919,8 @@ class Recipe
 
   def autosave_associated_records_for_item_prices(*args); end
 
+  def autosave_associated_records_for_kitchen(*args); end
+
   def autosave_associated_records_for_order_items(*args); end
 
   def autosave_associated_records_for_purchased_recipes(*args); end
@@ -28051,6 +28989,8 @@ class Recipe
 
   def before_remove_for_step_inputs?(); end
 
+  def belongs_to_counter_cache_after_update(reflection); end
+
   def validate_associated_records_for_item_prices(*args); end
 
   def validate_associated_records_for_order_items(*args); end
@@ -28085,6 +29025,8 @@ module Recipe::GeneratedAssociationMethods
   def purchased_recipe_ids=(ids); end
 
   def recipe_step_ids=(ids); end
+
+  def reload_kitchen(); end
 
   def step_input_ids=(ids); end
 end
@@ -28628,6 +29570,780 @@ class RecipeStep
   def self.before_remove_for_tools?(); end
 end
 
+module Representable
+  def representable_attrs=(representable_attrs); end
+  As = ::T.let(nil, ::T.untyped)
+  AssignAs = ::T.let(nil, ::T.untyped)
+  AssignFragment = ::T.let(nil, ::T.untyped)
+  AssignName = ::T.let(nil, ::T.untyped)
+  Decorate = ::T.let(nil, ::T.untyped)
+  Default = ::T.let(nil, ::T.untyped)
+  Deserialize = ::T.let(nil, ::T.untyped)
+  Deserializer = ::T.let(nil, ::T.untyped)
+  FindOrInstantiate = ::T.let(nil, ::T.untyped)
+  GetValue = ::T.let(nil, ::T.untyped)
+  Getter = ::T.let(nil, ::T.untyped)
+  If = ::T.let(nil, ::T.untyped)
+  OptionsForNested = ::T.let(nil, ::T.untyped)
+  OverwriteOnNil = ::T.let(nil, ::T.untyped)
+  ParseFilter = ::T.let(nil, ::T.untyped)
+  Prepare = ::T.let(nil, ::T.untyped)
+  ReadFragment = ::T.let(nil, ::T.untyped)
+  Reader = ::T.let(nil, ::T.untyped)
+  RenderDefault = ::T.let(nil, ::T.untyped)
+  RenderFilter = ::T.let(nil, ::T.untyped)
+  Serialize = ::T.let(nil, ::T.untyped)
+  Serializer = ::T.let(nil, ::T.untyped)
+  SetValue = ::T.let(nil, ::T.untyped)
+  Setter = ::T.let(nil, ::T.untyped)
+  SkipParse = ::T.let(nil, ::T.untyped)
+  SkipRender = ::T.let(nil, ::T.untyped)
+  Stop = ::T.let(nil, ::T.untyped)
+  StopOnExcluded = ::T.let(nil, ::T.untyped)
+  StopOnNil = ::T.let(nil, ::T.untyped)
+  StopOnNotFound = ::T.let(nil, ::T.untyped)
+  StopOnSkipable = ::T.let(nil, ::T.untyped)
+  WriteFragment = ::T.let(nil, ::T.untyped)
+  Writer = ::T.let(nil, ::T.untyped)
+end
+
+class Representable::Binding
+  include ::Representable::Binding::Deprecatable
+  include ::Representable::Binding::EvaluateOption
+  include ::Representable::Binding::Factories
+  def [](name); end
+
+  def cached_representer(); end
+
+  def cached_representer=(cached_representer); end
+
+  def default_for(value); end
+
+  def getter(); end
+
+  def initialize(definition); end
+
+  def name(); end
+
+  def setter(); end
+
+  def skipable_empty_value?(value); end
+end
+
+module Representable::Binding::Collection
+  def skipable_empty_value?(value); end
+end
+
+module Representable::Binding::Collection
+end
+
+module Representable::Binding::Deprecatable
+  def compile_fragment(options); end
+
+  def uncompile_fragment(options); end
+end
+
+module Representable::Binding::Deprecatable
+end
+
+module Representable::Binding::EvaluateOption
+  def evaluate_option(name, input, options); end
+end
+
+module Representable::Binding::EvaluateOption
+end
+
+module Representable::Binding::Factories
+  def collect_for(item_functions); end
+
+  def default_parse_fragment_functions(); end
+
+  def default_parse_init_functions(); end
+
+  def default_post_functions(); end
+
+  def default_render_fragment_functions(); end
+
+  def default_render_init_functions(); end
+
+  def parse_functions(); end
+
+  def pipeline_for(name, input, options); end
+
+  def render_functions(); end
+end
+
+module Representable::Binding::Factories
+end
+
+class Representable::Binding::FragmentNotFound
+end
+
+class Representable::Binding::FragmentNotFound
+end
+
+class Representable::Binding::Map
+  def <<(binding); end
+
+  def call(method, options); end
+end
+
+class Representable::Binding::Map
+end
+
+class Representable::Binding
+  extend ::Uber::Delegates
+  def self.build(definition); end
+end
+
+module Representable::Cached
+  def representable_map(*_); end
+end
+
+module Representable::Cached::BuildDefinition
+  def build_definition(*_); end
+end
+
+module Representable::Cached::BuildDefinition
+end
+
+module Representable::Cached
+  def self.included(includer); end
+end
+
+module Representable::ClassMethods
+  def prepare(represented); end
+end
+
+module Representable::ClassMethods
+end
+
+module Representable::Coercion
+end
+
+module Representable::Coercion::ClassMethods
+  def property(name, options=T.unsafe(nil), &block); end
+end
+
+module Representable::Coercion::ClassMethods
+end
+
+class Representable::Coercion::Coercer
+  def call(input, options); end
+
+  def initialize(type); end
+end
+
+class Representable::Coercion::Coercer
+end
+
+module Representable::Coercion
+  def self.included(base); end
+end
+
+class Representable::Collect
+end
+
+class Representable::Collect::Hash
+end
+
+class Representable::Collect::Hash
+end
+
+class Representable::Collect
+end
+
+class Representable::Config
+  def initialize(*_); end
+
+  def options(); end
+
+  def remove(name); end
+
+  def wrap=(value); end
+
+  def wrap_for(represented, *args, &block); end
+end
+
+class Representable::Config
+end
+
+module Representable::CreateObject
+  Class = ::T.let(nil, ::T.untyped)
+  Instance = ::T.let(nil, ::T.untyped)
+  Populator = ::T.let(nil, ::T.untyped)
+end
+
+module Representable::CreateObject
+end
+
+module Representable::Declarative
+  include ::Declarative::Schema::DSL
+  include ::Declarative::Schema::Feature
+  include ::Declarative::Heritage::DSL
+  def collection(name, options=T.unsafe(nil), &block); end
+
+  def default_nested_class(); end
+
+  def definitions(); end
+
+  def hash(name=T.unsafe(nil), options=T.unsafe(nil), &block); end
+
+  def nested(name, options=T.unsafe(nil), &block); end
+
+  def nested_builder(); end
+
+  def representable_attrs(); end
+
+  def representation_wrap=(name); end
+  NestedBuilder = ::T.let(nil, ::T.untyped)
+end
+
+module Representable::Declarative
+end
+
+class Representable::Decorator
+  include ::Representable
+  include ::Representable::Cached
+  def decorated(); end
+
+  def initialize(represented); end
+end
+
+class Representable::Decorator
+  extend ::Representable::Declarative
+  extend ::Declarative::Schema::DSL
+  extend ::Declarative::Schema::Feature
+  extend ::Declarative::Heritage::DSL
+  extend ::Declarative::Heritage::Included
+  extend ::Declarative::Heritage::Inherited
+  extend ::Representable::ModuleExtensions
+  extend ::Representable::ClassMethods
+  extend ::Representable::ForCollection
+  extend ::Representable::Represent
+  extend ::Representable::Cached::BuildDefinition
+  extend ::Uber::InheritableAttr
+  def self.clone(); end
+
+  def self.map(); end
+
+  def self.map=(v); end
+end
+
+class Representable::Definition
+  def array?(); end
+
+  def create_binding(*args); end
+
+  def delete!(name); end
+
+  def getter(); end
+
+  def has_default?(); end
+
+  def hash?(); end
+
+  def initialize(sym, options=T.unsafe(nil), &block); end
+
+  def merge!(options, &block); end
+
+  def name(); end
+
+  def representable?(); end
+
+  def representer_module(); end
+
+  def setter(); end
+
+  def typed?(); end
+end
+
+class Representable::Definition
+end
+
+class Representable::DeserializeError
+end
+
+class Representable::DeserializeError
+end
+
+module Representable::ForCollection
+  def for_collection(); end
+end
+
+module Representable::ForCollection
+end
+
+module Representable::Function
+end
+
+class Representable::Function::Decorate
+  def call(object, options); end
+
+  def prepare_for(mod, object, binding); end
+end
+
+class Representable::Function::Decorate
+end
+
+class Representable::Function::Prepare
+  def call(input, options); end
+end
+
+class Representable::Function::Prepare
+end
+
+module Representable::Function
+end
+
+module Representable::Hash
+  def from_hash(data, options=T.unsafe(nil), binding_builder=T.unsafe(nil)); end
+
+  def parse(data, options=T.unsafe(nil), binding_builder=T.unsafe(nil)); end
+
+  def render(options=T.unsafe(nil), binding_builder=T.unsafe(nil)); end
+
+  def to_hash(options=T.unsafe(nil), binding_builder=T.unsafe(nil)); end
+end
+
+module Representable::Hash::AllowSymbols
+end
+
+module Representable::Hash::AllowSymbols
+end
+
+class Representable::Hash::Binding
+  def deserialize_method(); end
+
+  def read(hash, as); end
+
+  def serialize_method(); end
+
+  def write(hash, fragment, as); end
+end
+
+class Representable::Hash::Binding::Collection
+  include ::Representable::Binding::Collection
+end
+
+class Representable::Hash::Binding::Collection
+end
+
+class Representable::Hash::Binding
+  def self.build_for(definition); end
+end
+
+module Representable::Hash::ClassMethods
+  def collection_representer_class(); end
+
+  def format_engine(); end
+end
+
+module Representable::Hash::ClassMethods
+end
+
+module Representable::Hash::Collection
+  include ::Representable::Hash
+  include ::Representable
+  def create_representation_with(doc, options, format); end
+
+  def update_properties_from(doc, options, format); end
+end
+
+module Representable::Hash::Collection::ClassMethods
+  def items(options=T.unsafe(nil), &block); end
+end
+
+module Representable::Hash::Collection::ClassMethods
+end
+
+module Representable::Hash::Collection
+  extend ::Representable::Declarative
+  extend ::Declarative::Schema::DSL
+  extend ::Declarative::Schema::Feature
+  extend ::Declarative::Heritage::DSL
+  extend ::Declarative::Heritage::Included
+  extend ::Declarative::Heritage::Inherited
+  extend ::Representable::ModuleExtensions
+  extend ::Representable::ClassMethods
+  extend ::Representable::ForCollection
+  extend ::Representable::Represent
+  extend ::Representable::Hash::ClassMethods
+  def self.included(base); end
+end
+
+module Representable::Hash
+  def self.included(base); end
+end
+
+module Representable::HashMethods
+  def create_representation_with(doc, options, format); end
+
+  def update_properties_from(doc, options, format); end
+end
+
+module Representable::HashMethods
+end
+
+module Representable::JSON
+  include ::Representable::Hash
+  include ::Representable
+  def from_json(data, *args); end
+
+  def parse(data, *args); end
+
+  def render(*args); end
+
+  def to_json(*args); end
+end
+
+module Representable::JSON::ClassMethods
+  def collection_representer_class(); end
+
+  def format_engine(); end
+end
+
+module Representable::JSON::ClassMethods
+end
+
+module Representable::JSON::Collection
+  include ::Representable::JSON
+  include ::Representable::Hash
+  include ::Representable
+end
+
+module Representable::JSON::Collection
+  def self.included(base); end
+end
+
+module Representable::JSON::Hash
+end
+
+module Representable::JSON::Hash::ClassMethods
+  def values(options, &block); end
+end
+
+module Representable::JSON::Hash::ClassMethods
+end
+
+module Representable::JSON::Hash
+  def self.included(base); end
+end
+
+module Representable::JSON
+  extend ::Representable::Hash::ClassMethods
+  extend ::Representable::Declarative
+  extend ::Declarative::Schema::DSL
+  extend ::Declarative::Schema::Feature
+  extend ::Declarative::Heritage::DSL
+  extend ::Declarative::Heritage::Included
+  extend ::Declarative::Heritage::Inherited
+  extend ::Representable::ModuleExtensions
+  extend ::Representable::ClassMethods
+  extend ::Representable::ForCollection
+  extend ::Representable::Represent
+  def self.included(base); end
+end
+
+module Representable::ModuleExtensions
+  def extended(object); end
+end
+
+module Representable::ModuleExtensions
+end
+
+module Representable::Object
+  def from_object(data, options=T.unsafe(nil), binding_builder=T.unsafe(nil)); end
+
+  def to_object(options=T.unsafe(nil), binding_builder=T.unsafe(nil)); end
+end
+
+class Representable::Object::Binding
+  def deserialize_method(); end
+
+  def read(hash, as); end
+
+  def serialize_method(); end
+
+  def write(hash, fragment, as); end
+end
+
+class Representable::Object::Binding::Collection
+  include ::Representable::Binding::Collection
+end
+
+class Representable::Object::Binding::Collection
+end
+
+class Representable::Object::Binding
+  def self.build_for(definition); end
+end
+
+module Representable::Object::ClassMethods
+  def collection_representer_class(); end
+end
+
+module Representable::Object::ClassMethods
+end
+
+module Representable::Object
+  def self.included(base); end
+end
+
+class Representable::Pipeline
+  def call(input, options); end
+  Insert = ::T.let(nil, ::T.untyped)
+end
+
+module Representable::Pipeline::Function
+end
+
+class Representable::Pipeline::Function::Insert
+  def call(arr, func, options); end
+end
+
+class Representable::Pipeline::Function::Insert
+end
+
+module Representable::Pipeline::Function
+end
+
+module Representable::Pipeline::Macros
+  def insert(functions, new_function, options); end
+end
+
+module Representable::Pipeline::Macros
+end
+
+class Representable::Pipeline::Stop
+end
+
+class Representable::Pipeline::Stop
+end
+
+class Representable::Pipeline
+  extend ::Representable::Pipeline::Macros
+end
+
+class Representable::Populator
+  FindOrInstantiate = ::T.let(nil, ::T.untyped)
+end
+
+class Representable::Populator
+  def self.apply!(options); end
+end
+
+module Representable::Represent
+  def represent(represented, array_class=T.unsafe(nil)); end
+end
+
+module Representable::Represent
+end
+
+module Representable::XML
+  def from_node(node, options=T.unsafe(nil)); end
+
+  def from_xml(doc, *args); end
+
+  def parse(doc, *args); end
+
+  def render(*args); end
+
+  def to_node(options=T.unsafe(nil)); end
+
+  def to_xml(*args); end
+end
+
+class Representable::XML::Binding
+  def deserialize_from(nodes); end
+
+  def deserialize_method(); end
+
+  def read(node, as); end
+
+  def serialize_for(value, parent, as); end
+
+  def serialize_method(); end
+
+  def serialize_node(node, value, as); end
+
+  def write(parent, fragments, as); end
+end
+
+class Representable::XML::Binding::Attribute
+  def write(parent, value, as); end
+end
+
+class Representable::XML::Binding::Attribute
+end
+
+class Representable::XML::Binding::AttributeHash
+  def deserialize_from(node); end
+
+  def write(parent, value, as); end
+end
+
+class Representable::XML::Binding::AttributeHash
+end
+
+class Representable::XML::Binding::Collection
+  include ::Representable::Binding::Collection
+end
+
+class Representable::XML::Binding::Collection
+end
+
+class Representable::XML::Binding::Content
+  def serialize_for(value, parent); end
+
+  def write(parent, value, as); end
+end
+
+class Representable::XML::Binding::Content
+end
+
+class Representable::XML::Binding::Hash
+end
+
+class Representable::XML::Binding::Hash
+end
+
+class Representable::XML::Binding
+  def self.build_for(definition); end
+end
+
+module Representable::XML::ClassMethods
+  def collection_representer_class(); end
+
+  def format_engine(); end
+
+  def remove_namespaces!(); end
+end
+
+module Representable::XML::ClassMethods
+end
+
+module Representable::XML::Collection
+end
+
+module Representable::XML::Collection::Methods
+  def create_representation_with(doc, options, format); end
+
+  def update_properties_from(doc, *args); end
+end
+
+module Representable::XML::Collection::Methods
+end
+
+module Representable::XML::Collection
+  def self.included(base); end
+end
+
+module Representable::XML::Namespace
+  def add_namespace_definitions!(node, namespaces); end
+
+  def from_node(node, options=T.unsafe(nil)); end
+
+  def representable_map(options, format); end
+
+  def to_node(options=T.unsafe(nil)); end
+end
+
+module Representable::XML::Namespace::AsWithNamespace
+  def read(node, as); end
+
+  def write(doc, fragment, as); end
+end
+
+module Representable::XML::Namespace::AsWithNamespace
+end
+
+module Representable::XML::Namespace::DSL
+  def namespace(namespace); end
+
+  def namespace_def(mapping); end
+
+  def namespace_defs(); end
+
+  def property(name, options=T.unsafe(nil)); end
+
+  def update_namespace_defs!(namespace_defs); end
+end
+
+module Representable::XML::Namespace::DSL
+end
+
+module Representable::XML::Namespace
+  def self.Namespaced(prefix, name); end
+
+  def self.included(includer); end
+end
+
+module Representable::XML
+  def self.Node(document, name, attributes=T.unsafe(nil)); end
+
+  def self.included(base); end
+end
+
+module Representable::YAML
+  include ::Representable::Hash
+  include ::Representable
+  def from_yaml(doc, options=T.unsafe(nil)); end
+
+  def parse(doc, options=T.unsafe(nil)); end
+
+  def render(*args); end
+
+  def to_ast(options=T.unsafe(nil)); end
+
+  def to_yaml(*args); end
+end
+
+class Representable::YAML::Binding
+  def node_for(fragment); end
+
+  def write(map, fragment, as); end
+
+  def write_scalar(value); end
+end
+
+class Representable::YAML::Binding::Collection
+  include ::Representable::Binding::Collection
+  def node_for(fragments); end
+end
+
+class Representable::YAML::Binding::Collection
+end
+
+class Representable::YAML::Binding
+end
+
+module Representable::YAML::ClassMethods
+  def format_engine(); end
+end
+
+module Representable::YAML::ClassMethods
+end
+
+module Representable::YAML
+  extend ::Representable::Declarative
+  extend ::Declarative::Schema::DSL
+  extend ::Declarative::Schema::Feature
+  extend ::Declarative::Heritage::DSL
+  extend ::Declarative::Heritage::Included
+  extend ::Declarative::Heritage::Inherited
+  extend ::Representable::ModuleExtensions
+  extend ::Representable::ClassMethods
+  extend ::Representable::ForCollection
+  extend ::Representable::Represent
+  extend ::Representable::Hash::ClassMethods
+  def self.included(base); end
+end
+
+module Representable
+  def self.included(base); end
+end
+
 module RequestStore
   VERSION = ::T.let(nil, ::T.untyped)
 end
@@ -28759,6 +30475,117 @@ class Responders::Railtie
 end
 
 module Responders
+end
+
+module Roar
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module Roar::Coercion
+end
+
+module Roar::Coercion
+  def self.included(base); end
+end
+
+class Roar::Decorator
+end
+
+module Roar::Decorator::HypermediaConsumer
+  def links=(arr); end
+end
+
+module Roar::Decorator::HypermediaConsumer
+end
+
+class Roar::Decorator
+end
+
+module Roar::Hypermedia
+  def links(); end
+
+  def links=(links); end
+end
+
+module Roar::Hypermedia::ClassMethods
+  def link(options, &block); end
+end
+
+module Roar::Hypermedia::ClassMethods
+end
+
+module Roar::Hypermedia::DefinitionOptions
+  def link_configs(); end
+end
+
+module Roar::Hypermedia::DefinitionOptions
+end
+
+class Roar::Hypermedia::Hyperlink
+  def collect(*args, &block); end
+
+  def each(*args, &block); end
+
+  def initialize(attrs=T.unsafe(nil)); end
+
+  def merge!(attrs); end
+
+  def replace(attrs); end
+end
+
+class Roar::Hypermedia::Hyperlink
+  extend ::Forwardable
+end
+
+module Roar::Hypermedia
+  def self.included(base); end
+end
+
+module Roar::JSON
+end
+
+module Roar::JSON::ClassMethods
+  def links_definition_options(); end
+end
+
+module Roar::JSON::ClassMethods
+end
+
+class Roar::JSON::HyperlinkDecorator
+  include ::Representable::JSON::Hash
+  include ::Representable::JSON
+  include ::Representable::Hash
+  include ::Representable::HashMethods
+end
+
+class Roar::JSON::HyperlinkDecorator
+  extend ::Representable::JSON::Hash::ClassMethods
+  extend ::Representable::JSON::ClassMethods
+end
+
+module Roar::JSON::InstanceMethods
+  def deserialize(*args); end
+
+  def from_json(document, options=T.unsafe(nil)); end
+
+  def serialize(*args); end
+end
+
+module Roar::JSON::InstanceMethods
+end
+
+module Roar::JSON
+  def self.included(base); end
+end
+
+module Roar::Representer
+end
+
+module Roar::Representer
+  def self.included(base); end
+end
+
+module Roar
 end
 
 module RubyDep
@@ -35199,6 +37026,44 @@ module URI
   def self.get_encoding(label); end
 end
 
+module Uber
+end
+
+module Uber::Callable
+end
+
+module Uber::Callable
+end
+
+module Uber::Delegates
+  def delegates(model, *names); end
+end
+
+module Uber::Delegates
+end
+
+module Uber::InheritableAttr
+  def inheritable_attr(name, options=T.unsafe(nil)); end
+end
+
+class Uber::InheritableAttr::Clone
+end
+
+class Uber::InheritableAttr::Clone
+  def self.call(value, uncloneable=T.unsafe(nil)); end
+
+  def self.uncloneable(); end
+end
+
+module Uber::InheritableAttr
+  def self.inherit_for(klass, name, options=T.unsafe(nil)); end
+end
+
+Uber::InheritableAttribute = Uber::InheritableAttr
+
+module Uber
+end
+
 module UnicodeNormalize
 end
 
@@ -35244,10 +37109,6 @@ class User
   def password_confirmation(); end
 
   def password_confirmation=(password_confirmation); end
-
-  def typed_role(); end
-
-  def typed_role=(value); end
 end
 
 class User::ActiveRecord_AssociationRelation
@@ -35278,15 +37139,6 @@ module User::GeneratedRelationMethods
 end
 
 module User::GeneratedRelationMethods
-end
-
-class User::Role
-  Admin = ::T.let(nil, ::T.untyped)
-  User = ::T.let(nil, ::T.untyped)
-end
-
-class User::Role
-  extend ::T::Helpers
 end
 
 class User
@@ -35335,6 +37187,742 @@ module Vendor::GeneratedRelationMethods
 end
 
 module Vendor::GeneratedRelationMethods
+end
+
+module Virtus
+  EXTRA_CONST_ARGS = ::T.let(nil, ::T.untyped)
+  Undefined = ::T.let(nil, ::T.untyped)
+end
+
+class Virtus::Attribute
+  include ::Equalizer::Methods
+  def coerce(input); end
+
+  def coercer(); end
+
+  def coercible?(); end
+
+  def default_value(); end
+
+  def define_accessor_methods(attribute_set); end
+
+  def finalize(); end
+
+  def finalized?(); end
+
+  def initialize(type, options); end
+
+  def lazy?(); end
+
+  def nullify_blank?(); end
+
+  def options(); end
+
+  def primitive(); end
+
+  def rename(name); end
+
+  def required?(); end
+
+  def strict?(); end
+
+  def type(); end
+
+  def value_coerced?(value); end
+end
+
+module Virtus::Attribute::Accessor
+  def defined?(instance); end
+
+  def get(instance); end
+
+  def instance_variable_name(); end
+
+  def name(); end
+
+  def public_reader?(); end
+
+  def public_writer?(); end
+
+  def set(instance, value); end
+
+  def set_default_value(instance); end
+end
+
+module Virtus::Attribute::Accessor
+  def self.extended(descendant); end
+end
+
+class Virtus::Attribute::Boolean
+end
+
+class Virtus::Attribute::Boolean
+  def self.build_type(*_); end
+end
+
+class Virtus::Attribute::Builder
+  def attribute(); end
+
+  def initialize(type_definition, options); end
+
+  def klass(); end
+
+  def options(); end
+
+  def type(); end
+
+  def type_definition(); end
+end
+
+class Virtus::Attribute::Builder
+  def self.call(type, options=T.unsafe(nil)); end
+
+  def self.determine_type(klass, default=T.unsafe(nil)); end
+end
+
+class Virtus::Attribute::Coercer
+  def call(value); end
+
+  def coercers(); end
+
+  def initialize(type, coercers); end
+
+  def method(); end
+
+  def success?(primitive, value); end
+end
+
+class Virtus::Attribute::Coercer
+end
+
+module Virtus::Attribute::Coercible
+  def set(instance, value); end
+end
+
+module Virtus::Attribute::Coercible
+end
+
+class Virtus::Attribute::Collection
+  def coerce(value); end
+
+  def member_type(); end
+end
+
+class Virtus::Attribute::Collection::Type
+  def coercion_method(); end
+
+  def member_type(); end
+
+  def member_type=(_); end
+
+  def primitive(); end
+
+  def primitive=(_); end
+end
+
+class Virtus::Attribute::Collection::Type
+  def self.[](*_); end
+
+  def self.axiom_type?(type); end
+
+  def self.infer(type, primitive); end
+
+  def self.infer_member_type(type); end
+
+  def self.members(); end
+
+  def self.pending?(primitive); end
+end
+
+class Virtus::Attribute::Collection
+  def self.merge_options!(type, options); end
+end
+
+class Virtus::Attribute::DefaultValue
+  def call(*_); end
+
+  def initialize(value); end
+
+  def value(); end
+end
+
+class Virtus::Attribute::DefaultValue::FromCallable
+  def call(*args); end
+end
+
+class Virtus::Attribute::DefaultValue::FromCallable
+  def self.handle?(value); end
+end
+
+class Virtus::Attribute::DefaultValue::FromClonable
+  SINGLETON_CLASSES = ::T.let(nil, ::T.untyped)
+end
+
+class Virtus::Attribute::DefaultValue::FromClonable
+  def self.handle?(value); end
+end
+
+class Virtus::Attribute::DefaultValue::FromSymbol
+  def call(instance, _); end
+end
+
+class Virtus::Attribute::DefaultValue::FromSymbol
+  def self.handle?(value); end
+end
+
+class Virtus::Attribute::DefaultValue
+  extend ::DescendantsTracker
+  def self.build(*args); end
+end
+
+class Virtus::Attribute::EmbeddedValue
+  TYPES = ::T.let(nil, ::T.untyped)
+end
+
+class Virtus::Attribute::EmbeddedValue::FromOpenStruct
+end
+
+class Virtus::Attribute::EmbeddedValue::FromOpenStruct
+end
+
+class Virtus::Attribute::EmbeddedValue::FromStruct
+end
+
+class Virtus::Attribute::EmbeddedValue::FromStruct
+end
+
+class Virtus::Attribute::EmbeddedValue
+  def self.build_coercer(type, _options); end
+
+  def self.handles?(klass); end
+end
+
+class Virtus::Attribute::Hash
+  def coerce(*_); end
+
+  def key_type(); end
+
+  def value_type(); end
+end
+
+class Virtus::Attribute::Hash::Type
+  def coercion_method(); end
+
+  def key_type(); end
+
+  def key_type=(_); end
+
+  def primitive(); end
+
+  def value_type(); end
+
+  def value_type=(_); end
+end
+
+class Virtus::Attribute::Hash::Type
+  def self.[](*_); end
+
+  def self.axiom_type?(type); end
+
+  def self.determine_type(type); end
+
+  def self.infer(type); end
+
+  def self.infer_key_and_value_types(type); end
+
+  def self.members(); end
+
+  def self.pending?(primitive); end
+end
+
+class Virtus::Attribute::Hash
+  def self.merge_options!(type, options); end
+end
+
+module Virtus::Attribute::LazyDefault
+  def get(instance); end
+end
+
+module Virtus::Attribute::LazyDefault
+end
+
+module Virtus::Attribute::NullifyBlank
+  def coerce(input); end
+end
+
+module Virtus::Attribute::NullifyBlank
+end
+
+module Virtus::Attribute::Strict
+  def coerce(*_); end
+end
+
+module Virtus::Attribute::Strict
+end
+
+class Virtus::Attribute
+  extend ::Virtus::TypeLookup
+  extend ::Virtus::Options
+  extend ::DescendantsTracker
+  def self.accessor(value=T.unsafe(nil)); end
+
+  def self.build(type, options=T.unsafe(nil)); end
+
+  def self.build_coercer(type, options=T.unsafe(nil)); end
+
+  def self.build_type(definition); end
+
+  def self.coerce(value=T.unsafe(nil)); end
+
+  def self.default(value=T.unsafe(nil)); end
+
+  def self.finalize(value=T.unsafe(nil)); end
+
+  def self.lazy(value=T.unsafe(nil)); end
+
+  def self.merge_options!(*_); end
+
+  def self.nullify_blank(value=T.unsafe(nil)); end
+
+  def self.primitive(value=T.unsafe(nil)); end
+
+  def self.required(value=T.unsafe(nil)); end
+
+  def self.strict(value=T.unsafe(nil)); end
+end
+
+class Virtus::AttributeSet
+  include ::Enumerable
+  def <<(attribute); end
+
+  def [](name); end
+
+  def []=(name, attribute); end
+
+  def coerce(attributes); end
+
+  def define_reader_method(attribute, method_name, visibility); end
+
+  def define_writer_method(attribute, method_name, visibility); end
+
+  def each(&blk); end
+
+  def finalize(); end
+
+  def get(object); end
+
+  def initialize(parent=T.unsafe(nil), attributes=T.unsafe(nil)); end
+
+  def merge(attributes); end
+
+  def reset(); end
+
+  def set(object, attributes); end
+
+  def set_defaults(object, filter=T.unsafe(nil)); end
+end
+
+class Virtus::AttributeSet
+  def self.create(descendant); end
+end
+
+class Virtus::Builder
+  def config(); end
+
+  def extensions(); end
+
+  def initialize(conf, mod=T.unsafe(nil)); end
+
+  def mod(); end
+
+  def options(); end
+end
+
+class Virtus::Builder::HookContext
+  def attribute_method(); end
+
+  def builder(); end
+
+  def config(); end
+
+  def constructor?(); end
+
+  def finalize?(); end
+
+  def initialize(builder, config); end
+
+  def initialize_attribute_method(); end
+
+  def mass_assignment?(); end
+
+  def modules(); end
+end
+
+class Virtus::Builder::HookContext
+end
+
+class Virtus::Builder
+  def self.call(options, &block); end
+
+  def self.pending(); end
+end
+
+module Virtus::ClassInclusions
+end
+
+module Virtus::ClassInclusions::Methods
+  def allowed_writer_methods(); end
+end
+
+module Virtus::ClassInclusions::Methods
+end
+
+module Virtus::ClassInclusions
+end
+
+module Virtus::ClassMethods
+  include ::Virtus::Extensions::Methods
+  include ::Virtus::ConstMissingExtensions
+  def attribute_set(); end
+
+  def attributes(); end
+end
+
+module Virtus::ClassMethods
+end
+
+class Virtus::Coercer
+  def call(input); end
+
+  def initialize(type); end
+
+  def primitive(); end
+
+  def success?(primitive, input); end
+
+  def type(); end
+end
+
+class Virtus::Coercer
+end
+
+class Virtus::CoercionError
+  def attribute(); end
+
+  def attribute_name(); end
+
+  def attribute_name?(); end
+
+  def build_message(); end
+
+  def initialize(output, attribute); end
+
+  def output(); end
+
+  def target_type(); end
+end
+
+class Virtus::CoercionError
+end
+
+class Virtus::Configuration
+  def coerce(); end
+
+  def coerce=(coerce); end
+
+  def coercer(&block); end
+
+  def constructor(); end
+
+  def constructor=(constructor); end
+
+  def finalize(); end
+
+  def finalize=(finalize); end
+
+  def initialize(options=T.unsafe(nil)); end
+
+  def mass_assignment(); end
+
+  def mass_assignment=(mass_assignment); end
+
+  def nullify_blank(); end
+
+  def nullify_blank=(nullify_blank); end
+
+  def required(); end
+
+  def required=(required); end
+
+  def strict(); end
+
+  def strict=(strict); end
+
+  def to_h(); end
+end
+
+class Virtus::Configuration
+end
+
+module Virtus::ConstMissingExtensions
+  def const_missing(name); end
+end
+
+module Virtus::ConstMissingExtensions
+end
+
+class Virtus::Equalizer
+  def <<(key); end
+
+  def initialize(name, keys=T.unsafe(nil)); end
+end
+
+module Virtus::Equalizer::Methods
+  def ==(other); end
+
+  def eql?(other); end
+end
+
+module Virtus::Equalizer::Methods
+end
+
+class Virtus::Equalizer
+end
+
+module Virtus::Extensions
+  INVALID_WRITER_METHODS = ::T.let(nil, ::T.untyped)
+  RESERVED_NAMES = ::T.let(nil, ::T.untyped)
+  WRITER_METHOD_REGEXP = ::T.let(nil, ::T.untyped)
+end
+
+module Virtus::Extensions::AllowedWriterMethods
+  def allowed_writer_methods(); end
+  INVALID_WRITER_METHODS = ::T.let(nil, ::T.untyped)
+  WRITER_METHOD_REGEXP = ::T.let(nil, ::T.untyped)
+end
+
+module Virtus::Extensions::AllowedWriterMethods
+end
+
+module Virtus::Extensions::Methods
+  def attribute(name, type=T.unsafe(nil), options=T.unsafe(nil)); end
+
+  def values(&block); end
+end
+
+module Virtus::Extensions::Methods
+end
+
+module Virtus::Extensions
+end
+
+module Virtus::InstanceMethods
+  def [](name); end
+
+  def []=(name, value); end
+
+  def freeze(); end
+
+  def reset_attribute(attribute_name); end
+
+  def set_default_attributes(); end
+
+  def set_default_attributes!(); end
+end
+
+module Virtus::InstanceMethods::Constructor
+  def initialize(attributes=T.unsafe(nil)); end
+end
+
+module Virtus::InstanceMethods::Constructor
+end
+
+module Virtus::InstanceMethods::MassAssignment
+  def attributes(); end
+
+  def attributes=(attributes); end
+
+  def to_h(); end
+
+  def to_hash(); end
+end
+
+module Virtus::InstanceMethods::MassAssignment
+end
+
+module Virtus::InstanceMethods
+end
+
+module Virtus::Model
+end
+
+module Virtus::Model::Constructor
+end
+
+module Virtus::Model::Constructor
+end
+
+module Virtus::Model::Core
+end
+
+module Virtus::Model::Core
+  def self.extended(descendant); end
+end
+
+module Virtus::Model::MassAssignment
+end
+
+module Virtus::Model::MassAssignment
+end
+
+module Virtus::Model
+  def self.extended(descendant); end
+
+  def self.included(descendant); end
+end
+
+class Virtus::ModelBuilder
+end
+
+class Virtus::ModelBuilder
+end
+
+class Virtus::ModuleBuilder
+end
+
+class Virtus::ModuleBuilder
+end
+
+module Virtus::ModuleExtensions
+  include ::Virtus::ConstMissingExtensions
+  def attribute(name, type=T.unsafe(nil), options=T.unsafe(nil)); end
+end
+
+module Virtus::ModuleExtensions
+  def self.extended(mod); end
+
+  def self.setup(mod, inclusions=T.unsafe(nil), attribute_definitions=T.unsafe(nil)); end
+end
+
+module Virtus::Options
+  def accept_options(*new_options); end
+
+  def accepted_options(); end
+
+  def add_accepted_options(new_options); end
+
+  def define_option_method(option); end
+
+  def options(); end
+
+  def set_options(new_options); end
+end
+
+module Virtus::Options
+end
+
+class Virtus::PendingAttribute
+  def determine_type(); end
+
+  def finalize(); end
+
+  def finalized?(); end
+
+  def initialize(type, options); end
+
+  def name(); end
+
+  def options(); end
+
+  def type(); end
+end
+
+class Virtus::PendingAttribute
+end
+
+class Virtus::TypeDefinition
+  def initialize(type); end
+
+  def pending?(); end
+
+  def primitive(); end
+
+  def type(); end
+end
+
+class Virtus::TypeDefinition
+end
+
+module Virtus::TypeLookup
+  def determine_type(class_or_name); end
+
+  def primitive(); end
+  TYPE_FORMAT = ::T.let(nil, ::T.untyped)
+end
+
+module Virtus::TypeLookup
+  def self.extended(model); end
+end
+
+module Virtus::ValueObject
+end
+
+module Virtus::ValueObject::AllowedWriterMethods
+  def allowed_writer_methods(); end
+end
+
+module Virtus::ValueObject::AllowedWriterMethods
+end
+
+module Virtus::ValueObject::ClassMethods
+  def attribute(name, type, options=T.unsafe(nil)); end
+
+  def equalizer(); end
+end
+
+module Virtus::ValueObject::ClassMethods
+end
+
+module Virtus::ValueObject::InstanceMethods
+  def clone(); end
+
+  def dup(); end
+
+  def with(attribute_updates); end
+end
+
+module Virtus::ValueObject::InstanceMethods
+end
+
+module Virtus::ValueObject
+end
+
+class Virtus::ValueObjectBuilder
+end
+
+class Virtus::ValueObjectBuilder
+end
+
+module Virtus
+  def self.coerce(); end
+
+  def self.coerce=(value); end
+
+  def self.coercer(&block); end
+
+  def self.config(&block); end
+
+  def self.configuration(); end
+
+  def self.finalize(); end
+
+  def self.model(options=T.unsafe(nil), &block); end
+
+  def self.module(options=T.unsafe(nil), &block); end
+
+  def self.value_object(options=T.unsafe(nil), &block); end
+
+  def self.warn(msg); end
 end
 
 class VolumeUnit
@@ -36045,6 +38633,55 @@ class WeightUnit
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
   def self.inherited(s); end
+end
+
+class Wix::Contact
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::Order
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::OrderRepresenter
+  include ::Roar::JSON
+  include ::Roar::Representer
+  include ::Representable::JSON
+  include ::Representable::Hash
+  include ::Roar::JSON::InstanceMethods
+  include ::Roar::Coercion
+  include ::Representable::Coercion
+end
+
+class Wix::OrderRepresenter
+  extend ::Representable::JSON::ClassMethods
+  extend ::Roar::JSON::ClassMethods
+  extend ::Representable::Coercion::ClassMethods
+end
+
+class Wix::RestaurantInfo
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::RestaurantInfoRepresenter
+  include ::Roar::JSON
+  include ::Roar::Representer
+  include ::Representable::JSON
+  include ::Representable::Hash
+  include ::Roar::JSON::InstanceMethods
+end
+
+class Wix::RestaurantInfoRepresenter
+  extend ::Representable::JSON::ClassMethods
+  extend ::Roar::JSON::ClassMethods
+end
+
+class WixApi
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Zlib::Deflate

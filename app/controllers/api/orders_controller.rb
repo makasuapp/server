@@ -3,16 +3,8 @@ class Api::OrdersController < ApplicationController
   before_action :set_order, only: [:update_state]
 
   def create
-    if customer_params[:phone_number].present?
-      @customer = Customer.find_by(phone_number: customer_params[:phone_number]) 
-    end
-    if @customer.nil? && customer_params[:email].present?
-      @customer = Customer.find_by(email: customer_params[:email])
-    end
-    if @customer.nil?
-      @customer = Customer.new(customer_params)
-    end
-    @customer.assign_attributes(customer_params)
+    @customer = Customer.assign_or_init_by_contact(customer_params[:phone_number], 
+      customer_params[:email], customer_params)
 
     if @customer.save
       @order = Order.new(base_order_params)

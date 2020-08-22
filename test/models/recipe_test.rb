@@ -16,7 +16,7 @@
 #
 # Indexes
 #
-#  index_recipes_on_kitchen_id  (kitchen_id)
+#  index_recipes_on_kitchen_id_and_name  (kitchen_id,name)
 #
 require 'test_helper'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_200827) do
+ActiveRecord::Schema.define(version: 2020_08_22_003335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_200827) do
     t.string "wix_restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["integration_type", "wix_restaurant_id"], name: "index_integrations_on_integration_type_and_wix_restaurant_id"
     t.index ["kitchen_id"], name: "index_integrations_on_kitchen_id"
   end
 
@@ -139,6 +140,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_200827) do
     t.bigint "integration_id"
     t.string "integration_order_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["integration_id", "integration_order_id"], name: "index_orders_on_integration_id_and_integration_order_id"
     t.index ["kitchen_id", "for_time", "created_at", "aasm_state"], name: "idx_kitchen_time"
   end
 
@@ -212,7 +214,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_200827) do
     t.integer "current_price_cents"
     t.float "output_volume_weight_ratio"
     t.bigint "kitchen_id"
-    t.index ["kitchen_id"], name: "index_recipes_on_kitchen_id"
+    t.index ["kitchen_id", "name"], name: "index_recipes_on_kitchen_id_and_name"
   end
 
   create_table "step_inputs", force: :cascade do |t|

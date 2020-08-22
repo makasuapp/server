@@ -21,6 +21,26 @@ class Customer < ApplicationRecord
 
   has_many :orders
 
+  sig {params(phone_number: T.nilable(String), email: T.nilable(String),
+    params: T.untyped).returns(Customer)}
+  def self.assign_or_init_by_contact(phone_number, email, params)
+    if phone_number.present?
+      customer = Customer.find_by(phone_number: phone_number) 
+    end
+
+    if customer.nil? && email.present?
+      customer = Customer.find_by(email: email)
+    end
+
+    if customer.nil?
+      customer = Customer.new(params)
+    else
+      customer.assign_attributes(params)
+    end
+
+    customer
+  end
+
   sig {returns(T.nilable(String))}
   def name
     if self.first_name.present?

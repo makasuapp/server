@@ -13,7 +13,8 @@
 #
 # Indexes
 #
-#  index_integrations_on_kitchen_id  (kitchen_id)
+#  index_integrations_on_integration_type_and_wix_restaurant_id  (integration_type,wix_restaurant_id)
+#  index_integrations_on_kitchen_id                              (kitchen_id)
 #
 require 'test_helper'
 

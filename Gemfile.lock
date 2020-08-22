@@ -68,6 +68,10 @@ GEM
       activesupport (>= 3.0.0)
     arel (9.0.0)
     ast (2.4.1)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.13)
     builder (3.2.4)
     bullet (6.1.0)
@@ -98,23 +102,35 @@ GEM
       capistrano (~> 3.7)
       capistrano-bundler
       puma (~> 4.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     commander (4.5.2)
       highline (~> 2.0.0)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     dalli (2.7.10)
+    declarative (0.0.20)
+    declarative-option (0.1.0)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     devise (4.7.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
+    equalizer (0.0.11)
     erubi (1.9.0)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     fcm (1.0.2)
       faraday (~> 1.0.0)
     ffi (1.13.1)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
     formtastic (3.1.5)
@@ -126,8 +142,19 @@ GEM
       actionpack (>= 4.1)
       activesupport (>= 4.1)
     highline (2.0.3)
+    http (4.4.1)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      http-parser (~> 1.2.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
+    http-parser (1.2.1)
+      ffi-compiler (>= 1.0, < 2.0)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
+    ice_nine (0.11.2)
     inherited_resources (1.11.0)
       actionpack (>= 5.0, < 6.1)
       has_scope (~> 0.6)
@@ -172,6 +199,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     mocha (1.11.2)
+    multi_json (1.15.0)
     multipart-post (2.1.1)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
@@ -238,11 +266,17 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    representable (3.0.4)
+      declarative (< 0.1.0)
+      declarative-option (< 0.2.0)
+      uber (< 0.2.0)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    roar (1.1.0)
+      representable (~> 3.0.0)
     ruby_dep (1.5.0)
     safe_type (1.1.1)
     sassc (2.4.0)
@@ -295,7 +329,16 @@ GEM
     tilt (2.0.10)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    uber (0.1.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.7)
     uniform_notifier (1.13.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.8)
       rack (>= 2.0.6)
     websocket-driver (0.7.2)
@@ -324,16 +367,19 @@ DEPENDENCIES
   devise
   fcm
   figaro
+  http
   jbuilder (~> 2.5)
   letter_opener
   listen (>= 3.0.5, < 3.2)
   mocha
+  multi_json
   paper_trail
   pg
   puma (~> 4.0.0)
   pundit
   rack-cors
   rails (~> 5.2.3)
+  roar
   sentry-raven
   skylight
   sorbet
@@ -342,6 +388,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+  virtus
 
 RUBY VERSION
    ruby 2.5.3p105

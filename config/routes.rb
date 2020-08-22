@@ -18,5 +18,7 @@ Rails.application.routes.draw do
 
     resources :procurement, only: [:index]
     post 'procurement/update_items', to: 'procurement#update_items'
+
+    post 'wix/orders', to: 'wix#orders_webhook'    
   end
 end

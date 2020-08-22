@@ -16,8 +16,9 @@
 #
 # Indexes
 #
-#  idx_kitchen_time             (kitchen_id,for_time,created_at,aasm_state)
-#  index_orders_on_customer_id  (customer_id)
+#  idx_kitchen_time                                         (kitchen_id,for_time,created_at,aasm_state)
+#  index_orders_on_customer_id                              (customer_id)
+#  index_orders_on_integration_id_and_integration_order_id  (integration_id,integration_order_id)
 #
 require 'test_helper'
 

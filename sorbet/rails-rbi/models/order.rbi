@@ -115,6 +115,36 @@ module Order::GeneratedAssociationMethods
   sig { params(value: ::Customer).void }
   def customer=(value); end
 
+  sig { returns(T.nilable(::Integration)) }
+  def integration; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Integration).void)).returns(::Integration) }
+  def build_integration(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Integration).void)).returns(::Integration) }
+  def create_integration(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Integration).void)).returns(::Integration) }
+  def create_integration!(*args, &block); end
+
+  sig { params(value: T.nilable(::Integration)).void }
+  def integration=(value); end
+
+  sig { returns(::Kitchen) }
+  def kitchen; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Kitchen).void)).returns(::Kitchen) }
+  def build_kitchen(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Kitchen).void)).returns(::Kitchen) }
+  def create_kitchen(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Kitchen).void)).returns(::Kitchen) }
+  def create_kitchen!(*args, &block); end
+
+  sig { params(value: ::Kitchen).void }
+  def kitchen=(value); end
+
   sig { returns(::OrderItem::ActiveRecord_Associations_CollectionProxy) }
   def order_items; end
 
