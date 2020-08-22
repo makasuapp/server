@@ -1,5 +1,5 @@
 # typed: false
-class Api::WixController < ApplicationController
+class WixController < ApplicationController
   def orders_webhook
     wix_restaurant_id = params[:restaurantId]
     wix_order_id = params[:orderId]
