@@ -2,6 +2,8 @@
 class Wix::Order
   extend T::Sig
 
+  sig {returns(T.nilable(String))}
+  attr_accessor :id
   sig {returns(T.nilable(DateTime))}
   attr_accessor :submitAt
   sig {returns(T.nilable(Wix::Contact))}
