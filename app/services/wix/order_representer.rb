@@ -7,7 +7,9 @@ class Wix::OrderRepresenter < Roar::Decorator
   include Roar::Coercion
 
   property :id
-  property :submitAt, type: DateTime
+  property :delivery, class: Wix::Dispatch do
+    property :time, type: DateTime
+  end
 
   property :contact, class: Wix::Contact do
     property :firstName

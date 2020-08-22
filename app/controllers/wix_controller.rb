@@ -1,14 +1,15 @@
 # typed: false
 class WixController < ApplicationController
   def orders_webhook
-    restaurant_json = params[:restaurant].to_json
-    wix_restaurant = Wix::RestaurantRepresenter.new(Wix::RestaurantInfo.new).from_json(restaurant_json)
+    wix_restaurant_id = params[:restaurant][:id]
+    menu_json = params[:menu].to_json
+    wix_menu = Wix::MenuRepresenter.new(Wix::Menu.new).from_json(menu_json)
     order_json = params[:order].to_json
     wix_order = Wix::OrderRepresenter.new(Wix::Order.new).from_json(order_json)
 
-    integration = Integration.find_by(integration_type: IntegrationType::Wix, wix_restaurant_id: wix_restaurant.id)
+    integration = Integration.find_by(integration_type: IntegrationType::Wix, wix_restaurant_id: wix_restaurant_id)
     if integration.nil?
-      Raven.capture_exception("no integration found for restaurant id #{wix_restaurant.id}")
+      Raven.capture_exception("no integration found for restaurant id #{wix_restaurant_id}")
       head :not_found
       return
     else
@@ -30,7 +31,7 @@ class WixController < ApplicationController
 
       #TODO(wix): how get order type?
       order = Order.new(order_type: "pickup", customer_id: customer.id, kitchen_id: integration.kitchen_id,
-        for_time: wix_order.submit_at)
+        for_time: wix_order.for_time)
       
       if !order.save
         Raven.capture_exception(order.errors)
@@ -38,7 +39,7 @@ class WixController < ApplicationController
         return
       end
 
-      wix_items = wix_restaurant.menu.items
+      wix_items = wix_menu.items
 
       recipe_map = {}
       wix_items.each do |wix_item|
@@ -53,14 +54,14 @@ class WixController < ApplicationController
         oi.quantity = item.count
         oi.price_cents = item.price
 
-        recipe_id = recipe_map[item.item_id]
-        if recipe_id.nil?
+        recipe = recipe_map[item.item_id]
+        if recipe.nil?
           Raven.capture_exception("no recipe found for item id #{item.item_id}")
           head :unprocessable_entity
           return
         end
 
-        oi.recipe_id = recipe_id
+        oi.recipe_id = recipe.id
 
         if !oi.save
           Raven.capture_exception(oi.errors)

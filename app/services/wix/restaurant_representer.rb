@@ -6,13 +6,5 @@ class Wix::RestaurantRepresenter < Roar::Decorator
 
   property :id
 
-  property :menu, class: Wix::Menu do
-    collection :items, class: Wix::Item do
-      property :id
-      property :title, class: Wix::LocaleString do
-        property :en_CA
-        property :en_US
-      end
-    end
-  end
+  property :menu, class: Wix::Menu, decorator: Wix::MenuRepresenter
 end
