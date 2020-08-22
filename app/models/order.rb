@@ -50,14 +50,17 @@ class Order < ApplicationRecord
 
     event :start do
       transitions from: :new, to: :started
+      transitions from: :started, to: :started
     end
 
     event :finish do
       transitions from: :started, to: :done
+      transitions from: :done, to: :done
     end
 
     event :deliver do
       transitions from: :done, to: :delivered
+      transitions from: :delivered, to: :delivered
     end
   end
 
