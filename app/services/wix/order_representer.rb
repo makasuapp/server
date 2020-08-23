@@ -1,14 +1,15 @@
 require 'roar/decorator'
 require 'roar/json'
-require 'roar/coercion'
   
 class Wix::OrderRepresenter < Roar::Decorator
   include Roar::JSON
-  include Roar::Coercion
 
   property :id
+  property :status
+
   property :delivery, class: Wix::Dispatch do
-    property :time, type: DateTime
+    property :time
+    property :type
   end
 
   property :contact, class: Wix::Contact do

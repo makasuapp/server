@@ -29,9 +29,12 @@ class WixController < ApplicationController
         return
       end
 
-      #TODO(wix): how get order type?
-      order = Order.new(order_type: "pickup", customer_id: customer.id, kitchen_id: integration.kitchen_id,
-        for_time: wix_order.for_time)
+      order_type = "pickup"
+      if wix_order.delivery.type == "delivery"
+        order_type = "delivery"
+      end
+      order = Order.new(order_type: order_type, customer_id: customer.id, kitchen_id: integration.kitchen_id,
+        for_time: wix_order.for_time, integration_id: integration.id, integration_order_id: wix_order.id)
       
       if !order.save
         Raven.capture_exception(order.errors)

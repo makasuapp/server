@@ -51,7 +51,6 @@ gem 'fcm'
 
 gem 'http'
 gem 'roar'
-gem 'virtus'
 gem 'multi_json'
 
 gem 'lograge'

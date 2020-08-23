@@ -30,6 +30,18 @@ module Wix
       Wix::OrderRepresenter.new(Wix::Order.new).from_json(json)
     end
 
+    sig {params(wix_app_instance_id: String, wix_restaurant_id: String, 
+      wix_order_id: String).returns(Wix::Order)}
+    def self.fulfill_order(wix_app_instance_id, wix_restaurant_id, wix_order_id)
+      auth_token = self.get_access_token(wix_app_instance_id)
+
+      url = "#{API_URL}/organizations/#{wix_restaurant_id}/orders/#{wix_order_id}/properties"
+      resp = HTTP.auth("Bearer #{auth_token}").put(url, json: {"com.wix.restaurants": "{\"delivered\": true}"}).body.to_s
+      json = JSON.parse(resp).to_json
+
+      Wix::OrderRepresenter.new(Wix::Order.new).from_json(json)
+    end
+
     sig {params(wix_restaurant_id: String).returns(Wix::RestaurantInfo)}
     def self.get_restaurant_info(wix_restaurant_id)
       url = "#{API_URL}/organizations/#{wix_restaurant_id}/full"

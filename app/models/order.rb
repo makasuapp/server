@@ -59,7 +59,7 @@ class Order < ApplicationRecord
       transitions from: :done, to: :done
     end
 
-    event :deliver do
+    event :deliver, after: :mark_fulfilled do
       transitions from: :done, to: :delivered
       transitions from: :delivered, to: :delivered
     end
@@ -86,6 +86,17 @@ class Order < ApplicationRecord
   sig {returns(String)}
   def topic_name
     "orders_#{self.kitchen_id}"
+  end
+
+  sig {void}
+  def mark_fulfilled
+    if self.integration_id.present?
+      integration = self.integration
+      if integration.integration_type == IntegrationType::Wix
+        Wix::WixApi.fulfill_order(integration.wix_app_instance_id, 
+          integration.wix_restaurant_id, self.integration_order_id)
+      end
+    end
   end
 
   private
