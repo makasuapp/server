@@ -7,7 +7,7 @@
 #  order_type :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  kitchen_id :bigint
+#  kitchen_id :bigint           not null
 #  vendor_id  :bigint           not null
 #
 # Indexes
@@ -25,3 +25,4 @@ one:
   for_date: <%= DateTime.now %>
   order_type: "manual"
   vendor: costco
+  kitchen: test

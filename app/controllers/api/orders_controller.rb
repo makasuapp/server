@@ -6,39 +6,46 @@ class Api::OrdersController < ApplicationController
     @customer = Customer.assign_or_init_by_contact(customer_params[:phone_number], 
       customer_params[:email], customer_params)
 
-    if @customer.save
-      @order = Order.new(base_order_params)
-      @order.customer_id = @customer.id
-
-      if @order.save
-        if order_params[:order_items].present?
-          #might have to change this when we change it to an internet form
-          order_params[:order_items].each do |idx, item_params|
-            @item = OrderItem.new
-            @item.assign_attributes(item_params)
-            @item.order_id = @order.id
-
-            # should it do a soft save instead and render error?
-            @item.save!
-          end
-        end
-
-        begin
-          order_json = ActionController::Base.new.view_context.render(
-            partial: "api/orders/order", locals: {order: @order})
-
-          response = Firebase.new.send_data(@order.topic_name, "new_order", order_json)
-        rescue => e
-          Raven.capture_exception(e)
-        end
-
-        render :show, status: :created
-      else
-        render json: @order.errors, status: :unprocessable_entity
-      end
-    else
+    if !@customer.save
+      Raven.capture_exception(@customer.errors)
       render json: @customer.errors, status: :unprocessable_entity
+      return
     end
+
+    @order = Order.new(base_order_params)
+    @order.customer_id = @customer.id
+
+    if !@order.save
+      Raven.capture_exception(@order.errors)
+      render json: @order.errors, status: :unprocessable_entity
+      return
+    end
+
+    if order_params[:order_items].present?
+      #might have to change this when we change it to an internet form
+      order_params[:order_items].each do |idx, item_params|
+        @item = OrderItem.new
+        @item.assign_attributes(item_params)
+        @item.order_id = @order.id
+
+        if !@item.save
+          Raven.capture_exception(@item.errors)
+          render json: @item.errors, status: :unprocessable_entity
+          return
+        end
+      end
+    end
+
+    begin
+      order_json = ActionController::Base.new.view_context.render(
+        partial: "api/orders/order", locals: {order: @order})
+
+      response = Firebase.new.send_data(@order.topic_name, "new_order", order_json)
+    rescue => e
+      Raven.capture_exception(e)
+    end
+
+    render :show, status: :created
   end
 
   def index
@@ -50,7 +57,7 @@ class Api::OrdersController < ApplicationController
       date = Time.now.in_time_zone("America/Toronto")
     end
 
-    recipe_ids = PurchasedRecipe.where(date: date, kitchen_id: params[:kitchen_id]).map(&:recipe_id)
+    recipe_ids = PredictedOrder.where(date: date, kitchen_id: params[:kitchen_id]).map(&:recipe_id)
     @recipes = Recipe.all_in(recipe_ids)
     
     @recipe_steps = RecipeStep

@@ -7,7 +7,7 @@
 #  date       :date             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  kitchen_id :bigint
+#  kitchen_id :bigint           not null
 #
 # Indexes
 #
@@ -30,8 +30,8 @@ class OpDay < ApplicationRecord
     op_day.day_preps.delete_all
 
     #regenerate for all recipes of that date - this ensures we capture both additions and subtractions
-    purchased_recipes = PurchasedRecipe.where(date: date, kitchen_id: kitchen.id)
-    DayIngredient.generate_for(purchased_recipes, op_day)
-    DayPrep.generate_for(purchased_recipes, op_day)
+    predicted_orders = PredictedOrder.where(date: date, kitchen_id: kitchen.id)
+    DayIngredient.generate_for(predicted_orders, op_day)
+    DayPrep.generate_for(predicted_orders, op_day)
   end
 end

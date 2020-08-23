@@ -12,7 +12,7 @@
 #  customer_id          :bigint           not null
 #  integration_id       :bigint
 #  integration_order_id :string
-#  kitchen_id           :bigint
+#  kitchen_id           :bigint           not null
 #
 # Indexes
 #

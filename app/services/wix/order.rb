@@ -15,7 +15,7 @@ class Wix::Order
 
   sig {returns(Time)}
   def for_time
-    Time.at(T.must(@delivery.time) / 1000)
+    Time.at(T.must(T.must(@delivery).time) / 1000)
   end
 
   sig {returns(T::Array[Wix::OrderItem])}

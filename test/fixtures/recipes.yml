@@ -11,7 +11,7 @@
 #  unit                       :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  kitchen_id                 :bigint
+#  kitchen_id                 :bigint           not null
 #
 # Indexes
 #
@@ -26,11 +26,14 @@
 chicken:
   name: "Mouth Watering Chicken"
   output_qty: 2
+  kitchen: test
 
 green_onion:
   name: "Chopped Green Onion"
   output_qty: 100
   unit: "g"
+  kitchen: test
 
 sauce:
   name: "Mouth Watering Chicken Sauce"
+  kitchen: test

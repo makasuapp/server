@@ -605,6 +605,14 @@ end
 class ActionCable::RemoteConnections
 end
 
+class ActionCable::Server::Base
+  def logger=(obj); end
+end
+
+class ActionCable::Server::Base
+  def self.logger=(obj); end
+end
+
 module ActionCable::Server::Connections
   BEAT_INTERVAL = ::T.let(nil, ::T.untyped)
 end
@@ -3017,13 +3025,13 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def admin_dashboard_url(*args); end
 
-  def admin_purchased_recipe_path(*args); end
+  def admin_predicted_order_path(*args); end
 
-  def admin_purchased_recipe_url(*args); end
+  def admin_predicted_order_url(*args); end
 
-  def admin_purchased_recipes_path(*args); end
+  def admin_predicted_orders_path(*args); end
 
-  def admin_purchased_recipes_url(*args); end
+  def admin_predicted_orders_url(*args); end
 
   def admin_root_path(*args); end
 
@@ -3065,13 +3073,9 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def api_url(*args); end
 
-  def api_wix_orders_path(*args); end
+  def batch_action_admin_predicted_orders_path(*args); end
 
-  def api_wix_orders_url(*args); end
-
-  def batch_action_admin_purchased_recipes_path(*args); end
-
-  def batch_action_admin_purchased_recipes_url(*args); end
+  def batch_action_admin_predicted_orders_url(*args); end
 
   def cancel_user_registration_path(*args); end
 
@@ -3083,9 +3087,9 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def destroy_user_session_url(*args); end
 
-  def edit_admin_purchased_recipe_path(*args); end
+  def edit_admin_predicted_order_path(*args); end
 
-  def edit_admin_purchased_recipe_url(*args); end
+  def edit_admin_predicted_order_url(*args); end
 
   def edit_user_password_path(*args); end
 
@@ -3095,9 +3099,9 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def edit_user_registration_url(*args); end
 
-  def new_admin_purchased_recipe_path(*args); end
+  def new_admin_predicted_order_path(*args); end
 
-  def new_admin_purchased_recipe_url(*args); end
+  def new_admin_predicted_order_url(*args); end
 
   def new_user_password_path(*args); end
 
@@ -3150,6 +3154,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
   def user_unlock_path(*args); end
 
   def user_unlock_url(*args); end
+
+  def wix_orders_path(*args); end
+
+  def wix_orders_url(*args); end
 end
 
 module ActiveAdmin::Helpers::Routes::UrlHelpers
@@ -7673,6 +7681,104 @@ module Addressable::IDNA
   UTF8_REGEX_MULTIBYTE = ::T.let(nil, ::T.untyped)
 end
 
+class Addressable::Template
+  def ==(template); end
+
+  def eql?(template); end
+
+  def expand(mapping, processor=T.unsafe(nil), normalize_values=T.unsafe(nil)); end
+
+  def extract(uri, processor=T.unsafe(nil)); end
+
+  def generate(params=T.unsafe(nil), recall=T.unsafe(nil), options=T.unsafe(nil)); end
+
+  def initialize(pattern); end
+
+  def keys(); end
+
+  def match(uri, processor=T.unsafe(nil)); end
+
+  def named_captures(); end
+
+  def names(); end
+
+  def partial_expand(mapping, processor=T.unsafe(nil), normalize_values=T.unsafe(nil)); end
+
+  def pattern(); end
+
+  def source(); end
+
+  def to_regexp(); end
+
+  def variable_defaults(); end
+
+  def variables(); end
+  EXPRESSION = ::T.let(nil, ::T.untyped)
+  JOINERS = ::T.let(nil, ::T.untyped)
+  LEADERS = ::T.let(nil, ::T.untyped)
+  RESERVED = ::T.let(nil, ::T.untyped)
+  UNRESERVED = ::T.let(nil, ::T.untyped)
+  VARIABLE_LIST = ::T.let(nil, ::T.untyped)
+  VARNAME = ::T.let(nil, ::T.untyped)
+  VARSPEC = ::T.let(nil, ::T.untyped)
+end
+
+class Addressable::Template::InvalidTemplateOperatorError
+end
+
+class Addressable::Template::InvalidTemplateOperatorError
+end
+
+class Addressable::Template::InvalidTemplateValueError
+end
+
+class Addressable::Template::InvalidTemplateValueError
+end
+
+class Addressable::Template::MatchData
+  def [](key, len=T.unsafe(nil)); end
+
+  def captures(); end
+
+  def initialize(uri, template, mapping); end
+
+  def keys(); end
+
+  def mapping(); end
+
+  def names(); end
+
+  def post_match(); end
+
+  def pre_match(); end
+
+  def string(); end
+
+  def template(); end
+
+  def to_a(); end
+
+  def uri(); end
+
+  def values(); end
+
+  def values_at(*indexes); end
+
+  def variables(); end
+end
+
+class Addressable::Template::MatchData
+end
+
+class Addressable::Template::TemplateOperatorAbortedError
+end
+
+class Addressable::Template::TemplateOperatorAbortedError
+end
+
+class Addressable::Template
+end
+
 class Addressable::URI
   EMPTY_STR = ::T.let(nil, ::T.untyped)
   NORMPATH = ::T.let(nil, ::T.untyped)
@@ -7729,10 +7835,10 @@ end
 class Admin::DashboardController
 end
 
-class Admin::PurchasedRecipesController
+class Admin::PredictedOrdersController
 end
 
-class Admin::PurchasedRecipesController
+class Admin::PredictedOrdersController
   def self.resource_class=(klass); end
 end
 
@@ -7998,6 +8104,9 @@ module AnnotateRoutes::Helpers
   MAGIC_COMMENT_MATCHER = ::T.let(nil, ::T.untyped)
 end
 
+module Api
+end
+
 class Api::OpDaysController
   def index(); end
 
@@ -8038,7 +8147,7 @@ end
 class Api::RecipesController
 end
 
-class Api::WixController
+module Api
 end
 
 module ApplicationCable
@@ -9348,251 +9457,6 @@ end
 
 class Array
   def self.try_convert(_); end
-end
-
-module Axiom
-end
-
-module Axiom::Types
-  Contradiction = ::T.let(nil, ::T.untyped)
-  Tautology = ::T.let(nil, ::T.untyped)
-  Undefined = ::T.let(nil, ::T.untyped)
-  VERSION = ::T.let(nil, ::T.untyped)
-end
-
-class Axiom::Types::Array
-end
-
-class Axiom::Types::Array
-end
-
-class Axiom::Types::Boolean
-end
-
-class Axiom::Types::Boolean
-end
-
-class Axiom::Types::Class
-end
-
-class Axiom::Types::Class
-end
-
-class Axiom::Types::Collection
-end
-
-class Axiom::Types::Collection
-  def self.member_type(*args); end
-end
-
-class Axiom::Types::Date
-end
-
-class Axiom::Types::Date
-  extend ::Axiom::Types::ValueComparable
-  def self.maximum(*args); end
-
-  def self.minimum(*args); end
-end
-
-class Axiom::Types::DateTime
-  MAXIMUM_SECONDS = ::T.let(nil, ::T.untyped)
-end
-
-class Axiom::Types::DateTime
-  extend ::Axiom::Types::ValueComparable
-  def self.maximum(*args); end
-
-  def self.minimum(*args); end
-end
-
-class Axiom::Types::Decimal
-end
-
-class Axiom::Types::Decimal
-end
-
-module Axiom::Types::Encodable
-  def finalize(); end
-end
-
-module Axiom::Types::Encodable
-end
-
-class Axiom::Types::Float
-end
-
-class Axiom::Types::Float
-end
-
-class Axiom::Types::Hash
-end
-
-class Axiom::Types::Hash
-  def self.key_type(*args); end
-
-  def self.value_type(*args); end
-end
-
-class Axiom::Types::Infinity
-  include ::Singleton
-  include ::Comparable
-  def coerce(other); end
-
-  def succ(); end
-end
-
-class Axiom::Types::Infinity
-  extend ::DescendantsTracker
-  extend ::Axiom::Types::Options
-  extend ::Singleton::SingletonClassMethods
-  def self.instance(); end
-
-  def self.inverse(*args); end
-
-  def self.number(*args); end
-end
-
-class Axiom::Types::Integer
-end
-
-class Axiom::Types::Integer
-end
-
-module Axiom::Types::LengthComparable
-  def finalize(); end
-
-  def range(); end
-end
-
-module Axiom::Types::LengthComparable
-  def self.extended(descendant); end
-end
-
-class Axiom::Types::NegativeInfinity
-end
-
-class Axiom::Types::NegativeInfinity
-end
-
-class Axiom::Types::Numeric
-end
-
-class Axiom::Types::Numeric
-  extend ::Axiom::Types::ValueComparable
-  def self.maximum(*args); end
-
-  def self.minimum(*args); end
-end
-
-class Axiom::Types::Object
-end
-
-class Axiom::Types::Object
-  def self.coercion_method(*args); end
-
-  def self.primitive(*args); end
-end
-
-module Axiom::Types::Options
-  def accept_options(*new_options); end
-
-  def setup_option(new_option); end
-end
-
-class Axiom::Types::Options::ReservedMethodError
-end
-
-class Axiom::Types::Options::ReservedMethodError
-end
-
-module Axiom::Types::Options
-end
-
-class Axiom::Types::Set
-end
-
-class Axiom::Types::Set
-end
-
-class Axiom::Types::String
-end
-
-class Axiom::Types::String
-  extend ::Axiom::Types::Encodable
-  extend ::Axiom::Types::LengthComparable
-  def self.encoding(*args); end
-
-  def self.maximum_length(*args); end
-
-  def self.minimum_length(*args); end
-end
-
-class Axiom::Types::Symbol
-end
-
-class Axiom::Types::Symbol
-  extend ::Axiom::Types::Encodable
-  extend ::Axiom::Types::LengthComparable
-  def self.encoding(*args); end
-
-  def self.maximum_length(*args); end
-
-  def self.minimum_length(*args); end
-end
-
-class Axiom::Types::Time
-  MAXIMUM_SECONDS = ::T.let(nil, ::T.untyped)
-  MINIMUM_SECONDS = ::T.let(nil, ::T.untyped)
-end
-
-class Axiom::Types::Time
-  extend ::Axiom::Types::ValueComparable
-  def self.maximum(*args); end
-
-  def self.minimum(*args); end
-end
-
-class Axiom::Types::Type
-end
-
-class Axiom::Types::Type
-  extend ::DescendantsTracker
-  extend ::Axiom::Types::Options
-  def self.base(); end
-
-  def self.base?(); end
-
-  def self.constraint(constraint=T.unsafe(nil), &block); end
-
-  def self.finalize(); end
-
-  def self.include?(object); end
-
-  def self.includes(*members); end
-
-  def self.infer(object); end
-
-  def self.new(*args, &block); end
-end
-
-module Axiom::Types::ValueComparable
-  def finalize(); end
-
-  def range(); end
-end
-
-module Axiom::Types::ValueComparable
-  def self.extended(descendant); end
-end
-
-module Axiom::Types
-  def self.finalize(); end
-
-  def self.infer(object); end
-end
-
-module Axiom
 end
 
 module BCrypt
@@ -11046,265 +10910,6 @@ class Class
   def json_creatable?(); end
 end
 
-module Coercible
-  EXTRA_CONST_ARGS = ::T.let(nil, ::T.untyped)
-  VERSION = ::T.let(nil, ::T.untyped)
-end
-
-class Coercible::Coercer
-  def [](klass); end
-
-  def coercers(); end
-
-  def config(); end
-
-  def initialize(config, coercers=T.unsafe(nil)); end
-end
-
-class Coercible::Coercer::Array
-  def to_set(value); end
-  TIME_SEGMENTS = ::T.let(nil, ::T.untyped)
-end
-
-class Coercible::Coercer::Array
-end
-
-module Coercible::Coercer::Configurable
-  def config(&block); end
-
-  def config_name(); end
-
-  def configuration_class(); end
-end
-
-module Coercible::Coercer::Configurable
-  def self.extended(coercer); end
-end
-
-class Coercible::Coercer::Date
-  include ::Coercible::Coercer::TimeCoercions
-end
-
-class Coercible::Coercer::Date
-end
-
-class Coercible::Coercer::DateTime
-  include ::Coercible::Coercer::TimeCoercions
-end
-
-class Coercible::Coercer::DateTime
-end
-
-class Coercible::Coercer::Decimal
-  FLOAT_FORMAT = ::T.let(nil, ::T.untyped)
-end
-
-class Coercible::Coercer::Decimal
-end
-
-class Coercible::Coercer::FalseClass
-end
-
-class Coercible::Coercer::FalseClass
-end
-
-class Coercible::Coercer::Float
-  def to_datetime(value); end
-end
-
-class Coercible::Coercer::Float
-end
-
-class Coercible::Coercer::Hash
-  def to_date(value); end
-
-  def to_datetime(value); end
-
-  def to_time(value); end
-  TIME_SEGMENTS = ::T.let(nil, ::T.untyped)
-end
-
-class Coercible::Coercer::Hash
-end
-
-class Coercible::Coercer::Integer
-  def boolean_map(); end
-
-  def datetime_format(); end
-
-  def datetime_proc(); end
-
-  def initialize(coercer=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def to_boolean(value); end
-
-  def to_datetime(value); end
-end
-
-class Coercible::Coercer::Integer
-  extend ::Coercible::Coercer::Configurable
-  def self.config(); end
-
-  def self.config_keys(value=T.unsafe(nil)); end
-end
-
-class Coercible::Coercer::Numeric
-  def to_decimal(value); end
-
-  def to_float(value); end
-end
-
-class Coercible::Coercer::Numeric
-end
-
-class Coercible::Coercer::Object
-  def coerced?(value); end
-
-  def coercers(); end
-
-  def initialize(coercers=T.unsafe(nil)); end
-
-  def to_array(value); end
-
-  def to_hash(value); end
-
-  def to_integer(value); end
-
-  def to_string(value); end
-  COERCION_METHOD_REGEXP = ::T.let(nil, ::T.untyped)
-end
-
-class Coercible::Coercer::Object
-  extend ::Coercible::Options
-  extend ::DescendantsTracker
-  extend ::Coercible::TypeLookup
-  def self.primitive(value=T.unsafe(nil)); end
-end
-
-class Coercible::Coercer::String
-  def boolean_map(); end
-
-  def initialize(coercer=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def to_boolean(value); end
-
-  def to_constant(value); end
-
-  def to_date(value); end
-
-  def to_datetime(value); end
-
-  def to_decimal(value); end
-
-  def to_float(value); end
-
-  def to_symbol(value); end
-
-  def to_time(value); end
-  BOOLEAN_MAP = ::T.let(nil, ::T.untyped)
-  EXPONENT_REGEXP = ::T.let(nil, ::T.untyped)
-  FALSE_VALUES = ::T.let(nil, ::T.untyped)
-  FRACTIONAL_REGEXP = ::T.let(nil, ::T.untyped)
-  INTEGER_REGEXP = ::T.let(nil, ::T.untyped)
-  NUMERIC_REGEXP = ::T.let(nil, ::T.untyped)
-  TRUE_VALUES = ::T.let(nil, ::T.untyped)
-end
-
-class Coercible::Coercer::String
-  extend ::Coercible::Coercer::Configurable
-  def self.config(); end
-
-  def self.config_keys(value=T.unsafe(nil)); end
-end
-
-class Coercible::Coercer::Symbol
-end
-
-class Coercible::Coercer::Symbol
-end
-
-class Coercible::Coercer::Time
-  include ::Coercible::Coercer::TimeCoercions
-end
-
-class Coercible::Coercer::Time
-end
-
-module Coercible::Coercer::TimeCoercions
-  def to_date(value); end
-
-  def to_datetime(value); end
-
-  def to_string(value); end
-
-  def to_time(value); end
-end
-
-module Coercible::Coercer::TimeCoercions
-end
-
-class Coercible::Coercer::TrueClass
-end
-
-class Coercible::Coercer::TrueClass
-end
-
-class Coercible::Coercer
-  def self.new(&block); end
-end
-
-class Coercible::Configuration
-end
-
-class Coercible::Configuration
-  def self.build(keys, &block); end
-end
-
-module Coercible::Options
-  def accept_options(*new_options); end
-
-  def accepted_options(); end
-
-  def add_accepted_options(new_options); end
-
-  def define_option_method(option); end
-
-  def options(); end
-
-  def set_options(new_options); end
-end
-
-class Coercible::Options::Undefined
-end
-
-class Coercible::Options::Undefined
-end
-
-module Coercible::Options
-  def self.extended(descendant); end
-end
-
-module Coercible::TypeLookup
-  def determine_type(class_or_name); end
-
-  def primitive(); end
-  TYPE_FORMAT = ::T.let(nil, ::T.untyped)
-end
-
-module Coercible::TypeLookup
-  def self.extended(model); end
-end
-
-class Coercible::UnsupportedCoercion
-end
-
-class Coercible::UnsupportedCoercion
-end
-
-module Coercible
-  def self.rbx?(); end
-end
-
 module Concurrent
   NULL = ::T.let(nil, ::T.untyped)
   NULL_LOGGER = ::T.let(nil, ::T.untyped)
@@ -12042,16 +11647,6 @@ end
 
 module Declarative
   def self.Option(value, options=T.unsafe(nil)); end
-end
-
-module DescendantsTracker
-  def add_descendant(descendant); end
-
-  def descendants(); end
-end
-
-module DescendantsTracker
-  def self.setup(descendant); end
 end
 
 class DetailedInstruction
@@ -14024,6 +13619,101 @@ class Dir
 
 end
 
+class DomainName
+  def <(other); end
+
+  def <=(other); end
+
+  def ==(other); end
+
+  def >(other); end
+
+  def >=(other); end
+
+  def canonical?(); end
+
+  def canonical_tld?(); end
+
+  def cookie_domain?(domain, host_only=T.unsafe(nil)); end
+
+  def domain(); end
+
+  def domain_idn(); end
+
+  def hostname(); end
+
+  def hostname_idn(); end
+
+  def idn(); end
+
+  def initialize(hostname); end
+
+  def ipaddr(); end
+
+  def ipaddr?(); end
+
+  def superdomain(); end
+
+  def tld(); end
+
+  def tld_idn(); end
+
+  def to_str(); end
+
+  def uri_host(); end
+  DOT = ::T.let(nil, ::T.untyped)
+  ETLD_DATA = ::T.let(nil, ::T.untyped)
+  ETLD_DATA_DATE = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module DomainName::Punycode
+  BASE = ::T.let(nil, ::T.untyped)
+  CUTOFF = ::T.let(nil, ::T.untyped)
+  DAMP = ::T.let(nil, ::T.untyped)
+  DECODE_DIGIT = ::T.let(nil, ::T.untyped)
+  DELIMITER = ::T.let(nil, ::T.untyped)
+  DOT = ::T.let(nil, ::T.untyped)
+  ENCODE_DIGIT = ::T.let(nil, ::T.untyped)
+  INITIAL_BIAS = ::T.let(nil, ::T.untyped)
+  INITIAL_N = ::T.let(nil, ::T.untyped)
+  LOBASE = ::T.let(nil, ::T.untyped)
+  MAXINT = ::T.let(nil, ::T.untyped)
+  PREFIX = ::T.let(nil, ::T.untyped)
+  RE_NONBASIC = ::T.let(nil, ::T.untyped)
+  SKEW = ::T.let(nil, ::T.untyped)
+  TMAX = ::T.let(nil, ::T.untyped)
+  TMIN = ::T.let(nil, ::T.untyped)
+end
+
+class DomainName::Punycode::ArgumentError
+end
+
+class DomainName::Punycode::ArgumentError
+end
+
+class DomainName::Punycode::BufferOverflowError
+end
+
+class DomainName::Punycode::BufferOverflowError
+end
+
+module DomainName::Punycode
+  def self.decode(string); end
+
+  def self.decode_hostname(hostname); end
+
+  def self.encode(string); end
+
+  def self.encode_hostname(hostname); end
+end
+
+class DomainName
+  def self.etld_data(); end
+
+  def self.normalize(domain); end
+end
+
 module DslHelper
   def add_options_from_dsl(options, valid_keys, &block); end
 end
@@ -14087,22 +13777,6 @@ class Enumerator::Generator
   def each(*_, &blk); end
 
   def initialize(*_); end
-end
-
-class Equalizer
-  def initialize(*keys); end
-end
-
-module Equalizer::Methods
-  def ==(other); end
-
-  def eql?(other); end
-end
-
-module Equalizer::Methods
-end
-
-class Equalizer
 end
 
 class Errno::EAUTH
@@ -14394,6 +14068,38 @@ module FFI
 end
 
 FFI::CallbackInfo = FFI::FunctionType
+
+module FFI::Compiler
+end
+
+module FFI::Compiler::Loader
+end
+
+module FFI::Compiler::Loader
+  def self.caller_path(line=T.unsafe(nil)); end
+
+  def self.find(name, start_path=T.unsafe(nil)); end
+end
+
+class FFI::Compiler::Platform
+  def arch(); end
+
+  def mac?(); end
+
+  def map_library_name(name); end
+
+  def name(); end
+
+  def os(); end
+  LIBSUFFIX = ::T.let(nil, ::T.untyped)
+end
+
+class FFI::Compiler::Platform
+  def self.system(); end
+end
+
+module FFI::Compiler
+end
 
 class FFI::DynamicLibrary
   RTLD_ALL_MASK = ::T.let(nil, ::T.untyped)
@@ -17636,6 +17342,1424 @@ class HTMLSelector
   NO_STRIP = ::T.let(nil, ::T.untyped)
 end
 
+module HTTP
+  CHARSET_RE = ::T.let(nil, ::T.untyped)
+  MIME_TYPE_RE = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module HTTP::Chainable
+  def accept(type); end
+
+  def auth(value); end
+
+  def basic_auth(opts); end
+
+  def build_request(*args); end
+
+  def connect(uri, options=T.unsafe(nil)); end
+
+  def cookies(cookies); end
+
+  def default_options(); end
+
+  def default_options=(opts); end
+
+  def delete(uri, options=T.unsafe(nil)); end
+
+  def encoding(encoding); end
+
+  def follow(options=T.unsafe(nil)); end
+
+  def get(uri, options=T.unsafe(nil)); end
+
+  def head(uri, options=T.unsafe(nil)); end
+
+  def headers(headers); end
+
+  def nodelay(); end
+
+  def options(uri, options=T.unsafe(nil)); end
+
+  def patch(uri, options=T.unsafe(nil)); end
+
+  def persistent(host, timeout: T.unsafe(nil)); end
+
+  def post(uri, options=T.unsafe(nil)); end
+
+  def put(uri, options=T.unsafe(nil)); end
+
+  def request(*args); end
+
+  def through(*proxy); end
+
+  def timeout(options); end
+
+  def trace(uri, options=T.unsafe(nil)); end
+
+  def use(*features); end
+
+  def via(*proxy); end
+end
+
+module HTTP::Chainable
+end
+
+class HTTP::Client
+  include ::HTTP::Chainable
+  def build_request(verb, uri, opts=T.unsafe(nil)); end
+
+  def close(); end
+
+  def initialize(default_options=T.unsafe(nil)); end
+
+  def perform(req, options); end
+
+  def persistent?(*args, &block); end
+
+  def request(verb, uri, opts=T.unsafe(nil)); end
+  HTTP_OR_HTTPS_RE = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::Client
+  extend ::Forwardable
+end
+
+class HTTP::Connection
+  def close(); end
+
+  def expired?(); end
+
+  def failed_proxy_connect?(); end
+
+  def finish_response(); end
+
+  def headers(*args, &block); end
+
+  def http_version(*args, &block); end
+
+  def initialize(req, options); end
+
+  def keep_alive?(); end
+
+  def proxy_response_headers(); end
+
+  def read_headers!(); end
+
+  def readpartial(size=T.unsafe(nil)); end
+
+  def send_request(req); end
+
+  def status_code(*args, &block); end
+  BUFFER_SIZE = ::T.let(nil, ::T.untyped)
+  CLOSE = ::T.let(nil, ::T.untyped)
+  HTTP_1_0 = ::T.let(nil, ::T.untyped)
+  HTTP_1_1 = ::T.let(nil, ::T.untyped)
+  KEEP_ALIVE = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::Connection
+  extend ::Forwardable
+end
+
+class HTTP::ConnectionError
+end
+
+class HTTP::ConnectionError
+end
+
+class HTTP::ContentType
+  def charset(); end
+
+  def charset=(_); end
+
+  def mime_type(); end
+
+  def mime_type=(_); end
+end
+
+class HTTP::ContentType
+  def self.[](*_); end
+
+  def self.members(); end
+
+  def self.parse(str); end
+end
+
+class HTTP::Cookie
+  include ::Comparable
+  def acceptable?(); end
+
+  def acceptable_from_uri?(uri); end
+
+  def accessed_at(); end
+
+  def accessed_at=(accessed_at); end
+
+  def cookie_value(); end
+
+  def created_at(); end
+
+  def created_at=(created_at); end
+
+  def domain(); end
+
+  def domain=(domain); end
+
+  def domain_name(); end
+
+  def dot_domain(); end
+
+  def encode_with(coder); end
+
+  def expire!(); end
+
+  def expired?(time=T.unsafe(nil)); end
+
+  def expires(); end
+
+  def expires=(t); end
+
+  def expires_at(); end
+
+  def expires_at=(t); end
+
+  def for_domain(); end
+
+  def for_domain=(for_domain); end
+
+  def for_domain?(); end
+
+  def httponly(); end
+
+  def httponly=(httponly); end
+
+  def httponly?(); end
+
+  def init_with(coder); end
+
+  def initialize(*args); end
+
+  def max_age(); end
+
+  def max_age=(sec); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def origin(); end
+
+  def origin=(origin); end
+
+  def path(); end
+
+  def path=(path); end
+
+  def secure(); end
+
+  def secure=(secure); end
+
+  def secure?(); end
+
+  def session(); end
+
+  def session?(); end
+
+  def set_cookie_value(); end
+
+  def to_yaml_properties(); end
+
+  def valid_for_uri?(uri); end
+
+  def value(); end
+
+  def value=(value); end
+
+  def yaml_initialize(tag, map); end
+  MAX_COOKIES_PER_DOMAIN = ::T.let(nil, ::T.untyped)
+  MAX_COOKIES_TOTAL = ::T.let(nil, ::T.untyped)
+  MAX_LENGTH = ::T.let(nil, ::T.untyped)
+  PERSISTENT_PROPERTIES = ::T.let(nil, ::T.untyped)
+  UNIX_EPOCH = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::Cookie::Scanner
+  def initialize(string, logger=T.unsafe(nil)); end
+
+  def parse_cookie_date(s); end
+
+  def scan_cookie(); end
+
+  def scan_dquoted(); end
+
+  def scan_name(); end
+
+  def scan_name_value(comma_as_separator=T.unsafe(nil)); end
+
+  def scan_set_cookie(); end
+
+  def scan_value(comma_as_separator=T.unsafe(nil)); end
+
+  def skip_wsp(); end
+  RE_BAD_CHAR = ::T.let(nil, ::T.untyped)
+  RE_COOKIE_COMMA = ::T.let(nil, ::T.untyped)
+  RE_NAME = ::T.let(nil, ::T.untyped)
+  RE_WSP = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::Cookie::Scanner
+  def self.quote(s); end
+end
+
+class HTTP::Cookie
+  def self.cookie_value(cookies); end
+
+  def self.cookie_value_to_hash(cookie_value); end
+
+  def self.parse(set_cookie, origin, options=T.unsafe(nil), &block); end
+
+  def self.path_match?(base_path, target_path); end
+end
+
+class HTTP::CookieJar
+  include ::Enumerable
+  def <<(cookie); end
+
+  def add(cookie); end
+
+  def cleanup(session=T.unsafe(nil)); end
+
+  def clear(); end
+
+  def cookies(url=T.unsafe(nil)); end
+
+  def delete(cookie); end
+
+  def each(uri=T.unsafe(nil), &block); end
+
+  def empty?(url=T.unsafe(nil)); end
+
+  def initialize(options=T.unsafe(nil)); end
+
+  def load(readable, *options); end
+
+  def parse(set_cookie, origin, options=T.unsafe(nil)); end
+
+  def save(writable, *options); end
+
+  def store(); end
+end
+
+class HTTP::CookieJar
+  def self.const_missing(name); end
+end
+
+class HTTP::Error
+end
+
+class HTTP::Error
+end
+
+class HTTP::Feature
+  def initialize(opts=T.unsafe(nil)); end
+
+  def wrap_request(request); end
+
+  def wrap_response(response); end
+end
+
+class HTTP::Feature
+end
+
+module HTTP::Features
+end
+
+class HTTP::Features::AutoDeflate
+  def deflated_body(body); end
+
+  def initialize(**_); end
+
+  def method(); end
+end
+
+class HTTP::Features::AutoDeflate::CompressedBody
+  def initialize(uncompressed_body); end
+end
+
+class HTTP::Features::AutoDeflate::CompressedBody
+end
+
+class HTTP::Features::AutoDeflate::DeflatedBody
+  def compress(); end
+end
+
+class HTTP::Features::AutoDeflate::DeflatedBody
+end
+
+class HTTP::Features::AutoDeflate::GzippedBody
+  def compress(&block); end
+end
+
+class HTTP::Features::AutoDeflate::GzippedBody::BlockIO
+  def initialize(block); end
+
+  def write(data); end
+end
+
+class HTTP::Features::AutoDeflate::GzippedBody::BlockIO
+end
+
+class HTTP::Features::AutoDeflate::GzippedBody
+end
+
+class HTTP::Features::AutoDeflate
+end
+
+class HTTP::Features::AutoInflate
+  def stream_for(connection); end
+end
+
+class HTTP::Features::AutoInflate
+end
+
+class HTTP::Features::Instrumentation
+  def initialize(instrumenter: T.unsafe(nil), namespace: T.unsafe(nil)); end
+
+  def instrumenter(); end
+
+  def name(); end
+end
+
+class HTTP::Features::Instrumentation::NullInstrumenter
+  def finish(_name, _payload); end
+
+  def instrument(name, payload=T.unsafe(nil)); end
+
+  def start(_name, _payload); end
+end
+
+class HTTP::Features::Instrumentation::NullInstrumenter
+end
+
+class HTTP::Features::Instrumentation
+end
+
+class HTTP::Features::Logging
+  def initialize(logger: T.unsafe(nil)); end
+
+  def logger(); end
+end
+
+class HTTP::Features::Logging::NullLogger
+  def debug(*_args); end
+
+  def debug?(); end
+
+  def error(*_args); end
+
+  def error?(); end
+
+  def fatal(*_args); end
+
+  def fatal?(); end
+
+  def info(*_args); end
+
+  def info?(); end
+
+  def warn(*_args); end
+
+  def warn?(); end
+end
+
+class HTTP::Features::Logging::NullLogger
+end
+
+class HTTP::Features::Logging
+end
+
+class HTTP::Features::NormalizeUri
+  def initialize(normalizer: T.unsafe(nil)); end
+
+  def normalizer(); end
+end
+
+class HTTP::Features::NormalizeUri
+end
+
+module HTTP::Features
+end
+
+module HTTP::FormData
+  CRLF = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::FormData::CompositeIO
+  def initialize(ios); end
+
+  def read(length=T.unsafe(nil), outbuf=T.unsafe(nil)); end
+
+  def rewind(); end
+
+  def size(); end
+end
+
+class HTTP::FormData::CompositeIO
+end
+
+class HTTP::FormData::Error
+end
+
+class HTTP::FormData::Error
+end
+
+class HTTP::FormData::File
+  def initialize(path_or_io, opts=T.unsafe(nil)); end
+
+  def mime_type(); end
+  DEFAULT_MIME = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::FormData::File
+end
+
+class HTTP::FormData::Multipart
+  include ::HTTP::FormData::Readable
+  def boundary(); end
+
+  def content_length(); end
+
+  def content_type(); end
+
+  def initialize(data, boundary: T.unsafe(nil)); end
+end
+
+class HTTP::FormData::Multipart::Param
+  include ::HTTP::FormData::Readable
+  def initialize(name, value); end
+end
+
+class HTTP::FormData::Multipart::Param
+  def self.coerce(data); end
+end
+
+class HTTP::FormData::Multipart
+  def self.generate_boundary(); end
+end
+
+class HTTP::FormData::Part
+  include ::HTTP::FormData::Readable
+  def content_type(); end
+
+  def filename(); end
+
+  def initialize(body, content_type: T.unsafe(nil), filename: T.unsafe(nil)); end
+end
+
+class HTTP::FormData::Part
+end
+
+module HTTP::FormData::Readable
+  def read(length=T.unsafe(nil), outbuf=T.unsafe(nil)); end
+
+  def rewind(); end
+
+  def size(); end
+
+  def to_s(); end
+end
+
+module HTTP::FormData::Readable
+end
+
+class HTTP::FormData::Urlencoded
+  include ::HTTP::FormData::Readable
+  def content_length(); end
+
+  def content_type(); end
+
+  def initialize(data, encoder: T.unsafe(nil)); end
+end
+
+class HTTP::FormData::Urlencoded
+  def self.encoder(); end
+
+  def self.encoder=(implementation); end
+end
+
+module HTTP::FormData
+  def self.create(data, encoder: T.unsafe(nil)); end
+
+  def self.ensure_hash(obj); end
+end
+
+class HTTP::HeaderError
+end
+
+class HTTP::HeaderError
+end
+
+class HTTP::Headers
+  include ::Enumerable
+  def ==(other); end
+
+  def [](name); end
+
+  def []=(name, value); end
+
+  def add(name, value); end
+
+  def delete(name); end
+
+  def each(&blk); end
+
+  def empty?(*args, &block); end
+
+  def get(name); end
+
+  def hash(*args, &block); end
+
+  def include?(name); end
+
+  def keys(); end
+
+  def merge(other); end
+
+  def merge!(other); end
+
+  def set(name, value); end
+
+  def to_a(); end
+
+  def to_h(); end
+
+  def to_hash(); end
+  ACCEPT = ::T.let(nil, ::T.untyped)
+  ACCEPT_ENCODING = ::T.let(nil, ::T.untyped)
+  AGE = ::T.let(nil, ::T.untyped)
+  AUTHORIZATION = ::T.let(nil, ::T.untyped)
+  CACHE_CONTROL = ::T.let(nil, ::T.untyped)
+  CANONICAL_NAME_RE = ::T.let(nil, ::T.untyped)
+  COMPLIANT_NAME_RE = ::T.let(nil, ::T.untyped)
+  CONNECTION = ::T.let(nil, ::T.untyped)
+  CONTENT_ENCODING = ::T.let(nil, ::T.untyped)
+  CONTENT_LENGTH = ::T.let(nil, ::T.untyped)
+  CONTENT_TYPE = ::T.let(nil, ::T.untyped)
+  COOKIE = ::T.let(nil, ::T.untyped)
+  DATE = ::T.let(nil, ::T.untyped)
+  ETAG = ::T.let(nil, ::T.untyped)
+  EXPIRES = ::T.let(nil, ::T.untyped)
+  HOST = ::T.let(nil, ::T.untyped)
+  IF_MODIFIED_SINCE = ::T.let(nil, ::T.untyped)
+  IF_NONE_MATCH = ::T.let(nil, ::T.untyped)
+  LAST_MODIFIED = ::T.let(nil, ::T.untyped)
+  LOCATION = ::T.let(nil, ::T.untyped)
+  PROXY_AUTHORIZATION = ::T.let(nil, ::T.untyped)
+  SET_COOKIE = ::T.let(nil, ::T.untyped)
+  TRANSFER_ENCODING = ::T.let(nil, ::T.untyped)
+  USER_AGENT = ::T.let(nil, ::T.untyped)
+  VARY = ::T.let(nil, ::T.untyped)
+end
+
+module HTTP::Headers::Mixin
+  def [](*args, &block); end
+
+  def []=(*args, &block); end
+
+  def headers(); end
+end
+
+module HTTP::Headers::Mixin
+  extend ::Forwardable
+end
+
+class HTTP::Headers
+  extend ::Forwardable
+  def self.[](object); end
+
+  def self.coerce(object); end
+end
+
+module HTTP::MimeType
+end
+
+class HTTP::MimeType::Adapter
+  include ::Singleton
+  def decode(*_); end
+
+  def encode(*_); end
+end
+
+class HTTP::MimeType::Adapter
+  extend ::Singleton::SingletonClassMethods
+  def self.decode(*args, &block); end
+
+  def self.encode(*args, &block); end
+
+  def self.instance(); end
+end
+
+class HTTP::MimeType::JSON
+  def decode(str); end
+
+  def encode(obj); end
+end
+
+class HTTP::MimeType::JSON
+end
+
+module HTTP::MimeType
+  def self.[](type); end
+
+  def self.normalize(type); end
+
+  def self.register_adapter(type, adapter); end
+
+  def self.register_alias(type, shortcut); end
+end
+
+class HTTP::Options
+  def []=(option, val); end
+
+  def body(); end
+
+  def body=(body); end
+
+  def cookies(); end
+
+  def cookies=(cookies); end
+
+  def encoding(); end
+
+  def encoding=(encoding); end
+
+  def feature(name); end
+
+  def features(); end
+
+  def features=(features); end
+
+  def follow(); end
+
+  def follow=(value); end
+
+  def form(); end
+
+  def form=(form); end
+
+  def headers(); end
+
+  def headers=(headers); end
+
+  def initialize(options=T.unsafe(nil)); end
+
+  def json(); end
+
+  def json=(json); end
+
+  def keep_alive_timeout(); end
+
+  def keep_alive_timeout=(keep_alive_timeout); end
+
+  def merge(other); end
+
+  def nodelay(); end
+
+  def nodelay=(nodelay); end
+
+  def params(); end
+
+  def params=(params); end
+
+  def persistent(); end
+
+  def persistent=(value); end
+
+  def persistent?(); end
+
+  def proxy(); end
+
+  def proxy=(proxy); end
+
+  def response(); end
+
+  def response=(response); end
+
+  def socket_class(); end
+
+  def socket_class=(socket_class); end
+
+  def ssl(); end
+
+  def ssl=(ssl); end
+
+  def ssl_context(); end
+
+  def ssl_context=(ssl_context); end
+
+  def ssl_socket_class(); end
+
+  def ssl_socket_class=(ssl_socket_class); end
+
+  def timeout_class(); end
+
+  def timeout_class=(timeout_class); end
+
+  def timeout_options(); end
+
+  def timeout_options=(timeout_options); end
+
+  def to_hash(); end
+
+  def with_body(value); end
+
+  def with_cookies(value); end
+
+  def with_encoding(value); end
+
+  def with_features(value); end
+
+  def with_follow(value); end
+
+  def with_form(value); end
+
+  def with_headers(value); end
+
+  def with_json(value); end
+
+  def with_keep_alive_timeout(value); end
+
+  def with_nodelay(value); end
+
+  def with_params(value); end
+
+  def with_persistent(value); end
+
+  def with_proxy(value); end
+
+  def with_response(value); end
+
+  def with_socket_class(value); end
+
+  def with_ssl(value); end
+
+  def with_ssl_context(value); end
+
+  def with_ssl_socket_class(value); end
+
+  def with_timeout_class(value); end
+
+  def with_timeout_options(value); end
+end
+
+class HTTP::Options
+  def self.available_features(); end
+
+  def self.def_option(name, reader_only: T.unsafe(nil), &interpreter); end
+
+  def self.default_socket_class(); end
+
+  def self.default_socket_class=(default_socket_class); end
+
+  def self.default_ssl_socket_class(); end
+
+  def self.default_ssl_socket_class=(default_ssl_socket_class); end
+
+  def self.default_timeout_class(); end
+
+  def self.default_timeout_class=(default_timeout_class); end
+
+  def self.defined_options(); end
+
+  def self.new(options=T.unsafe(nil)); end
+
+  def self.register_feature(name, impl); end
+end
+
+class HTTP::Redirector
+  def initialize(opts=T.unsafe(nil)); end
+
+  def max_hops(); end
+
+  def perform(request, response); end
+
+  def strict(); end
+  REDIRECT_CODES = ::T.let(nil, ::T.untyped)
+  SEE_OTHER_ALLOWED_VERBS = ::T.let(nil, ::T.untyped)
+  STRICT_SENSITIVE_CODES = ::T.let(nil, ::T.untyped)
+  UNSAFE_VERBS = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::Redirector::EndlessRedirectError
+end
+
+class HTTP::Redirector::EndlessRedirectError
+end
+
+class HTTP::Redirector::TooManyRedirectsError
+end
+
+class HTTP::Redirector::TooManyRedirectsError
+end
+
+class HTTP::Redirector
+end
+
+class HTTP::Request
+  include ::HTTP::Headers::Mixin
+  def body(); end
+
+  def connect_using_proxy(socket); end
+
+  def headline(); end
+
+  def host(*args, &block); end
+
+  def include_proxy_authorization_header(); end
+
+  def include_proxy_headers(); end
+
+  def initialize(opts); end
+
+  def proxy(); end
+
+  def proxy_authorization_header(); end
+
+  def proxy_connect_header(); end
+
+  def proxy_connect_headers(); end
+
+  def redirect(uri, verb=T.unsafe(nil)); end
+
+  def scheme(); end
+
+  def socket_host(); end
+
+  def socket_port(); end
+
+  def stream(socket); end
+
+  def uri(); end
+
+  def uri_normalizer(); end
+
+  def using_authenticated_proxy?(); end
+
+  def using_proxy?(); end
+
+  def verb(); end
+
+  def version(); end
+  METHODS = ::T.let(nil, ::T.untyped)
+  PORTS = ::T.let(nil, ::T.untyped)
+  SCHEMES = ::T.let(nil, ::T.untyped)
+  USER_AGENT = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::Request::Body
+  def ==(other); end
+
+  def each(&block); end
+
+  def initialize(source); end
+
+  def size(); end
+
+  def source(); end
+end
+
+class HTTP::Request::Body
+end
+
+class HTTP::Request::UnsupportedMethodError
+end
+
+class HTTP::Request::UnsupportedMethodError
+end
+
+class HTTP::Request::UnsupportedSchemeError
+end
+
+class HTTP::Request::UnsupportedSchemeError
+end
+
+class HTTP::Request::Writer
+  def add_body_type_headers(); end
+
+  def add_headers(); end
+
+  def chunked?(); end
+
+  def connect_through_proxy(); end
+
+  def each_chunk(); end
+
+  def encode_chunk(chunk); end
+
+  def initialize(socket, body, headers, headline); end
+
+  def join_headers(); end
+
+  def send_request(); end
+
+  def stream(); end
+  CHUNKED = ::T.let(nil, ::T.untyped)
+  CHUNKED_END = ::T.let(nil, ::T.untyped)
+  CRLF = ::T.let(nil, ::T.untyped)
+  ZERO = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::Request::Writer
+end
+
+class HTTP::Request
+  extend ::Forwardable
+end
+
+class HTTP::RequestError
+end
+
+class HTTP::RequestError
+end
+
+class HTTP::Response
+  include ::HTTP::Headers::Mixin
+  def body(); end
+
+  def charset(*args, &block); end
+
+  def chunked?(); end
+
+  def code(*args, &block); end
+
+  def connection(*args, &block); end
+
+  def content_length(); end
+
+  def content_type(); end
+
+  def cookies(); end
+
+  def flush(); end
+
+  def initialize(opts); end
+
+  def mime_type(*args, &block); end
+
+  def parse(as=T.unsafe(nil)); end
+
+  def proxy_headers(); end
+
+  def readpartial(*args, &block); end
+
+  def reason(*args, &block); end
+
+  def status(); end
+
+  def to_a(); end
+
+  def to_s(*args, &block); end
+
+  def to_str(*args, &block); end
+
+  def uri(); end
+
+  def version(); end
+end
+
+class HTTP::Response::Body
+  include ::Enumerable
+  def connection(); end
+
+  def each(&blk); end
+
+  def empty?(*args, &block); end
+
+  def initialize(stream, encoding: T.unsafe(nil)); end
+
+  def readpartial(*args); end
+
+  def stream!(); end
+
+  def to_str(); end
+end
+
+class HTTP::Response::Body
+  extend ::Forwardable
+end
+
+class HTTP::Response::Inflater
+  def connection(); end
+
+  def initialize(connection); end
+
+  def readpartial(*args); end
+end
+
+class HTTP::Response::Inflater
+end
+
+class HTTP::Response::Parser
+  def <<(data); end
+
+  def add(data); end
+
+  def finished?(); end
+
+  def headers(); end
+
+  def headers?(); end
+
+  def http_version(); end
+
+  def on_body(_response, chunk); end
+
+  def on_header_field(_response, field); end
+
+  def on_header_value(_response, value); end
+
+  def on_headers_complete(_reposse); end
+
+  def on_message_complete(_response); end
+
+  def read(size); end
+
+  def reset(); end
+
+  def status_code(); end
+end
+
+class HTTP::Response::Parser
+end
+
+class HTTP::Response::Status
+  def accepted?(); end
+
+  def already_reported?(); end
+
+  def bad_gateway?(); end
+
+  def bad_request?(); end
+
+  def client_error?(); end
+
+  def code(); end
+
+  def conflict?(); end
+
+  def continue?(); end
+
+  def created?(); end
+
+  def expectation_failed?(); end
+
+  def failed_dependency?(); end
+
+  def forbidden?(); end
+
+  def found?(); end
+
+  def gateway_timeout?(); end
+
+  def gone?(); end
+
+  def http_version_not_supported?(); end
+
+  def im_used?(); end
+
+  def informational?(); end
+
+  def inspect(); end
+
+  def insufficient_storage?(); end
+
+  def internal_server_error?(); end
+
+  def length_required?(); end
+
+  def locked?(); end
+
+  def loop_detected?(); end
+
+  def method_not_allowed?(); end
+
+  def misdirected_request?(); end
+
+  def moved_permanently?(); end
+
+  def multi_status?(); end
+
+  def multiple_choices?(); end
+
+  def network_authentication_required?(); end
+
+  def no_content?(); end
+
+  def non_authoritative_information?(); end
+
+  def not_acceptable?(); end
+
+  def not_extended?(); end
+
+  def not_found?(); end
+
+  def not_implemented?(); end
+
+  def not_modified?(); end
+
+  def ok?(); end
+
+  def partial_content?(); end
+
+  def payload_too_large?(); end
+
+  def payment_required?(); end
+
+  def permanent_redirect?(); end
+
+  def precondition_failed?(); end
+
+  def precondition_required?(); end
+
+  def processing?(); end
+
+  def proxy_authentication_required?(); end
+
+  def range_not_satisfiable?(); end
+
+  def reason(); end
+
+  def redirect?(); end
+
+  def request_header_fields_too_large?(); end
+
+  def request_timeout?(); end
+
+  def reset_content?(); end
+
+  def see_other?(); end
+
+  def server_error?(); end
+
+  def service_unavailable?(); end
+
+  def success?(); end
+
+  def switching_protocols?(); end
+
+  def temporary_redirect?(); end
+
+  def to_s(); end
+
+  def to_sym(); end
+
+  def too_many_requests?(); end
+
+  def unauthorized?(); end
+
+  def unavailable_for_legal_reasons?(); end
+
+  def unprocessable_entity?(); end
+
+  def unsupported_media_type?(); end
+
+  def upgrade_required?(); end
+
+  def uri_too_long?(); end
+
+  def use_proxy?(); end
+
+  def variant_also_negotiates?(); end
+  REASONS = ::T.let(nil, ::T.untyped)
+  SYMBOLS = ::T.let(nil, ::T.untyped)
+  SYMBOL_CODES = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::Response::Status
+  def self.[](object); end
+
+  def self.coerce(object); end
+end
+
+class HTTP::Response
+  extend ::Forwardable
+end
+
+class HTTP::ResponseError
+end
+
+class HTTP::ResponseError
+end
+
+class HTTP::StateError
+end
+
+class HTTP::StateError
+end
+
+module HTTP::Timeout
+end
+
+class HTTP::Timeout::Global
+  def initialize(*args); end
+
+  def reset_counter(); end
+end
+
+class HTTP::Timeout::Global
+end
+
+class HTTP::Timeout::Null
+  def <<(data); end
+
+  def close(*args, &block); end
+
+  def closed?(*args, &block); end
+
+  def connect(socket_class, host, port, nodelay=T.unsafe(nil)); end
+
+  def connect_ssl(); end
+
+  def initialize(options=T.unsafe(nil)); end
+
+  def options(); end
+
+  def readpartial(size, buffer=T.unsafe(nil)); end
+
+  def socket(); end
+
+  def start_tls(host, ssl_socket_class, ssl_context); end
+
+  def write(data); end
+end
+
+class HTTP::Timeout::Null
+  extend ::Forwardable
+end
+
+class HTTP::Timeout::PerOperation
+  def initialize(*args); end
+  CONNECT_TIMEOUT = ::T.let(nil, ::T.untyped)
+  READ_TIMEOUT = ::T.let(nil, ::T.untyped)
+  WRITE_TIMEOUT = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::Timeout::PerOperation
+end
+
+module HTTP::Timeout
+end
+
+class HTTP::TimeoutError
+end
+
+class HTTP::TimeoutError
+end
+
+class HTTP::URI
+  def ==(other); end
+
+  def authority(*args, &block); end
+
+  def authority=(*args, &block); end
+
+  def eql?(other); end
+
+  def fragment(*args, &block); end
+
+  def fragment=(*args, &block); end
+
+  def host(*args, &block); end
+
+  def host=(*args, &block); end
+
+  def http?(); end
+
+  def https?(); end
+
+  def initialize(options_or_uri=T.unsafe(nil)); end
+
+  def join(*args, &block); end
+
+  def normalize(*args, &block); end
+
+  def normalized_authority(*args, &block); end
+
+  def normalized_fragment(*args, &block); end
+
+  def normalized_host(*args, &block); end
+
+  def normalized_password(*args, &block); end
+
+  def normalized_path(*args, &block); end
+
+  def normalized_port(*args, &block); end
+
+  def normalized_query(*args, &block); end
+
+  def normalized_scheme(*args, &block); end
+
+  def normalized_user(*args, &block); end
+
+  def omit(*args, &block); end
+
+  def origin(*args, &block); end
+
+  def origin=(*args, &block); end
+
+  def password(*args, &block); end
+
+  def password=(*args, &block); end
+
+  def path(*args, &block); end
+
+  def path=(*args, &block); end
+
+  def port(); end
+
+  def port=(*args, &block); end
+
+  def query(*args, &block); end
+
+  def query=(*args, &block); end
+
+  def query_values(*args, &block); end
+
+  def query_values=(*args, &block); end
+
+  def request_uri(*args, &block); end
+
+  def request_uri=(*args, &block); end
+
+  def scheme(*args, &block); end
+
+  def scheme=(*args, &block); end
+
+  def to_str(); end
+
+  def user(*args, &block); end
+
+  def user=(*args, &block); end
+  HTTPS_SCHEME = ::T.let(nil, ::T.untyped)
+  HTTP_SCHEME = ::T.let(nil, ::T.untyped)
+  NORMALIZER = ::T.let(nil, ::T.untyped)
+end
+
+class HTTP::URI
+  extend ::Forwardable
+  def self.form_encode(form_values, sort=T.unsafe(nil)); end
+
+  def self.parse(uri); end
+end
+
+module HTTP
+  extend ::HTTP::Chainable
+  def self.[](headers); end
+end
+
 class Hash
   include ::JSON::Ext::Generator::GeneratorMethods::Hash
 end
@@ -17645,6 +18769,289 @@ class Hash
 end
 
 HashWithIndifferentAccess = ActiveSupport::HashWithIndifferentAccess
+
+module HttpParser
+  def err_desc(*_); end
+
+  def err_name(*_); end
+
+  def http_body_is_final(*_); end
+
+  def http_parser_execute(*_); end
+
+  def http_parser_init(*_); end
+
+  def http_should_keep_alive(*_); end
+  ERRORS = ::T.let(nil, ::T.untyped)
+  FLAG = ::T.let(nil, ::T.untyped)
+  HTTP_MAX_HEADER_SIZE = ::T.let(nil, ::T.untyped)
+  METHODS = ::T.let(nil, ::T.untyped)
+  TYPES = ::T.let(nil, ::T.untyped)
+  UrlFields = ::T.let(nil, ::T.untyped)
+end
+
+class HttpParser::Error
+end
+
+class HttpParser::Error::CALLBACK
+end
+
+class HttpParser::Error::CALLBACK
+end
+
+class HttpParser::Error::CLOSED_CONNECTION
+end
+
+class HttpParser::Error::CLOSED_CONNECTION
+end
+
+class HttpParser::Error::HEADER_OVERFLOW
+end
+
+class HttpParser::Error::HEADER_OVERFLOW
+end
+
+class HttpParser::Error::INVALID_CHUNK_SIZE
+end
+
+class HttpParser::Error::INVALID_CHUNK_SIZE
+end
+
+class HttpParser::Error::INVALID_CONSTANT
+end
+
+class HttpParser::Error::INVALID_CONSTANT
+end
+
+class HttpParser::Error::INVALID_CONTENT_LENGTH
+end
+
+class HttpParser::Error::INVALID_CONTENT_LENGTH
+end
+
+class HttpParser::Error::INVALID_EOF_STATE
+end
+
+class HttpParser::Error::INVALID_EOF_STATE
+end
+
+class HttpParser::Error::INVALID_FRAGMENT
+end
+
+class HttpParser::Error::INVALID_FRAGMENT
+end
+
+class HttpParser::Error::INVALID_HEADER_TOKEN
+end
+
+class HttpParser::Error::INVALID_HEADER_TOKEN
+end
+
+class HttpParser::Error::INVALID_HOST
+end
+
+class HttpParser::Error::INVALID_HOST
+end
+
+class HttpParser::Error::INVALID_INTERNAL_STATE
+end
+
+class HttpParser::Error::INVALID_INTERNAL_STATE
+end
+
+class HttpParser::Error::INVALID_METHOD
+end
+
+class HttpParser::Error::INVALID_METHOD
+end
+
+class HttpParser::Error::INVALID_PATH
+end
+
+class HttpParser::Error::INVALID_PATH
+end
+
+class HttpParser::Error::INVALID_PORT
+end
+
+class HttpParser::Error::INVALID_PORT
+end
+
+class HttpParser::Error::INVALID_QUERY_STRING
+end
+
+class HttpParser::Error::INVALID_QUERY_STRING
+end
+
+class HttpParser::Error::INVALID_STATUS
+end
+
+class HttpParser::Error::INVALID_STATUS
+end
+
+class HttpParser::Error::INVALID_URL
+end
+
+class HttpParser::Error::INVALID_URL
+end
+
+class HttpParser::Error::INVALID_VERSION
+end
+
+class HttpParser::Error::INVALID_VERSION
+end
+
+class HttpParser::Error::LF_EXPECTED
+end
+
+class HttpParser::Error::LF_EXPECTED
+end
+
+class HttpParser::Error::OK
+end
+
+class HttpParser::Error::OK
+end
+
+class HttpParser::Error::PAUSED
+end
+
+class HttpParser::Error::PAUSED
+end
+
+class HttpParser::Error::STRICT
+end
+
+class HttpParser::Error::STRICT
+end
+
+class HttpParser::Error::UNKNOWN
+end
+
+class HttpParser::Error::UNKNOWN
+end
+
+class HttpParser::Error
+end
+
+class HttpParser::FieldData
+end
+
+class HttpParser::FieldData
+end
+
+class HttpParser::HttpParserUrl
+end
+
+class HttpParser::HttpParserUrl
+end
+
+class HttpParser::Instance
+  def data(); end
+
+  def error(); end
+
+  def error!(); end
+
+  def error?(); end
+
+  def final_chunk?(); end
+
+  def flags(); end
+
+  def http_major(); end
+
+  def http_method(); end
+
+  def http_minor(); end
+
+  def http_status(); end
+
+  def http_version(); end
+
+  def initialize(ptr=T.unsafe(nil)); end
+
+  def keep_alive?(); end
+
+  def reset!(new_type=T.unsafe(nil)); end
+
+  def stop!(); end
+
+  def type(); end
+
+  def type=(new_type); end
+
+  def upgrade?(); end
+end
+
+class HttpParser::Instance
+end
+
+class HttpParser::Parser
+  def initialize(callback_obj=T.unsafe(nil)); end
+
+  def on_body(&block); end
+
+  def on_chunk_complete(&block); end
+
+  def on_chunk_header(&block); end
+
+  def on_header_field(&block); end
+
+  def on_header_value(&block); end
+
+  def on_headers_complete(&block); end
+
+  def on_message_begin(&block); end
+
+  def on_message_complete(&block); end
+
+  def on_status(&block); end
+
+  def on_url(&block); end
+
+  def parse(inst, data); end
+  CALLBACKS = ::T.let(nil, ::T.untyped)
+end
+
+class HttpParser::Parser::Callback
+end
+
+class HttpParser::Parser::Callback
+  def self.new(&block); end
+end
+
+class HttpParser::Parser::DataCallback
+end
+
+class HttpParser::Parser::DataCallback
+  def self.new(&block); end
+end
+
+class HttpParser::Parser
+  def self.new_instance(&block); end
+end
+
+class HttpParser::Settings
+end
+
+class HttpParser::Settings
+end
+
+module HttpParser
+  extend ::FFI::Library
+  def self.err_desc(*_); end
+
+  def self.err_name(*_); end
+
+  def self.http_body_is_final(*_); end
+
+  def self.http_parser_execute(*_); end
+
+  def self.http_parser_init(*_); end
+
+  def self.http_should_keep_alive(*_); end
+end
 
 module I18n
   DEFAULT_INTERPOLATION_PATTERNS = ::T.let(nil, ::T.untyped)
@@ -18426,141 +19833,6 @@ module IRB
   def self.run_config(); end
 
   def self.setup(ap_path, argv: T.unsafe(nil)); end
-end
-
-module IceNine
-  VERSION = ::T.let(nil, ::T.untyped)
-end
-
-class IceNine::Freezer
-end
-
-class IceNine::Freezer::Array
-end
-
-class IceNine::Freezer::Array
-  def self.guarded_deep_freeze(array, recursion_guard); end
-end
-
-IceNine::Freezer::BasicObject = IceNine::Freezer::Object
-
-class IceNine::Freezer::FalseClass
-end
-
-class IceNine::Freezer::FalseClass
-end
-
-class IceNine::Freezer::Hash
-end
-
-class IceNine::Freezer::Hash::State
-end
-
-class IceNine::Freezer::Hash::State
-end
-
-class IceNine::Freezer::Hash
-  def self.guarded_deep_freeze(hash, recursion_guard); end
-end
-
-class IceNine::Freezer::Module
-end
-
-class IceNine::Freezer::Module
-end
-
-class IceNine::Freezer::NilClass
-end
-
-class IceNine::Freezer::NilClass
-end
-
-class IceNine::Freezer::NoFreeze
-end
-
-class IceNine::Freezer::NoFreeze
-  def self.guarded_deep_freeze(object, _recursion_guard); end
-end
-
-class IceNine::Freezer::Numeric
-end
-
-class IceNine::Freezer::Numeric
-end
-
-class IceNine::Freezer::Object
-end
-
-class IceNine::Freezer::Object
-end
-
-class IceNine::Freezer::Range
-end
-
-class IceNine::Freezer::Range
-  def self.guarded_deep_freeze(range, recursion_guard); end
-end
-
-class IceNine::Freezer::Rubinius
-end
-
-class IceNine::Freezer::Rubinius
-end
-
-class IceNine::Freezer::Struct
-end
-
-class IceNine::Freezer::Struct
-end
-
-class IceNine::Freezer::Symbol
-end
-
-class IceNine::Freezer::Symbol
-end
-
-class IceNine::Freezer::TrueClass
-end
-
-class IceNine::Freezer::TrueClass
-end
-
-class IceNine::Freezer
-  def self.[](mod); end
-
-  def self.const_lookup(namespace); end
-
-  def self.deep_freeze(object); end
-
-  def self.deep_freeze!(object); end
-
-  def self.guarded_deep_freeze(object, recursion_guard); end
-end
-
-class IceNine::RecursionGuard
-end
-
-class IceNine::RecursionGuard::Frozen
-  def guard(object); end
-end
-
-class IceNine::RecursionGuard::Frozen
-end
-
-class IceNine::RecursionGuard::ObjectSet
-  def guard(object); end
-end
-
-class IceNine::RecursionGuard::ObjectSet
-end
-
-class IceNine::RecursionGuard
-end
-
-module IceNine
-  def self.deep_freeze(object); end
-
-  def self.deep_freeze!(object); end
 end
 
 class Ingredient
@@ -19486,17 +20758,17 @@ class Kitchen
 
   def after_add_for_orders?(); end
 
+  def after_add_for_predicted_orders(); end
+
+  def after_add_for_predicted_orders=(val); end
+
+  def after_add_for_predicted_orders?(); end
+
   def after_add_for_procurement_orders(); end
 
   def after_add_for_procurement_orders=(val); end
 
   def after_add_for_procurement_orders?(); end
-
-  def after_add_for_purchased_recipes(); end
-
-  def after_add_for_purchased_recipes=(val); end
-
-  def after_add_for_purchased_recipes?(); end
 
   def after_add_for_recipes(); end
 
@@ -19522,17 +20794,17 @@ class Kitchen
 
   def after_remove_for_orders?(); end
 
+  def after_remove_for_predicted_orders(); end
+
+  def after_remove_for_predicted_orders=(val); end
+
+  def after_remove_for_predicted_orders?(); end
+
   def after_remove_for_procurement_orders(); end
 
   def after_remove_for_procurement_orders=(val); end
 
   def after_remove_for_procurement_orders?(); end
-
-  def after_remove_for_purchased_recipes(); end
-
-  def after_remove_for_purchased_recipes=(val); end
-
-  def after_remove_for_purchased_recipes?(); end
 
   def after_remove_for_recipes(); end
 
@@ -19546,9 +20818,9 @@ class Kitchen
 
   def autosave_associated_records_for_orders(*args); end
 
-  def autosave_associated_records_for_procurement_orders(*args); end
+  def autosave_associated_records_for_predicted_orders(*args); end
 
-  def autosave_associated_records_for_purchased_recipes(*args); end
+  def autosave_associated_records_for_procurement_orders(*args); end
 
   def autosave_associated_records_for_recipes(*args); end
 
@@ -19570,17 +20842,17 @@ class Kitchen
 
   def before_add_for_orders?(); end
 
+  def before_add_for_predicted_orders(); end
+
+  def before_add_for_predicted_orders=(val); end
+
+  def before_add_for_predicted_orders?(); end
+
   def before_add_for_procurement_orders(); end
 
   def before_add_for_procurement_orders=(val); end
 
   def before_add_for_procurement_orders?(); end
-
-  def before_add_for_purchased_recipes(); end
-
-  def before_add_for_purchased_recipes=(val); end
-
-  def before_add_for_purchased_recipes?(); end
 
   def before_add_for_recipes(); end
 
@@ -19606,17 +20878,17 @@ class Kitchen
 
   def before_remove_for_orders?(); end
 
+  def before_remove_for_predicted_orders(); end
+
+  def before_remove_for_predicted_orders=(val); end
+
+  def before_remove_for_predicted_orders?(); end
+
   def before_remove_for_procurement_orders(); end
 
   def before_remove_for_procurement_orders=(val); end
 
   def before_remove_for_procurement_orders?(); end
-
-  def before_remove_for_purchased_recipes(); end
-
-  def before_remove_for_purchased_recipes=(val); end
-
-  def before_remove_for_purchased_recipes?(); end
 
   def before_remove_for_recipes(); end
 
@@ -19630,9 +20902,9 @@ class Kitchen
 
   def validate_associated_records_for_orders(*args); end
 
-  def validate_associated_records_for_procurement_orders(*args); end
+  def validate_associated_records_for_predicted_orders(*args); end
 
-  def validate_associated_records_for_purchased_recipes(*args); end
+  def validate_associated_records_for_procurement_orders(*args); end
 
   def validate_associated_records_for_recipes(*args); end
 end
@@ -19659,9 +20931,9 @@ module Kitchen::GeneratedAssociationMethods
 
   def order_ids=(ids); end
 
-  def procurement_order_ids=(ids); end
+  def predicted_order_ids=(ids); end
 
-  def purchased_recipe_ids=(ids); end
+  def procurement_order_ids=(ids); end
 
   def recipe_ids=(ids); end
 end
@@ -19691,17 +20963,17 @@ class Kitchen
 
   def self.after_add_for_orders?(); end
 
+  def self.after_add_for_predicted_orders(); end
+
+  def self.after_add_for_predicted_orders=(val); end
+
+  def self.after_add_for_predicted_orders?(); end
+
   def self.after_add_for_procurement_orders(); end
 
   def self.after_add_for_procurement_orders=(val); end
 
   def self.after_add_for_procurement_orders?(); end
-
-  def self.after_add_for_purchased_recipes(); end
-
-  def self.after_add_for_purchased_recipes=(val); end
-
-  def self.after_add_for_purchased_recipes?(); end
 
   def self.after_add_for_recipes(); end
 
@@ -19727,17 +20999,17 @@ class Kitchen
 
   def self.after_remove_for_orders?(); end
 
+  def self.after_remove_for_predicted_orders(); end
+
+  def self.after_remove_for_predicted_orders=(val); end
+
+  def self.after_remove_for_predicted_orders?(); end
+
   def self.after_remove_for_procurement_orders(); end
 
   def self.after_remove_for_procurement_orders=(val); end
 
   def self.after_remove_for_procurement_orders?(); end
-
-  def self.after_remove_for_purchased_recipes(); end
-
-  def self.after_remove_for_purchased_recipes=(val); end
-
-  def self.after_remove_for_purchased_recipes?(); end
 
   def self.after_remove_for_recipes(); end
 
@@ -19763,17 +21035,17 @@ class Kitchen
 
   def self.before_add_for_orders?(); end
 
+  def self.before_add_for_predicted_orders(); end
+
+  def self.before_add_for_predicted_orders=(val); end
+
+  def self.before_add_for_predicted_orders?(); end
+
   def self.before_add_for_procurement_orders(); end
 
   def self.before_add_for_procurement_orders=(val); end
 
   def self.before_add_for_procurement_orders?(); end
-
-  def self.before_add_for_purchased_recipes(); end
-
-  def self.before_add_for_purchased_recipes=(val); end
-
-  def self.before_add_for_purchased_recipes?(); end
 
   def self.before_add_for_recipes(); end
 
@@ -19799,17 +21071,17 @@ class Kitchen
 
   def self.before_remove_for_orders?(); end
 
+  def self.before_remove_for_predicted_orders(); end
+
+  def self.before_remove_for_predicted_orders=(val); end
+
+  def self.before_remove_for_predicted_orders?(); end
+
   def self.before_remove_for_procurement_orders(); end
 
   def self.before_remove_for_procurement_orders=(val); end
 
   def self.before_remove_for_procurement_orders?(); end
-
-  def self.before_remove_for_purchased_recipes(); end
-
-  def self.before_remove_for_purchased_recipes=(val); end
-
-  def self.before_remove_for_purchased_recipes?(); end
 
   def self.before_remove_for_recipes(); end
 
@@ -19958,6 +21230,277 @@ end
 
 module Logger::Period
   SiD = ::T.let(nil, ::T.untyped)
+end
+
+module Lograge
+  def application(); end
+
+  def application=(obj); end
+
+  def before_format=(obj); end
+
+  def custom_options=(obj); end
+
+  def formatter(); end
+
+  def formatter=(obj); end
+
+  def ignore_tests=(obj); end
+
+  def log_level(); end
+
+  def log_level=(obj); end
+
+  def logger(); end
+
+  def logger=(obj); end
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module Lograge::Formatters
+end
+
+class Lograge::Formatters::Cee
+  def call(data); end
+end
+
+class Lograge::Formatters::Cee
+end
+
+class Lograge::Formatters::Graylog2
+  include ::Lograge::Formatters::Helpers::MethodAndPath
+  def call(data); end
+
+  def short_message(data); end
+
+  def underscore_prefix(key); end
+end
+
+class Lograge::Formatters::Graylog2
+end
+
+module Lograge::Formatters::Helpers
+end
+
+module Lograge::Formatters::Helpers::MethodAndPath
+  def method_and_path_string(data); end
+end
+
+module Lograge::Formatters::Helpers::MethodAndPath
+end
+
+module Lograge::Formatters::Helpers
+end
+
+class Lograge::Formatters::Json
+  def call(data); end
+end
+
+class Lograge::Formatters::Json
+end
+
+class Lograge::Formatters::KeyValue
+  def call(data); end
+
+  def fields_to_display(data); end
+
+  def format(key, value); end
+
+  def parse_value(key, value); end
+end
+
+class Lograge::Formatters::KeyValue
+end
+
+class Lograge::Formatters::L2met
+  def additional_fields(data); end
+
+  def modify_payload(data); end
+
+  def source_field(data); end
+  L2MET_FIELDS = ::T.let(nil, ::T.untyped)
+  UNWANTED_FIELDS = ::T.let(nil, ::T.untyped)
+end
+
+class Lograge::Formatters::L2met
+end
+
+class Lograge::Formatters::LTSV
+  def call(data); end
+
+  def fields_to_display(data); end
+
+  def format(key, value); end
+end
+
+class Lograge::Formatters::LTSV
+end
+
+class Lograge::Formatters::Lines
+  def call(data); end
+
+  def load_dependencies(); end
+end
+
+class Lograge::Formatters::Lines
+end
+
+class Lograge::Formatters::Logstash
+  include ::Lograge::Formatters::Helpers::MethodAndPath
+  def call(data); end
+
+  def load_dependencies(); end
+end
+
+class Lograge::Formatters::Logstash
+end
+
+class Lograge::Formatters::Raw
+  def call(data); end
+end
+
+class Lograge::Formatters::Raw
+end
+
+module Lograge::Formatters
+end
+
+module Lograge::LogSubscribers
+end
+
+class Lograge::LogSubscribers::ActionCable
+  def connect(event); end
+
+  def disconnect(event); end
+
+  def perform_action(event); end
+
+  def subscribe(event); end
+
+  def unsubscribe(event); end
+end
+
+class Lograge::LogSubscribers::ActionCable
+end
+
+class Lograge::LogSubscribers::ActionController
+  def process_action(event); end
+
+  def redirect_to(event); end
+
+  def unpermitted_parameters(event); end
+end
+
+class Lograge::LogSubscribers::ActionController
+end
+
+class Lograge::LogSubscribers::Base
+end
+
+class Lograge::LogSubscribers::Base
+end
+
+module Lograge::LogSubscribers
+end
+
+class Lograge::OrderedOptions
+  def custom_payload(&block); end
+end
+
+class Lograge::OrderedOptions
+end
+
+class Lograge::Railtie
+end
+
+class Lograge::Railtie
+end
+
+class Lograge::SilentLogger
+  def debug(*_args); end
+
+  def error(*_args); end
+
+  def fatal(*_args); end
+
+  def info(*_args); end
+
+  def initialize(logger); end
+
+  def unknown(*_args); end
+
+  def warn(*_args); end
+end
+
+class Lograge::SilentLogger
+end
+
+module Lograge
+  def self.application(); end
+
+  def self.application=(obj); end
+
+  def self.attach_to_action_cable(); end
+
+  def self.attach_to_action_controller(); end
+
+  def self.before_format(data, payload); end
+
+  def self.before_format=(obj); end
+
+  def self.controller_field(params); end
+
+  def self.custom_options(event); end
+
+  def self.custom_options=(obj); end
+
+  def self.disable_rack_cache_verbose_output(); end
+
+  def self.extend_base_class(klass); end
+
+  def self.formatter(); end
+
+  def self.formatter=(obj); end
+
+  def self.ignore(test); end
+
+  def self.ignore?(event); end
+
+  def self.ignore_actions(actions); end
+
+  def self.ignore_nothing(); end
+
+  def self.ignore_tests(); end
+
+  def self.ignore_tests=(obj); end
+
+  def self.keep_original_rails_log(); end
+
+  def self.log_level(); end
+
+  def self.log_level=(obj); end
+
+  def self.logger(); end
+
+  def self.logger=(obj); end
+
+  def self.lograge_config(); end
+
+  def self.remove_existing_log_subscriptions(); end
+
+  def self.set_formatter(); end
+
+  def self.set_ignores(); end
+
+  def self.set_lograge_log_options(); end
+
+  def self.setup(app); end
+
+  def self.setup_custom_payload(); end
+
+  def self.support_deprecated_config(); end
+
+  def self.unsubscribe(component, subscriber); end
 end
 
 module Loofah
@@ -26590,40 +28133,80 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70267966390140
+module Polyfill::Module::M70240344889060
 end
 
-module Polyfill::Module::M70267966390140
+module Polyfill::Module::M70240344889060
 end
 
-module Polyfill::Module::M70267974059300
+module Polyfill::Module::M70240345809180
 end
 
-module Polyfill::Module::M70267974059300
+module Polyfill::Module::M70240345809180
 end
 
-module Polyfill::Module::M70267974113000
+module Polyfill::Module::M70240345863920
 end
 
-module Polyfill::Module::M70267974113000
+module Polyfill::Module::M70240345863920
 end
 
-module Polyfill::Module::M70267974161800
+module Polyfill::Module::M70240389183860
 end
 
-module Polyfill::Module::M70267974161800
+module Polyfill::Module::M70240389183860
 end
 
-module Polyfill::Module::M70267977511460
+module Polyfill::Module::M70240389377120
 end
 
-module Polyfill::Module::M70267977511460
+module Polyfill::Module::M70240389377120
 end
 
-module Polyfill::Module::M70267982081180
+module Polyfill::Module::M70240389414180
 end
 
-module Polyfill::Module::M70267982081180
+module Polyfill::Module::M70240389414180
+end
+
+class PredictedOrder
+  def autosave_associated_records_for_kitchen(*args); end
+
+  def autosave_associated_records_for_recipe(*args); end
+
+  def belongs_to_counter_cache_after_update(reflection); end
+end
+
+class PredictedOrder::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::PredictedOrder::GeneratedRelationMethods
+end
+
+class PredictedOrder::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::PredictedOrder::GeneratedRelationMethods
+end
+
+class PredictedOrder::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::PredictedOrder::GeneratedRelationMethods
+end
+
+module PredictedOrder::GeneratedAssociationMethods
+  def reload_kitchen(); end
+
+  def reload_recipe(); end
+end
+
+module PredictedOrder::GeneratedRelationMethods
+end
+
+module PredictedOrder::GeneratedRelationMethods
+end
+
+class PredictedOrder
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Proc
@@ -27079,46 +28662,6 @@ module Pundit
   def self.policy_scope(user, scope); end
 
   def self.policy_scope!(user, scope); end
-end
-
-class PurchasedRecipe
-  def autosave_associated_records_for_kitchen(*args); end
-
-  def autosave_associated_records_for_recipe(*args); end
-
-  def belongs_to_counter_cache_after_update(reflection); end
-end
-
-class PurchasedRecipe::ActiveRecord_AssociationRelation
-  include ::ActiveRecord::Delegation::ClassSpecificRelation
-  include ::PurchasedRecipe::GeneratedRelationMethods
-end
-
-class PurchasedRecipe::ActiveRecord_Associations_CollectionProxy
-  include ::ActiveRecord::Delegation::ClassSpecificRelation
-  include ::PurchasedRecipe::GeneratedRelationMethods
-end
-
-class PurchasedRecipe::ActiveRecord_Relation
-  include ::ActiveRecord::Delegation::ClassSpecificRelation
-  include ::PurchasedRecipe::GeneratedRelationMethods
-end
-
-module PurchasedRecipe::GeneratedAssociationMethods
-  def reload_kitchen(); end
-
-  def reload_recipe(); end
-end
-
-module PurchasedRecipe::GeneratedRelationMethods
-end
-
-module PurchasedRecipe::GeneratedRelationMethods
-end
-
-class PurchasedRecipe
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 module Racc
@@ -27838,7 +29381,11 @@ class Rails::MailersController
 end
 
 class Rails::Rack::Logger
+  def before_dispatch(_env); end
+
   def call(env); end
+
+  def call_app(*args); end
 
   def initialize(app, taggers=T.unsafe(nil)); end
 end
@@ -28869,11 +30416,11 @@ class Recipe
 
   def after_add_for_order_items?(); end
 
-  def after_add_for_purchased_recipes(); end
+  def after_add_for_predicted_orders(); end
 
-  def after_add_for_purchased_recipes=(val); end
+  def after_add_for_predicted_orders=(val); end
 
-  def after_add_for_purchased_recipes?(); end
+  def after_add_for_predicted_orders?(); end
 
   def after_add_for_recipe_steps(); end
 
@@ -28899,11 +30446,11 @@ class Recipe
 
   def after_remove_for_order_items?(); end
 
-  def after_remove_for_purchased_recipes(); end
+  def after_remove_for_predicted_orders(); end
 
-  def after_remove_for_purchased_recipes=(val); end
+  def after_remove_for_predicted_orders=(val); end
 
-  def after_remove_for_purchased_recipes?(); end
+  def after_remove_for_predicted_orders?(); end
 
   def after_remove_for_recipe_steps(); end
 
@@ -28923,7 +30470,7 @@ class Recipe
 
   def autosave_associated_records_for_order_items(*args); end
 
-  def autosave_associated_records_for_purchased_recipes(*args); end
+  def autosave_associated_records_for_predicted_orders(*args); end
 
   def autosave_associated_records_for_recipe_steps(*args); end
 
@@ -28941,11 +30488,11 @@ class Recipe
 
   def before_add_for_order_items?(); end
 
-  def before_add_for_purchased_recipes(); end
+  def before_add_for_predicted_orders(); end
 
-  def before_add_for_purchased_recipes=(val); end
+  def before_add_for_predicted_orders=(val); end
 
-  def before_add_for_purchased_recipes?(); end
+  def before_add_for_predicted_orders?(); end
 
   def before_add_for_recipe_steps(); end
 
@@ -28971,11 +30518,11 @@ class Recipe
 
   def before_remove_for_order_items?(); end
 
-  def before_remove_for_purchased_recipes(); end
+  def before_remove_for_predicted_orders(); end
 
-  def before_remove_for_purchased_recipes=(val); end
+  def before_remove_for_predicted_orders=(val); end
 
-  def before_remove_for_purchased_recipes?(); end
+  def before_remove_for_predicted_orders?(); end
 
   def before_remove_for_recipe_steps(); end
 
@@ -28995,7 +30542,7 @@ class Recipe
 
   def validate_associated_records_for_order_items(*args); end
 
-  def validate_associated_records_for_purchased_recipes(*args); end
+  def validate_associated_records_for_predicted_orders(*args); end
 
   def validate_associated_records_for_recipe_steps(*args); end
 
@@ -29022,7 +30569,7 @@ module Recipe::GeneratedAssociationMethods
 
   def order_item_ids=(ids); end
 
-  def purchased_recipe_ids=(ids); end
+  def predicted_order_ids=(ids); end
 
   def recipe_step_ids=(ids); end
 
@@ -29052,11 +30599,11 @@ class Recipe
 
   def self.after_add_for_order_items?(); end
 
-  def self.after_add_for_purchased_recipes(); end
+  def self.after_add_for_predicted_orders(); end
 
-  def self.after_add_for_purchased_recipes=(val); end
+  def self.after_add_for_predicted_orders=(val); end
 
-  def self.after_add_for_purchased_recipes?(); end
+  def self.after_add_for_predicted_orders?(); end
 
   def self.after_add_for_recipe_steps(); end
 
@@ -29082,11 +30629,11 @@ class Recipe
 
   def self.after_remove_for_order_items?(); end
 
-  def self.after_remove_for_purchased_recipes(); end
+  def self.after_remove_for_predicted_orders(); end
 
-  def self.after_remove_for_purchased_recipes=(val); end
+  def self.after_remove_for_predicted_orders=(val); end
 
-  def self.after_remove_for_purchased_recipes?(); end
+  def self.after_remove_for_predicted_orders?(); end
 
   def self.after_remove_for_recipe_steps(); end
 
@@ -29112,11 +30659,11 @@ class Recipe
 
   def self.before_add_for_order_items?(); end
 
-  def self.before_add_for_purchased_recipes(); end
+  def self.before_add_for_predicted_orders(); end
 
-  def self.before_add_for_purchased_recipes=(val); end
+  def self.before_add_for_predicted_orders=(val); end
 
-  def self.before_add_for_purchased_recipes?(); end
+  def self.before_add_for_predicted_orders?(); end
 
   def self.before_add_for_recipe_steps(); end
 
@@ -29142,11 +30689,11 @@ class Recipe
 
   def self.before_remove_for_order_items?(); end
 
-  def self.before_remove_for_purchased_recipes(); end
+  def self.before_remove_for_predicted_orders(); end
 
-  def self.before_remove_for_purchased_recipes=(val); end
+  def self.before_remove_for_predicted_orders=(val); end
 
-  def self.before_remove_for_purchased_recipes?(); end
+  def self.before_remove_for_predicted_orders?(); end
 
   def self.before_remove_for_recipe_steps(); end
 
@@ -29716,29 +31263,6 @@ module Representable::ClassMethods
 end
 
 module Representable::ClassMethods
-end
-
-module Representable::Coercion
-end
-
-module Representable::Coercion::ClassMethods
-  def property(name, options=T.unsafe(nil), &block); end
-end
-
-module Representable::Coercion::ClassMethods
-end
-
-class Representable::Coercion::Coercer
-  def call(input, options); end
-
-  def initialize(type); end
-end
-
-class Representable::Coercion::Coercer
-end
-
-module Representable::Coercion
-  def self.included(base); end
 end
 
 class Representable::Collect
@@ -30479,13 +32003,6 @@ end
 
 module Roar
   VERSION = ::T.let(nil, ::T.untyped)
-end
-
-module Roar::Coercion
-end
-
-module Roar::Coercion
-  def self.included(base); end
 end
 
 class Roar::Decorator
@@ -36186,6 +37703,14 @@ class String
   def shellescape(); end
 
   def shellsplit(); end
+
+  def to_nfc(); end
+
+  def to_nfd(); end
+
+  def to_nfkc(); end
+
+  def to_nfkd(); end
   BLANK_RE = ::T.let(nil, ::T.untyped)
   ENCODED_BLANKS = ::T.let(nil, ::T.untyped)
 end
@@ -36947,6 +38472,25 @@ class TypeCoerce::Converter
   PRIMITIVE_TYPES = ::T.let(nil, ::T.untyped)
 end
 
+module UNF
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class UNF::Normalizer
+  include ::Singleton
+  def normalize(_, _1); end
+end
+
+class UNF::Normalizer
+  extend ::Singleton::SingletonClassMethods
+  def self.instance(); end
+
+  def self.normalize(string, form); end
+end
+
+module UNF
+end
+
 module URI
   include ::URI::RFC2396_REGEXP
 end
@@ -37109,6 +38653,10 @@ class User
   def password_confirmation(); end
 
   def password_confirmation=(password_confirmation); end
+
+  def typed_role(); end
+
+  def typed_role=(value); end
 end
 
 class User::ActiveRecord_AssociationRelation
@@ -37139,6 +38687,15 @@ module User::GeneratedRelationMethods
 end
 
 module User::GeneratedRelationMethods
+end
+
+class User::Role
+  Admin = ::T.let(nil, ::T.untyped)
+  User = ::T.let(nil, ::T.untyped)
+end
+
+class User::Role
+  extend ::T::Helpers
 end
 
 class User
@@ -37187,742 +38744,6 @@ module Vendor::GeneratedRelationMethods
 end
 
 module Vendor::GeneratedRelationMethods
-end
-
-module Virtus
-  EXTRA_CONST_ARGS = ::T.let(nil, ::T.untyped)
-  Undefined = ::T.let(nil, ::T.untyped)
-end
-
-class Virtus::Attribute
-  include ::Equalizer::Methods
-  def coerce(input); end
-
-  def coercer(); end
-
-  def coercible?(); end
-
-  def default_value(); end
-
-  def define_accessor_methods(attribute_set); end
-
-  def finalize(); end
-
-  def finalized?(); end
-
-  def initialize(type, options); end
-
-  def lazy?(); end
-
-  def nullify_blank?(); end
-
-  def options(); end
-
-  def primitive(); end
-
-  def rename(name); end
-
-  def required?(); end
-
-  def strict?(); end
-
-  def type(); end
-
-  def value_coerced?(value); end
-end
-
-module Virtus::Attribute::Accessor
-  def defined?(instance); end
-
-  def get(instance); end
-
-  def instance_variable_name(); end
-
-  def name(); end
-
-  def public_reader?(); end
-
-  def public_writer?(); end
-
-  def set(instance, value); end
-
-  def set_default_value(instance); end
-end
-
-module Virtus::Attribute::Accessor
-  def self.extended(descendant); end
-end
-
-class Virtus::Attribute::Boolean
-end
-
-class Virtus::Attribute::Boolean
-  def self.build_type(*_); end
-end
-
-class Virtus::Attribute::Builder
-  def attribute(); end
-
-  def initialize(type_definition, options); end
-
-  def klass(); end
-
-  def options(); end
-
-  def type(); end
-
-  def type_definition(); end
-end
-
-class Virtus::Attribute::Builder
-  def self.call(type, options=T.unsafe(nil)); end
-
-  def self.determine_type(klass, default=T.unsafe(nil)); end
-end
-
-class Virtus::Attribute::Coercer
-  def call(value); end
-
-  def coercers(); end
-
-  def initialize(type, coercers); end
-
-  def method(); end
-
-  def success?(primitive, value); end
-end
-
-class Virtus::Attribute::Coercer
-end
-
-module Virtus::Attribute::Coercible
-  def set(instance, value); end
-end
-
-module Virtus::Attribute::Coercible
-end
-
-class Virtus::Attribute::Collection
-  def coerce(value); end
-
-  def member_type(); end
-end
-
-class Virtus::Attribute::Collection::Type
-  def coercion_method(); end
-
-  def member_type(); end
-
-  def member_type=(_); end
-
-  def primitive(); end
-
-  def primitive=(_); end
-end
-
-class Virtus::Attribute::Collection::Type
-  def self.[](*_); end
-
-  def self.axiom_type?(type); end
-
-  def self.infer(type, primitive); end
-
-  def self.infer_member_type(type); end
-
-  def self.members(); end
-
-  def self.pending?(primitive); end
-end
-
-class Virtus::Attribute::Collection
-  def self.merge_options!(type, options); end
-end
-
-class Virtus::Attribute::DefaultValue
-  def call(*_); end
-
-  def initialize(value); end
-
-  def value(); end
-end
-
-class Virtus::Attribute::DefaultValue::FromCallable
-  def call(*args); end
-end
-
-class Virtus::Attribute::DefaultValue::FromCallable
-  def self.handle?(value); end
-end
-
-class Virtus::Attribute::DefaultValue::FromClonable
-  SINGLETON_CLASSES = ::T.let(nil, ::T.untyped)
-end
-
-class Virtus::Attribute::DefaultValue::FromClonable
-  def self.handle?(value); end
-end
-
-class Virtus::Attribute::DefaultValue::FromSymbol
-  def call(instance, _); end
-end
-
-class Virtus::Attribute::DefaultValue::FromSymbol
-  def self.handle?(value); end
-end
-
-class Virtus::Attribute::DefaultValue
-  extend ::DescendantsTracker
-  def self.build(*args); end
-end
-
-class Virtus::Attribute::EmbeddedValue
-  TYPES = ::T.let(nil, ::T.untyped)
-end
-
-class Virtus::Attribute::EmbeddedValue::FromOpenStruct
-end
-
-class Virtus::Attribute::EmbeddedValue::FromOpenStruct
-end
-
-class Virtus::Attribute::EmbeddedValue::FromStruct
-end
-
-class Virtus::Attribute::EmbeddedValue::FromStruct
-end
-
-class Virtus::Attribute::EmbeddedValue
-  def self.build_coercer(type, _options); end
-
-  def self.handles?(klass); end
-end
-
-class Virtus::Attribute::Hash
-  def coerce(*_); end
-
-  def key_type(); end
-
-  def value_type(); end
-end
-
-class Virtus::Attribute::Hash::Type
-  def coercion_method(); end
-
-  def key_type(); end
-
-  def key_type=(_); end
-
-  def primitive(); end
-
-  def value_type(); end
-
-  def value_type=(_); end
-end
-
-class Virtus::Attribute::Hash::Type
-  def self.[](*_); end
-
-  def self.axiom_type?(type); end
-
-  def self.determine_type(type); end
-
-  def self.infer(type); end
-
-  def self.infer_key_and_value_types(type); end
-
-  def self.members(); end
-
-  def self.pending?(primitive); end
-end
-
-class Virtus::Attribute::Hash
-  def self.merge_options!(type, options); end
-end
-
-module Virtus::Attribute::LazyDefault
-  def get(instance); end
-end
-
-module Virtus::Attribute::LazyDefault
-end
-
-module Virtus::Attribute::NullifyBlank
-  def coerce(input); end
-end
-
-module Virtus::Attribute::NullifyBlank
-end
-
-module Virtus::Attribute::Strict
-  def coerce(*_); end
-end
-
-module Virtus::Attribute::Strict
-end
-
-class Virtus::Attribute
-  extend ::Virtus::TypeLookup
-  extend ::Virtus::Options
-  extend ::DescendantsTracker
-  def self.accessor(value=T.unsafe(nil)); end
-
-  def self.build(type, options=T.unsafe(nil)); end
-
-  def self.build_coercer(type, options=T.unsafe(nil)); end
-
-  def self.build_type(definition); end
-
-  def self.coerce(value=T.unsafe(nil)); end
-
-  def self.default(value=T.unsafe(nil)); end
-
-  def self.finalize(value=T.unsafe(nil)); end
-
-  def self.lazy(value=T.unsafe(nil)); end
-
-  def self.merge_options!(*_); end
-
-  def self.nullify_blank(value=T.unsafe(nil)); end
-
-  def self.primitive(value=T.unsafe(nil)); end
-
-  def self.required(value=T.unsafe(nil)); end
-
-  def self.strict(value=T.unsafe(nil)); end
-end
-
-class Virtus::AttributeSet
-  include ::Enumerable
-  def <<(attribute); end
-
-  def [](name); end
-
-  def []=(name, attribute); end
-
-  def coerce(attributes); end
-
-  def define_reader_method(attribute, method_name, visibility); end
-
-  def define_writer_method(attribute, method_name, visibility); end
-
-  def each(&blk); end
-
-  def finalize(); end
-
-  def get(object); end
-
-  def initialize(parent=T.unsafe(nil), attributes=T.unsafe(nil)); end
-
-  def merge(attributes); end
-
-  def reset(); end
-
-  def set(object, attributes); end
-
-  def set_defaults(object, filter=T.unsafe(nil)); end
-end
-
-class Virtus::AttributeSet
-  def self.create(descendant); end
-end
-
-class Virtus::Builder
-  def config(); end
-
-  def extensions(); end
-
-  def initialize(conf, mod=T.unsafe(nil)); end
-
-  def mod(); end
-
-  def options(); end
-end
-
-class Virtus::Builder::HookContext
-  def attribute_method(); end
-
-  def builder(); end
-
-  def config(); end
-
-  def constructor?(); end
-
-  def finalize?(); end
-
-  def initialize(builder, config); end
-
-  def initialize_attribute_method(); end
-
-  def mass_assignment?(); end
-
-  def modules(); end
-end
-
-class Virtus::Builder::HookContext
-end
-
-class Virtus::Builder
-  def self.call(options, &block); end
-
-  def self.pending(); end
-end
-
-module Virtus::ClassInclusions
-end
-
-module Virtus::ClassInclusions::Methods
-  def allowed_writer_methods(); end
-end
-
-module Virtus::ClassInclusions::Methods
-end
-
-module Virtus::ClassInclusions
-end
-
-module Virtus::ClassMethods
-  include ::Virtus::Extensions::Methods
-  include ::Virtus::ConstMissingExtensions
-  def attribute_set(); end
-
-  def attributes(); end
-end
-
-module Virtus::ClassMethods
-end
-
-class Virtus::Coercer
-  def call(input); end
-
-  def initialize(type); end
-
-  def primitive(); end
-
-  def success?(primitive, input); end
-
-  def type(); end
-end
-
-class Virtus::Coercer
-end
-
-class Virtus::CoercionError
-  def attribute(); end
-
-  def attribute_name(); end
-
-  def attribute_name?(); end
-
-  def build_message(); end
-
-  def initialize(output, attribute); end
-
-  def output(); end
-
-  def target_type(); end
-end
-
-class Virtus::CoercionError
-end
-
-class Virtus::Configuration
-  def coerce(); end
-
-  def coerce=(coerce); end
-
-  def coercer(&block); end
-
-  def constructor(); end
-
-  def constructor=(constructor); end
-
-  def finalize(); end
-
-  def finalize=(finalize); end
-
-  def initialize(options=T.unsafe(nil)); end
-
-  def mass_assignment(); end
-
-  def mass_assignment=(mass_assignment); end
-
-  def nullify_blank(); end
-
-  def nullify_blank=(nullify_blank); end
-
-  def required(); end
-
-  def required=(required); end
-
-  def strict(); end
-
-  def strict=(strict); end
-
-  def to_h(); end
-end
-
-class Virtus::Configuration
-end
-
-module Virtus::ConstMissingExtensions
-  def const_missing(name); end
-end
-
-module Virtus::ConstMissingExtensions
-end
-
-class Virtus::Equalizer
-  def <<(key); end
-
-  def initialize(name, keys=T.unsafe(nil)); end
-end
-
-module Virtus::Equalizer::Methods
-  def ==(other); end
-
-  def eql?(other); end
-end
-
-module Virtus::Equalizer::Methods
-end
-
-class Virtus::Equalizer
-end
-
-module Virtus::Extensions
-  INVALID_WRITER_METHODS = ::T.let(nil, ::T.untyped)
-  RESERVED_NAMES = ::T.let(nil, ::T.untyped)
-  WRITER_METHOD_REGEXP = ::T.let(nil, ::T.untyped)
-end
-
-module Virtus::Extensions::AllowedWriterMethods
-  def allowed_writer_methods(); end
-  INVALID_WRITER_METHODS = ::T.let(nil, ::T.untyped)
-  WRITER_METHOD_REGEXP = ::T.let(nil, ::T.untyped)
-end
-
-module Virtus::Extensions::AllowedWriterMethods
-end
-
-module Virtus::Extensions::Methods
-  def attribute(name, type=T.unsafe(nil), options=T.unsafe(nil)); end
-
-  def values(&block); end
-end
-
-module Virtus::Extensions::Methods
-end
-
-module Virtus::Extensions
-end
-
-module Virtus::InstanceMethods
-  def [](name); end
-
-  def []=(name, value); end
-
-  def freeze(); end
-
-  def reset_attribute(attribute_name); end
-
-  def set_default_attributes(); end
-
-  def set_default_attributes!(); end
-end
-
-module Virtus::InstanceMethods::Constructor
-  def initialize(attributes=T.unsafe(nil)); end
-end
-
-module Virtus::InstanceMethods::Constructor
-end
-
-module Virtus::InstanceMethods::MassAssignment
-  def attributes(); end
-
-  def attributes=(attributes); end
-
-  def to_h(); end
-
-  def to_hash(); end
-end
-
-module Virtus::InstanceMethods::MassAssignment
-end
-
-module Virtus::InstanceMethods
-end
-
-module Virtus::Model
-end
-
-module Virtus::Model::Constructor
-end
-
-module Virtus::Model::Constructor
-end
-
-module Virtus::Model::Core
-end
-
-module Virtus::Model::Core
-  def self.extended(descendant); end
-end
-
-module Virtus::Model::MassAssignment
-end
-
-module Virtus::Model::MassAssignment
-end
-
-module Virtus::Model
-  def self.extended(descendant); end
-
-  def self.included(descendant); end
-end
-
-class Virtus::ModelBuilder
-end
-
-class Virtus::ModelBuilder
-end
-
-class Virtus::ModuleBuilder
-end
-
-class Virtus::ModuleBuilder
-end
-
-module Virtus::ModuleExtensions
-  include ::Virtus::ConstMissingExtensions
-  def attribute(name, type=T.unsafe(nil), options=T.unsafe(nil)); end
-end
-
-module Virtus::ModuleExtensions
-  def self.extended(mod); end
-
-  def self.setup(mod, inclusions=T.unsafe(nil), attribute_definitions=T.unsafe(nil)); end
-end
-
-module Virtus::Options
-  def accept_options(*new_options); end
-
-  def accepted_options(); end
-
-  def add_accepted_options(new_options); end
-
-  def define_option_method(option); end
-
-  def options(); end
-
-  def set_options(new_options); end
-end
-
-module Virtus::Options
-end
-
-class Virtus::PendingAttribute
-  def determine_type(); end
-
-  def finalize(); end
-
-  def finalized?(); end
-
-  def initialize(type, options); end
-
-  def name(); end
-
-  def options(); end
-
-  def type(); end
-end
-
-class Virtus::PendingAttribute
-end
-
-class Virtus::TypeDefinition
-  def initialize(type); end
-
-  def pending?(); end
-
-  def primitive(); end
-
-  def type(); end
-end
-
-class Virtus::TypeDefinition
-end
-
-module Virtus::TypeLookup
-  def determine_type(class_or_name); end
-
-  def primitive(); end
-  TYPE_FORMAT = ::T.let(nil, ::T.untyped)
-end
-
-module Virtus::TypeLookup
-  def self.extended(model); end
-end
-
-module Virtus::ValueObject
-end
-
-module Virtus::ValueObject::AllowedWriterMethods
-  def allowed_writer_methods(); end
-end
-
-module Virtus::ValueObject::AllowedWriterMethods
-end
-
-module Virtus::ValueObject::ClassMethods
-  def attribute(name, type, options=T.unsafe(nil)); end
-
-  def equalizer(); end
-end
-
-module Virtus::ValueObject::ClassMethods
-end
-
-module Virtus::ValueObject::InstanceMethods
-  def clone(); end
-
-  def dup(); end
-
-  def with(attribute_updates); end
-end
-
-module Virtus::ValueObject::InstanceMethods
-end
-
-module Virtus::ValueObject
-end
-
-class Virtus::ValueObjectBuilder
-end
-
-class Virtus::ValueObjectBuilder
-end
-
-module Virtus
-  def self.coerce(); end
-
-  def self.coerce=(value); end
-
-  def self.coercer(&block); end
-
-  def self.config(&block); end
-
-  def self.configuration(); end
-
-  def self.finalize(); end
-
-  def self.model(options=T.unsafe(nil), &block); end
-
-  def self.module(options=T.unsafe(nil), &block); end
-
-  def self.value_object(options=T.unsafe(nil), &block); end
-
-  def self.warn(msg); end
 end
 
 class VolumeUnit
@@ -38640,7 +39461,45 @@ class Wix::Contact
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
+class Wix::Dispatch
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::Item
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::LocaleString
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::Menu
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::MenuRepresenter
+  include ::Roar::JSON
+  include ::Roar::Representer
+  include ::Representable::JSON
+  include ::Representable::Hash
+  include ::Roar::JSON::InstanceMethods
+end
+
+class Wix::MenuRepresenter
+  extend ::Representable::JSON::ClassMethods
+  extend ::Roar::JSON::ClassMethods
+end
+
 class Wix::Order
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::OrderItem
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
 end
@@ -38651,14 +39510,11 @@ class Wix::OrderRepresenter
   include ::Representable::JSON
   include ::Representable::Hash
   include ::Roar::JSON::InstanceMethods
-  include ::Roar::Coercion
-  include ::Representable::Coercion
 end
 
 class Wix::OrderRepresenter
   extend ::Representable::JSON::ClassMethods
   extend ::Roar::JSON::ClassMethods
-  extend ::Representable::Coercion::ClassMethods
 end
 
 class Wix::RestaurantInfo
@@ -38666,7 +39522,7 @@ class Wix::RestaurantInfo
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
-class Wix::RestaurantInfoRepresenter
+class Wix::RestaurantRepresenter
   include ::Roar::JSON
   include ::Roar::Representer
   include ::Representable::JSON
@@ -38674,14 +39530,17 @@ class Wix::RestaurantInfoRepresenter
   include ::Roar::JSON::InstanceMethods
 end
 
-class Wix::RestaurantInfoRepresenter
+class Wix::RestaurantRepresenter
   extend ::Representable::JSON::ClassMethods
   extend ::Roar::JSON::ClassMethods
 end
 
-class WixApi
+class Wix::WixApi
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class WixController
 end
 
 class Zlib::Deflate

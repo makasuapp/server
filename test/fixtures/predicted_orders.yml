@@ -1,20 +1,20 @@
 # == Schema Information
 #
-# Table name: purchased_recipes
+# Table name: predicted_orders
 #
 #  id         :bigint           not null, primary key
 #  date       :date             not null
 #  quantity   :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  kitchen_id :bigint
+#  kitchen_id :bigint           not null
 #  recipe_id  :bigint           not null
 #
 # Indexes
 #
-#  index_purchased_recipes_on_date                 (date)
-#  index_purchased_recipes_on_date_and_kitchen_id  (date,kitchen_id)
-#  index_purchased_recipes_on_recipe_id            (recipe_id)
+#  index_predicted_orders_on_date                 (date)
+#  index_predicted_orders_on_date_and_kitchen_id  (date,kitchen_id)
+#  index_predicted_orders_on_recipe_id            (recipe_id)
 #
 
 # This model initially had no columns defined. If you add columns to the
@@ -26,3 +26,4 @@ chicken:
   recipe: chicken
   date: <%= Date.today %>
   quantity: 4
+  kitchen: test

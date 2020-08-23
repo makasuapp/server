@@ -8,7 +8,7 @@
 #  order_type :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  kitchen_id :bigint
+#  kitchen_id :bigint           not null
 #  vendor_id  :bigint           not null
 #
 # Indexes

@@ -24,9 +24,9 @@ class DayIngredient < ApplicationRecord
   belongs_to :ingredient
   belongs_to :op_day
 
-  sig {params(purchased_recipes: PurchasedRecipe::ActiveRecord_Relation, op_day: OpDay).void} 
-  def self.generate_for(purchased_recipes, op_day)
-    ingredient_amounts = purchased_recipes.map(&:ingredient_amounts).flatten
+  sig {params(predicted_orders: PredictedOrder::ActiveRecord_Relation, op_day: OpDay).void} 
+  def self.generate_for(predicted_orders, op_day)
+    ingredient_amounts = predicted_orders.map(&:ingredient_amounts).flatten
     aggregated_amounts = IngredientAmount.sum_by_id(ingredient_amounts)
 
     day_ingredients = aggregated_amounts.map do |a|

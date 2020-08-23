@@ -5,6 +5,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @c = customers(:one)
     @o = orders(:delivery)
+    @k = kitchens(:test)
   end
 
   test "update_state" do
@@ -63,18 +64,19 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
       order: {
         order_type: "delivery",
         for_time: for_time,
-        order_items: [
-          {
+        kitchen_id: @k.id,
+        order_items: {
+          "0": {
             price_cents: 2000,
             quantity: 2,
             recipe_id: r1.id
           },
-          {
+          "1": {
             price_cents: 100,
             quantity: 1,
             recipe_id: r2.id
           }
-        ]
+        }
       }
     }, as: :json
 

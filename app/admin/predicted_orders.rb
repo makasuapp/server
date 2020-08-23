@@ -1,5 +1,5 @@
 # typed: false
-ActiveAdmin.register PurchasedRecipe do
+ActiveAdmin.register PredictedOrder do
   permit_params :date, :quantity, :recipe_id
 
   index do

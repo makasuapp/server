@@ -1,23 +1,23 @@
 # typed: strict
 # == Schema Information
 #
-# Table name: purchased_recipes
+# Table name: predicted_orders
 #
 #  id         :bigint           not null, primary key
 #  date       :date             not null
 #  quantity   :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  kitchen_id :bigint
+#  kitchen_id :bigint           not null
 #  recipe_id  :bigint           not null
 #
 # Indexes
 #
-#  index_purchased_recipes_on_date                 (date)
-#  index_purchased_recipes_on_date_and_kitchen_id  (date,kitchen_id)
-#  index_purchased_recipes_on_recipe_id            (recipe_id)
+#  index_predicted_orders_on_date                 (date)
+#  index_predicted_orders_on_date_and_kitchen_id  (date,kitchen_id)
+#  index_predicted_orders_on_recipe_id            (recipe_id)
 #
-class PurchasedRecipe < ApplicationRecord
+class PredictedOrder < ApplicationRecord
   extend T::Sig
 
   validate :recipe_can_purchase
@@ -35,9 +35,9 @@ class PurchasedRecipe < ApplicationRecord
   sig {params(date: T.any(DateTime, Date, ActiveSupport::TimeWithZone), kitchen: Kitchen).void}
   def self.create_from_preorders_for(date, kitchen)
     #TODO: assumes only preorders, will not be the case later
-    PurchasedRecipe.where(date: date, kitchen_id: kitchen.id).delete_all
+    PredictedOrder.where(date: date, kitchen_id: kitchen.id).delete_all
 
-    purchased_recipes = []
+    predicted_orders = []
     #TODO(timezone)
     Order
       .where(kitchen_id: kitchen.id)
@@ -45,13 +45,13 @@ class PurchasedRecipe < ApplicationRecord
       .includes(:order_items)
       .each do |preorder|
       preorder.order_items.each do |oi|
-        purchased_recipes << PurchasedRecipe.new(
+        predicted_orders << PredictedOrder.new(
           date: date, quantity: oi.quantity, recipe_id: oi.recipe_id, kitchen_id: kitchen.id
         )
       end
     end
 
-    PurchasedRecipe.import! purchased_recipes
+    PredictedOrder.import! predicted_orders
 
     OpDay.update_day_for(date, kitchen)
   end

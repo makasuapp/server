@@ -112,40 +112,40 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def admin_dashboard_url(*args, **kwargs); end
 
-  # Sigs for route /admin/purchased_recipes/batch_action(.:format)
+  # Sigs for route /admin/predicted_orders/batch_action(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def batch_action_admin_purchased_recipes_path(*args, **kwargs); end
+  def batch_action_admin_predicted_orders_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def batch_action_admin_purchased_recipes_url(*args, **kwargs); end
+  def batch_action_admin_predicted_orders_url(*args, **kwargs); end
 
-  # Sigs for route /admin/purchased_recipes(.:format)
+  # Sigs for route /admin/predicted_orders(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def admin_purchased_recipes_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def admin_purchased_recipes_url(*args, **kwargs); end
-
-  # Sigs for route /admin/purchased_recipes/new(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_admin_purchased_recipe_path(*args, **kwargs); end
+  def admin_predicted_orders_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_admin_purchased_recipe_url(*args, **kwargs); end
+  def admin_predicted_orders_url(*args, **kwargs); end
 
-  # Sigs for route /admin/purchased_recipes/:id/edit(.:format)
+  # Sigs for route /admin/predicted_orders/new(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_admin_purchased_recipe_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_admin_purchased_recipe_url(*args, **kwargs); end
-
-  # Sigs for route /admin/purchased_recipes/:id(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def admin_purchased_recipe_path(*args, **kwargs); end
+  def new_admin_predicted_order_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def admin_purchased_recipe_url(*args, **kwargs); end
+  def new_admin_predicted_order_url(*args, **kwargs); end
+
+  # Sigs for route /admin/predicted_orders/:id/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_admin_predicted_order_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_admin_predicted_order_url(*args, **kwargs); end
+
+  # Sigs for route /admin/predicted_orders/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_predicted_order_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_predicted_order_url(*args, **kwargs); end
 
   # Sigs for route /admin/comments(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
@@ -231,10 +231,10 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_procurement_update_items_url(*args, **kwargs); end
 
-  # Sigs for route /api/wix/orders(.:format)
+  # Sigs for route /wix/orders(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def api_wix_orders_path(*args, **kwargs); end
+  def wix_orders_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def api_wix_orders_url(*args, **kwargs); end
+  def wix_orders_url(*args, **kwargs); end
 end

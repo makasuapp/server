@@ -133,14 +133,14 @@ module Recipe::GeneratedAssociationMethods
   sig { params(value: T::Enumerable[::OrderItem]).void }
   def order_items=(value); end
 
-  sig { returns(::PurchasedRecipe::ActiveRecord_Associations_CollectionProxy) }
-  def purchased_recipes; end
+  sig { returns(::PredictedOrder::ActiveRecord_Associations_CollectionProxy) }
+  def predicted_orders; end
 
   sig { returns(T::Array[Integer]) }
-  def purchased_recipe_ids; end
+  def predicted_order_ids; end
 
-  sig { params(value: T::Enumerable[::PurchasedRecipe]).void }
-  def purchased_recipes=(value); end
+  sig { params(value: T::Enumerable[::PredictedOrder]).void }
+  def predicted_orders=(value); end
 
   sig { returns(::RecipeStep::ActiveRecord_Associations_CollectionProxy) }
   def recipe_steps; end

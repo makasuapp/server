@@ -22,7 +22,7 @@ require 'test_helper'
 
 class DayIngredientTest < ActiveSupport::TestCase
   setup do
-    @purchased_recipe = purchased_recipes(:chicken)
+    @predicted_order = predicted_orders(:chicken)
     @today = op_days(:today)
     @i1 = ingredients(:salt)
     @i2 = ingredients(:green_onion)
@@ -30,14 +30,14 @@ class DayIngredientTest < ActiveSupport::TestCase
 
   test "generate_for creates DayIngredients for the purchased recipes' amount of ingredients" do
     count = DayIngredient.count
-    assert PurchasedRecipe.count == 1
+    assert PredictedOrder.count == 1
 
     amounts = [
       IngredientAmount.mk(@i1.id, 1.5),
       IngredientAmount.mk(@i2.id, 1.4)
     ]
-    PurchasedRecipe.any_instance.expects(:ingredient_amounts).once.returns(amounts)
-    DayIngredient.generate_for(PurchasedRecipe.all, @today)
+    PredictedOrder.any_instance.expects(:ingredient_amounts).once.returns(amounts)
+    DayIngredient.generate_for(PredictedOrder.all, @today)
 
     assert DayIngredient.count == count + 2
     assert DayIngredient.where(ingredient_id: @i1.id).first.expected_qty == 1.5
@@ -45,10 +45,10 @@ class DayIngredientTest < ActiveSupport::TestCase
   end
 
   test "generate_for aggregates the ingredients" do
-    new_pr = @purchased_recipe.dup
+    new_pr = @predicted_order.dup
     new_pr.save!
     count = DayIngredient.count
-    assert PurchasedRecipe.count == 2
+    assert PredictedOrder.count == 2
 
     amounts = [
       IngredientAmount.mk(@i1.id, 1.5),
@@ -56,8 +56,8 @@ class DayIngredientTest < ActiveSupport::TestCase
       IngredientAmount.mk(@i2.id, 1.4, "kg"),
       IngredientAmount.mk(@i2.id, 1100, "g"),
     ]
-    PurchasedRecipe.any_instance.expects(:ingredient_amounts).times(2).returns(amounts)
-    DayIngredient.generate_for(PurchasedRecipe.all, @today)
+    PredictedOrder.any_instance.expects(:ingredient_amounts).times(2).returns(amounts)
+    DayIngredient.generate_for(PredictedOrder.all, @today)
 
     assert DayIngredient.count == count + 2
     assert DayIngredient.where(ingredient_id: @i1.id).first.expected_qty == 5.6

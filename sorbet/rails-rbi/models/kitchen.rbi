@@ -73,6 +73,15 @@ module Kitchen::GeneratedAssociationMethods
   sig { params(value: T::Enumerable[::Order]).void }
   def orders=(value); end
 
+  sig { returns(::PredictedOrder::ActiveRecord_Associations_CollectionProxy) }
+  def predicted_orders; end
+
+  sig { returns(T::Array[Integer]) }
+  def predicted_order_ids; end
+
+  sig { params(value: T::Enumerable[::PredictedOrder]).void }
+  def predicted_orders=(value); end
+
   sig { returns(::ProcurementOrder::ActiveRecord_Associations_CollectionProxy) }
   def procurement_orders; end
 
@@ -81,15 +90,6 @@ module Kitchen::GeneratedAssociationMethods
 
   sig { params(value: T::Enumerable[::ProcurementOrder]).void }
   def procurement_orders=(value); end
-
-  sig { returns(::PurchasedRecipe::ActiveRecord_Associations_CollectionProxy) }
-  def purchased_recipes; end
-
-  sig { returns(T::Array[Integer]) }
-  def purchased_recipe_ids; end
-
-  sig { params(value: T::Enumerable[::PurchasedRecipe]).void }
-  def purchased_recipes=(value); end
 
   sig { returns(::Recipe::ActiveRecord_Associations_CollectionProxy) }
   def recipes; end

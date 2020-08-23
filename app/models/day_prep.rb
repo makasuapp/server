@@ -23,11 +23,11 @@ class DayPrep < ApplicationRecord
   belongs_to :recipe_step
   belongs_to :op_day
 
-  sig {params(purchased_recipes: PurchasedRecipe::ActiveRecord_Relation, op_day: OpDay).void} 
-  def self.generate_for(purchased_recipes, op_day)
+  sig {params(predicted_orders: PredictedOrder::ActiveRecord_Relation, op_day: OpDay).void} 
+  def self.generate_for(predicted_orders, op_day)
     day_preps = {}
 
-    purchased_recipes.includes({recipe: {recipe_steps: :inputs}}).each do |pr|
+    predicted_orders.includes({recipe: {recipe_steps: :inputs}}).each do |pr|
       recipe = pr.recipe
       recipe_servings = recipe.servings_produced(pr.quantity)
 

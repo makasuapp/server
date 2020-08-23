@@ -12,7 +12,7 @@
 #  unit                       :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  kitchen_id                 :bigint
+#  kitchen_id                 :bigint           not null
 #
 # Indexes
 #
@@ -26,7 +26,7 @@ class Recipe < ApplicationRecord
   has_many :step_inputs, as: :inputable
   has_many :order_items, dependent: :destroy
   has_many :item_prices, dependent: :destroy
-  has_many :purchased_recipes
+  has_many :predicted_orders
   belongs_to :kitchen
 
   after_save :update_price, if: :saved_change_to_current_price_cents

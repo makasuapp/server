@@ -12,7 +12,7 @@
 #  unit                       :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  kitchen_id                 :bigint
+#  kitchen_id                 :bigint           not null
 #
 # Indexes
 #
@@ -36,7 +36,8 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test "is_valid? is true if no steps" do 
-    r = Recipe.create!(name: "Test")
+    @kitchen = kitchens(:test)
+    r = Recipe.create!(name: "Test", kitchen_id: @kitchen.id)
     assert r.recipe_steps.size == 0
     assert r.is_valid?
   end
@@ -90,6 +91,7 @@ end
 
 class SubRecipeTest < ActiveSupport::TestCase
   setup do
+    @kitchen = kitchens(:test)
     step = recipe_steps(:sauce_p2)
     @g = recipes(:green_onion)
     @s = recipes(:sauce)
@@ -128,8 +130,8 @@ class SubRecipeTest < ActiveSupport::TestCase
   end
 
   test "all_in returns the recipes and their subrecipes" do
-    new_r = Recipe.create!(name: "New")
-    not_found = Recipe.create!(name: "Not Found")
+    new_r = Recipe.create!(name: "New", kitchen_id: @kitchen.id)
+    not_found = Recipe.create!(name: "Not Found", kitchen_id: @kitchen.id)
 
     recipes = Recipe.all_in([@r.id, new_r.id])
     assert recipes.count == 4

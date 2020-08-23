@@ -21,7 +21,7 @@ require 'test_helper'
 
 class DayPrepTest < ActiveSupport::TestCase
   setup do
-    @purchased_recipe = purchased_recipes(:chicken)
+    @predicted_order = predicted_orders(:chicken)
     @today = op_days(:today)
     @sauce_step = recipe_steps(:sauce_p2)
     @chicken_step = recipe_steps(:chicken_p2)
@@ -30,7 +30,7 @@ class DayPrepTest < ActiveSupport::TestCase
   test "generate_for creates DayPreps for the purchased recipes' prep steps and all subrecipes' steps" do
     count = DayPrep.count
 
-    DayPrep.generate_for(PurchasedRecipe.all, @today)
+    DayPrep.generate_for(PredictedOrder.all, @today)
 
     assert DayPrep.count == count + 6
     assert DayPrep.where(recipe_step_id: @sauce_step.id).first.expected_qty == 1
@@ -49,11 +49,11 @@ class DayPrepTest < ActiveSupport::TestCase
     count = DayPrep.count
 
     #7 total now
-    new_pr = @purchased_recipe.dup
+    new_pr = @predicted_order.dup
     new_pr.quantity = 3
     new_pr.save!
 
-    DayPrep.generate_for(PurchasedRecipe.all, @today)
+    DayPrep.generate_for(PredictedOrder.all, @today)
 
     assert DayPrep.count == count + 6
     #recipe serves 2, so we want 7/2 of it

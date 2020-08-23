@@ -12,7 +12,7 @@
 #  customer_id          :bigint           not null
 #  integration_id       :bigint
 #  integration_order_id :string
-#  kitchen_id           :bigint
+#  kitchen_id           :bigint           not null
 #
 # Indexes
 #
@@ -25,14 +25,20 @@ require 'test_helper'
 class OrderTest < ActiveSupport::TestCase
   setup do
     @customer = customers(:one)
+    @kitchen = kitchens(:test)
+  end
+
+  def mk_order(created_at, for_time = nil)
+    Order.create!(order_type: "delivery", customer_id: @customer.id, kitchen_id: @kitchen.id,
+      created_at: created_at, for_time: for_time)
   end
 
   test "on_date returns real time orders created that day" do
     date = DateTime.now - 3.days
 
-    on_before = Order.create!(order_type: "delivery", customer_id: @customer.id, created_at: date - 1.day)
-    on_date = Order.create!(order_type: "delivery", customer_id: @customer.id, created_at: date)
-    on_after = Order.create!(order_type: "delivery", customer_id: @customer.id, created_at: date + 1.day)
+    on_before = mk_order(date - 1.day)
+    on_date = mk_order(date)
+    on_after = mk_order(date + 1.day)
 
     orders = Order.on_date(date)
     assert orders.size == 1
@@ -42,14 +48,10 @@ class OrderTest < ActiveSupport::TestCase
   test "on_date returns preorders created for that day" do
     date = DateTime.now - 3.days
 
-    for_before = Order.create!(order_type: "delivery", customer_id: @customer.id, 
-      created_at: date - 2.day, for_time: date - 1.day)
-    for_date = Order.create!(order_type: "delivery", customer_id: @customer.id, 
-      created_at: date - 2.day, for_time: date)
-    for_on_date = Order.create!(order_type: "delivery", customer_id: @customer.id, 
-      created_at: date.beginning_of_day, for_time: date.end_of_day)
-    for_after = Order.create!(order_type: "delivery", customer_id: @customer.id, 
-      created_at: date, for_time: date + 1.day)
+    for_before = mk_order(date - 2.day, date - 1.day)
+    for_date = mk_order(date - 2.day, date)
+    for_on_date = mk_order(date.beginning_of_day, date.end_of_day)
+    for_after = mk_order(date, date + 1.day)
 
     orders = Order.on_date(date)
     assert orders.size == 2

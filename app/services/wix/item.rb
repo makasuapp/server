@@ -9,6 +9,6 @@ class Wix::Item
 
   sig {returns(String)}
   def name
-    @title.default
+    T.must(@title).default
   end
 end

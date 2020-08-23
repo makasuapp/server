@@ -13,7 +13,7 @@ class Kitchen < ApplicationRecord
 
   has_many :integrations
   has_many :recipes
-  has_many :purchased_recipes
+  has_many :predicted_orders
   has_many :op_days
   has_many :orders
   has_many :procurement_orders
