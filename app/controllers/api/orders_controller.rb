@@ -68,8 +68,11 @@ class Api::OrdersController < ApplicationController
     @orders = Order
       .where(kitchen_id: params[:kitchen_id])
       .on_date(date.to_date, "America/Toronto")
-      .where.not(aasm_state: Order::STATE_DELIVERED)
       .includes([:order_items, :customer, :integration])
+
+    unless params[:all]
+      @orders = @orders.where.not(aasm_state: Order::STATE_DELIVERED)
+    end
 
     #TODO: make this just the ingredients from the recipes
     @ingredients = Ingredient.all
