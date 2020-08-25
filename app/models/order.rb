@@ -78,6 +78,19 @@ class Order < ApplicationRecord
       )
   end
 
+  sig {params(date: T.any(DateTime, Date, ActiveSupport::TimeWithZone), timezone: String)
+    .returns(T.any(Order::ActiveRecord_Relation, Order::ActiveRecord_AssociationRelation))}
+  def self.before_date(date, timezone = "America/Toronto")
+    date_on = date.in_time_zone(timezone).end_of_day
+    self
+      .where("for_time < ?", date_on)
+      .or(
+        self
+          .where(for_time: nil)
+          .where("created_at < ?", date_on)
+      )
+  end
+
   sig {returns(String)}
   def order_id
     self.integration_order_id || self.id.to_s

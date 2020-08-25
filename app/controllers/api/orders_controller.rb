@@ -52,6 +52,8 @@ class Api::OrdersController < ApplicationController
     #hacky temp solution to have a dev environment
     if params[:env] == "dev"
       date = OpDay.first.date
+    elsif params[:date].present?
+      date = Time.at(params[:date])
     else
       #TODO(timezone)
       date = Time.now.in_time_zone("America/Toronto")
@@ -64,14 +66,18 @@ class Api::OrdersController < ApplicationController
       .where(recipe_id: @recipes.map(&:id))
       .includes([{inputs: :inputable}, :detailed_instructions, :tools, :recipe])
     
-    #TODO(timezone)
     @orders = Order
       .where(kitchen_id: params[:kitchen_id])
-      .on_date(date.to_date, "America/Toronto")
       .includes([:order_items, :customer, :integration])
 
-    unless params[:all]
-      @orders = @orders.where.not(aasm_state: Order::STATE_DELIVERED)
+    #TODO(timezone)
+    if params[:all]
+      @orders = @orders
+        .on_date(date.to_date, "America/Toronto")
+    else
+      @orders = @orders
+        .before_date(date.to_date, "America/Toronto")
+        .where.not(aasm_state: Order::STATE_DELIVERED)
     end
 
     #TODO: make this just the ingredients from the recipes
