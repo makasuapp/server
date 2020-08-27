@@ -12,4 +12,30 @@ class Api::PredictedOrdersController < ApplicationController
 
     render formats: :json
   end
+
+  def create
+    date = Time.at(params[:date_ms].to_i / 1000)
+    @predicted_orders = []
+
+    if params[:predicted_orders].present?
+      #might have to change this when we change it to an internet form
+      params[:predicted_orders].each do |idx, order_params|
+        order = PredictedOrder.new
+        order.quantity = order_params[:quantity]
+        order.recipe_id = order_params[:recipe_id]
+        order.kitchen_id = params[:kitchen_id]
+        order.date = date
+
+        if order.save
+          @predicted_orders << order
+        else
+          Raven.capture_exception(order.errors)
+          render json: order.errors, status: :unprocessable_entity
+          return
+        end
+      end
+    end
+
+    render :index, status: :created
+  end
 end
