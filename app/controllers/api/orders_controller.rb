@@ -13,6 +13,7 @@ class Api::OrdersController < ApplicationController
     end
 
     @order = Order.new(base_order_params)
+    @order.for_time = Time.at(base_order_params[:for_time].to_i / 1000)
     @order.customer_id = @customer.id
 
     if !@order.save
