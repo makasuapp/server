@@ -44,10 +44,10 @@ module Recipe::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def name?; end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(Integer) }
   def organization_id; end
 
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
   def organization_id=(value); end
 
   sig { returns(T::Boolean) }

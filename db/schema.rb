@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_013423) do
+ActiveRecord::Schema.define(version: 2020_08_28_014116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2020_08_28_013423) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "organization_id"
+    t.bigint "organization_id", null: false
   end
 
   create_table "op_days", force: :cascade do |t|
@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 2020_08_28_013423) do
     t.datetime "updated_at", null: false
     t.integer "current_price_cents"
     t.float "output_volume_weight_ratio"
-    t.bigint "organization_id"
+    t.bigint "organization_id", null: false
     t.index ["organization_id", "name"], name: "index_recipes_on_organization_id_and_name"
   end
 

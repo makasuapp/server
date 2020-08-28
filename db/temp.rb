@@ -25,9 +25,3 @@ PredictedOrder.create_from_preorders_for(date.to_date, kitchen)
 v = Vendor.create!(name: "T&T")
 day_ingredients = DayIngredient.where(op_day_id: op_day.id)
 ProcurementOrder.create_from(day_ingredients, v, date, kitchen)
-
-organization = Organization.find_or_create_by(name: "Test")
-kitchen.update_attributes(organization_id: organization.id)
-user = User.first
-UserOrganization.create!(organization_id: organization.id, user_id: T.must(user).id, role: "owner")
-Recipe.update_all(organization_id: organization.id)
