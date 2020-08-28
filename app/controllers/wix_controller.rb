@@ -48,7 +48,7 @@ class WixController < ApplicationController
       organization_id = integration.kitchen.organization_id
       wix_items.each do |wix_item|
         #TODO(wix): is going by title the best idea?
-        recipe = Recipe.find_by(kitchen_id: organization_id, name: wix_item.name)
+        recipe = Recipe.find_by(organization_id: organization_id, name: wix_item.name)
         recipe_map[wix_item.id] = recipe
       end
 

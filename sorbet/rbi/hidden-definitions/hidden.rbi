@@ -605,14 +605,6 @@ end
 class ActionCable::RemoteConnections
 end
 
-class ActionCable::Server::Base
-  def logger=(obj); end
-end
-
-class ActionCable::Server::Base
-  def self.logger=(obj); end
-end
-
 module ActionCable::Server::Connections
   BEAT_INTERVAL = ::T.let(nil, ::T.untyped)
 end
@@ -3058,6 +3050,14 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
   def api_orders_url(*args); end
 
   def api_path(*args); end
+
+  def api_predicted_orders_for_date_path(*args); end
+
+  def api_predicted_orders_for_date_url(*args); end
+
+  def api_predicted_orders_path(*args); end
+
+  def api_predicted_orders_url(*args); end
 
   def api_procurement_index_path(*args); end
 
@@ -8104,18 +8104,16 @@ module AnnotateRoutes::Helpers
   MAGIC_COMMENT_MATCHER = ::T.let(nil, ::T.untyped)
 end
 
-module Api
+class Api::OpDaysController
+end
+
+class Api::OpDaysController::OpDaysParams
+  def self.inherited(s); end
 end
 
 class Api::OpDaysController
-  def index(); end
-
-  def save_ingredients_qty(); end
-
-  def save_prep_qty(); end
-end
-
-class Api::OpDaysController
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Api::OrdersController
@@ -8131,6 +8129,17 @@ end
 class Api::OrdersController
 end
 
+class Api::PredictedOrdersController
+  def create(); end
+
+  def index(); end
+
+  def update_for_date(); end
+end
+
+class Api::PredictedOrdersController
+end
+
 class Api::ProcurementController
   def index(); end
 
@@ -8145,9 +8154,6 @@ class Api::RecipesController
 end
 
 class Api::RecipesController
-end
-
-module Api
 end
 
 module ApplicationCable
@@ -20818,6 +20824,8 @@ class Kitchen
 
   def autosave_associated_records_for_orders(*args); end
 
+  def autosave_associated_records_for_organization(*args); end
+
   def autosave_associated_records_for_predicted_orders(*args); end
 
   def autosave_associated_records_for_procurement_orders(*args); end
@@ -20896,6 +20904,8 @@ class Kitchen
 
   def before_remove_for_recipes?(); end
 
+  def belongs_to_counter_cache_after_update(reflection); end
+
   def validate_associated_records_for_integrations(*args); end
 
   def validate_associated_records_for_op_days(*args); end
@@ -20936,6 +20946,8 @@ module Kitchen::GeneratedAssociationMethods
   def procurement_order_ids=(ids); end
 
   def recipe_ids=(ids); end
+
+  def reload_organization(); end
 end
 
 module Kitchen::GeneratedRelationMethods
@@ -24341,6 +24353,195 @@ module OrderItem::GeneratedRelationMethods
 end
 
 module OrderItem::GeneratedRelationMethods
+end
+
+class Organization
+  def after_add_for_kitchens(); end
+
+  def after_add_for_kitchens=(val); end
+
+  def after_add_for_kitchens?(); end
+
+  def after_add_for_recipes(); end
+
+  def after_add_for_recipes=(val); end
+
+  def after_add_for_recipes?(); end
+
+  def after_add_for_user_organizations(); end
+
+  def after_add_for_user_organizations=(val); end
+
+  def after_add_for_user_organizations?(); end
+
+  def after_remove_for_kitchens(); end
+
+  def after_remove_for_kitchens=(val); end
+
+  def after_remove_for_kitchens?(); end
+
+  def after_remove_for_recipes(); end
+
+  def after_remove_for_recipes=(val); end
+
+  def after_remove_for_recipes?(); end
+
+  def after_remove_for_user_organizations(); end
+
+  def after_remove_for_user_organizations=(val); end
+
+  def after_remove_for_user_organizations?(); end
+
+  def autosave_associated_records_for_kitchens(*args); end
+
+  def autosave_associated_records_for_recipes(*args); end
+
+  def autosave_associated_records_for_user_organizations(*args); end
+
+  def before_add_for_kitchens(); end
+
+  def before_add_for_kitchens=(val); end
+
+  def before_add_for_kitchens?(); end
+
+  def before_add_for_recipes(); end
+
+  def before_add_for_recipes=(val); end
+
+  def before_add_for_recipes?(); end
+
+  def before_add_for_user_organizations(); end
+
+  def before_add_for_user_organizations=(val); end
+
+  def before_add_for_user_organizations?(); end
+
+  def before_remove_for_kitchens(); end
+
+  def before_remove_for_kitchens=(val); end
+
+  def before_remove_for_kitchens?(); end
+
+  def before_remove_for_recipes(); end
+
+  def before_remove_for_recipes=(val); end
+
+  def before_remove_for_recipes?(); end
+
+  def before_remove_for_user_organizations(); end
+
+  def before_remove_for_user_organizations=(val); end
+
+  def before_remove_for_user_organizations?(); end
+
+  def validate_associated_records_for_kitchens(*args); end
+
+  def validate_associated_records_for_recipes(*args); end
+
+  def validate_associated_records_for_user_organizations(*args); end
+end
+
+class Organization::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Organization::GeneratedRelationMethods
+end
+
+class Organization::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Organization::GeneratedRelationMethods
+end
+
+class Organization::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Organization::GeneratedRelationMethods
+end
+
+module Organization::GeneratedAssociationMethods
+  def kitchen_ids=(ids); end
+
+  def recipe_ids=(ids); end
+
+  def user_organization_ids=(ids); end
+end
+
+module Organization::GeneratedRelationMethods
+end
+
+module Organization::GeneratedRelationMethods
+end
+
+class Organization
+  def self.after_add_for_kitchens(); end
+
+  def self.after_add_for_kitchens=(val); end
+
+  def self.after_add_for_kitchens?(); end
+
+  def self.after_add_for_recipes(); end
+
+  def self.after_add_for_recipes=(val); end
+
+  def self.after_add_for_recipes?(); end
+
+  def self.after_add_for_user_organizations(); end
+
+  def self.after_add_for_user_organizations=(val); end
+
+  def self.after_add_for_user_organizations?(); end
+
+  def self.after_remove_for_kitchens(); end
+
+  def self.after_remove_for_kitchens=(val); end
+
+  def self.after_remove_for_kitchens?(); end
+
+  def self.after_remove_for_recipes(); end
+
+  def self.after_remove_for_recipes=(val); end
+
+  def self.after_remove_for_recipes?(); end
+
+  def self.after_remove_for_user_organizations(); end
+
+  def self.after_remove_for_user_organizations=(val); end
+
+  def self.after_remove_for_user_organizations?(); end
+
+  def self.before_add_for_kitchens(); end
+
+  def self.before_add_for_kitchens=(val); end
+
+  def self.before_add_for_kitchens?(); end
+
+  def self.before_add_for_recipes(); end
+
+  def self.before_add_for_recipes=(val); end
+
+  def self.before_add_for_recipes?(); end
+
+  def self.before_add_for_user_organizations(); end
+
+  def self.before_add_for_user_organizations=(val); end
+
+  def self.before_add_for_user_organizations?(); end
+
+  def self.before_remove_for_kitchens(); end
+
+  def self.before_remove_for_kitchens=(val); end
+
+  def self.before_remove_for_kitchens?(); end
+
+  def self.before_remove_for_recipes(); end
+
+  def self.before_remove_for_recipes=(val); end
+
+  def self.before_remove_for_recipes?(); end
+
+  def self.before_remove_for_user_organizations(); end
+
+  def self.before_remove_for_user_organizations=(val); end
+
+  def self.before_remove_for_user_organizations?(); end
 end
 
 module OrmAdapter
@@ -28133,40 +28334,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70240344889060
+module Polyfill::Module::M70114680225300
 end
 
-module Polyfill::Module::M70240344889060
+module Polyfill::Module::M70114680225300
 end
 
-module Polyfill::Module::M70240345809180
+module Polyfill::Module::M70114680251440
 end
 
-module Polyfill::Module::M70240345809180
+module Polyfill::Module::M70114680251440
 end
 
-module Polyfill::Module::M70240345863920
+module Polyfill::Module::M70114680301560
 end
 
-module Polyfill::Module::M70240345863920
+module Polyfill::Module::M70114680301560
 end
 
-module Polyfill::Module::M70240389183860
+module Polyfill::Module::M70114680410740
 end
 
-module Polyfill::Module::M70240389183860
+module Polyfill::Module::M70114680410740
 end
 
-module Polyfill::Module::M70240389377120
+module Polyfill::Module::M70114680484540
 end
 
-module Polyfill::Module::M70240389377120
+module Polyfill::Module::M70114680484540
 end
 
-module Polyfill::Module::M70240389414180
+module Polyfill::Module::M70114680598220
 end
 
-module Polyfill::Module::M70240389414180
+module Polyfill::Module::M70114680598220
 end
 
 class PredictedOrder
@@ -29381,11 +29582,7 @@ class Rails::MailersController
 end
 
 class Rails::Rack::Logger
-  def before_dispatch(_env); end
-
   def call(env); end
-
-  def call_app(*args); end
 
   def initialize(app, taggers=T.unsafe(nil)); end
 end
@@ -30466,9 +30663,9 @@ class Recipe
 
   def autosave_associated_records_for_item_prices(*args); end
 
-  def autosave_associated_records_for_kitchen(*args); end
-
   def autosave_associated_records_for_order_items(*args); end
+
+  def autosave_associated_records_for_organization(*args); end
 
   def autosave_associated_records_for_predicted_orders(*args); end
 
@@ -30573,7 +30770,7 @@ module Recipe::GeneratedAssociationMethods
 
   def recipe_step_ids=(ids); end
 
-  def reload_kitchen(); end
+  def reload_organization(); end
 
   def step_input_ids=(ids); end
 end
@@ -38633,7 +38830,6 @@ class UnitConverter
 end
 
 class User
-  include ::User::GeneratedAssociationMethods
   include ::Devise::Models::Authenticatable
   include ::Devise::Models::DatabaseAuthenticatable
   include ::Devise::Models::Rememberable
@@ -38642,6 +38838,32 @@ class User
   include ::Devise::Models::Validatable
   include ::Devise::Models::Lockable
   include ::Devise::Models::Trackable
+  def after_add_for_user_organizations(); end
+
+  def after_add_for_user_organizations=(val); end
+
+  def after_add_for_user_organizations?(); end
+
+  def after_remove_for_user_organizations(); end
+
+  def after_remove_for_user_organizations=(val); end
+
+  def after_remove_for_user_organizations?(); end
+
+  def autosave_associated_records_for_user_organizations(*args); end
+
+  def before_add_for_user_organizations(); end
+
+  def before_add_for_user_organizations=(val); end
+
+  def before_add_for_user_organizations?(); end
+
+  def before_remove_for_user_organizations(); end
+
+  def before_remove_for_user_organizations=(val); end
+
+  def before_remove_for_user_organizations?(); end
+
   def current_password(); end
 
   def devise_modules(); end
@@ -38654,9 +38876,7 @@ class User
 
   def password_confirmation=(password_confirmation); end
 
-  def typed_role(); end
-
-  def typed_role=(value); end
+  def validate_associated_records_for_user_organizations(*args); end
 end
 
 class User::ActiveRecord_AssociationRelation
@@ -38675,27 +38895,13 @@ class User::ActiveRecord_Relation
 end
 
 module User::GeneratedAssociationMethods
-end
-
-module User::GeneratedAssociationMethods
-end
-
-module User::GeneratedRelationMethods
-  def admin(*args, &block); end
-
-  def user(*args, &block); end
+  def user_organization_ids=(ids); end
 end
 
 module User::GeneratedRelationMethods
 end
 
-class User::Role
-  Admin = ::T.let(nil, ::T.untyped)
-  User = ::T.let(nil, ::T.untyped)
-end
-
-class User::Role
-  extend ::T::Helpers
+module User::GeneratedRelationMethods
 end
 
 class User
@@ -38708,11 +38914,74 @@ class User
   extend ::Devise::Models::Lockable::ClassMethods
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
+  def self.after_add_for_user_organizations(); end
+
+  def self.after_add_for_user_organizations=(val); end
+
+  def self.after_add_for_user_organizations?(); end
+
+  def self.after_remove_for_user_organizations(); end
+
+  def self.after_remove_for_user_organizations=(val); end
+
+  def self.after_remove_for_user_organizations?(); end
+
+  def self.before_add_for_user_organizations(); end
+
+  def self.before_add_for_user_organizations=(val); end
+
+  def self.before_add_for_user_organizations?(); end
+
+  def self.before_remove_for_user_organizations(); end
+
+  def self.before_remove_for_user_organizations=(val); end
+
+  def self.before_remove_for_user_organizations?(); end
+
   def self.devise_modules(); end
 
   def self.devise_modules=(val); end
 
   def self.devise_modules?(); end
+end
+
+class UserOrganization
+  def autosave_associated_records_for_kitchen(*args); end
+
+  def autosave_associated_records_for_organization(*args); end
+
+  def autosave_associated_records_for_user(*args); end
+
+  def belongs_to_counter_cache_after_update(reflection); end
+end
+
+class UserOrganization::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::UserOrganization::GeneratedRelationMethods
+end
+
+class UserOrganization::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::UserOrganization::GeneratedRelationMethods
+end
+
+class UserOrganization::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::UserOrganization::GeneratedRelationMethods
+end
+
+module UserOrganization::GeneratedAssociationMethods
+  def reload_kitchen(); end
+
+  def reload_organization(); end
+
+  def reload_user(); end
+end
+
+module UserOrganization::GeneratedRelationMethods
+end
+
+module UserOrganization::GeneratedRelationMethods
 end
 
 class Vendor

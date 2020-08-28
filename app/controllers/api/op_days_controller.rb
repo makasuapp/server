@@ -1,4 +1,4 @@
-# typed: ignore
+# typed: false
 class Api::OpDaysController < ApplicationController
   def index
     #hacky temp solution to have a dev environment

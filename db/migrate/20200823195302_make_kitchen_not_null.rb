@@ -1,3 +1,4 @@
+# typed: true
 class MakeKitchenNotNull < ActiveRecord::Migration[5.2]
   def change
     change_column :recipes, :kitchen_id, :bigint, null: false

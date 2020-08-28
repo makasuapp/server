@@ -1,3 +1,4 @@
+# typed: true
 class CreateUserOrganizations < ActiveRecord::Migration[5.2]
   def change
     create_table :user_organizations do |t|
