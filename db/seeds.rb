@@ -6,8 +6,8 @@
 def r(name, quantity = 1, unit = nil, publish = false, output_volume_weight_ratio = nil)
   recipe = Recipe.find_or_initialize_by(name: name)
 
-  kitchen = Kitchen.find_or_create_by!(name: "Test")
-  recipe.kitchen_id = kitchen.id
+  organization = Organization.find_or_create_by!(name: "Test")
+  recipe.organization_id = organization.id
   recipe.output_qty = quantity
   recipe.unit = unit
   recipe.publish = publish

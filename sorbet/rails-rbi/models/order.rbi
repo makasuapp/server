@@ -71,10 +71,10 @@ module Order::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def integration_order_id?; end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(Integer) }
   def kitchen_id; end
 
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
   def kitchen_id=(value); end
 
   sig { returns(T::Boolean) }

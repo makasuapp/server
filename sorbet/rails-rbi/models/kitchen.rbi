@@ -35,6 +35,15 @@ module Kitchen::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def name?; end
 
+  sig { returns(T.nilable(Integer)) }
+  def organization_id; end
+
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  def organization_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def organization_id?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def updated_at; end
 
@@ -72,6 +81,21 @@ module Kitchen::GeneratedAssociationMethods
 
   sig { params(value: T::Enumerable[::Order]).void }
   def orders=(value); end
+
+  sig { returns(::Organization) }
+  def organization; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Organization).void)).returns(::Organization) }
+  def build_organization(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Organization).void)).returns(::Organization) }
+  def create_organization(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Organization).void)).returns(::Organization) }
+  def create_organization!(*args, &block); end
+
+  sig { params(value: ::Organization).void }
+  def organization=(value); end
 
   sig { returns(::PredictedOrder::ActiveRecord_Associations_CollectionProxy) }
   def predicted_orders; end

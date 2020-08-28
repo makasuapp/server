@@ -2,20 +2,6 @@
 # Please rerun bundle exec rake rails_rbi:models[User] to regenerate.
 
 # typed: strong
-module User::EnumInstanceMethods
-  sig { returns(T::Boolean) }
-  def user?; end
-
-  sig { void }
-  def user!; end
-
-  sig { returns(T::Boolean) }
-  def admin?; end
-
-  sig { void }
-  def admin!; end
-end
-
 module User::ActiveRelation_WhereNot
   sig { params(opts: T.untyped, rest: T.untyped).returns(T.self_type) }
   def not(opts, *rest); end
@@ -139,15 +125,6 @@ module User::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def reset_password_token?; end
 
-  sig { returns(T.nilable(String)) }
-  def role; end
-
-  sig { params(value: T.nilable(T.any(Integer, String, Symbol))).void }
-  def role=(value); end
-
-  sig { returns(T::Boolean) }
-  def role?; end
-
   sig { returns(Integer) }
   def sign_in_count; end
 
@@ -176,6 +153,17 @@ module User::GeneratedAttributeMethods
   def updated_at?; end
 end
 
+module User::GeneratedAssociationMethods
+  sig { returns(::UserOrganization::ActiveRecord_Associations_CollectionProxy) }
+  def user_organizations; end
+
+  sig { returns(T::Array[Integer]) }
+  def user_organization_ids; end
+
+  sig { params(value: T::Enumerable[::UserOrganization]).void }
+  def user_organizations=(value); end
+end
+
 module User::CustomFinderMethods
   sig { params(limit: Integer).returns(T::Array[User]) }
   def first_n(limit); end
@@ -194,70 +182,11 @@ module User::CustomFinderMethods
 end
 
 class User < ApplicationRecord
-  include User::EnumInstanceMethods
   include User::GeneratedAttributeMethods
+  include User::GeneratedAssociationMethods
   extend User::CustomFinderMethods
   extend User::QueryMethodsReturningRelation
   RelationType = T.type_alias { T.any(User::ActiveRecord_Relation, User::ActiveRecord_Associations_CollectionProxy, User::ActiveRecord_AssociationRelation) }
-
-  sig { returns(T::Hash[T.any(String, Symbol), Integer]) }
-  def self.roles; end
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
-  def self.admin(*args); end
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
-  def self.user(*args); end
-end
-
-class User::ActiveRecord_Relation < ActiveRecord::Relation
-  include User::ActiveRelation_WhereNot
-  include User::CustomFinderMethods
-  include User::QueryMethodsReturningRelation
-  Elem = type_member(fixed: User)
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
-  def admin(*args); end
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
-  def user(*args); end
-end
-
-class User::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
-  include User::ActiveRelation_WhereNot
-  include User::CustomFinderMethods
-  include User::QueryMethodsReturningAssociationRelation
-  Elem = type_member(fixed: User)
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
-  def admin(*args); end
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
-  def user(*args); end
-end
-
-class User::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
-  include User::CustomFinderMethods
-  include User::QueryMethodsReturningAssociationRelation
-  Elem = type_member(fixed: User)
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
-  def admin(*args); end
-
-  sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
-  def user(*args); end
-
-  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
-  def <<(*records); end
-
-  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
-  def append(*records); end
-
-  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
-  def push(*records); end
-
-  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
-  def concat(*records); end
 end
 
 module User::QueryMethodsReturningRelation
@@ -460,4 +389,36 @@ module User::QueryMethodsReturningAssociationRelation
     ).returns(ActiveRecord::Batches::BatchEnumerator)
   end
   def in_batches(of: 1000, start: nil, finish: nil, load: false, error_on_ignore: nil, &block); end
+end
+
+class User::ActiveRecord_Relation < ActiveRecord::Relation
+  include User::ActiveRelation_WhereNot
+  include User::CustomFinderMethods
+  include User::QueryMethodsReturningRelation
+  Elem = type_member(fixed: User)
+end
+
+class User::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
+  include User::ActiveRelation_WhereNot
+  include User::CustomFinderMethods
+  include User::QueryMethodsReturningAssociationRelation
+  Elem = type_member(fixed: User)
+end
+
+class User::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+  include User::CustomFinderMethods
+  include User::QueryMethodsReturningAssociationRelation
+  Elem = type_member(fixed: User)
+
+  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
+  def <<(*records); end
+
+  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
+  def append(*records); end
+
+  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
+  def push(*records); end
+
+  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
+  def concat(*records); end
 end

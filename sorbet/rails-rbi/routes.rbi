@@ -231,6 +231,20 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_procurement_update_items_url(*args, **kwargs); end
 
+  # Sigs for route /api/predicted_orders(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_predicted_orders_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_predicted_orders_url(*args, **kwargs); end
+
+  # Sigs for route /api/predicted_orders/for_date(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_predicted_orders_for_date_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_predicted_orders_for_date_url(*args, **kwargs); end
+
   # Sigs for route /wix/orders(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def wix_orders_path(*args, **kwargs); end

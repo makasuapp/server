@@ -63,7 +63,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
       },
       order: {
         order_type: "delivery",
-        for_time: for_time,
+        for_time: for_time.to_i * 1000,
         kitchen_id: @k.id,
         order_items: {
           "0": {

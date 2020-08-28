@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_195302) do
+ActiveRecord::Schema.define(version: 2020_08_28_013423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_08_23_195302) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "organization_id"
   end
 
   create_table "op_days", force: :cascade do |t|
@@ -141,6 +142,12 @@ ActiveRecord::Schema.define(version: 2020_08_23_195302) do
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["integration_id", "integration_order_id"], name: "index_orders_on_integration_id_and_integration_order_id"
     t.index ["kitchen_id", "for_time", "created_at", "aasm_state"], name: "idx_kitchen_time"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "predicted_orders", force: :cascade do |t|
@@ -212,8 +219,8 @@ ActiveRecord::Schema.define(version: 2020_08_23_195302) do
     t.datetime "updated_at", null: false
     t.integer "current_price_cents"
     t.float "output_volume_weight_ratio"
-    t.bigint "kitchen_id", null: false
-    t.index ["kitchen_id", "name"], name: "index_recipes_on_kitchen_id_and_name"
+    t.bigint "organization_id"
+    t.index ["organization_id", "name"], name: "index_recipes_on_organization_id_and_name"
   end
 
   create_table "step_inputs", force: :cascade do |t|
@@ -234,6 +241,17 @@ ActiveRecord::Schema.define(version: 2020_08_23_195302) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_organizations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "organization_id", null: false
+    t.string "role", null: false
+    t.bigint "kitchen_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id", "user_id"], name: "organizations_users_idx"
+    t.index ["user_id", "organization_id"], name: "users_organizations_idx"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -248,7 +266,6 @@ ActiveRecord::Schema.define(version: 2020_08_23_195302) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

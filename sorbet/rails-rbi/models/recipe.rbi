@@ -35,15 +35,6 @@ module Recipe::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def id?; end
 
-  sig { returns(T.nilable(Integer)) }
-  def kitchen_id; end
-
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
-  def kitchen_id=(value); end
-
-  sig { returns(T::Boolean) }
-  def kitchen_id?; end
-
   sig { returns(String) }
   def name; end
 
@@ -52,6 +43,15 @@ module Recipe::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def name?; end
+
+  sig { returns(T.nilable(Integer)) }
+  def organization_id; end
+
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  def organization_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def organization_id?; end
 
   sig { returns(Float) }
   def output_qty; end
@@ -109,21 +109,6 @@ module Recipe::GeneratedAssociationMethods
   sig { params(value: T::Enumerable[::ItemPrice]).void }
   def item_prices=(value); end
 
-  sig { returns(::Kitchen) }
-  def kitchen; end
-
-  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Kitchen).void)).returns(::Kitchen) }
-  def build_kitchen(*args, &block); end
-
-  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Kitchen).void)).returns(::Kitchen) }
-  def create_kitchen(*args, &block); end
-
-  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Kitchen).void)).returns(::Kitchen) }
-  def create_kitchen!(*args, &block); end
-
-  sig { params(value: ::Kitchen).void }
-  def kitchen=(value); end
-
   sig { returns(::OrderItem::ActiveRecord_Associations_CollectionProxy) }
   def order_items; end
 
@@ -132,6 +117,21 @@ module Recipe::GeneratedAssociationMethods
 
   sig { params(value: T::Enumerable[::OrderItem]).void }
   def order_items=(value); end
+
+  sig { returns(::Organization) }
+  def organization; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Organization).void)).returns(::Organization) }
+  def build_organization(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Organization).void)).returns(::Organization) }
+  def create_organization(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Organization).void)).returns(::Organization) }
+  def create_organization!(*args, &block); end
+
+  sig { params(value: ::Organization).void }
+  def organization=(value); end
 
   sig { returns(::PredictedOrder::ActiveRecord_Associations_CollectionProxy) }
   def predicted_orders; end

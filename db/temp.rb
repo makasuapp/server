@@ -26,10 +26,8 @@ v = Vendor.create!(name: "T&T")
 day_ingredients = DayIngredient.where(op_day_id: op_day.id)
 ProcurementOrder.create_from(day_ingredients, v, date, kitchen)
 
-OpDay.update_all(kitchen_id: kitchen.id)
-Order.update_all(kitchen_id: kitchen.id)
-ProcurementOrder.update_all(kitchen_id: kitchen.id)
-PredictedOrder.update_all(kitchen_id: kitchen.id)
-Recipe.update_all(kitchen_id: kitchen.id)
-
-kitchen.integrations.create!(integration_type: "wix", wix_restaurant_id: "252491363672592")
+organization = Organization.find_or_create_by(name: "Test")
+kitchen.update_attributes(organization_id: organization.id)
+user = User.first
+UserOrganization.create!(organization_id: organization.id, user_id: T.must(user).id, role: "owner")
+Recipe.update_all(organization_id: organization.id)

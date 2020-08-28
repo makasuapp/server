@@ -11,11 +11,11 @@
 #  unit                       :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  kitchen_id                 :bigint           not null
+#  organization_id            :bigint
 #
 # Indexes
 #
-#  index_recipes_on_kitchen_id_and_name  (kitchen_id,name)
+#  index_recipes_on_organization_id_and_name  (organization_id,name)
 #
 
 # This model initially had no columns defined. If you add columns to the
@@ -26,14 +26,14 @@
 chicken:
   name: "Mouth Watering Chicken"
   output_qty: 2
-  kitchen: test
+  organization: test
 
 green_onion:
   name: "Chopped Green Onion"
   output_qty: 100
   unit: "g"
-  kitchen: test
+  organization: test
 
 sauce:
   name: "Mouth Watering Chicken Sauce"
-  kitchen: test
+  organization: test

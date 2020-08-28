@@ -15,7 +15,6 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer
 #  sign_in_count          :integer          default(0), not null
 #  unlock_token           :string
 #  created_at             :datetime         not null
@@ -35,13 +34,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :lockable, :trackable
 
-  enum role: [:user, :admin]
-
-  after_initialize :set_default_role, :if => :new_record?
   validates :email, uniqueness: { case_sensitive: false }, presence: true, allow_blank: false
 
-  sig {void}
-  def set_default_role
-    self.role ||= :user
+  has_many :user_organizations
+
+  protected
+  sig {returns(T::Boolean)}
+  def password_required?
+    false
   end
 end

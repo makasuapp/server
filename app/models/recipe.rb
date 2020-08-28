@@ -12,11 +12,11 @@
 #  unit                       :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  kitchen_id                 :bigint           not null
+#  organization_id            :bigint
 #
 # Indexes
 #
-#  index_recipes_on_kitchen_id_and_name  (kitchen_id,name)
+#  index_recipes_on_organization_id_and_name  (organization_id,name)
 #
 class Recipe < ApplicationRecord
   extend T::Sig
@@ -27,7 +27,7 @@ class Recipe < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :item_prices, dependent: :destroy
   has_many :predicted_orders
-  belongs_to :kitchen
+  belongs_to :organization
 
   after_save :update_price, if: :saved_change_to_current_price_cents
 
