@@ -62,6 +62,15 @@ module User::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def failed_attempts?; end
 
+  sig { returns(T.nilable(String)) }
+  def first_name; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def first_name=(value); end
+
+  sig { returns(T::Boolean) }
+  def first_name?; end
+
   sig { returns(Integer) }
   def id; end
 
@@ -70,6 +79,15 @@ module User::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def id?; end
+
+  sig { returns(T.nilable(String)) }
+  def last_name; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def last_name=(value); end
+
+  sig { returns(T::Boolean) }
+  def last_name?; end
 
   sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
   def last_sign_in_at; end
@@ -97,6 +115,15 @@ module User::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def locked_at?; end
+
+  sig { returns(T.nilable(String)) }
+  def phone_number; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def phone_number=(value); end
+
+  sig { returns(T::Boolean) }
+  def phone_number?; end
 
   sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
   def remember_created_at; end

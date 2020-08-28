@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   root to: 'application#status'
 
   namespace :api do
+    resources :users, only: [:create, :show]
+    post 'users/login', to: 'users#login'
+    post 'users/reset_password', to: 'users#reset_password'
+    post 'users/request_reset', to: 'users#request_reset'
+    post 'users/verify', to: 'users#verify'
+
     resources :recipes, only: [:index]
 
     resources :op_days, only: [:index]

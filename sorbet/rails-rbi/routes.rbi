@@ -168,6 +168,48 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def root_url(*args, **kwargs); end
 
+  # Sigs for route /api/users(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_url(*args, **kwargs); end
+
+  # Sigs for route /api/users/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_user_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_user_url(*args, **kwargs); end
+
+  # Sigs for route /api/users/login(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_login_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_login_url(*args, **kwargs); end
+
+  # Sigs for route /api/users/reset_password(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_reset_password_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_reset_password_url(*args, **kwargs); end
+
+  # Sigs for route /api/users/request_reset(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_request_reset_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_request_reset_url(*args, **kwargs); end
+
+  # Sigs for route /api/users/verify(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_verify_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_verify_url(*args, **kwargs); end
+
   # Sigs for route /api/recipes(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_recipes_path(*args, **kwargs); end

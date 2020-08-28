@@ -30,6 +30,8 @@ gem 'devise'
 gem 'activeadmin'
 gem 'cancan'
 
+gem 'jwt'
+
 #sentry for error reporting
 gem "sentry-raven"
 #skylight.io for apm

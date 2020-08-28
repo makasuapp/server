@@ -3073,6 +3073,30 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def api_url(*args); end
 
+  def api_user_path(*args); end
+
+  def api_user_url(*args); end
+
+  def api_users_login_path(*args); end
+
+  def api_users_login_url(*args); end
+
+  def api_users_path(*args); end
+
+  def api_users_request_reset_path(*args); end
+
+  def api_users_request_reset_url(*args); end
+
+  def api_users_reset_password_path(*args); end
+
+  def api_users_reset_password_url(*args); end
+
+  def api_users_url(*args); end
+
+  def api_users_verify_path(*args); end
+
+  def api_users_verify_url(*args); end
+
   def batch_action_admin_predicted_orders_path(*args); end
 
   def batch_action_admin_predicted_orders_url(*args); end
@@ -8107,15 +8131,6 @@ end
 class Api::OpDaysController
 end
 
-class Api::OpDaysController::OpDaysParams
-  def self.inherited(s); end
-end
-
-class Api::OpDaysController
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
-end
-
 class Api::OrdersController
   def create(); end
 
@@ -8156,6 +8171,9 @@ end
 class Api::RecipesController
 end
 
+class Api::UsersController
+end
+
 module ApplicationCable
 end
 
@@ -8175,6 +8193,10 @@ module ApplicationCable
 end
 
 class ApplicationController
+  def authenticate_api_user!(); end
+
+  def signed_in?(); end
+
   def status(); end
 end
 
@@ -20275,6 +20297,185 @@ JSON::State = JSON::Ext::Generator::State
 
 JSON::UnparserError = JSON::GeneratorError
 
+module JWT
+  DEFAULT_OPTIONS = ::T.let(nil, ::T.untyped)
+  NAMED_CURVES = ::T.let(nil, ::T.untyped)
+end
+
+class JWT::Decode
+  def decode_segments(); end
+
+  def header(); end
+
+  def initialize(jwt, key, verify, options, &keyfinder); end
+
+  def payload(); end
+
+  def signature(); end
+
+  def verify(); end
+end
+
+class JWT::Decode
+  def self.base64url_decode(str); end
+end
+
+class JWT::DecodeError
+end
+
+class JWT::DecodeError
+end
+
+class JWT::ExpiredSignature
+end
+
+class JWT::ExpiredSignature
+end
+
+class JWT::ImmatureSignature
+end
+
+class JWT::ImmatureSignature
+end
+
+class JWT::IncorrectAlgorithm
+end
+
+class JWT::IncorrectAlgorithm
+end
+
+class JWT::InvalidAudError
+end
+
+class JWT::InvalidAudError
+end
+
+class JWT::InvalidIatError
+end
+
+class JWT::InvalidIatError
+end
+
+class JWT::InvalidIssuerError
+end
+
+class JWT::InvalidIssuerError
+end
+
+class JWT::InvalidJtiError
+end
+
+class JWT::InvalidJtiError
+end
+
+class JWT::InvalidPayload
+end
+
+class JWT::InvalidPayload
+end
+
+class JWT::InvalidSubError
+end
+
+class JWT::InvalidSubError
+end
+
+module JWT::Json
+  def decode_json(encoded); end
+
+  def encode_json(raw); end
+end
+
+module JWT::Json
+end
+
+class JWT::VerificationError
+end
+
+class JWT::VerificationError
+end
+
+class JWT::Verify
+  def initialize(payload, options); end
+
+  def verify_aud(); end
+
+  def verify_aud_array(audience, options_aud); end
+
+  def verify_expiration(); end
+
+  def verify_iat(); end
+
+  def verify_iss(); end
+
+  def verify_jti(); end
+
+  def verify_not_before(); end
+
+  def verify_sub(); end
+end
+
+class JWT::Verify
+  def self.verify_aud(payload, options); end
+
+  def self.verify_expiration(payload, options); end
+
+  def self.verify_iat(payload, options); end
+
+  def self.verify_iss(payload, options); end
+
+  def self.verify_jti(payload, options); end
+
+  def self.verify_not_before(payload, options); end
+
+  def self.verify_sub(payload, options); end
+end
+
+module JWT
+  extend ::JWT::Json
+  def self.asn1_to_raw(signature, public_key); end
+
+  def self.base64url_decode(str); end
+
+  def self.base64url_encode(str); end
+
+  def self.decode(jwt, key=T.unsafe(nil), verify=T.unsafe(nil), custom_options=T.unsafe(nil), &keyfinder); end
+
+  def self.decode_verify_signature(key, header, signature, signing_input, options, &keyfinder); end
+
+  def self.decoded_segments(jwt, key=T.unsafe(nil), verify=T.unsafe(nil), custom_options=T.unsafe(nil), &keyfinder); end
+
+  def self.encode(payload, key, algorithm=T.unsafe(nil), header_fields=T.unsafe(nil)); end
+
+  def self.encoded_header(algorithm=T.unsafe(nil), header_fields=T.unsafe(nil)); end
+
+  def self.encoded_payload(payload); end
+
+  def self.encoded_signature(signing_input, key, algorithm); end
+
+  def self.raw_to_asn1(signature, private_key); end
+
+  def self.secure_compare(a, b); end
+
+  def self.sign(algorithm, msg, key); end
+
+  def self.sign_ecdsa(algorithm, msg, private_key); end
+
+  def self.sign_hmac(algorithm, msg, key); end
+
+  def self.sign_rsa(algorithm, msg, private_key); end
+
+  def self.signature_algorithm_and_key(header, key, &keyfinder); end
+
+  def self.verify_ecdsa(algorithm, public_key, signing_input, signature); end
+
+  def self.verify_rsa(algorithm, public_key, signing_input, signature); end
+
+  def self.verify_signature(algo, key, signing_input, signature); end
+
+  def self.verify_signature_algo(algo, key, signing_input, signature); end
+end
+
 class Jbuilder
   BLANK = ::T.let(nil, ::T.untyped)
   NON_ENUMERABLES = ::T.let(nil, ::T.untyped)
@@ -23039,6 +23240,8 @@ end
 class Net::HTTPAlreadyReported
 end
 
+Net::HTTPClientError::EXCEPTION_TYPE = Net::HTTPServerException
+
 Net::HTTPClientErrorCode = Net::HTTPClientError
 
 Net::HTTPFatalErrorCode = Net::HTTPClientError
@@ -23083,6 +23286,8 @@ end
 class Net::HTTPProcessing
 end
 
+Net::HTTPRedirection::EXCEPTION_TYPE = Net::HTTPRetriableError
+
 Net::HTTPRedirectionCode = Net::HTTPRedirection
 
 Net::HTTPRequestURITooLarge = Net::HTTPRequestURITooLong
@@ -23091,17 +23296,15 @@ Net::HTTPResponceReceiver = Net::HTTPResponse
 
 Net::HTTPRetriableCode = Net::HTTPRedirection
 
+Net::HTTPServerError::EXCEPTION_TYPE = Net::HTTPFatalError
+
 Net::HTTPServerErrorCode = Net::HTTPServerError
 
 Net::HTTPSession = Net::HTTP
 
-class Net::HTTPSuccess
-end
+Net::HTTPSuccess::EXCEPTION_TYPE = Net::HTTPError
 
-Net::HTTPSuccessCode::EXCEPTION_TYPE = Net::HTTPError
-
-class Net::HTTPSuccess
-end
+Net::HTTPSuccessCode = Net::HTTPSuccess
 
 Net::HTTPUnknownResponse::EXCEPTION_TYPE = Net::HTTPError
 
@@ -28334,40 +28537,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70114680225300
+module Polyfill::Module::M70266125432520
 end
 
-module Polyfill::Module::M70114680225300
+module Polyfill::Module::M70266125432520
 end
 
-module Polyfill::Module::M70114680251440
+module Polyfill::Module::M70266126204000
 end
 
-module Polyfill::Module::M70114680251440
+module Polyfill::Module::M70266126204000
 end
 
-module Polyfill::Module::M70114680301560
+module Polyfill::Module::M70266127731560
 end
 
-module Polyfill::Module::M70114680301560
+module Polyfill::Module::M70266127731560
 end
 
-module Polyfill::Module::M70114680410740
+module Polyfill::Module::M70266176944140
 end
 
-module Polyfill::Module::M70114680410740
+module Polyfill::Module::M70266176944140
 end
 
-module Polyfill::Module::M70114680484540
+module Polyfill::Module::M70266177088460
 end
 
-module Polyfill::Module::M70114680484540
+module Polyfill::Module::M70266177088460
 end
 
-module Polyfill::Module::M70114680598220
+module Polyfill::Module::M70266179897120
 end
 
-module Polyfill::Module::M70114680598220
+module Polyfill::Module::M70266179897120
 end
 
 class PredictedOrder
