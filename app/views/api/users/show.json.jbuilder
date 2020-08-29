@@ -1,5 +1,5 @@
 json.user do
-  json.(@user, :id, :first_name, :last_name, :email, :phone_number)
+  json.(@user, :id, :role, :first_name, :last_name, :email, :phone_number)
   json.organizations(@user.user_organizations) do |user_org|
     organization = user_org.organization
     json.id user_org.organization_id

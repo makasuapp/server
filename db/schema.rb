@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_021542) do
+ActiveRecord::Schema.define(version: 2020_08_29_221931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,7 +253,7 @@ ActiveRecord::Schema.define(version: 2020_08_28_021542) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
+    t.string "email"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -271,7 +271,10 @@ ActiveRecord::Schema.define(version: 2020_08_28_021542) do
     t.string "phone_number"
     t.string "first_name"
     t.string "last_name"
+    t.string "role"
+    t.string "kitchen_token"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["kitchen_token"], name: "index_users_on_kitchen_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

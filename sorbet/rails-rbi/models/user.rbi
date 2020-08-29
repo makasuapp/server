@@ -35,10 +35,10 @@ module User::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def current_sign_in_ip?; end
 
-  sig { returns(String) }
+  sig { returns(T.nilable(String)) }
   def email; end
 
-  sig { params(value: T.any(String, Symbol)).void }
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
   def email=(value); end
 
   sig { returns(T::Boolean) }
@@ -79,6 +79,15 @@ module User::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def id?; end
+
+  sig { returns(T.nilable(String)) }
+  def kitchen_token; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def kitchen_token=(value); end
+
+  sig { returns(T::Boolean) }
+  def kitchen_token?; end
 
   sig { returns(T.nilable(String)) }
   def last_name; end
@@ -151,6 +160,15 @@ module User::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def reset_password_token?; end
+
+  sig { returns(T.nilable(String)) }
+  def role; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def role=(value); end
+
+  sig { returns(T::Boolean) }
+  def role?; end
 
   sig { returns(Integer) }
   def sign_in_count; end

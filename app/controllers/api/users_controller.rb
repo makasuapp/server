@@ -67,6 +67,31 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def verify_kitchen
+    kitchen_id = params[:kitchen_id].to_i
+    token = params[:token]
+
+    if kitchen_id.present? && token.present?
+      user = User.find_by(kitchen_token: token)
+
+      if user.present?
+        #fix this later
+        user.user_organizations.each do |user_org|
+          organization = user_org.organization
+          organization.kitchens.each do |kitchen|
+            if kitchen.id == kitchen_id
+              @user = user
+              render :show
+              return
+            end
+          end
+        end
+      end
+    end
+
+    head :unauthorized
+  end
+
   private
 
   def set_user

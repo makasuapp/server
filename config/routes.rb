@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     post 'users/reset_password', to: 'users#reset_password'
     post 'users/request_reset', to: 'users#request_reset'
     post 'users/verify', to: 'users#verify'
+    post 'users/verify_kitchen', to: 'users#verify_kitchen'
 
     resources :recipes, only: [:index]
 

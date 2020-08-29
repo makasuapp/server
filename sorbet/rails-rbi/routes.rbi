@@ -210,6 +210,13 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_users_verify_url(*args, **kwargs); end
 
+  # Sigs for route /api/users/verify_kitchen(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_verify_kitchen_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_users_verify_kitchen_url(*args, **kwargs); end
+
   # Sigs for route /api/recipes(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_recipes_path(*args, **kwargs); end
