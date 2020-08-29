@@ -50,25 +50,22 @@ class Api::OrdersController < ApplicationController
   end
 
   def index
-    #hacky temp solution to have a dev environment
-    if params[:env] == "dev"
-      date = OpDay.first.date
-    elsif params[:date].present?
+    if params[:date].present?
       date = Time.at(params[:date])
     else
       #TODO(timezone)
       date = Time.now.in_time_zone("America/Toronto")
     end
 
-    recipe_ids = PredictedOrder.where(date: date, kitchen_id: params[:kitchen_id]).map(&:recipe_id)
-    @recipes = Recipe.all_in(recipe_ids)
+    kitchen = Kitchen.find(params[:kitchen_id])
+    @recipes = Recipe.where(organization_id: kitchen.organization_id)
     
     @recipe_steps = RecipeStep
       .where(recipe_id: @recipes.map(&:id))
       .includes([{inputs: :inputable}, :detailed_instructions, :tools, :recipe])
     
     @orders = Order
-      .where(kitchen_id: params[:kitchen_id])
+      .where(kitchen_id: kitchen.id)
       .includes([:order_items, :customer, :integration])
 
     #TODO(timezone)

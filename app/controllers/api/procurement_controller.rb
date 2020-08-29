@@ -1,12 +1,7 @@
 # typed: ignore
 class Api::ProcurementController < ApplicationController
   def index
-    #hacky temp solution to have a dev environment
-    if params[:env] == "dev"
-      date = OpDay.first.date
-    else
-      date = Time.now
-    end
+    date = Time.now
 
     @procurement_orders = ProcurementOrder
       .where(kitchen_id: params[:kitchen_id])
