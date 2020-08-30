@@ -8,6 +8,24 @@ module UserOrganization::ActiveRelation_WhereNot
 end
 
 module UserOrganization::GeneratedAttributeMethods
+  sig { returns(T.nilable(String)) }
+  def access_link; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def access_link=(value); end
+
+  sig { returns(T::Boolean) }
+  def access_link?; end
+
+  sig { returns(T.nilable(String)) }
+  def auth_token; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def auth_token=(value); end
+
+  sig { returns(T::Boolean) }
+  def auth_token?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def created_at; end
 

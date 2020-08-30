@@ -72,18 +72,16 @@ class Api::UsersController < ApplicationController
     token = params[:token]
 
     if kitchen_id.present? && token.present?
-      user = User.find_by(kitchen_token: token)
+      user_org = UserOrganization.find_by(auth_token: token)
 
-      if user.present?
-        #fix this later
-        user.user_organizations.each do |user_org|
-          organization = user_org.organization
-          organization.kitchens.each do |kitchen|
-            if kitchen.id == kitchen_id
-              @user = user
-              render :show
-              return
-            end
+      if user_org.present?
+        #TODO(permissions): properly check this user_org gives auth to the specific kitchen
+        organization = user_org.organization
+        organization.kitchens.each do |kitchen|
+          if kitchen.id == kitchen_id
+            @user = user_org.user
+            render :show
+            return
           end
         end
       end

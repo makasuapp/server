@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_29_221931) do
+ActiveRecord::Schema.define(version: 2020_08_30_210317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -248,6 +248,9 @@ ActiveRecord::Schema.define(version: 2020_08_29_221931) do
     t.bigint "kitchen_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "auth_token"
+    t.string "access_link"
+    t.index ["auth_token"], name: "index_user_organizations_on_auth_token", unique: true
     t.index ["organization_id", "user_id"], name: "organizations_users_idx"
     t.index ["user_id", "organization_id"], name: "users_organizations_idx"
   end
@@ -272,9 +275,7 @@ ActiveRecord::Schema.define(version: 2020_08_29_221931) do
     t.string "first_name"
     t.string "last_name"
     t.string "role"
-    t.string "kitchen_token"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["kitchen_token"], name: "index_users_on_kitchen_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

@@ -4,6 +4,8 @@
 # Table name: user_organizations
 #
 #  id              :bigint           not null, primary key
+#  access_link     :string
+#  auth_token      :string
 #  role            :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -13,8 +15,9 @@
 #
 # Indexes
 #
-#  organizations_users_idx  (organization_id,user_id)
-#  users_organizations_idx  (user_id,organization_id)
+#  index_user_organizations_on_auth_token  (auth_token) UNIQUE
+#  organizations_users_idx                 (organization_id,user_id)
+#  users_organizations_idx                 (user_id,organization_id)
 #
 module UserRole
   User = "user"

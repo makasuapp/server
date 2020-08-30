@@ -81,15 +81,6 @@ module User::GeneratedAttributeMethods
   def id?; end
 
   sig { returns(T.nilable(String)) }
-  def kitchen_token; end
-
-  sig { params(value: T.nilable(T.any(String, Symbol))).void }
-  def kitchen_token=(value); end
-
-  sig { returns(T::Boolean) }
-  def kitchen_token?; end
-
-  sig { returns(T.nilable(String)) }
   def last_name; end
 
   sig { params(value: T.nilable(T.any(String, Symbol))).void }
