@@ -41,7 +41,7 @@ class Api::OrdersController < ApplicationController
       order_json = ActionController::Base.new.view_context.render(
         partial: "api/orders/order", locals: {order: @order})
 
-      response = Firebase.new.send_data(@order.topic_name, "new_order", order_json)
+      response = Firebase.new.send_notification_with_data(@order.topic_name, "New Order", "new_order", order_json)
     rescue => e
       Raven.capture_exception(e)
     end
