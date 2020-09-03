@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
   end
 
   def status
-    1/0
     render json: {message: "ok"}
   end
 

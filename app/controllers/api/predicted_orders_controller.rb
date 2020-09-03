@@ -14,7 +14,7 @@ class Api::PredictedOrdersController < ApplicationController
   end
 
   def update_for_date
-    kitchen = Kitchen.find(params[:kitchen_id])
+    kitchen = Kitchen.find_by(id: params[:kitchen_id])
     #TODO(timezone)
     date = Time.at(params[:date_ms].to_i / 1000).in_time_zone("America/Toronto")
     @predicted_orders = []

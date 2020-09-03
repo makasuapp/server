@@ -57,7 +57,7 @@ class Api::OrdersController < ApplicationController
       date = Time.now.in_time_zone("America/Toronto")
     end
 
-    kitchen = Kitchen.find(params[:kitchen_id])
+    kitchen = Kitchen.find_by(id: params[:kitchen_id])
     @recipes = Recipe.where(organization_id: kitchen.organization_id)
     
     @recipe_steps = RecipeStep
