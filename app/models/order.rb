@@ -106,8 +106,13 @@ class Order < ApplicationRecord
     if self.integration_id.present?
       integration = self.integration
       if integration.integration_type == IntegrationType::Wix
-        Wix::WixApi.fulfill_order(integration.wix_app_instance_id, 
-          integration.wix_restaurant_id, self.integration_order_id)
+        # begin
+          puts ">>> app: #{integration.wix_app_instance_id} restaurant: #{integration.wix_restaurant_id} order: #{self.integration_order_id}"
+          Wix::WixApi.fulfill_order(integration.wix_app_instance_id, 
+            integration.wix_restaurant_id, self.integration_order_id)
+        # rescue => e
+        #   Raven.capture_exception(e)
+        # end
       end
     end
   end
