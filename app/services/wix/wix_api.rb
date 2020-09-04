@@ -15,6 +15,10 @@ module Wix
       resp = HTTP.post(url, json: {instance: wix_app_instance_id}).body.to_s
       json = JSON.parse(resp)
 
+      if json["accessToken"].nil?
+        raise "no access token retrieved. instead got: #{json}"
+      end
+
       json["accessToken"]
     end
 
@@ -33,14 +37,11 @@ module Wix
     sig {params(wix_app_instance_id: String, wix_restaurant_id: String, 
       wix_order_id: String).returns(Wix::Order)}
     def self.fulfill_order(wix_app_instance_id, wix_restaurant_id, wix_order_id)
-      puts ">>>> here #{wix_app_instance_id}"
       auth_token = self.get_access_token(wix_app_instance_id)
 
       url = "#{API_URL}/organizations/#{wix_restaurant_id}/orders/#{wix_order_id}/properties"
       resp = HTTP.auth("Bearer #{auth_token}").put(url, json: {"com.wix.restaurants": "{\"delivered\": true}"}).body.to_s
       json = JSON.parse(resp).to_json
-
-      puts json
 
       Wix::OrderRepresenter.new(Wix::Order.new).from_json(json)
     end
