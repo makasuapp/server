@@ -23,28 +23,4 @@ class ProcurementOrder < ApplicationRecord
   belongs_to :vendor
   belongs_to :kitchen
   has_many :procurement_items
-
-  sig {params(
-    day_ingredients: T.any(
-      DayIngredient::ActiveRecord_Relation, 
-      DayIngredient::ActiveRecord_AssociationRelation,
-      T::Array[DayIngredient]), 
-    vendor: Vendor, date: T.any(DateTime, ActiveSupport::TimeWithZone),
-    kitchen: Kitchen).void}
-  def self.create_from(day_ingredients, vendor, date, kitchen)
-    po = ProcurementOrder
-    po = ProcurementOrder.create!(
-      for_date: date, 
-      order_type: "manual",
-      kitchen_id: kitchen.id,
-      vendor_id: vendor.id
-    )
-    day_ingredients.each do |di|
-      po.procurement_items.create!(
-        ingredient_id: di.ingredient_id, 
-        quantity: di.expected_qty,
-        unit: di.unit
-      )
-    end
-  end
 end

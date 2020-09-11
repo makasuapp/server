@@ -19,6 +19,7 @@ class IngredientAmount < T::Struct
       if existing.nil?
         sum[a.ingredient_id] = [a]
       else
+        #may have different units of the same ingredient that don't convert
         ingredient = Ingredient.find(a.ingredient_id)
         matches_unit_idx = existing.find_index { |i| UnitConverter.can_convert?(a.unit, i.unit, ingredient.volume_weight_ratio) }
         if matches_unit_idx.present?
