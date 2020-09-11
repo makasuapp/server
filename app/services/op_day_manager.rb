@@ -26,7 +26,7 @@ class OpDayManager
     op_day.day_preps.inject({}) do |prep_map, prep|
       if prep_map[prep.recipe_step_id].nil?
         if prep.made_qty.present?
-          prep_map[prep.recipe_step_id] = StepAmount.mk(prep.recipe_step_id, T.must(prep.made_qty))
+          prep_map[prep.recipe_step_id] = StepAmount.mk(prep.recipe_step_id, prep.made_qty)
         end
       else
         raise "unexpected, more than one day prep with same recipe step id"
@@ -44,8 +44,8 @@ class OpDayManager
           ingredient_map[ingredient.ingredient_id] = []
         end
 
-        ingredient_map[ingredient.ingredient_id] << Ingredient.mk(
-          ingredient.ingredient_id, T.must(ingredient.had_qty), ingredient.unit)
+        ingredient_map[ingredient.ingredient_id] << IngredientAmount.mk(
+          ingredient.ingredient_id, ingredient.had_qty, ingredient.unit)
       end
 
       ingredient_map

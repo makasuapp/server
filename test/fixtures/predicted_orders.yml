@@ -3,7 +3,7 @@
 # Table name: predicted_orders
 #
 #  id         :bigint           not null, primary key
-#  date       :date             not null
+#  date       :datetime         not null
 #  quantity   :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

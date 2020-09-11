@@ -17,10 +17,10 @@ module PredictedOrder::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def created_at?; end
 
-  sig { returns(Date) }
+  sig { returns(ActiveSupport::TimeWithZone) }
   def date; end
 
-  sig { params(value: Date).void }
+  sig { params(value: T.any(Date, Time, ActiveSupport::TimeWithZone)).void }
   def date=(value); end
 
   sig { returns(T::Boolean) }
