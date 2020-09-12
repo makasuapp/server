@@ -1,8 +1,8 @@
 # typed: ignore
 class Api::PredictedOrdersController < ApplicationController
   def index
-    start_date = params[:start].to_date
-    end_date = params[:end].to_date
+    start_date = params[:start].to_datetime
+    end_date = params[:end].to_datetime
 
     @predicted_orders = PredictedOrder
       .where(date: start_date..end_date)
