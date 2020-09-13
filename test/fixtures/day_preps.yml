@@ -5,11 +5,11 @@
 #  id             :bigint           not null, primary key
 #  expected_qty   :float            not null
 #  made_qty       :float
-#  min_needed_at  :datetime
+#  min_needed_at  :datetime         not null
 #  qty_updated_at :datetime
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  kitchen_id     :bigint
+#  kitchen_id     :bigint           not null
 #  op_day_id      :bigint           not null
 #  recipe_step_id :bigint           not null
 #

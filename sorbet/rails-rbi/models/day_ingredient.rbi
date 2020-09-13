@@ -53,10 +53,19 @@ module DayIngredient::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def ingredient_id?; end
 
-  sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
+  sig { returns(Integer) }
+  def kitchen_id; end
+
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
+  def kitchen_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def kitchen_id?; end
+
+  sig { returns(ActiveSupport::TimeWithZone) }
   def min_needed_at; end
 
-  sig { params(value: T.nilable(T.any(Date, Time, ActiveSupport::TimeWithZone))).void }
+  sig { params(value: T.any(Date, Time, ActiveSupport::TimeWithZone)).void }
   def min_needed_at=(value); end
 
   sig { returns(T::Boolean) }
@@ -114,6 +123,21 @@ module DayIngredient::GeneratedAssociationMethods
 
   sig { params(value: ::Ingredient).void }
   def ingredient=(value); end
+
+  sig { returns(::Kitchen) }
+  def kitchen; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Kitchen).void)).returns(::Kitchen) }
+  def build_kitchen(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Kitchen).void)).returns(::Kitchen) }
+  def create_kitchen(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Kitchen).void)).returns(::Kitchen) }
+  def create_kitchen!(*args, &block); end
+
+  sig { params(value: ::Kitchen).void }
+  def kitchen=(value); end
 
   sig { returns(::OpDay) }
   def op_day; end

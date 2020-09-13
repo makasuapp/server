@@ -6,13 +6,13 @@
 #  id             :bigint           not null, primary key
 #  expected_qty   :float            not null
 #  had_qty        :float
-#  min_needed_at  :datetime
+#  min_needed_at  :datetime         not null
 #  qty_updated_at :datetime
 #  unit           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  ingredient_id  :bigint           not null
-#  kitchen_id     :bigint
+#  kitchen_id     :bigint           not null
 #  op_day_id      :bigint           not null
 #
 # Indexes
@@ -26,4 +26,5 @@ class DayIngredient < ApplicationRecord
 
   belongs_to :ingredient
   belongs_to :op_day
+  belongs_to :kitchen
 end

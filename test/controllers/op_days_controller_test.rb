@@ -5,13 +5,16 @@ class OpDaysControllerSaveIngredientsTest < ActionDispatch::IntegrationTest
   setup do
     @yesterday = DateTime.now - 1.day
     salt = ingredients(:salt)
+    @kitchen = kitchens(:test)
     @salt_ingredient = DayIngredient.create!(
       expected_qty: 1.5, had_qty: 0.5, ingredient_id: salt.id, 
-      op_day_id: op_days(:today).id, qty_updated_at: @yesterday
+      op_day_id: op_days(:today).id, qty_updated_at: @yesterday,
+      min_needed_at: @yesterday, kitchen_id: @kitchen.id
     )
     chicken = ingredients(:chicken)
     @chicken_ingredient = DayIngredient.create!(
-      expected_qty: 2.5, ingredient_id: chicken.id, op_day_id: op_days(:today).id
+      expected_qty: 2.5, ingredient_id: chicken.id, op_day_id: op_days(:today).id,
+      min_needed_at: @yesterday, kitchen_id: @kitchen.id
     )
   end
 
@@ -58,12 +61,15 @@ class OpDaysControllerSavePrepTest < ActionDispatch::IntegrationTest
     @yesterday = DateTime.now - 1.day
     chicken_p1 = recipe_steps(:chicken_p1)
     chicken_p2 = recipe_steps(:chicken_p2)
+    @kitchen = kitchens(:test)
     @p1_prep = DayPrep.create!(
       expected_qty: 1.5, made_qty: 0.5, recipe_step_id: chicken_p1.id, 
-      op_day_id: op_days(:today).id, qty_updated_at: @yesterday
+      op_day_id: op_days(:today).id, qty_updated_at: @yesterday,
+      min_needed_at: @yesterday, kitchen_id: @kitchen.id
     )
     @p2_prep = DayPrep.create!(
-      expected_qty: 2.5, recipe_step_id: chicken_p2.id, op_day_id: op_days(:today).id
+      expected_qty: 2.5, recipe_step_id: chicken_p2.id, op_day_id: op_days(:today).id,
+      min_needed_at: @yesterday, kitchen_id: @kitchen.id
     )
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_12_185110) do
+ActiveRecord::Schema.define(version: 2020_09_13_003932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2020_09_12_185110) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "qty_updated_at"
-    t.datetime "min_needed_at"
-    t.bigint "kitchen_id"
+    t.datetime "min_needed_at", null: false
+    t.bigint "kitchen_id", null: false
     t.index ["ingredient_id"], name: "index_day_ingredients_on_ingredient_id"
     t.index ["kitchen_id", "min_needed_at"], name: "index_day_ingredients_on_kitchen_id_and_min_needed_at"
     t.index ["op_day_id"], name: "index_day_ingredients_on_op_day_id"
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 2020_09_12_185110) do
     t.datetime "qty_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "min_needed_at"
-    t.bigint "kitchen_id"
+    t.datetime "min_needed_at", null: false
+    t.bigint "kitchen_id", null: false
     t.index ["kitchen_id", "min_needed_at"], name: "index_day_preps_on_kitchen_id_and_min_needed_at"
     t.index ["op_day_id"], name: "index_day_preps_on_op_day_id"
     t.index ["recipe_step_id"], name: "index_day_preps_on_recipe_step_id"
