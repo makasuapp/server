@@ -31,16 +31,17 @@ class PredictedOrderTest < ActiveSupport::TestCase
     assert @predicted_order.quantity == 4
     assert @predicted_order.recipe.output_qty == 2
 
+    time = DateTime.now
     amounts = [
-      IngredientAmount.mk(@i1.id, 1.5),
-      IngredientAmount.mk(@i2.id, 2.5),
-      IngredientAmount.mk(@i2.id, 1.4)
+      IngredientAmount.mk(@i1.id, time, 1.5),
+      IngredientAmount.mk(@i2.id, time, 2.5),
+      IngredientAmount.mk(@i2.id, time, 1.4)
     ]
     Recipe.any_instance.expects(:ingredient_amounts).once.returns(amounts)
     pr_amounts = @predicted_order.ingredient_amounts
 
-    assert pr_amounts[0].serialize == IngredientAmount.mk(@i1.id, 3.0).serialize
-    assert pr_amounts[1].serialize == IngredientAmount.mk(@i2.id, 5.0).serialize
-    assert pr_amounts[2].serialize == IngredientAmount.mk(@i2.id, 2.8).serialize
+    assert pr_amounts[0].serialize == IngredientAmount.mk(@i1.id, time, 3.0).serialize
+    assert pr_amounts[1].serialize == IngredientAmount.mk(@i2.id, time, 5.0).serialize
+    assert pr_amounts[2].serialize == IngredientAmount.mk(@i2.id, time, 2.8).serialize
   end
 end

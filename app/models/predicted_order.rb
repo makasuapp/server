@@ -35,7 +35,7 @@ class PredictedOrder < ApplicationRecord
   sig {returns(T::Array[IngredientAmount])}
   def ingredient_amounts
     recipe = self.recipe
-    recipe_amounts = recipe.ingredient_amounts
+    recipe_amounts = recipe.ingredient_amounts(self.date)
     recipe_servings = recipe.servings_produced(self.quantity)
 
     recipe_amounts.map { |amount| amount * recipe_servings }

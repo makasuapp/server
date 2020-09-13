@@ -12,13 +12,14 @@ class DayIngredientTest < ActiveSupport::TestCase
     count = DayIngredient.count
     assert PredictedOrder.count == 1
 
+    time = DateTime.now.beginning_of_day
     amounts = [
-      IngredientAmount.mk(@i1.id, 1.5),
-      IngredientAmount.mk(@i2.id, 1400, "g")
+      IngredientAmount.mk(@i1.id, time, 1.5),
+      IngredientAmount.mk(@i2.id, time, 1400, "g")
     ]
     PredictedOrder.any_instance.expects(:ingredient_amounts).once.returns(amounts)
     had_qtys = {}
-    had_qtys[@i2.id] = [IngredientAmount.mk(@i2.id, 1.2, "kg")]
+    had_qtys[@i2.id] = [IngredientAmount.mk(@i2.id, time, 1.2, "kg")]
     OpDayManager.create_day_ingredients(PredictedOrder.all, @today, had_qtys)
 
     assert DayIngredient.count == count + 2
@@ -33,7 +34,7 @@ class DayIngredientTest < ActiveSupport::TestCase
     assert di2.unit == "g"
   end
 
-  test "create_day_ingredients aggregates the ingredients" do
+  test "create_day_ingredients aggregates the ingredients across the day" do
     new_pr = @predicted_order.dup
     new_pr.save!
     count = DayIngredient.count
@@ -42,26 +43,36 @@ class DayIngredientTest < ActiveSupport::TestCase
     assert @i1.volume_weight_ratio.nil?
     assert @i2.volume_weight_ratio.present?
 
+    time = DateTime.now.in_time_zone("America/Toronto")
     amounts = [
-      IngredientAmount.mk(@i1.id, 1.5, "g"),
-      IngredientAmount.mk(@i1.id, 1.3, "g"),
-      IngredientAmount.mk(@i1.id, 1.2, "L"),
-      IngredientAmount.mk(@i2.id, 1.4, "kg"),
-      IngredientAmount.mk(@i2.id, 1100, "g"),
-      IngredientAmount.mk(@i2.id, 1.6, "L")
+      #doesn't aggregate, different day
+      IngredientAmount.mk(@i1.id, time - 1.day, 1.5, "g"),
+      #should aggregate
+      IngredientAmount.mk(@i1.id, time.beginning_of_day + 1.hour, 1.5, "g"),
+      IngredientAmount.mk(@i1.id, time, 1.3, "g"),
+      #doesn't aggregate, can't convert
+      IngredientAmount.mk(@i1.id, time, 1.2, "L"),
+      #all aggregates
+      IngredientAmount.mk(@i2.id, time, 1.4, "kg"),
+      IngredientAmount.mk(@i2.id, time, 1100, "g"),
+      IngredientAmount.mk(@i2.id, time, 1.6, "L")
     ]
     PredictedOrder.any_instance.expects(:ingredient_amounts).times(2).returns(amounts)
     OpDayManager.create_day_ingredients(PredictedOrder.all, @today, {})
 
-    assert DayIngredient.count == count + 3
-    assert DayIngredient.where(ingredient_id: @i1.id).count == 2
+    assert DayIngredient.count == count + 4
+    assert DayIngredient.where(ingredient_id: @i1.id).count == 3
     assert DayIngredient.where(ingredient_id: @i2.id).count == 1
 
-    di1_1 = DayIngredient.where(ingredient_id: @i1.id).first
+    di1_yesterday = DayIngredient.where(ingredient_id: @i1.id).where("min_needed_at < ?", time.beginning_of_day).first
+    assert di1_yesterday.expected_qty == 1.5 * 2
+    assert di1_yesterday.unit == "g"
+    
+    di1_1 = DayIngredient.where(ingredient_id: @i1.id).where(min_needed_at: time.beginning_of_day).first
     assert di1_1.expected_qty == (1.5 + 1.3) * 2
     assert di1_1.unit == "g"
 
-    di1_2 = DayIngredient.where(ingredient_id: @i1.id).last
+    di1_2 = DayIngredient.where(ingredient_id: @i1.id).where(min_needed_at: time.beginning_of_day).last
     assert di1_2.expected_qty == 1.2 * 2
     assert di1_2.unit == "L"
 
@@ -83,7 +94,7 @@ class DayPrepTest < ActiveSupport::TestCase
     count = DayPrep.count
 
     made_qtys = {}
-    made_qtys[@sauce_step.id] = StepAmount.mk(@sauce_step.id, 0.8)
+    made_qtys[@sauce_step.id] = [StepAmount.mk(@sauce_step.id, PredictedOrder.first.date, 0.8)]
     OpDayManager.create_day_preps(PredictedOrder.all, @today, made_qtys)
 
     assert DayPrep.count == count + 6
@@ -100,6 +111,7 @@ class DayPrepTest < ActiveSupport::TestCase
     g = recipes(:green_onion)
 
     #green onion is now a subrecipe of chicken twice and sauce once
+    #one of the chicken ones has an earlier min_needed_at
     StepInput.create!(inputable_id: g.id, inputable_type: InputType::Recipe, 
       recipe_step_id: @sauce_step.id, quantity: 10, unit: "g")
     StepInput.create!(inputable_id: g.id, inputable_type: InputType::Recipe, 
@@ -114,14 +126,14 @@ class DayPrepTest < ActiveSupport::TestCase
 
     OpDayManager.create_day_preps(PredictedOrder.all, @today, {})
 
-    assert DayPrep.count == count + 6
+    assert DayPrep.count == count + 7
     #recipe serves 2, so we want 7/2 of it
     assert DayPrep.where(recipe_step_id: @chicken_step.id).first.expected_qty == 3.5
 
     green_onion_step = g.recipe_steps.first
-    green_onion_prep = DayPrep.where(recipe_step_id: green_onion_step.id)
-    assert green_onion_prep.count == 1
-    #7/2 * ((0.5 * 10)/100 of recipe + (3 * 6)/100 of recipe + 80/100 of recipe)
-    assert green_onion_prep.first.expected_qty.round(3) == 3.605
+    green_onion_prep = DayPrep.where(recipe_step_id: green_onion_step.id).order(:min_needed_at)
+    assert green_onion_prep.count == 2
+    assert green_onion_prep.first.expected_qty.round(3) == (7.0/2 * ((3.0 * 6)/100)).round(3)
+    assert green_onion_prep.last.expected_qty.round(3) == (7.0/2 * ((0.5 * 10)/100 + 80.0/100)).round(3)
   end
 end

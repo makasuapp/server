@@ -16,26 +16,27 @@ class OpDayManager
 
     #regenerate for all recipes of that date 
     predicted_orders = PredictedOrder.where(date: date, kitchen_id: kitchen.id)
-    #TODO(po_time): use the times from predicted orders
     preps = self.create_day_preps(predicted_orders, op_day, made_qtys)
     self.create_day_ingredients(predicted_orders, op_day, ingredient_qtys, preps)
   end
 
-  sig {params(op_day: OpDay).returns(T::Hash[Integer, StepAmount])}
+  #assumes prev day preps already properly aggregated
+  sig {params(op_day: OpDay).returns(T::Hash[Integer, T::Array[StepAmount]])}
   def self.prep_made_qtys(op_day)
     op_day.day_preps.inject({}) do |prep_map, prep|
-      if prep_map[prep.recipe_step_id].nil?
-        if prep.made_qty.present?
-          prep_map[prep.recipe_step_id] = StepAmount.mk(prep.recipe_step_id, prep.made_qty)
+      if prep.made_qty.present?
+        if prep_map[prep.recipe_step_id].nil?
+          prep_map[prep.recipe_step_id] = []
         end
-      else
-        raise "unexpected, more than one day prep with same recipe step id"
+
+        prep_map[prep.recipe_step_id] << StepAmount.mk(prep.recipe_step_id, prep.min_needed_at, prep.made_qty)
       end
 
       prep_map
     end
   end
 
+  #assumes prev day ingredients already properly aggregated
   sig {params(op_day: OpDay).returns(T::Hash[Integer, T::Array[IngredientAmount]])}
   def self.ingredient_had_qtys(op_day)
     op_day.day_ingredients.inject({}) do |ingredient_map, ingredient|
@@ -45,7 +46,7 @@ class OpDayManager
         end
 
         ingredient_map[ingredient.ingredient_id] << IngredientAmount.mk(
-          ingredient.ingredient_id, ingredient.had_qty, ingredient.unit)
+          ingredient.ingredient_id, ingredient.min_needed_at, ingredient.had_qty, ingredient.unit)
       end
 
       ingredient_map
@@ -53,27 +54,29 @@ class OpDayManager
   end
 
   # aggregate the amount of prep for each step for the day
+  # note: may have same prep needed at diff times of day
   sig {params(predicted_orders: PredictedOrder::ActiveRecord_Relation, op_day: OpDay, 
-    prep_made_qtys: T::Hash[Integer, StepAmount]).returns(T::Array[DayPrep])} 
+    prep_made_qtys: T::Hash[Integer, T::Array[StepAmount]]).returns(T::Array[DayPrep])} 
   def self.create_day_preps(predicted_orders, op_day, prep_made_qtys)
-    day_preps = {}
-
-    predicted_orders.includes({recipe: {recipe_steps: :inputs}}).each do |pr|
-      recipe = pr.recipe
-      recipe_servings = recipe.servings_produced(pr.quantity)
+    day_preps_map = {}
+    predicted_orders.includes({recipe: {recipe_steps: :inputs}}).each do |po|
+      recipe = po.recipe
+      for_date = po.date
+      recipe_servings = recipe.servings_produced(po.quantity)
 
       #get step amounts of prep steps of the recipe
       prep_step_amounts = recipe.recipe_steps
         .select { |step| step.step_type == StepType::Prep }
-        .map { |step| StepAmount.mk(step.id, 1) }
+        .map { |step| StepAmount.mk(step.id, step.min_needed_at(for_date), 1) }
       
       #get step amounts of all steps of subrecipes
       subrecipe_step_amounts = recipe.recipe_steps.map { |step| 
         step.inputs.select { |input| 
           input.inputable_type == InputType::Recipe
         }.map { |recipe_input|
+          step_needed_at = step.min_needed_at(for_date)
           child_recipe = recipe_input.inputable
-          child_steps = child_recipe.step_amounts
+          child_steps = child_recipe.step_amounts(step_needed_at)
 
           num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
           child_step_amounts = child_steps.map { |x| x * num_servings }
@@ -83,68 +86,106 @@ class OpDayManager
       #aggregate into day preps
       (prep_step_amounts + subrecipe_step_amounts).each do |step_amount|
         recipe_step_id = step_amount.recipe_step_id
-        existing_prep = day_preps[recipe_step_id]
         additional_qty = step_amount.quantity * recipe_servings
 
-        if existing_prep.nil?
-          made_step_amount = prep_made_qtys[step_amount.recipe_step_id]
-          day_preps[recipe_step_id] = DayPrep.new(
+        if day_preps_map[recipe_step_id].nil?
+          day_preps_map[recipe_step_id] = []
+        end
+
+        #add together ones from the same time
+        matches_idx  = day_preps_map[recipe_step_id].find_index { |p| 
+          p.min_needed_at.to_i == step_amount.min_needed_at.to_i }
+        if matches_idx.nil?
+          made_step_amounts = prep_made_qtys[step_amount.recipe_step_id]
+          if made_step_amounts.present?
+            made_step_amount = made_step_amounts.find { |s| 
+              s.min_needed_at.to_i == step_amount.min_needed_at.to_i }
+            if made_step_amount.present?
+              made_qty = made_step_amount.quantity
+            end
+          end
+
+          day_preps_map[recipe_step_id] << DayPrep.new(
             expected_qty: additional_qty,
             op_day_id: op_day.id,
             recipe_step_id: recipe_step_id,
-            made_qty: made_step_amount.try(:quantity)
+            min_needed_at: step_amount.min_needed_at,
+            made_qty: made_qty,
+            kitchen_id: op_day.kitchen_id
           )
         else
+          existing_prep = day_preps_map[recipe_step_id][matches_idx]
           existing_prep.expected_qty = existing_prep.expected_qty + additional_qty
-          day_preps[recipe_step_id] = existing_prep
+          day_preps_map[recipe_step_id][matches_idx] = existing_prep
         end
       end
     end
 
-    DayPrep.import! day_preps.values
+    day_preps = day_preps_map.values.flatten
+    DayPrep.import! day_preps
 
-    day_preps.values
+    day_preps
   end
 
+  #TODO(po_time): frontend for prep checklist will need to sort by time and show rough timeline
+
   # aggregate the amount of ingredients needed for the day
-  # note: may have different non-convertable units of the same ingredient
+  # for ingredients we want to aggregate all for the same day, even if different min_needed_at
+  # note: may still have different non-convertable units of the same ingredient 
   sig {params(predicted_orders: PredictedOrder::ActiveRecord_Relation, op_day: OpDay, 
     ingredient_had_qtys: T::Hash[Integer, T::Array[IngredientAmount]], preps: T::Array[DayPrep]
     ).returns(T::Array[DayIngredient])} 
   def self.create_day_ingredients(predicted_orders, op_day, ingredient_had_qtys, preps = [])
+    #get all ingredients needed across all orders
     ingredient_amounts = predicted_orders.map(&:ingredient_amounts).flatten
-    #TODO(po_time): multiple ingredient qty by multiplier of prep
-    # when we add timing, add equivalent timing to relevant ingredients here
-    # or when do ingredient amounts, also do prep timing?
-    # preps.each do |prep|
-    #   ingredient_amounts = ingredient_amounts + step.inputs.select { |input| 
-    #     input.inputable_type == InputType::Ingredient
-    #   }.map { |input| 
-    #     IngredientAmount.mk(input.inputable_id, input.quantity, input.unit)
-    #   }
-    # end
-    aggregated_amounts = IngredientAmount.sum_by_id(ingredient_amounts)
 
-    day_ingredients = aggregated_amounts.map do |a|
-      ingredient = Ingredient.find(a.ingredient_id)
-      had_qty_amounts = ingredient_had_qtys[a.ingredient_id]
-      if had_qty_amounts.present?
-        matches_unit_amount = had_qty_amounts.find { |i| 
-          UnitConverter.can_convert?(i.unit, a.unit, ingredient.volume_weight_ratio) }
-        if matches_unit_amount.present?
-          had_qty = UnitConverter.convert(matches_unit_amount.quantity, matches_unit_amount.unit,
-            a.unit, ingredient.volume_weight_ratio)
-        end
+    #aggregate into day ingredients
+    day_ingredients_map = {}
+    ingredient_amounts.each do |i_amount|
+      ingredient_id = i_amount.ingredient_id
+      #TODO(timezone)
+      on_date = i_amount.min_needed_at.in_time_zone("America/Toronto").beginning_of_day
+
+      if day_ingredients_map[ingredient_id].nil?
+        day_ingredients_map[ingredient_id] = []
       end
 
-      DayIngredient.new(
-        ingredient_id: a.ingredient_id,
-        expected_qty: a.quantity,
-        unit: a.unit,
-        op_day_id: op_day.id,
-        had_qty: had_qty
-      )
+      ingredient = Ingredient.find(ingredient_id)
+      matches_idx  = day_ingredients_map[ingredient_id].find_index { |i| 
+        i.min_needed_at.to_i == on_date.to_i &&
+        UnitConverter.can_convert?(i.unit, i_amount.unit, ingredient.volume_weight_ratio) }
+      if matches_idx.nil?
+        had_qty_amounts = ingredient_had_qtys[i_amount.ingredient_id]
+        if had_qty_amounts.present?
+          matches_unit_amount = had_qty_amounts.find { |i| 
+            UnitConverter.can_convert?(i.unit, i_amount.unit, ingredient.volume_weight_ratio) &&
+            i.min_needed_at.to_i == on_date.to_i }
+          if matches_unit_amount.present?
+            had_qty = UnitConverter.convert(matches_unit_amount.quantity, matches_unit_amount.unit,
+              i_amount.unit, ingredient.volume_weight_ratio)
+          end
+        end
+
+        day_ingredients_map[ingredient_id] << DayIngredient.new(
+          ingredient_id: ingredient_id,
+          expected_qty: i_amount.quantity,
+          unit: i_amount.unit,
+          op_day_id: op_day.id,
+          min_needed_at: on_date,
+          had_qty: had_qty,
+          kitchen_id: op_day.kitchen_id
+        )
+      else
+        existing_ingredient = day_ingredients_map[ingredient_id][matches_idx]
+        additional_qty = UnitConverter.convert(i_amount.quantity, i_amount.unit,
+          existing_ingredient.unit, ingredient.volume_weight_ratio)
+        existing_ingredient.expected_qty = existing_ingredient.expected_qty + additional_qty
+
+        day_ingredients_map[ingredient_id][matches_idx] = existing_ingredient
+      end
     end
+
+    day_ingredients = day_ingredients_map.values.flatten
     DayIngredient.import! day_ingredients
 
     day_ingredients

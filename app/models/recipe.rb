@@ -73,25 +73,28 @@ class Recipe < ApplicationRecord
       .order("number ASC")
   end
 
-  sig {returns(T::Array[StepAmount])}
+  sig {params(for_date: T.any(DateTime, ActiveSupport::TimeWithZone)).returns(T::Array[StepAmount])}
   #TODO: not great, a lot of db calls
-  def step_amounts
+  def step_amounts(for_date)
     steps = []
 
     steps_to_check = self.recipe_steps.includes(:inputs).order("step_type DESC, number ASC")
     steps_to_check.each do |s|
+      step_needed_at = s.min_needed_at(for_date)
+
       s.inputs.select { |input| 
         input.inputable_type == InputType::Recipe
       }.each do |recipe_input|
         child_recipe = recipe_input.inputable
-        child_steps = child_recipe.step_amounts
+        #children needed at is relative to this step's needed at
+        child_steps = child_recipe.step_amounts(step_needed_at)
 
         num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
         child_step_amounts = child_steps.map { |x| x * num_servings }
         steps = steps + child_step_amounts
       end
 
-      steps << StepAmount.mk(s.id, 1)
+      steps << StepAmount.mk(s.id, step_needed_at, 1)
     end
 
     steps
@@ -114,16 +117,17 @@ class Recipe < ApplicationRecord
     self.output_volume_weight_ratio
   end
 
-  sig {returns(T::Array[IngredientAmount])}
+  sig {params(for_date: T.any(DateTime, ActiveSupport::TimeWithZone)).returns(T::Array[IngredientAmount])}
   #TODO: not great, a lot of db calls
-  def ingredient_amounts
+  def ingredient_amounts(for_date)
     amounts = []
     steps_to_check = self.recipe_steps.includes(:inputs).order("step_type DESC, number ASC")
     steps_to_check.each do |step|
+      step_needed_at = step.min_needed_at(for_date)
       amounts = amounts + step.inputs.select { |input| 
         input.inputable_type == InputType::Ingredient
       }.map { |input| 
-        IngredientAmount.mk(input.inputable_id, input.quantity, input.unit)
+        IngredientAmount.mk(input.inputable_id, step_needed_at, input.quantity, input.unit)
       }
 
       step.inputs.select { |input| 
@@ -131,7 +135,7 @@ class Recipe < ApplicationRecord
       }.each do |recipe_input|
         child_recipe = recipe_input.inputable
         num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
-        child_recipe.ingredient_amounts.each do |amount|
+        child_recipe.ingredient_amounts(step_needed_at).each do |amount|
           amounts << amount * num_servings
         end
       end
@@ -148,6 +152,7 @@ class Recipe < ApplicationRecord
 
   sig {returns(T::Boolean)}
   #TODO: not great, a lot of db calls
+  #TODO: check if recipe steps min/max times make sense
   #check if all steps aside from last are inputs to later steps
   #check if children recipes' usages match in units
   def is_valid?

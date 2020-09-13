@@ -65,7 +65,7 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "ingredient_amounts gets all ingredients used in recipe" do
     r = recipes(:sauce)
-    ingredients = r.ingredient_amounts
+    ingredients = r.ingredient_amounts(DateTime.now)
     assert ingredients.count == 3
     assert ingredients.find { |i| i.ingredient_id == ingredients(:salt).id }.quantity == 1
     assert ingredients.find { |i| i.ingredient_id == ingredients(:sesame_paste).id }.quantity == 3
@@ -97,14 +97,14 @@ class SubRecipeTest < ActiveSupport::TestCase
     @s = recipes(:sauce)
     @r = recipes(:chicken)
 
-    #green onion is now a subrecipe of chicken and sauce
+    #green onion is now a subrecipe of both chicken and sauce
     #0.5 * 10 = 5 tbsp needed for sauce = 30g = 0.3 prep
     StepInput.create!(inputable_id: @g.id, inputable_type: InputType::Recipe, 
       recipe_step_id: step.id, quantity: 10, unit: "tbsp")
   end
 
   test "ingredient_amounts includes sub-recipes' ingredients" do
-    ingredients = @r.ingredient_amounts
+    ingredients = @r.ingredient_amounts(DateTime.now)
     assert ingredients.count == 7
 
     #should be the 1tsp 
@@ -119,7 +119,7 @@ class SubRecipeTest < ActiveSupport::TestCase
     assert @s.recipe_steps.count == 3
     assert @r.recipe_steps.count == 4
 
-    step_amounts = @r.step_amounts
+    step_amounts = @r.step_amounts(DateTime.now)
     assert step_amounts.count == 9
 
     green_onion_step = @g.recipe_steps.first
@@ -127,6 +127,25 @@ class SubRecipeTest < ActiveSupport::TestCase
     assert green_onion_amounts.count == 2
     assert green_onion_amounts.find { |i| i.quantity.round(1) == 0.3 }.present?
     assert green_onion_amounts.find { |i| i.quantity == 0.8 }.present?
+  end
+
+  test "step_amounts are split for same step if different time" do 
+    chicken_p1 = @r.recipe_steps.where(step_type: "prep", number: 1).first
+    StepInput.create!(inputable_id: @g.id, inputable_type: InputType::Recipe, 
+      recipe_step_id: chicken_p1.id, quantity: 20, unit: "tbsp")
+
+    for_time = DateTime.now
+    step_amounts = @r.step_amounts(for_time)
+
+    chicken_time = for_time - chicken_p1.min_before_sec.seconds
+    chicken_p1_amount = step_amounts.select { |x| x.recipe_step_id == chicken_p1.id }.first
+    assert chicken_p1_amount.min_needed_at.to_i == chicken_time.to_i
+
+    green_onion_step = @g.recipe_steps.first
+    green_onion_amounts = step_amounts.select { |x| x.recipe_step_id == green_onion_step.id }
+    assert green_onion_amounts.count == 3
+    assert green_onion_amounts.find { |i| i.quantity.round(1) == 0.3 }.min_needed_at.to_i == for_time.to_i
+    assert green_onion_amounts.find { |i| i.quantity.round(2) == 1.2 }.min_needed_at.to_i == chicken_time.to_i
   end
 
   test "all_in returns the recipes and their subrecipes" do

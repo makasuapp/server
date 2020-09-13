@@ -62,7 +62,7 @@ chicken_p2:
   instruction: "Cook on low heat for 20 minutes"
   number: 2
   step_type: "prep"
-  duration_sec: 1200
+  min_before_sec: 1200
   tools: stove
 
 chicken_c1:

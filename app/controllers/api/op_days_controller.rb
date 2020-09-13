@@ -1,13 +1,18 @@
 # typed: false
 class Api::OpDaysController < ApplicationController
   def index
-    date = Time.now.in_time_zone("America/Toronto").to_date
-    op_day = OpDay.find_or_create_by!(date: date, kitchen_id: params[:kitchen_id])
+    date = DateTime.now.in_time_zone("America/Toronto")
+    start_date = date.beginning_of_day
+    end_date = date.end_of_day
 
-    @ingredients = DayIngredient.where(op_day_id: op_day.id).includes(:ingredient)
-    @preps = DayPrep.where(op_day_id: op_day.id)
+    @ingredients = DayIngredient
+      .where(kitchen_id: params[:kitchen_id])
+      .where(min_needed_at: start_date..end_date)
+    .includes(:ingredient)
+    @preps = DayPrep
+      .where(kitchen_id: params[:kitchen_id])
+      .where(min_needed_at: start_date..end_date)
 
-    #TODO(day_prep): also pull all DayIngredient/DayPrep where date is > today and joined on RecipeStep, date + min seconds < end of today 
     #TODO(day_prep): optional = DayIngredient/DayPrep where date is tomorrow 
 
     render formats: :json

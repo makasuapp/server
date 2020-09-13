@@ -11,3 +11,16 @@ PredictedOrder.where(date: date, kitchen_id: kitchen.id).delete_all
 v = Vendor.create!(name: "T&T")
 day_ingredients = DayIngredient.where(op_day_id: op_day.id)
 OpDayManager.create_procurement(day_ingredients, v, date, kitchen)
+
+DayPrep.all.each do |d|
+  date = d.op_day.date.to_datetime.beginning_of_day
+  step = d.recipe_step
+  d.min_needed_at = step.min_needed_at(date)
+  d.save!
+end
+
+DayIngredient.all.each do |d|
+  date = d.op_day.date.to_datetime.beginning_of_day
+  d.min_needed_at = date 
+  d.save!
+end

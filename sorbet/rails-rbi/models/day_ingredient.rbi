@@ -53,6 +53,15 @@ module DayIngredient::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def ingredient_id?; end
 
+  sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
+  def min_needed_at; end
+
+  sig { params(value: T.nilable(T.any(Date, Time, ActiveSupport::TimeWithZone))).void }
+  def min_needed_at=(value); end
+
+  sig { returns(T::Boolean) }
+  def min_needed_at?; end
+
   sig { returns(Integer) }
   def op_day_id; end
 
