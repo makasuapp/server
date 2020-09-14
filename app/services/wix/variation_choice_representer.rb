@@ -12,6 +12,4 @@ class Wix::VariationChoiceRepresenter < Roar::Decorator
     property :count
     property :price
   end
-
-  # collection_representer class: Wix::VariationChoice
 end

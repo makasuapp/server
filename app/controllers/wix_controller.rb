@@ -46,8 +46,11 @@ class WixController < ApplicationController
       wix_items = wix_menu.items
 
       recipe_map = {}
+      item_name_map = {}
       organization_id = integration.kitchen.organization_id
       wix_items.each do |wix_item|
+        item_name_map[wix_item.id] = wix_item.name
+
         #TODO(wix): is going by title the best idea?
         recipe = Recipe.find_by(organization_id: organization_id, name: wix_item.name)
         recipe_map[wix_item.id] = recipe
@@ -58,9 +61,25 @@ class WixController < ApplicationController
         oi.order_id = order.id
         oi.quantity = item.count
         oi.price_cents = item.price
-        oi.comment = item.comment
 
-        #TODO(order_modification): include the other kinds of variations in the comment
+        comments = []
+        if item.comment.present?
+          comments << "Comment: #{item.comment}"
+        end
+
+        variation_choices = item.variation_choices
+        if variation_choices.present?
+          choice_to_variation_name = item.choice_to_variation_name
+          variation_choices.each do |choices|
+            choices.each do |choice|
+              variation_name = choice_to_variation_name[choice.item_id]
+              item_name = item_name_map[choice.item_id]
+              comments << "#{variation_name}: #{choice.count} #{item_name}"
+            end
+          end
+        end
+
+        oi.comment = comments.join("\n")
 
         recipe = recipe_map[item.item_id]
         if recipe.nil?

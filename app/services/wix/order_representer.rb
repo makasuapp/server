@@ -37,7 +37,6 @@ class Wix::OrderRepresenter < Roar::Decorator
       end
     end
 
-    # collection :variationsChoices, decorator: Wix::VariationChoiceRepresenter
-      # instance: lambda { |choices| Wix::VariationChoiceRepresenter.for_collection.new([]).from_json(choices.to_json) }
+    collection :variationsChoices
   end
 end
