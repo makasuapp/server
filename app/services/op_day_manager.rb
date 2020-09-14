@@ -127,8 +127,6 @@ class OpDayManager
     day_preps
   end
 
-  #TODO(po_time): frontend for prep checklist will need to sort by time and show rough timeline
-
   # aggregate the amount of ingredients needed for the day
   # for ingredients we want to aggregate all for the same day, even if different min_needed_at
   # note: may still have different non-convertable units of the same ingredient 

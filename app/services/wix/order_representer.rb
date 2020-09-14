@@ -7,6 +7,7 @@ class Wix::OrderRepresenter < Roar::Decorator
 
   property :id
   property :status
+  property :comment
 
   property :delivery, class: Wix::Dispatch do
     property :time
@@ -14,15 +15,29 @@ class Wix::OrderRepresenter < Roar::Decorator
   end
 
   property :contact, class: Wix::Contact do
-    property :firstName
-    property :lastName
+    property :first_name, as: :firstName
+    property :last_name, as: :lastName
     property :email
     property :phone
   end
 
-  collection :orderItems, class: Wix::OrderItem do
-    property :itemId
+  collection :order_items, as: :orderItems, class: Wix::OrderItem do
+    property :item_id, as: :itemId
     property :count
     property :price
+    property :comment
+
+    collection :variations, class: Wix::Variation do
+      collection :item_ids, as: :itemIds
+      property :prices
+      property :display_type, as: :displayType
+      property :title, class: Wix::LocaleString do
+        property :en_CA
+        property :en_US
+      end
+    end
+
+    # collection :variationsChoices, decorator: Wix::VariationChoiceRepresenter
+      # instance: lambda { |choices| Wix::VariationChoiceRepresenter.for_collection.new([]).from_json(choices.to_json) }
   end
 end

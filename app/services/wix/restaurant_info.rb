@@ -2,8 +2,14 @@
 class Wix::RestaurantInfo
   extend T::Sig
 
-  sig {returns(T.nilable(Wix::Menu))}
+  sig {void}
+  def initialize
+    @menu = T.let(Wix::Menu.new, Wix::Menu)
+    @id = T.let("", String)
+  end
+
+  sig {returns(Wix::Menu)}
   attr_accessor :menu
-  sig {returns(T.nilable(String))}
+  sig {returns(String)}
   attr_accessor :id
 end
