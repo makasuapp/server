@@ -34,7 +34,8 @@ class WixController < ApplicationController
         order_type = "delivery"
       end
       order = Order.new(order_type: order_type, customer_id: customer.id, kitchen_id: integration.kitchen_id,
-        for_time: wix_order.for_time, integration_id: integration.id, integration_order_id: wix_order.id)
+        for_time: wix_order.for_time, integration_id: integration.id, integration_order_id: wix_order.id,
+        comment: wix_order.comment)
       
       if !order.save
         Raven.capture_exception(order.errors)
@@ -57,6 +58,9 @@ class WixController < ApplicationController
         oi.order_id = order.id
         oi.quantity = item.count
         oi.price_cents = item.price
+        oi.comment = item.comment
+
+        #TODO(order_modification): include the other kinds of variations in the comment
 
         recipe = recipe_map[item.item_id]
         if recipe.nil?

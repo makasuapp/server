@@ -3,6 +3,7 @@
 # Table name: order_items
 #
 #  id          :bigint           not null, primary key
+#  comment     :string
 #  done_at     :datetime
 #  price_cents :integer          not null
 #  quantity    :integer          not null

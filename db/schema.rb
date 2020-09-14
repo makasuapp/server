@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_13_003932) do
+ActiveRecord::Schema.define(version: 2020_09_14_015243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_003932) do
     t.integer "price_cents", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "comment"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["recipe_id"], name: "index_order_items_on_recipe_id"
   end
@@ -145,6 +146,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_003932) do
     t.bigint "kitchen_id", null: false
     t.bigint "integration_id"
     t.string "integration_order_id"
+    t.string "comment"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["integration_id", "integration_order_id"], name: "index_orders_on_integration_id_and_integration_order_id"
     t.index ["kitchen_id", "for_time", "created_at", "aasm_state"], name: "idx_kitchen_time"

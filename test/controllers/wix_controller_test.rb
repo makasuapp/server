@@ -43,7 +43,7 @@ class WixControllerTest < ActionDispatch::IntegrationTest
           {
             "itemId"=>"5221e403-e96d-4310-8936-c99373b997f9", "price"=>900, "count"=>2
           }
-        ], "comment"=>"", "price"=>900, "currency"=>"CAD", 
+        ], "comment"=>"Test comment", "price"=>900, "currency"=>"CAD", 
         "delivery"=> {"type"=>"takeout", "time"=>1599177774327, "timeGuarantee"=>"before"}, 
         "contact"=> {"firstName"=>"Owen", "lastName"=>"Wang", "email"=>"supernuber@gmail.com", "phone"=>"+19197535233"}, 
         "payments"=>[{"type"=>"cashier", "amount"=>900, "paymentMethod"=>"offline", "paymentMethodTitle"=>"Manual", 
@@ -60,6 +60,7 @@ class WixControllerTest < ActionDispatch::IntegrationTest
 
     assert order.integration_order_id == "515217923975"
     assert order.order_items.length == 1
+    assert order.comment == "Test comment"
     order_item = order.order_items.first
     assert order_item.recipe_id == r.id
     assert order_item.quantity == 2
