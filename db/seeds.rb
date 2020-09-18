@@ -277,7 +277,7 @@ if true
   s1 = s(prep_chicken, 1, 
     "Submerge whole chicken in water with dried peppers, sichuan peppercorn, green onion chunks, ginger chunks, lots of salt. Squeeze the green onions and ginger to get juices into it."
   )
-  si(s1, "RecipeStep", brined_chicken, 1)
+  si(s1, "Recipe", brined_chicken, 1)
   si(s1, "Ingredient", water, 8, cup)
   si(s1, "Ingredient", dried_peppers, 3)
   si(s1, "Ingredient", sichuan_peppercorn, 10)
