@@ -261,44 +261,48 @@ if true
 end
 raise if !sauce.is_valid?
 
-prep_chicken = r("Brined Chicken", 2)
+brined_chicken = r("Brined Chicken", 1)
 if true
-  s1 = s(prep_chicken, 1, "Dry brine chicken overnight", 
+  s1 = s(brined_chicken, 1, "Dry brine chicken overnight", 
     {min_before_sec: 60 * 60 * 8}
   )
   s1.detailed_instructions << d("Rub salt all over chicken over and under the skin. Store uncovered in a fridge")
   si(s1, "Ingredient", whole_chicken)
   si(s1, "Ingredient", salt, 5, tbsp)
+end
+raise if !brined_chicken.is_valid?
 
-  s2 = s(prep_chicken, 2, 
+prep_chicken = r("Cooked Chicken", 1)
+if true
+  s1 = s(prep_chicken, 1, 
     "Submerge whole chicken in water with dried peppers, sichuan peppercorn, green onion chunks, ginger chunks, lots of salt. Squeeze the green onions and ginger to get juices into it."
   )
-  si(s2, "RecipeStep", s1)
-  si(s2, "Ingredient", water, 8, cup)
-  si(s2, "Ingredient", dried_peppers, 3)
-  si(s2, "Ingredient", sichuan_peppercorn, 10)
-  si(s2, "Ingredient", ginger, 2, g)
-  si(s2, "Ingredient", green_onion, 1)
-  si(s2, "Ingredient", salt, 3, tbsp)
-  s2.tools << pot
+  si(s1, "RecipeStep", brined_chicken, 1)
+  si(s1, "Ingredient", water, 8, cup)
+  si(s1, "Ingredient", dried_peppers, 3)
+  si(s1, "Ingredient", sichuan_peppercorn, 10)
+  si(s1, "Ingredient", ginger, 2, g)
+  si(s1, "Ingredient", green_onion, 1)
+  si(s1, "Ingredient", salt, 3, tbsp)
+  s1.tools << pot
 
-  s3 = s(prep_chicken, 3, "Cook on low heat for 20 minutes", 
+  s2 = s(prep_chicken, 2, "Cook on low heat for 20 minutes", 
     {duration_sec: 60 * 20}
   )
-  si(s3, "RecipeStep", s2)
-  s3.tools << stove
+  si(s2, "RecipeStep", s1)
+  s2.tools << stove
 
-  s4 = s(prep_chicken, 4, "Dunk in ice bath to stop cooking")
-  si(s4, "RecipeStep", s3)
+  s3 = s(prep_chicken, 3, "Dunk in ice bath to stop cooking")
+  si(s3, "RecipeStep", s2)
   #TODO: how do we handle reusable ingredients that don't scale with recipes?
-  si(s4, "Ingredient", ice)
+  si(s3, "Ingredient", ice)
 end
 raise if !prep_chicken.is_valid?
 
 chicken = r("Mouth Watering Chicken", 2, nil, true)
 if true
   c1 = s(chicken, 1, "Cut chicken into cubes")
-  si(c1, "Recipe", prep_chicken, 2)
+  si(c1, "Recipe", prep_chicken, 1)
   c1.tools << knife
 
   c2 = s(chicken, 2, "Drizzle on sauce, green onions as garnish")

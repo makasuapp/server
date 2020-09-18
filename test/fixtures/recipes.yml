@@ -26,7 +26,7 @@
 
 prep_chicken:
   name: "Brined Chicken"
-  output_qty: 2
+  output_qty: 1
   organization: test
 
 chicken:

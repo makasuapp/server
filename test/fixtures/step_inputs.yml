@@ -69,7 +69,6 @@ chicken_p2:
 chicken_c1:
   inputable: prep_chicken (Recipe)
   recipe_step: chicken_c1
-  quantity: 2
 
 chicken_c2_i1:
   inputable: chicken_c1 (RecipeStep)
