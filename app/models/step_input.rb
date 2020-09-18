@@ -57,8 +57,7 @@ class StepInput < ApplicationRecord
         errors.add(:inputable_type, "must not be a step from a different recipe")
       end
 
-      if (input_step.step_type == of_step.step_type && input_step.number > of_step.number) ||
-        (input_step.step_type == StepType::Cook && of_step.step_type == StepType::Prep)
+      if (input_step.number > of_step.number)
         errors.add(:inputable_type, "must not be a step after this one")
       end
     end

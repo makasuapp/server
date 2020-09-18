@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_015243) do
+ActiveRecord::Schema.define(version: 2020_09_18_165943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,7 +198,6 @@ ActiveRecord::Schema.define(version: 2020_09_14_015243) do
 
   create_table "recipe_steps", force: :cascade do |t|
     t.bigint "recipe_id", null: false
-    t.string "step_type", null: false
     t.integer "number", null: false
     t.text "instruction", null: false
     t.integer "duration_sec"
@@ -208,7 +207,6 @@ ActiveRecord::Schema.define(version: 2020_09_14_015243) do
     t.datetime "updated_at", null: false
     t.string "output_name"
     t.index ["recipe_id"], name: "index_recipe_steps_on_recipe_id"
-    t.index ["step_type"], name: "index_recipe_steps_on_step_type"
   end
 
   create_table "recipe_steps_tools", id: false, force: :cascade do |t|
@@ -229,6 +227,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_015243) do
     t.float "output_volume_weight_ratio"
     t.bigint "organization_id", null: false
     t.index ["organization_id", "name"], name: "index_recipes_on_organization_id_and_name"
+    t.index ["organization_id", "publish"], name: "index_recipes_on_organization_id_and_publish"
   end
 
   create_table "step_inputs", force: :cascade do |t|

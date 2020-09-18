@@ -12,15 +12,14 @@ v = Vendor.create!(name: "T&T")
 day_ingredients = DayIngredient.where(op_day_id: op_day.id)
 OpDayManager.create_procurement(day_ingredients, v, date, kitchen)
 
-DayPrep.all.each do |d|
-  date = d.op_day.date.to_datetime.beginning_of_day
-  step = d.recipe_step
-  d.min_needed_at = step.min_needed_at(date)
-  d.save!
-end
-
-DayIngredient.all.each do |d|
-  date = d.op_day.date.to_datetime.beginning_of_day
-  d.min_needed_at = date 
-  d.save!
-end
+PredictedOrder.delete_all
+DayPrep.delete_all
+DayIngredient.delete_all
+OpDay.delete_all
+Order.delete_all
+OrderItem.delete_all
+Recipe.delete_all
+RecipeStep.delete_all
+StepInput.delete_all
+ProcurementOrder.delete_all
+ProcurementItem.delete_all

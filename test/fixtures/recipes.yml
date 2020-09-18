@@ -15,7 +15,8 @@
 #
 # Indexes
 #
-#  index_recipes_on_organization_id_and_name  (organization_id,name)
+#  index_recipes_on_organization_id_and_name     (organization_id,name)
+#  index_recipes_on_organization_id_and_publish  (organization_id,publish)
 #
 
 # This model initially had no columns defined. If you add columns to the
@@ -23,10 +24,16 @@
 # below each fixture, per the syntax in the comments below
 #
 
+prep_chicken:
+  name: "Brined Chicken"
+  output_qty: 2
+  organization: test
+
 chicken:
   name: "Mouth Watering Chicken"
   output_qty: 2
   organization: test
+  publish: true
 
 green_onion:
   name: "Chopped Green Onion"

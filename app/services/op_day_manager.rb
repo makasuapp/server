@@ -64,11 +64,6 @@ class OpDayManager
       for_date = po.date
       recipe_servings = recipe.servings_produced(po.quantity)
 
-      #get step amounts of prep steps of the recipe
-      prep_step_amounts = recipe.recipe_steps
-        .select { |step| step.step_type == StepType::Prep }
-        .map { |step| StepAmount.mk(step.id, step.min_needed_at(for_date), 1) }
-      
       #get step amounts of all steps of subrecipes
       subrecipe_step_amounts = recipe.recipe_steps.map { |step| 
         step.inputs.select { |input| 
@@ -76,15 +71,15 @@ class OpDayManager
         }.map { |recipe_input|
           step_needed_at = step.min_needed_at(for_date)
           child_recipe = recipe_input.inputable
-          child_steps = child_recipe.step_amounts(step_needed_at)
+          child_step_amounts = child_recipe.step_amounts(step_needed_at)
 
           num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
-          child_step_amounts = child_steps.map { |x| x * num_servings }
+          child_step_amounts.map { |x| x * num_servings }
         }
       }.flatten
 
       #aggregate into day preps
-      (prep_step_amounts + subrecipe_step_amounts).each do |step_amount|
+      subrecipe_step_amounts.each do |step_amount|
         recipe_step_id = step_amount.recipe_step_id
         additional_qty = step_amount.quantity * recipe_servings
 

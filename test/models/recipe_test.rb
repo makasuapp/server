@@ -16,7 +16,8 @@
 #
 # Indexes
 #
-#  index_recipes_on_organization_id_and_name  (organization_id,name)
+#  index_recipes_on_organization_id_and_name     (organization_id,name)
+#  index_recipes_on_organization_id_and_publish  (organization_id,publish)
 #
 require 'test_helper'
 
@@ -28,7 +29,7 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "is_valid? is true if multiple steps used in one" do 
     r = recipes(:sauce)
-    recipe_steps = r.recipe_steps.order("step_type DESC, number ASC")
+    recipe_steps = r.recipe_steps.order("number ASC")
     assert recipe_steps.first.inputs.recipe_step_typed.empty?
     assert recipe_steps.second.inputs.recipe_step_typed.empty?
     assert recipe_steps.last.inputs.recipe_step_typed.size == 2
@@ -50,9 +51,8 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "is_valid? is false if a step is not used in later one" do 
     r = recipes(:chicken)
-    step_input = step_inputs(:chicken_c1)
-    #no longer referencing chicken_p2 step
-    step_input.update_attributes!(inputable_id: recipe_steps(:chicken_p1).id)
+    step_input = step_inputs(:chicken_c2_i1)
+    step_input.destroy
     assert r.is_valid? == false
   end
 
@@ -96,6 +96,7 @@ class SubRecipeTest < ActiveSupport::TestCase
     @g = recipes(:green_onion)
     @s = recipes(:sauce)
     @r = recipes(:chicken)
+    @p = recipes(:prep_chicken)
 
     #green onion is now a subrecipe of both chicken and sauce
     #0.5 * 10 = 5 tbsp needed for sauce = 30g = 0.3 prep
@@ -117,7 +118,8 @@ class SubRecipeTest < ActiveSupport::TestCase
   test "step_amounts returns step amounts of recipe and subrecipes" do 
     assert @g.recipe_steps.count == 1
     assert @s.recipe_steps.count == 3
-    assert @r.recipe_steps.count == 4
+    assert @r.recipe_steps.count == 2
+    assert @p.recipe_steps.count == 2
 
     step_amounts = @r.step_amounts(DateTime.now)
     assert step_amounts.count == 9
@@ -130,7 +132,7 @@ class SubRecipeTest < ActiveSupport::TestCase
   end
 
   test "step_amounts are split for same step if different time" do 
-    chicken_p1 = @r.recipe_steps.where(step_type: "prep", number: 1).first
+    chicken_p1 = @p.recipe_steps.where(number: 1).first
     StepInput.create!(inputable_id: @g.id, inputable_type: InputType::Recipe, 
       recipe_step_id: chicken_p1.id, quantity: 20, unit: "tbsp")
 
@@ -153,10 +155,11 @@ class SubRecipeTest < ActiveSupport::TestCase
     not_found = Recipe.create!(name: "Not Found", organization_id: @organization.id)
 
     recipes = Recipe.all_in([@r.id, new_r.id])
-    assert recipes.count == 4
+    assert recipes.count == 5
     assert recipes.find { |r| r.id == @r.id }.present?
     assert recipes.find { |r| r.id == @g.id }.present?
     assert recipes.find { |r| r.id == @s.id }.present?
+    assert recipes.find { |r| r.id == @p.id }.present?
     assert recipes.find { |r| r.id == new_r.id }.present?
     assert recipes.find { |r| r.id == not_found.id }.nil?
   end

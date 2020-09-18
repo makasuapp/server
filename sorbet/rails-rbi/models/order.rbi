@@ -17,6 +17,15 @@ module Order::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def aasm_state?; end
 
+  sig { returns(T.nilable(String)) }
+  def comment; end
+
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
+  def comment=(value); end
+
+  sig { returns(T::Boolean) }
+  def comment?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def created_at; end
 

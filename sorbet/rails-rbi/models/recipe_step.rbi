@@ -89,15 +89,6 @@ module RecipeStep::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def recipe_id?; end
 
-  sig { returns(String) }
-  def step_type; end
-
-  sig { params(value: T.any(String, Symbol)).void }
-  def step_type=(value); end
-
-  sig { returns(T::Boolean) }
-  def step_type?; end
-
   sig { returns(ActiveSupport::TimeWithZone) }
   def updated_at; end
 

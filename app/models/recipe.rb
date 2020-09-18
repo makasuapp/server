@@ -16,7 +16,8 @@
 #
 # Indexes
 #
-#  index_recipes_on_organization_id_and_name  (organization_id,name)
+#  index_recipes_on_organization_id_and_name     (organization_id,name)
+#  index_recipes_on_organization_id_and_publish  (organization_id,publish)
 #
 class Recipe < ApplicationRecord
   extend T::Sig
@@ -57,28 +58,12 @@ class Recipe < ApplicationRecord
     recipes.uniq
   end
 
-  sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
-  def prep_steps
-    self.recipe_steps
-      .includes([:tools, :detailed_instructions, :inputs])
-      .prep
-      .order("number ASC")
-  end
-
-  sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
-  def cook_steps
-    self.recipe_steps
-      .includes([:tools, :detailed_instructions, :inputs])
-      .cook
-      .order("number ASC")
-  end
-
   sig {params(for_date: T.any(DateTime, ActiveSupport::TimeWithZone)).returns(T::Array[StepAmount])}
   #TODO: not great, a lot of db calls
   def step_amounts(for_date)
     steps = []
 
-    steps_to_check = self.recipe_steps.includes(:inputs).order("step_type DESC, number ASC")
+    steps_to_check = self.recipe_steps.includes(:inputs).order("number ASC")
     steps_to_check.each do |s|
       step_needed_at = s.min_needed_at(for_date)
 
@@ -121,7 +106,7 @@ class Recipe < ApplicationRecord
   #TODO: not great, a lot of db calls
   def ingredient_amounts(for_date)
     amounts = []
-    steps_to_check = self.recipe_steps.includes(:inputs).order("step_type DESC, number ASC")
+    steps_to_check = self.recipe_steps.includes(:inputs).order("number ASC")
     steps_to_check.each do |step|
       step_needed_at = step.min_needed_at(for_date)
       amounts = amounts + step.inputs.select { |input| 
@@ -156,9 +141,9 @@ class Recipe < ApplicationRecord
   #check if all steps aside from last are inputs to later steps
   #check if children recipes' usages match in units
   def is_valid?
-    steps_to_check = self.recipe_steps.order("step_type DESC, number ASC")
+    steps_to_check = self.recipe_steps.order("number ASC")
     used_steps = {}
-    mk_step_id = ->(step) {"#{step.step_type}#{step.number}"}
+    mk_step_id = ->(step) {"#{step.recipe_id}#{step.number}"}
     last_id = steps_to_check.last.try(:id)
 
     steps_to_check.each do |step|

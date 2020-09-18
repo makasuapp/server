@@ -99,11 +99,11 @@ class DayPrepTest < ActiveSupport::TestCase
 
     assert DayPrep.count == count + 6
     sauce_prep = DayPrep.where(recipe_step_id: @sauce_step.id).first
-    assert sauce_prep.expected_qty == 1
+    assert sauce_prep.expected_qty == 4 / 4
     assert sauce_prep.made_qty == 0.8
 
     chicken_prep = DayPrep.where(recipe_step_id: @chicken_step.id).first
-    assert chicken_prep.expected_qty == 2
+    assert chicken_prep.expected_qty == 4 / 2
     assert chicken_prep.made_qty.nil?
   end
 
