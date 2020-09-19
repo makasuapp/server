@@ -1,6 +1,7 @@
 # typed: false
 class Api::OpDaysController < ApplicationController
   def index
+    #TODO(timezone)
     date = DateTime.now.in_time_zone("America/Toronto")
     start_date = date.beginning_of_day
     end_date = date.end_of_day
@@ -12,8 +13,6 @@ class Api::OpDaysController < ApplicationController
     @preps = DayPrep
       .where(kitchen_id: params[:kitchen_id])
       .where(min_needed_at: start_date..end_date)
-
-    #TODO(day_prep): optional = DayIngredient/DayPrep where date is tomorrow 
 
     render formats: :json
   end

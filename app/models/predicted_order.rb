@@ -31,13 +31,4 @@ class PredictedOrder < ApplicationRecord
       errors.add(:recipe_id, "must be for a recipe that doesn't have units")
     end
   end
-
-  sig {returns(T::Array[IngredientAmount])}
-  def ingredient_amounts
-    recipe = self.recipe
-    recipe_amounts = recipe.ingredient_amounts(self.date)
-    recipe_servings = recipe.servings_produced(self.quantity)
-
-    recipe_amounts.map { |amount| amount * recipe_servings }
-  end
 end

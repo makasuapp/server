@@ -58,33 +58,6 @@ class Recipe < ApplicationRecord
     recipes.uniq
   end
 
-  sig {params(for_date: T.any(DateTime, ActiveSupport::TimeWithZone)).returns(T::Array[StepAmount])}
-  #TODO: not great, a lot of db calls
-  def step_amounts(for_date)
-    steps = []
-
-    steps_to_check = self.recipe_steps.includes(:inputs).order("number ASC")
-    steps_to_check.each do |s|
-      step_needed_at = s.min_needed_at(for_date)
-
-      s.inputs.select { |input| 
-        input.inputable_type == InputType::Recipe
-      }.each do |recipe_input|
-        child_recipe = recipe_input.inputable
-        #children needed at is relative to this step's needed at
-        child_steps = child_recipe.step_amounts(step_needed_at)
-
-        num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
-        child_step_amounts = child_steps.map { |x| x * num_servings }
-        steps = steps + child_step_amounts
-      end
-
-      steps << StepAmount.mk(s.id, step_needed_at, 1)
-    end
-
-    steps
-  end
-
   sig {returns(T.nilable(Float))}
   def volume_weight_ratio
     if self.output_volume_weight_ratio.nil?
@@ -102,14 +75,21 @@ class Recipe < ApplicationRecord
     self.output_volume_weight_ratio
   end
 
-  sig {params(for_date: T.any(DateTime, ActiveSupport::TimeWithZone)).returns(T::Array[IngredientAmount])}
+  sig {params(
+    for_date: T.any(DateTime, ActiveSupport::TimeWithZone),
+    for_recipe_id: Integer
+  ).returns([T::Array[StepAmount], T::Array[IngredientAmount]])}
   #TODO: not great, a lot of db calls
-  def ingredient_amounts(for_date)
-    amounts = []
+  # get steps for subrecipes and ingredients for all
+  def component_amounts(for_date, for_recipe_id = self.id)
+    steps = []
+    ingredients = []
+
     steps_to_check = self.recipe_steps.includes(:inputs).order("number ASC")
     steps_to_check.each do |step|
       step_needed_at = step.min_needed_at(for_date)
-      amounts = amounts + step.inputs.select { |input| 
+
+      ingredients = ingredients + step.inputs.select { |input| 
         input.inputable_type == InputType::Ingredient
       }.map { |input| 
         IngredientAmount.mk(input.inputable_id, step_needed_at, input.quantity, input.unit)
@@ -119,14 +99,21 @@ class Recipe < ApplicationRecord
         input.inputable_type == InputType::Recipe
       }.each do |recipe_input|
         child_recipe = recipe_input.inputable
+        #children needed at is relative to this step's needed at
+        child_steps, child_ingredients = child_recipe.component_amounts(step_needed_at, for_recipe_id)
+
         num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
-        child_recipe.ingredient_amounts(step_needed_at).each do |amount|
-          amounts << amount * num_servings
-        end
+        child_steps.each { |x| steps << x * num_servings }
+        child_ingredients.each { |x| ingredients << x * num_servings }
+      end
+
+      #exclude recipe's steps
+      if step.recipe_id != for_recipe_id
+        steps << StepAmount.mk(step.id, step_needed_at, 1)
       end
     end
 
-    amounts
+    [steps, ingredients]
   end
 
   sig {params(usage_qty: T.any(Float, Integer, BigDecimal), usage_unit: T.nilable(String)).returns(Float)}

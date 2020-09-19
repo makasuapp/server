@@ -63,9 +63,9 @@ class RecipeTest < ActiveSupport::TestCase
     assert r.volume_weight_ratio == i.volume_weight_ratio
   end
 
-  test "ingredient_amounts gets all ingredients used in recipe" do
+  test "component_amounts gets all ingredients used in recipe" do
     r = recipes(:sauce)
-    ingredients = r.ingredient_amounts(DateTime.now)
+    steps, ingredients = r.component_amounts(DateTime.now)
     assert ingredients.count == 3
     assert ingredients.find { |i| i.ingredient_id == ingredients(:salt).id }.quantity == 1
     assert ingredients.find { |i| i.ingredient_id == ingredients(:sesame_paste).id }.quantity == 3
@@ -104,8 +104,8 @@ class SubRecipeTest < ActiveSupport::TestCase
       recipe_step_id: step.id, quantity: 10, unit: "tbsp")
   end
 
-  test "ingredient_amounts includes sub-recipes' ingredients" do
-    ingredients = @r.ingredient_amounts(DateTime.now)
+  test "component_amounts includes sub-recipes' ingredients" do
+    steps, ingredients = @r.component_amounts(DateTime.now)
     assert ingredients.count == 7
 
     #should be the 1tsp 
@@ -115,14 +115,18 @@ class SubRecipeTest < ActiveSupport::TestCase
     assert green_onions.find { |i| i.quantity == 80 && i.unit == "g" }.present?
   end
 
-  test "step_amounts returns step amounts of recipe and subrecipes" do 
+  test "component_amounts returns step amounts subrecipes but not recipes" do 
     assert @g.recipe_steps.count == 1
     assert @s.recipe_steps.count == 3
     assert @r.recipe_steps.count == 2
     assert @p.recipe_steps.count == 2
 
-    step_amounts = @r.step_amounts(DateTime.now)
-    assert step_amounts.count == 9
+    step_amounts, ingredients = @r.component_amounts(DateTime.now)
+    assert step_amounts.count == 7
+
+    recipe_step = @r.recipe_steps.first
+    recipe_amounts = step_amounts.select { |x| x.recipe_step_id == recipe_step.id }
+    assert recipe_amounts.count == 0
 
     green_onion_step = @g.recipe_steps.first
     green_onion_amounts = step_amounts.select { |x| x.recipe_step_id == green_onion_step.id }
@@ -131,13 +135,13 @@ class SubRecipeTest < ActiveSupport::TestCase
     assert green_onion_amounts.find { |i| i.quantity == 0.8 }.present?
   end
 
-  test "step_amounts are split for same step if different time" do 
+  test "component_amounts are split for same step if different time" do 
     chicken_p1 = @p.recipe_steps.where(number: 1).first
     StepInput.create!(inputable_id: @g.id, inputable_type: InputType::Recipe, 
       recipe_step_id: chicken_p1.id, quantity: 20, unit: "tbsp")
 
     for_time = DateTime.now
-    step_amounts = @r.step_amounts(for_time)
+    step_amounts, ingredients = @r.component_amounts(for_time)
 
     chicken_time = for_time - chicken_p1.min_before_sec.seconds
     chicken_p1_amount = step_amounts.select { |x| x.recipe_step_id == chicken_p1.id }.first
