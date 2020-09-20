@@ -1,31 +1,34 @@
 # typed: false
 require 'test_helper'
 
-class OpDaysControllerSaveIngredientsTest < ActionDispatch::IntegrationTest
+class OpDaysControllerSaveInputsTest < ActionDispatch::IntegrationTest
   setup do
     @yesterday = DateTime.now - 1.day
     salt = ingredients(:salt)
     @kitchen = kitchens(:test)
-    @salt_ingredient = DayIngredient.create!(
-      expected_qty: 1.5, had_qty: 0.5, ingredient_id: salt.id, 
+    @salt_ingredient = DayInput.create!(
+      expected_qty: 1.5, had_qty: 0.5, inputable_id: salt.id, 
+      inputable_type: DayInputType::Ingredient,
       op_day_id: op_days(:today).id, qty_updated_at: @yesterday,
       min_needed_at: @yesterday, kitchen_id: @kitchen.id
     )
     chicken = ingredients(:chicken)
-    @chicken_ingredient = DayIngredient.create!(
-      expected_qty: 2.5, ingredient_id: chicken.id, op_day_id: op_days(:today).id,
+    @chicken_ingredient = DayInput.create!(
+      expected_qty: 2.5, inputable_id: chicken.id, 
+      inputable_type: DayInputType::Ingredient,
+      op_day_id: op_days(:today).id,
       min_needed_at: @yesterday, kitchen_id: @kitchen.id
     )
   end
 
-  test "save_ingredients_qty updates qty of ingredients that exist" do
+  test "save_inputs_qty updates qty of ingredients that exist" do
     now = DateTime.now.to_i
     updates = []
     updates << {id: @salt_ingredient.id, had_qty: 1.2, time_sec: now}
     updates << {id: @chicken_ingredient.id, had_qty: 2.5, time_sec: now}
     updates << {id: 0, had_qty: 2, time: now}
 
-    post "/api/op_days/save_ingredients_qty", params: { 
+    post "/api/op_days/save_inputs_qty", params: { 
       updates: updates
     }, as: :json
 
@@ -36,7 +39,7 @@ class OpDaysControllerSaveIngredientsTest < ActionDispatch::IntegrationTest
     assert @chicken_ingredient.qty_updated_at.to_i == now
   end
 
-  test "save_ingredients_qty updates to latest" do
+  test "save_inputs_qty updates to latest" do
     now = DateTime.now
     updates = []
     updates << {id: @salt_ingredient.id, had_qty: 1.2, time_sec: (now - 2.days).to_i}
@@ -44,7 +47,7 @@ class OpDaysControllerSaveIngredientsTest < ActionDispatch::IntegrationTest
     updates << {id: @chicken_ingredient.id, had_qty: 2.5, time_sec: now.to_i}
     updates << {id: @chicken_ingredient.id, had_qty: 2, time_sec: (now - 1.hour).to_i}
 
-    post "/api/op_days/save_ingredients_qty", params: { 
+    post "/api/op_days/save_inputs_qty", params: { 
       updates: updates
     }, as: :json
 

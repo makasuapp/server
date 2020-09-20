@@ -6,10 +6,9 @@ class Api::OpDaysController < ApplicationController
     start_date = date.beginning_of_day
     end_date = date.end_of_day
 
-    @ingredients = DayIngredient
+    @inputs = DayInput
       .where(kitchen_id: params[:kitchen_id])
       .where(min_needed_at: start_date..end_date)
-    .includes(:ingredient)
     @preps = DayPrep
       .where(kitchen_id: params[:kitchen_id])
       .where(min_needed_at: start_date..end_date)
@@ -17,28 +16,28 @@ class Api::OpDaysController < ApplicationController
     render formats: :json
   end
 
-  def save_ingredients_qty
+  def save_inputs_qty
     ids = params[:updates].map { |x| x[:id] }.flatten
-    ingredients_map = {}
-    DayIngredient.where(id: ids).each do |i|
-      ingredients_map[i.id.to_s] = i
+    inputs_map = {}
+    DayInput.where(id: ids).each do |i|
+      inputs_map[i.id.to_s] = i
     end
 
     params[:updates].each do |update|
       update_time = update.try(:[], "time_sec")
-      ingredient = ingredients_map[update.try(:[], "id").to_s]
+      input = inputs_map[update.try(:[], "id").to_s]
 
-      if update_time.present? && ingredient.present? && 
-        (ingredient.qty_updated_at.nil? || update_time > ingredient.qty_updated_at.to_i)
+      if update_time.present? && input.present? && 
+        (input.qty_updated_at.nil? || update_time > input.qty_updated_at.to_i)
 
-        ingredient.had_qty = update[:had_qty]
-        ingredient.qty_updated_at = Time.at(update_time)
+        input.had_qty = update[:had_qty]
+        input.qty_updated_at = Time.at(update_time)
 
-        ingredients_map[ingredient.id.to_s] = ingredient
+        inputs_map[input.id.to_s] = input
       end
     end
 
-    DayIngredient.import ingredients_map.values, on_duplicate_key_update: [:had_qty, :qty_updated_at]
+    DayInput.import inputs_map.values, on_duplicate_key_update: [:had_qty, :qty_updated_at]
 
     head :ok
   end

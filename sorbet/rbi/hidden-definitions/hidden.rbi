@@ -3031,9 +3031,9 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def api_op_days_path(*args); end
 
-  def api_op_days_save_ingredients_qty_path(*args); end
+  def api_op_days_save_inputs_qty_path(*args); end
 
-  def api_op_days_save_ingredients_qty_url(*args); end
+  def api_op_days_save_inputs_qty_url(*args); end
 
   def api_op_days_save_prep_qty_path(*args); end
 
@@ -3092,6 +3092,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
   def api_users_reset_password_url(*args); end
 
   def api_users_url(*args); end
+
+  def api_users_verify_kitchen_path(*args); end
+
+  def api_users_verify_kitchen_url(*args); end
 
   def api_users_verify_path(*args); end
 
@@ -8145,8 +8149,6 @@ class Api::OrdersController
 end
 
 class Api::PredictedOrdersController
-  def create(); end
-
   def index(); end
 
   def update_for_date(); end
@@ -11455,47 +11457,48 @@ module DateAndTime::Calculations
   WEEKEND_DAYS = ::T.let(nil, ::T.untyped)
 end
 
-class DayIngredient
-  def autosave_associated_records_for_ingredient(*args); end
+class DayInput
+  def autosave_associated_records_for_inputable(*args); end
+
+  def autosave_associated_records_for_kitchen(*args); end
 
   def autosave_associated_records_for_op_day(*args); end
 
   def belongs_to_counter_cache_after_update(reflection); end
 end
 
-class DayIngredient::ActiveRecord_AssociationRelation
+class DayInput::ActiveRecord_AssociationRelation
   include ::ActiveRecord::Delegation::ClassSpecificRelation
-  include ::DayIngredient::GeneratedRelationMethods
+  include ::DayInput::GeneratedRelationMethods
 end
 
-class DayIngredient::ActiveRecord_Associations_CollectionProxy
+class DayInput::ActiveRecord_Associations_CollectionProxy
   include ::ActiveRecord::Delegation::ClassSpecificRelation
-  include ::DayIngredient::GeneratedRelationMethods
+  include ::DayInput::GeneratedRelationMethods
 end
 
-class DayIngredient::ActiveRecord_Relation
+class DayInput::ActiveRecord_Relation
   include ::ActiveRecord::Delegation::ClassSpecificRelation
-  include ::DayIngredient::GeneratedRelationMethods
+  include ::DayInput::GeneratedRelationMethods
 end
 
-module DayIngredient::GeneratedAssociationMethods
-  def reload_ingredient(); end
+module DayInput::GeneratedAssociationMethods
+  def reload_inputable(); end
+
+  def reload_kitchen(); end
 
   def reload_op_day(); end
 end
 
-module DayIngredient::GeneratedRelationMethods
+module DayInput::GeneratedRelationMethods
 end
 
-module DayIngredient::GeneratedRelationMethods
-end
-
-class DayIngredient
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
+module DayInput::GeneratedRelationMethods
 end
 
 class DayPrep
+  def autosave_associated_records_for_kitchen(*args); end
+
   def autosave_associated_records_for_op_day(*args); end
 
   def autosave_associated_records_for_recipe_step(*args); end
@@ -11519,6 +11522,8 @@ class DayPrep::ActiveRecord_Relation
 end
 
 module DayPrep::GeneratedAssociationMethods
+  def reload_kitchen(); end
+
   def reload_op_day(); end
 
   def reload_recipe_step(); end
@@ -11528,11 +11533,6 @@ module DayPrep::GeneratedRelationMethods
 end
 
 module DayPrep::GeneratedRelationMethods
-end
-
-class DayPrep
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 module Declarative
@@ -19937,9 +19937,21 @@ class Ingredient::ActiveRecord_Relation
 end
 
 module Ingredient::GeneratedAssociationMethods
+  def day_ingredient_ids(); end
+
   def day_ingredient_ids=(ids); end
 
+  def day_ingredients(); end
+
+  def day_ingredients=(value); end
+
+  def step_input_ids(); end
+
   def step_input_ids=(ids); end
+
+  def step_inputs(); end
+
+  def step_inputs=(value); end
 end
 
 module Ingredient::GeneratedRelationMethods
@@ -19996,12 +20008,6 @@ class Ingredient
   def self.before_remove_for_step_inputs=(val); end
 
   def self.before_remove_for_step_inputs?(); end
-end
-
-class IngredientAmount
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
-  def self.inherited(s); end
 end
 
 module InheritedResources
@@ -20213,6 +20219,12 @@ end
 
 module InheritedResources
   def self.flash_keys=(array); end
+end
+
+class InputAmount
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.inherited(s); end
 end
 
 class Integer
@@ -23946,11 +23958,11 @@ class Object
 end
 
 class OpDay
-  def after_add_for_day_ingredients(); end
+  def after_add_for_day_inputs(); end
 
-  def after_add_for_day_ingredients=(val); end
+  def after_add_for_day_inputs=(val); end
 
-  def after_add_for_day_ingredients?(); end
+  def after_add_for_day_inputs?(); end
 
   def after_add_for_day_preps(); end
 
@@ -23958,11 +23970,11 @@ class OpDay
 
   def after_add_for_day_preps?(); end
 
-  def after_remove_for_day_ingredients(); end
+  def after_remove_for_day_inputs(); end
 
-  def after_remove_for_day_ingredients=(val); end
+  def after_remove_for_day_inputs=(val); end
 
-  def after_remove_for_day_ingredients?(); end
+  def after_remove_for_day_inputs?(); end
 
   def after_remove_for_day_preps(); end
 
@@ -23970,17 +23982,17 @@ class OpDay
 
   def after_remove_for_day_preps?(); end
 
-  def autosave_associated_records_for_day_ingredients(*args); end
+  def autosave_associated_records_for_day_inputs(*args); end
 
   def autosave_associated_records_for_day_preps(*args); end
 
   def autosave_associated_records_for_kitchen(*args); end
 
-  def before_add_for_day_ingredients(); end
+  def before_add_for_day_inputs(); end
 
-  def before_add_for_day_ingredients=(val); end
+  def before_add_for_day_inputs=(val); end
 
-  def before_add_for_day_ingredients?(); end
+  def before_add_for_day_inputs?(); end
 
   def before_add_for_day_preps(); end
 
@@ -23988,11 +24000,11 @@ class OpDay
 
   def before_add_for_day_preps?(); end
 
-  def before_remove_for_day_ingredients(); end
+  def before_remove_for_day_inputs(); end
 
-  def before_remove_for_day_ingredients=(val); end
+  def before_remove_for_day_inputs=(val); end
 
-  def before_remove_for_day_ingredients?(); end
+  def before_remove_for_day_inputs?(); end
 
   def before_remove_for_day_preps(); end
 
@@ -24002,7 +24014,7 @@ class OpDay
 
   def belongs_to_counter_cache_after_update(reflection); end
 
-  def validate_associated_records_for_day_ingredients(*args); end
+  def validate_associated_records_for_day_inputs(*args); end
 
   def validate_associated_records_for_day_preps(*args); end
 end
@@ -24023,7 +24035,7 @@ class OpDay::ActiveRecord_Relation
 end
 
 module OpDay::GeneratedAssociationMethods
-  def day_ingredient_ids=(ids); end
+  def day_input_ids=(ids); end
 
   def day_prep_ids=(ids); end
 
@@ -24037,13 +24049,11 @@ module OpDay::GeneratedRelationMethods
 end
 
 class OpDay
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
-  def self.after_add_for_day_ingredients(); end
+  def self.after_add_for_day_inputs(); end
 
-  def self.after_add_for_day_ingredients=(val); end
+  def self.after_add_for_day_inputs=(val); end
 
-  def self.after_add_for_day_ingredients?(); end
+  def self.after_add_for_day_inputs?(); end
 
   def self.after_add_for_day_preps(); end
 
@@ -24051,11 +24061,11 @@ class OpDay
 
   def self.after_add_for_day_preps?(); end
 
-  def self.after_remove_for_day_ingredients(); end
+  def self.after_remove_for_day_inputs(); end
 
-  def self.after_remove_for_day_ingredients=(val); end
+  def self.after_remove_for_day_inputs=(val); end
 
-  def self.after_remove_for_day_ingredients?(); end
+  def self.after_remove_for_day_inputs?(); end
 
   def self.after_remove_for_day_preps(); end
 
@@ -24063,11 +24073,11 @@ class OpDay
 
   def self.after_remove_for_day_preps?(); end
 
-  def self.before_add_for_day_ingredients(); end
+  def self.before_add_for_day_inputs(); end
 
-  def self.before_add_for_day_ingredients=(val); end
+  def self.before_add_for_day_inputs=(val); end
 
-  def self.before_add_for_day_ingredients?(); end
+  def self.before_add_for_day_inputs?(); end
 
   def self.before_add_for_day_preps(); end
 
@@ -24075,17 +24085,22 @@ class OpDay
 
   def self.before_add_for_day_preps?(); end
 
-  def self.before_remove_for_day_ingredients(); end
+  def self.before_remove_for_day_inputs(); end
 
-  def self.before_remove_for_day_ingredients=(val); end
+  def self.before_remove_for_day_inputs=(val); end
 
-  def self.before_remove_for_day_ingredients?(); end
+  def self.before_remove_for_day_inputs?(); end
 
   def self.before_remove_for_day_preps(); end
 
   def self.before_remove_for_day_preps=(val); end
 
   def self.before_remove_for_day_preps?(); end
+end
+
+class OpDayManager
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class OpenSSL::ASN1::ASN1Data
@@ -28537,40 +28552,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70266125432520
+module Polyfill::Module::M70366087749180
 end
 
-module Polyfill::Module::M70266125432520
+module Polyfill::Module::M70366087749180
 end
 
-module Polyfill::Module::M70266126204000
+module Polyfill::Module::M70366090345800
 end
 
-module Polyfill::Module::M70266126204000
+module Polyfill::Module::M70366090345800
 end
 
-module Polyfill::Module::M70266127731560
+module Polyfill::Module::M70366090721460
 end
 
-module Polyfill::Module::M70266127731560
+module Polyfill::Module::M70366090721460
 end
 
-module Polyfill::Module::M70266176944140
+module Polyfill::Module::M70366090848980
 end
 
-module Polyfill::Module::M70266176944140
+module Polyfill::Module::M70366090848980
 end
 
-module Polyfill::Module::M70266177088460
+module Polyfill::Module::M70366099133300
 end
 
-module Polyfill::Module::M70266177088460
+module Polyfill::Module::M70366099133300
 end
 
-module Polyfill::Module::M70266179897120
+module Polyfill::Module::M70366107061220
 end
 
-module Polyfill::Module::M70266179897120
+module Polyfill::Module::M70366107061220
 end
 
 class PredictedOrder
@@ -28718,8 +28733,6 @@ module ProcurementOrder::GeneratedRelationMethods
 end
 
 class ProcurementOrder
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
   def self.after_add_for_procurement_items(); end
 
   def self.after_add_for_procurement_items=(val); end
@@ -39938,17 +39951,17 @@ class Wix::Dispatch
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
-class Wix::Item
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
-end
-
 class Wix::LocaleString
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Wix::Menu
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::MenuItem
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
 end
@@ -40005,6 +40018,33 @@ end
 class Wix::RestaurantRepresenter
   extend ::Representable::JSON::ClassMethods
   extend ::Roar::JSON::ClassMethods
+end
+
+class Wix::Variation
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::VariationChoice
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Wix::VariationChoiceRepresenter
+  include ::Roar::JSON
+  include ::Roar::Representer
+  include ::Roar::JSON::InstanceMethods
+  include ::Representable::JSON::Collection
+  include ::Representable::JSON
+  include ::Representable::Hash::Collection
+  include ::Representable::Hash
+end
+
+class Wix::VariationChoiceRepresenter
+  extend ::Representable::JSON::ClassMethods
+  extend ::Roar::JSON::ClassMethods
+  extend ::Representable::Hash::ClassMethods
+  extend ::Representable::Hash::Collection::ClassMethods
 end
 
 class Wix::WixApi

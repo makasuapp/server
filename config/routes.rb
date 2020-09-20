@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :recipes, only: [:index]
 
     resources :op_days, only: [:index]
-    post 'op_days/save_ingredients_qty', to: 'op_days#save_ingredients_qty'
+    post 'op_days/save_inputs_qty', to: 'op_days#save_inputs_qty'
     post 'op_days/save_prep_qty', to: 'op_days#save_prep_qty'
 
     resources :orders, only: [:create, :index]

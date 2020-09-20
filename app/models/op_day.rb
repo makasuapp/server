@@ -18,6 +18,6 @@ class OpDay < ApplicationRecord
   extend T::Sig
 
   belongs_to :kitchen
-  has_many :day_ingredients, dependent: :delete_all
+  has_many :day_inputs, dependent: :delete_all
   has_many :day_preps, dependent: :delete_all
 end

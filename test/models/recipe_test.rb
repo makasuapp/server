@@ -67,9 +67,9 @@ class RecipeTest < ActiveSupport::TestCase
     r = recipes(:sauce)
     steps, ingredients = r.component_amounts(DateTime.now)
     assert ingredients.count == 3
-    assert ingredients.find { |i| i.ingredient_id == ingredients(:salt).id }.quantity == 1
-    assert ingredients.find { |i| i.ingredient_id == ingredients(:sesame_paste).id }.quantity == 3
-    assert ingredients.find { |i| i.ingredient_id == ingredients(:sesame_oil).id }.quantity == 6
+    assert ingredients.find { |i| i.inputable_id == ingredients(:salt).id }.quantity == 1
+    assert ingredients.find { |i| i.inputable_id == ingredients(:sesame_paste).id }.quantity == 3
+    assert ingredients.find { |i| i.inputable_id == ingredients(:sesame_oil).id }.quantity == 6
   end
 
   test "servings_produced when using less of recipe" do
@@ -109,7 +109,7 @@ class SubRecipeTest < ActiveSupport::TestCase
     assert ingredients.count == 7
 
     #should be the 1tsp 
-    green_onions = ingredients.select { |i| i.ingredient_id == ingredients(:green_onion).id }
+    green_onions = ingredients.select { |i| i.inputable_id == ingredients(:green_onion).id }
     assert green_onions.count == 2
     assert green_onions.find { |i| i.quantity.round == 30 && i.unit == "g" }.present?
     assert green_onions.find { |i| i.quantity == 80 && i.unit == "g" }.present?

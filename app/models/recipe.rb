@@ -78,9 +78,9 @@ class Recipe < ApplicationRecord
   sig {params(
     for_date: T.any(DateTime, ActiveSupport::TimeWithZone),
     for_recipe_id: Integer
-  ).returns([T::Array[StepAmount], T::Array[IngredientAmount]])}
-  #TODO: not great, a lot of db calls
-  # get steps for subrecipes and ingredients for all
+  ).returns([T::Array[StepAmount], T::Array[InputAmount]])}
+  #TODO: not great, a lot of db calls because of nesting
+  # get steps for subrecipes and ingredients for recipe + subrecipes
   def component_amounts(for_date, for_recipe_id = self.id)
     steps = []
     ingredients = []
@@ -89,22 +89,22 @@ class Recipe < ApplicationRecord
     steps_to_check.each do |step|
       step_needed_at = step.min_needed_at(for_date)
 
-      ingredients = ingredients + step.inputs.select { |input| 
-        input.inputable_type == InputType::Ingredient
-      }.map { |input| 
-        IngredientAmount.mk(input.inputable_id, step_needed_at, input.quantity, input.unit)
-      }
+      step.inputs.each do |input|
+        if input.inputable_type == InputType::Recipe
+          child_recipe = input.inputable
+          #children needed at is relative to this step's needed at
+          child_steps, child_ingredients = child_recipe.component_amounts(step_needed_at, for_recipe_id)
 
-      step.inputs.select { |input| 
-        input.inputable_type == InputType::Recipe
-      }.each do |recipe_input|
-        child_recipe = recipe_input.inputable
-        #children needed at is relative to this step's needed at
-        child_steps, child_ingredients = child_recipe.component_amounts(step_needed_at, for_recipe_id)
+          num_servings = child_recipe.servings_produced(input.quantity, input.unit)
+          child_steps.each { |x| steps << x * num_servings }
+          child_ingredients.each { |x| ingredients << x * num_servings }
+        end
 
-        num_servings = child_recipe.servings_produced(recipe_input.quantity, recipe_input.unit)
-        child_steps.each { |x| steps << x * num_servings }
-        child_ingredients.each { |x| ingredients << x * num_servings }
+        if input.inputable_type == InputType::Ingredient
+          #why isn't DayInputType::Ingredient working here
+          ingredients << InputAmount.mk(input.inputable_id, "Ingredient", 
+            step_needed_at, input.quantity, input.unit)
+        end
       end
 
       #exclude recipe's steps
@@ -123,8 +123,9 @@ class Recipe < ApplicationRecord
   end
 
   sig {returns(T::Boolean)}
-  #TODO: not great, a lot of db calls
-  #TODO: check if recipe steps min/max times make sense
+  #TODO: not great, a lot of db calls because of nesting
+  #TODO: check if recipe steps min/max times make sense -- later steps should have less min/max than earlier ones
+  #TODO: check that day jumps in min/max are in separate subrecipe... how decide what fits this?
   #check if all steps aside from last are inputs to later steps
   #check if children recipes' usages match in units
   def is_valid?

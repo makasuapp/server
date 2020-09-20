@@ -55,14 +55,14 @@ module OpDay::GeneratedAttributeMethods
 end
 
 module OpDay::GeneratedAssociationMethods
-  sig { returns(::DayIngredient::ActiveRecord_Associations_CollectionProxy) }
-  def day_ingredients; end
+  sig { returns(::DayInput::ActiveRecord_Associations_CollectionProxy) }
+  def day_inputs; end
 
   sig { returns(T::Array[Integer]) }
-  def day_ingredient_ids; end
+  def day_input_ids; end
 
-  sig { params(value: T::Enumerable[::DayIngredient]).void }
-  def day_ingredients=(value); end
+  sig { params(value: T::Enumerable[::DayInput]).void }
+  def day_inputs=(value); end
 
   sig { returns(::DayPrep::ActiveRecord_Associations_CollectionProxy) }
   def day_preps; end

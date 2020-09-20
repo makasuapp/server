@@ -1,8 +1,8 @@
-json.ingredients do
-  json.array!(@ingredients) do |day_ingredient|
-    json.extract! day_ingredient, :id, :expected_qty, :had_qty, :unit, :ingredient_id
-    if day_ingredient.qty_updated_at.present?
-      json.qty_updated_at day_ingredient.qty_updated_at.to_i
+json.inputs do
+  json.array!(@inputs) do |day_input|
+    json.extract! day_input, :id, :expected_qty, :had_qty, :unit, :inputable_id, :inputable_type
+    if day_input.qty_updated_at.present?
+      json.qty_updated_at day_input.qty_updated_at.to_i
     end
   end
 end
@@ -16,15 +16,5 @@ json.prep do
     if prep.qty_updated_at.present?
       json.qty_updated_at prep.qty_updated_at.to_i
     end
-  end
-end
-
-json.optional do
-  json.ingredients do
-    # json.array! @optional_ingredients, partial: "api/op_days/day_ingredients", as: :ingredient
-  end
-
-  json.prep do
-    # json.array! @optional_prep, partial: "api/op_days/day_prep", as: :prep
   end
 end

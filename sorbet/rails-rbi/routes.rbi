@@ -231,12 +231,12 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_op_days_url(*args, **kwargs); end
 
-  # Sigs for route /api/op_days/save_ingredients_qty(.:format)
+  # Sigs for route /api/op_days/save_inputs_qty(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def api_op_days_save_ingredients_qty_path(*args, **kwargs); end
+  def api_op_days_save_inputs_qty_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def api_op_days_save_ingredients_qty_url(*args, **kwargs); end
+  def api_op_days_save_inputs_qty_url(*args, **kwargs); end
 
   # Sigs for route /api/op_days/save_prep_qty(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }

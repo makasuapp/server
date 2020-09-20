@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_18_165943) do
+ActiveRecord::Schema.define(version: 2020_09_19_213343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 2020_09_18_165943) do
     t.index ["phone_number"], name: "index_customers_on_phone_number"
   end
 
-  create_table "day_ingredients", force: :cascade do |t|
+  create_table "day_inputs", force: :cascade do |t|
     t.bigint "op_day_id", null: false
-    t.bigint "ingredient_id", null: false
+    t.bigint "inputable_id", null: false
     t.float "had_qty"
     t.float "expected_qty", null: false
     t.string "unit"
@@ -37,9 +37,10 @@ ActiveRecord::Schema.define(version: 2020_09_18_165943) do
     t.datetime "qty_updated_at"
     t.datetime "min_needed_at", null: false
     t.bigint "kitchen_id", null: false
-    t.index ["ingredient_id"], name: "index_day_ingredients_on_ingredient_id"
-    t.index ["kitchen_id", "min_needed_at"], name: "index_day_ingredients_on_kitchen_id_and_min_needed_at"
-    t.index ["op_day_id"], name: "index_day_ingredients_on_op_day_id"
+    t.string "inputable_type", default: "Ingredient", null: false
+    t.index ["inputable_type", "inputable_id"], name: "index_day_inputs_on_inputable_type_and_inputable_id"
+    t.index ["kitchen_id", "min_needed_at"], name: "index_day_inputs_on_kitchen_id_and_min_needed_at"
+    t.index ["op_day_id"], name: "index_day_inputs_on_op_day_id"
   end
 
   create_table "day_preps", force: :cascade do |t|
