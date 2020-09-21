@@ -65,11 +65,22 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "component_amounts gets all ingredients used in recipe" do
     r = recipes(:sauce)
-    steps, ingredients = r.component_amounts(DateTime.now)
-    assert ingredients.count == 3
-    assert ingredients.find { |i| i.inputable_id == ingredients(:salt).id }.quantity == 1
-    assert ingredients.find { |i| i.inputable_id == ingredients(:sesame_paste).id }.quantity == 3
-    assert ingredients.find { |i| i.inputable_id == ingredients(:sesame_oil).id }.quantity == 6
+    steps, inputs = r.component_amounts(DateTime.now)
+    assert inputs.count == 3
+    assert inputs.find { |i| i.inputable_id == ingredients(:salt).id }.quantity == 1
+    assert inputs.find { |i| i.inputable_id == ingredients(:sesame_paste).id }.quantity == 3
+    assert inputs.find { |i| i.inputable_id == ingredients(:sesame_oil).id }.quantity == 6
+  end
+
+  test "component_amounts for recipe that's just steps earlier will only have recipe as input day of" do
+    r = recipes(:prep_chicken)
+    steps, inputs = r.component_amounts(DateTime.now)
+    assert inputs.count == 3
+
+    today = DateTime.now.beginning_of_day.to_i
+    today_inputs = inputs.select {|i| i.min_needed_at.to_i >= today }
+    assert today_inputs.size == 1
+    assert today_inputs.first.inputable_type == DayInputType::Recipe
   end
 
   test "servings_produced when using less of recipe" do
@@ -100,16 +111,16 @@ class SubRecipeTest < ActiveSupport::TestCase
 
     #green onion is now a subrecipe of both chicken and sauce
     #0.5 * 10 = 5 tbsp needed for sauce = 30g = 0.3 prep
-    StepInput.create!(inputable_id: @g.id, inputable_type: InputType::Recipe, 
+    StepInput.create!(inputable_id: @g.id, inputable_type: StepInputType::Recipe, 
       recipe_step_id: step.id, quantity: 10, unit: "tbsp")
   end
 
   test "component_amounts includes sub-recipes' ingredients" do
-    steps, ingredients = @r.component_amounts(DateTime.now)
-    assert ingredients.count == 7
+    steps, inputs = @r.component_amounts(DateTime.now)
+    assert inputs.count == 8
 
     #should be the 1tsp 
-    green_onions = ingredients.select { |i| i.inputable_id == ingredients(:green_onion).id }
+    green_onions = inputs.select { |i| i.inputable_id == ingredients(:green_onion).id }
     assert green_onions.count == 2
     assert green_onions.find { |i| i.quantity.round == 30 && i.unit == "g" }.present?
     assert green_onions.find { |i| i.quantity == 80 && i.unit == "g" }.present?
@@ -121,7 +132,7 @@ class SubRecipeTest < ActiveSupport::TestCase
     assert @r.recipe_steps.count == 2
     assert @p.recipe_steps.count == 2
 
-    step_amounts, ingredients = @r.component_amounts(DateTime.now)
+    step_amounts, inputs = @r.component_amounts(DateTime.now)
     assert step_amounts.count == 7
 
     recipe_step = @r.recipe_steps.first
@@ -135,13 +146,13 @@ class SubRecipeTest < ActiveSupport::TestCase
     assert green_onion_amounts.find { |i| i.quantity == 0.8 }.present?
   end
 
-  test "component_amounts are split for same step if different time" do 
+  test "component_amounts splits same step if different time" do 
     chicken_p1 = @p.recipe_steps.where(number: 1).first
-    StepInput.create!(inputable_id: @g.id, inputable_type: InputType::Recipe, 
+    StepInput.create!(inputable_id: @g.id, inputable_type: StepInputType::Recipe, 
       recipe_step_id: chicken_p1.id, quantity: 20, unit: "tbsp")
 
     for_time = DateTime.now
-    step_amounts, ingredients = @r.component_amounts(for_time)
+    step_amounts, inputs = @r.component_amounts(for_time)
 
     chicken_time = for_time - chicken_p1.min_before_sec.seconds
     chicken_p1_amount = step_amounts.select { |x| x.recipe_step_id == chicken_p1.id }.first
@@ -152,6 +163,37 @@ class SubRecipeTest < ActiveSupport::TestCase
     assert green_onion_amounts.count == 3
     assert green_onion_amounts.find { |i| i.quantity.round(1) == 0.3 }.min_needed_at.to_i == for_time.to_i
     assert green_onion_amounts.find { |i| i.quantity.round(2) == 1.2 }.min_needed_at.to_i == chicken_time.to_i
+  end
+
+  test "component_amounts with a subrecipe days earlier should have the recipe as an input the day it's needed" do
+    #recipe needs 1 + 2 prep chickens a day earlier, both recipes should show up as inputs day of since siblings
+    StepInput.create!(inputable_id: @p.id, inputable_type: StepInputType::Recipe,
+      recipe_step_id: recipe_steps(:chicken_c2).id, quantity: 2)
+    
+    chicken_p1 = recipe_steps(:chicken_p1)
+    #prep chicken needs green onion same day, green onion shouldn't show up since it's a child of prep chicken
+    StepInput.create!(inputable_id: @g.id, inputable_type: StepInputType::Recipe,
+      recipe_step_id: chicken_p1.id, quantity: 10, unit: "g")
+
+    #prep chicken needs ingredient two days earlier, that recipe should show up same day as prep chicken
+    new_recipe = Recipe.create!(name: "Test", organization_id: @r.organization_id, output_qty: 10, unit: "g")
+    new_recipe.recipe_steps.create!(instruction: "Test", number: 1, min_before_sec: 49 * 60 * 60)
+    StepInput.create!(inputable_id: new_recipe.id, inputable_type: StepInputType::Recipe,
+      recipe_step_id: chicken_p1.id, quantity: 20, unit: "g")
+
+    for_time = DateTime.now
+    step_amounts, inputs = @r.component_amounts(for_time)
+
+    recipe_inputs = inputs.select { |i| i.inputable_type == DayInputType::Recipe }
+    assert recipe_inputs.size == 4
+
+    new_recipe_inputs = recipe_inputs.select { |i| i.inputable_id == new_recipe.id }
+    assert new_recipe_inputs.map(&:quantity).sort == [20,40]
+    assert new_recipe_inputs[0].min_needed_at.beginning_of_day.to_i == for_time.beginning_of_day.to_i - 1.day
+
+    prep_inputs = recipe_inputs.select { |i| i.inputable_id == @p.id }
+    assert prep_inputs.map(&:quantity).sort == [1,2]
+    assert prep_inputs[0].min_needed_at.beginning_of_day.to_i == for_time.beginning_of_day.to_i
   end
 
   test "all_in returns the recipes and their subrecipes" do

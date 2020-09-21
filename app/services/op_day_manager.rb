@@ -117,6 +117,7 @@ class OpDayManager
         map_key = "#{i_amount.inputable_type}#{i_amount.inputable_id}"
         input_qty = i_amount.quantity * recipe_servings
         #TODO(timezone)
+        #TODO: this time is a bit arbitrary and is set here + in op_days_controller
         on_date = i_amount.min_needed_at.in_time_zone("America/Toronto").beginning_of_day
 
         if day_inputs_map[map_key].nil?

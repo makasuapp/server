@@ -17,12 +17,6 @@
 #  index_step_inputs_on_inputable_type_and_inputable_id  (inputable_type,inputable_id)
 #  index_step_inputs_on_recipe_step_id                   (recipe_step_id)
 #
-module InputType
-  Recipe = "Recipe"
-  Ingredient = "Ingredient"
-  RecipeStep = "RecipeStep"
-end
-
 class StepInput < ApplicationRecord
   extend T::Sig
 
@@ -34,22 +28,22 @@ class StepInput < ApplicationRecord
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
   def self.recipe_typed
-    self.where(inputable_type: InputType::Recipe)
+    self.where(inputable_type: StepInputType::Recipe)
   end
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
   def self.recipe_step_typed
-    self.where(inputable_type: InputType::RecipeStep)
+    self.where(inputable_type: StepInputType::RecipeStep)
   end
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
   def self.ingredient_typed
-    self.where(inputable_type: InputType::Ingredient)
+    self.where(inputable_type: StepInputType::Ingredient)
   end
 
   sig {void}
   def step_input_above_chain
-    if self.inputable_type == InputType::RecipeStep
+    if self.inputable_type == StepInputType::RecipeStep
       input_step = RecipeStep.find(self.inputable_id) 
       of_step = self.recipe_step
 
@@ -65,7 +59,7 @@ class StepInput < ApplicationRecord
 
   sig {void}
   def recipe_input_not_recursive
-    if self.inputable_type == InputType::Recipe && self.id.present?
+    if self.inputable_type == StepInputType::Recipe && self.id.present?
       input_recipe = Recipe.find(self.inputable_id)
       of_recipe_id = self.recipe_step.recipe_id
       # TODO: check that inputs to of_recipe that are recipes don't use input_recipe to make. need to recurse

@@ -55,11 +55,11 @@ sauce_p3_i2:
   recipe_step: sauce_p3
 
 chicken_p1_i1:
-  inputable: chicken (Ingredient)
+  inputable: salt (Ingredient)
   recipe_step: chicken_p1
 
 chicken_p1_i2:
-  inputable: salt (Ingredient)
+  inputable: chicken (Ingredient)
   recipe_step: chicken_p1
 
 chicken_p2:

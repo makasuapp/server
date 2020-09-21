@@ -22,11 +22,6 @@
 #  index_day_inputs_on_kitchen_id_and_min_needed_at     (kitchen_id,min_needed_at)
 #  index_day_inputs_on_op_day_id                        (op_day_id)
 #
-module DayInputType
-  Recipe = "Recipe"
-  Ingredient = "Ingredient"
-end
-
 class DayInput < ApplicationRecord
   extend T::Sig
 

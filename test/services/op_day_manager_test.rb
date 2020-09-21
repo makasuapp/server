@@ -116,9 +116,9 @@ class DayPrepTest < ActiveSupport::TestCase
 
     #green onion is now a subrecipe of chicken twice and sauce once
     #one of the chicken ones has an earlier min_needed_at
-    StepInput.create!(inputable_id: g.id, inputable_type: InputType::Recipe, 
+    StepInput.create!(inputable_id: g.id, inputable_type: StepInputType::Recipe, 
       recipe_step_id: @sauce_step.id, quantity: 10, unit: "g")
-    StepInput.create!(inputable_id: g.id, inputable_type: InputType::Recipe, 
+    StepInput.create!(inputable_id: g.id, inputable_type: StepInputType::Recipe, 
       recipe_step_id: @chicken_step.id, quantity: 3, unit: "tbsp")
 
     count = DayPrep.count

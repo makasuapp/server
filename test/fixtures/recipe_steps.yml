@@ -46,20 +46,20 @@ sauce_p3:
 
 chicken_p1:
   recipe: prep_chicken
-  instruction: "Dry brine chicken overnight"
+  instruction: "Mix together dry brine ingredients"
   number: 1
-  min_before_sec: 28800
+  min_before_sec: 86500 
 
 chicken_p2:
   recipe: prep_chicken
-  instruction: "Cook on low heat for 20 minutes"
+  instruction: "Dry brine chicken overnight"
   number: 2
-  min_before_sec: 1200
+  min_before_sec: 86400
   tools: stove
 
 chicken_c1:
   recipe: chicken
-  instruction: "Cut chicken into cubes"
+  instruction: "Cook for 20 min, then cut chicken into cubes"
   number: 1
   tools: knife
 

@@ -38,10 +38,9 @@ class InputAmount < T::Struct
 
   sig {returns(T.any(Ingredient, Recipe))}
   def inputable
-    #why isn't DayInputType::Ingredient working here
-    if self.inputable_type == "Ingredient"
+    if self.inputable_type == DayInputType::Ingredient
       Ingredient.find(self.inputable_id)
-    elsif self.inputable_type == "Recipe"
+    elsif self.inputable_type == DayInputType::Recipe
       input = Recipe.find(self.inputable_id)
     else
       raise "Unexpected inputable type #{self.inputable_type}"

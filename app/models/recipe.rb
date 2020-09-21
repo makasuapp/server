@@ -47,7 +47,7 @@ class Recipe < ApplicationRecord
       steps_to_check = recipe.recipe_steps.includes(:inputs)
       steps_to_check.each do |s|
         s.inputs.select { |input| 
-          input.inputable_type == InputType::Recipe
+          input.inputable_type == StepInputType::Recipe
         }.each do |recipe_input|
           child_recipes = Recipe.all_in([recipe_input.inputable_id])
           recipes = recipes + child_recipes
@@ -65,7 +65,7 @@ class Recipe < ApplicationRecord
         step = T.must(self.recipe_steps.first)
         if step.inputs.length == 1
           input = T.must(step.inputs.first)
-          if input.inputable_type == InputType::Ingredient
+          if input.inputable_type == StepInputType::Ingredient
             return input.inputable.volume_weight_ratio
           end
         end
@@ -77,43 +77,55 @@ class Recipe < ApplicationRecord
 
   sig {params(
     for_date: T.any(DateTime, ActiveSupport::TimeWithZone),
-    for_recipe_id: Integer
+    root_recipe_id: Integer,
+    parent_inserted_date: T.nilable(T.any(DateTime, ActiveSupport::TimeWithZone))
   ).returns([T::Array[StepAmount], T::Array[InputAmount]])}
   #TODO: not great, a lot of db calls because of nesting
   # get steps for subrecipes and ingredients for recipe + subrecipes
-  def component_amounts(for_date, for_recipe_id = self.id)
+  def component_amounts(for_date, root_recipe_id = self.id, parent_inserted_date = nil)
     steps = []
-    ingredients = []
+    inputs = []
+    already_inserted_date = parent_inserted_date
 
     steps_to_check = self.recipe_steps.includes(:inputs).order("number ASC")
     steps_to_check.each do |step|
       step_needed_at = step.min_needed_at(for_date)
 
+      #exclude recipe's steps
+      if step.recipe_id != root_recipe_id
+        steps << StepAmount.mk(step.id, step_needed_at, 1)
+      end
+
+      latest_date = already_inserted_date || for_date
+      #recipe's inputs/prep will show up on an earlier day, so on latest date we'll need as input the made recipe
+      #TODO: assumes all steps of a recipe will happen on the same day. will need to enforce this or change this logic
+      if latest_date.beginning_of_day.to_i > step_needed_at.beginning_of_day.to_i
+        already_inserted_date = step_needed_at
+        inputs << InputAmount.mk(self.id, DayInputType::Recipe, 
+          latest_date, self.output_qty, self.unit)
+      end
+
       step.inputs.each do |input|
-        if input.inputable_type == InputType::Recipe
+        if input.inputable_type == StepInputType::Recipe
+
           child_recipe = input.inputable
           #children needed at is relative to this step's needed at
-          child_steps, child_ingredients = child_recipe.component_amounts(step_needed_at, for_recipe_id)
+          child_steps, child_inputs = child_recipe.component_amounts(step_needed_at, 
+            root_recipe_id, already_inserted_date)
 
           num_servings = child_recipe.servings_produced(input.quantity, input.unit)
           child_steps.each { |x| steps << x * num_servings }
-          child_ingredients.each { |x| ingredients << x * num_servings }
+          child_inputs.each { |x| inputs << x * num_servings }
         end
 
-        if input.inputable_type == InputType::Ingredient
-          #why isn't DayInputType::Ingredient working here
-          ingredients << InputAmount.mk(input.inputable_id, "Ingredient", 
+        if input.inputable_type == StepInputType::Ingredient
+          inputs << InputAmount.mk(input.inputable_id, DayInputType::Ingredient, 
             step_needed_at, input.quantity, input.unit)
         end
       end
-
-      #exclude recipe's steps
-      if step.recipe_id != for_recipe_id
-        steps << StepAmount.mk(step.id, step_needed_at, 1)
-      end
     end
 
-    [steps, ingredients]
+    [steps, inputs]
   end
 
   sig {params(usage_qty: T.any(Float, Integer, BigDecimal), usage_unit: T.nilable(String)).returns(Float)}
