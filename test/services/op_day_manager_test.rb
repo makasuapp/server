@@ -12,14 +12,16 @@ class DayInputTest < ActiveSupport::TestCase
     count = DayInput.count
     assert PredictedOrder.count == 1
 
-    time = DateTime.now.beginning_of_day
+    #TODO(timezone)
+    time = DateTime.now.in_time_zone("America/Toronto").beginning_of_day
     amounts = [
       InputAmount.mk(@i1.id, DayInputType::Ingredient, time, 1.5),
       InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1400, "g")
     ]
     Recipe.any_instance.expects(:component_amounts).once.returns([[], amounts])
     had_qtys = {}
-    had_qtys["#{DayInputType::Ingredient}#{@i2.id}"] = [InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1.2, "kg")]
+    had_qtys["#{DayInputType::Ingredient}#{@i2.id}"] = {}
+    had_qtys["#{DayInputType::Ingredient}#{@i2.id}"][time.to_i] = [InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1.2, "kg")]
     OpDayManager.create_day(PredictedOrder.all, @today, had_qtys, {})
 
     assert DayInput.count == count + 2
@@ -98,7 +100,9 @@ class DayPrepTest < ActiveSupport::TestCase
     count = DayPrep.count
 
     made_qtys = {}
-    made_qtys[@sauce_step.id] = [StepAmount.mk(@sauce_step.id, PredictedOrder.first.date, 0.8)]
+    made_qtys[@sauce_step.id] = {}
+    min_needed_at = @predicted_order.date.in_time_zone("America/Toronto")
+    made_qtys[@sauce_step.id][min_needed_at.to_i] = StepAmount.mk(@sauce_step.id, PredictedOrder.first.date, 0.8)
     OpDayManager.create_day(PredictedOrder.all, @today, {}, made_qtys)
 
     assert DayPrep.count == count + 6

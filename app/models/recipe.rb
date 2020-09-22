@@ -77,12 +77,12 @@ class Recipe < ApplicationRecord
 
   sig {params(
     for_date: T.any(DateTime, ActiveSupport::TimeWithZone),
-    root_recipe_id: Integer,
+    include_root_steps: T::Boolean,
     parent_inserted_date: T.nilable(T.any(DateTime, ActiveSupport::TimeWithZone))
   ).returns([T::Array[StepAmount], T::Array[InputAmount]])}
   #TODO: not great, a lot of db calls because of nesting
-  # get steps for subrecipes and ingredients for recipe + subrecipes
-  def component_amounts(for_date, root_recipe_id = self.id, parent_inserted_date = nil)
+  # get steps and ingredients for recipe + subrecipes
+  def component_amounts(for_date, include_root_steps = false, parent_inserted_date = nil)
     steps = []
     inputs = []
     already_inserted_date = parent_inserted_date
@@ -91,8 +91,7 @@ class Recipe < ApplicationRecord
     steps_to_check.each do |step|
       step_needed_at = step.min_needed_at(for_date)
 
-      #exclude recipe's steps
-      if step.recipe_id != root_recipe_id
+      if include_root_steps
         steps << StepAmount.mk(step.id, step_needed_at, 1)
       end
 
@@ -110,8 +109,9 @@ class Recipe < ApplicationRecord
 
           child_recipe = input.inputable
           #children needed at is relative to this step's needed at
+          #we always want children's steps
           child_steps, child_inputs = child_recipe.component_amounts(step_needed_at, 
-            root_recipe_id, already_inserted_date)
+            true, already_inserted_date)
 
           num_servings = child_recipe.servings_produced(input.quantity, input.unit)
           child_steps.each { |x| steps << x * num_servings }

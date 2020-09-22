@@ -30,4 +30,10 @@ class DayInput < ApplicationRecord
   belongs_to :inputable, polymorphic: true
   belongs_to :op_day
   belongs_to :kitchen
+
+  sig {params(min_needed_at: T.any(DateTime, ActiveSupport::TimeWithZone))
+    .returns(T.any(DateTime, ActiveSupport::TimeWithZone))}
+  def self.day_needed_at(min_needed_at)
+    min_needed_at.beginning_of_day
+  end
 end
