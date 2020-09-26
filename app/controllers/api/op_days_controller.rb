@@ -16,12 +16,11 @@ class Api::OpDaysController < ApplicationController
     render formats: :json
   end
 
-  #TODO(day_recipe): test this and update with removals
   def add_inputs
     #TODO(timezone)
     date = DateTime.now.in_time_zone("America/Toronto")
     kitchen = Kitchen.find(params[:kitchen_id])
-    op_day = OpDay.find_by(date: date, kitchen_id: kitchen.id)
+    op_day = OpDay.find_or_create_by!(date: date, kitchen_id: kitchen.id)
 
     inputs = []
 
@@ -41,7 +40,7 @@ class Api::OpDaysController < ApplicationController
 
     DayInput.import inputs
 
-    OpDayManager.update_day_for(date, kitchen)
+    OpDayManager.update_day_for(op_day)
 
     start_date = date.beginning_of_day
     end_date = date.end_of_day
@@ -79,9 +78,12 @@ class Api::OpDaysController < ApplicationController
 
     DayInput.import inputs_map.values, on_duplicate_key_update: [:had_qty, :qty_updated_at]
 
-    #TODO(day_recipe): need to regenerate + return index again
-    if DayInput.where(id: ids, inputable_type: DayInputType::Recipe).size > 0
-      # OpDayManager.update_day_for(date, kitchen)
+    #if a recipe input changes, we need to update the day's inputs/preps
+    recipe_updates = DayInput.where(id: ids, inputable_type: DayInputType::Recipe)
+    if recipe_updates.size > 0
+      #assume updates are all from same day
+      op_day = recipe_updates.first.op_day
+      OpDayManager.update_day_for(op_day)
     end
 
     head :ok

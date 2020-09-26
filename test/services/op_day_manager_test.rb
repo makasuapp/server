@@ -1,14 +1,17 @@
 require 'test_helper'
 
-class DayInputTest < ActiveSupport::TestCase
+class OpDayManagerCreateDayTest < ActiveSupport::TestCase
   setup do
     @predicted_order = predicted_orders(:chicken)
     @today = op_days(:today)
     @i1 = ingredients(:salt)
     @i2 = ingredients(:green_onion)
+    @sauce_step = recipe_steps(:sauce_p2)
+    @chicken_step = recipe_steps(:chicken_p2)
+    @prep_recipe = recipes(:sauce)
   end
 
-  test "create_day adds had_qty if exists" do
+  test "adds had_amount to ingredients if exists" do
     count = DayInput.count
     assert PredictedOrder.count == 1
 
@@ -19,10 +22,10 @@ class DayInputTest < ActiveSupport::TestCase
       InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1400, "g")
     ]
     Recipe.any_instance.expects(:component_amounts).once.returns([[], amounts])
-    had_qtys = {}
-    had_qtys["#{DayInputType::Ingredient}#{@i2.id}"] = {}
-    had_qtys["#{DayInputType::Ingredient}#{@i2.id}"][time.to_i] = [InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1.2, "kg")]
-    OpDayManager.create_day(PredictedOrder.all, @today, had_qtys, {})
+    had_amounts = {}
+    had_amounts["#{DayInputType::Ingredient}#{@i2.id}"] = {}
+    had_amounts["#{DayInputType::Ingredient}#{@i2.id}"][time.to_i] = [InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1.2, "kg")]
+    OpDayManager.create_day(PredictedOrder.all, @today, had_amounts, {})
 
     assert DayInput.count == count + 2
 
@@ -37,7 +40,7 @@ class DayInputTest < ActiveSupport::TestCase
     assert di2.unit == "g"
   end
 
-  test "create_day aggregates the ingredients across the day" do
+  test "aggregates the ingredients across the day" do
     new_pr = @predicted_order.dup
     new_pr.save!
     count = DayInput.count
@@ -86,24 +89,15 @@ class DayInputTest < ActiveSupport::TestCase
     assert di2.expected_qty.round(4) == (((1100.0/1000) + 1.4 + (1.6 * @i2.volume_weight_ratio)) * 2 * 2).round(4)
     assert di2.unit == "kg"
   end
-end
 
-class DayPrepTest < ActiveSupport::TestCase
-  setup do
-    @predicted_order = predicted_orders(:chicken)
-    @today = op_days(:today)
-    @sauce_step = recipe_steps(:sauce_p2)
-    @chicken_step = recipe_steps(:chicken_p2)
-  end
-
-  test "create_day adds made_qty if exists" do
+  test "adds made_amount to prep if exists" do
     count = DayPrep.count
 
-    made_qtys = {}
-    made_qtys[@sauce_step.id] = {}
+    made_amounts = {}
+    made_amounts[@sauce_step.id] = {}
     min_needed_at = @predicted_order.date.in_time_zone("America/Toronto")
-    made_qtys[@sauce_step.id][min_needed_at.to_i] = StepAmount.mk(@sauce_step.id, PredictedOrder.first.date, 0.8)
-    OpDayManager.create_day(PredictedOrder.all, @today, {}, made_qtys)
+    made_amounts[@sauce_step.id][min_needed_at.to_i] = StepAmount.mk(@sauce_step.id, PredictedOrder.first.date, 0.8)
+    OpDayManager.create_day(PredictedOrder.all, @today, {}, made_amounts)
 
     assert DayPrep.count == count + 6
     sauce_prep = DayPrep.where(recipe_step_id: @sauce_step.id).first
@@ -115,7 +109,7 @@ class DayPrepTest < ActiveSupport::TestCase
     assert chicken_prep.made_qty.nil?
   end
 
-  test "create_day aggregates the steps" do
+  test "aggregates the steps" do
     g = recipes(:green_onion)
 
     #green onion is now a subrecipe of chicken twice and sauce once
@@ -143,5 +137,50 @@ class DayPrepTest < ActiveSupport::TestCase
     assert green_onion_prep.count == 2
     assert green_onion_prep.first.expected_qty.round(3) == (7.0/2 * ((3.0 * 6)/100)).round(3)
     assert green_onion_prep.last.expected_qty.round(3) == (7.0/2 * ((0.5 * 10)/100 + 80.0/100)).round(3)
+  end
+
+  test "had_amount of recipes removes ingredients/preps needed for them" do
+    time = DateTime.now.in_time_zone("America/Toronto").beginning_of_day
+
+    sesame_paste = ingredients(:sesame_paste)
+    sauce_step = recipe_steps(:sauce_p2)
+
+    OpDayManager.create_day(PredictedOrder.all, @today, {}, {})
+
+    paste_input_before = DayInput.where(inputable_type: DayInputType::Ingredient,
+      inputable_id: sesame_paste.id).first
+    #4x chicken needs 1x sauce
+    assert paste_input_before.expected_qty == 3
+
+    sauce_step_before = DayPrep.where(recipe_step_id: sauce_step.id).first
+    assert sauce_step_before.expected_qty == 1
+
+    DayInput.delete_all
+    DayPrep.delete_all
+
+    had_amounts = {}
+    had_amounts["#{DayInputType::Recipe}#{@prep_recipe.id}"] = {}
+    had_amounts["#{DayInputType::Recipe}#{@prep_recipe.id}"][time.to_i] = [
+      InputAmount.mk(@prep_recipe.id, DayInputType::Recipe, time, 0.5)
+    ]
+    OpDayManager.create_day(PredictedOrder.all, @today, had_amounts, {})
+
+    paste_input_after = DayInput.where(inputable_type: DayInputType::Ingredient,
+      inputable_id: sesame_paste.id).first
+    assert paste_input_after.expected_qty == 1.5
+
+    sauce_step_after = DayPrep.where(recipe_step_id: sauce_step.id).first
+    assert sauce_step_after.expected_qty == 0.5
+  end
+
+  #TODO: we don't handle this case right now
+  test "had_amount of recipe that's not in predicted orders' subrecipes shouldn't reduce inputs/prep" do
+  end
+
+  #TODO: how do we want to handle this case?
+  test "had_amount of recipe generated from component_amounts" do
+    #day originally would have brined chicken added as day input since needed prep day before
+    #have day input with recipe brined chicken, had_amount = 0
+    #now day also needs to make brined chicken...?
   end
 end

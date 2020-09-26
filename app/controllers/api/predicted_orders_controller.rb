@@ -42,7 +42,8 @@ class Api::PredictedOrdersController < ApplicationController
     end
 
     #could do this async
-    OpDayManager.update_day_for(date, kitchen)
+    op_day = OpDay.find_or_create_by!(date: date, kitchen_id: kitchen.id)
+    OpDayManager.update_day_for(op_day)
 
     render :index, status: :created
   end

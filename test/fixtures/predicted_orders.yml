@@ -24,6 +24,6 @@
 
 chicken:
   recipe: chicken
-  date: <%= Date.today %>
+  date: <%= DateTime.now.in_time_zone("America/Toronto") %>
   quantity: 4
   kitchen: test
