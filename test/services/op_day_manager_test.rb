@@ -8,7 +8,8 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     @i2 = ingredients(:green_onion)
     @sauce_step = recipe_steps(:sauce_p2)
     @chicken_step = recipe_steps(:chicken_p2)
-    @prep_recipe = recipes(:sauce)
+    @sauce_recipe = recipes(:sauce)
+    @prep_chicken_recipe = recipes(:prep_chicken)
   end
 
   test "adds had_amount to ingredients if exists" do
@@ -155,13 +156,24 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     sauce_step_before = DayPrep.where(recipe_step_id: sauce_step.id).first
     assert sauce_step_before.expected_qty == 1
 
+    prep_chicken_before = DayInput.where(inputable_type: DayInputType::Recipe,
+      inputable_id: @prep_chicken_recipe.id).first
+    assert prep_chicken_before.had_qty == nil
+    assert prep_chicken_before.expected_qty == 2
+
     DayInput.delete_all
     DayPrep.delete_all
 
     had_amounts = {}
-    had_amounts["#{DayInputType::Recipe}#{@prep_recipe.id}"] = {}
-    had_amounts["#{DayInputType::Recipe}#{@prep_recipe.id}"][time.to_i] = [
-      InputAmount.mk(@prep_recipe.id, DayInputType::Recipe, time, 0.5)
+    had_amounts["#{DayInputType::Recipe}#{@sauce_recipe.id}"] = {}
+    had_amounts["#{DayInputType::Recipe}#{@prep_chicken_recipe.id}"] = {}
+    #have a bit of sauce, don't need to make it all
+    had_amounts["#{DayInputType::Recipe}#{@sauce_recipe.id}"][time.to_i] = [
+      InputAmount.mk(@sauce_recipe.id, DayInputType::Recipe, time, 0.5)
+    ]
+    #already expecting prep chicken from component_amounts, doesn't change anything
+    had_amounts["#{DayInputType::Recipe}#{@prep_chicken_recipe.id}"][time.to_i] = [
+      InputAmount.mk(@prep_chicken_recipe.id, DayInputType::Recipe, time, 2)
     ]
     OpDayManager.create_day(PredictedOrder.all, @today, had_amounts, {})
 
@@ -171,16 +183,29 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
 
     sauce_step_after = DayPrep.where(recipe_step_id: sauce_step.id).first
     assert sauce_step_after.expected_qty == 0.5
+
+    prep_chicken_after = DayInput.where(inputable_type: DayInputType::Recipe,
+      inputable_id: @prep_chicken_recipe.id).first
+    assert prep_chicken_after.had_qty == 2
+    assert prep_chicken_after.expected_qty == 2
   end
 
   #TODO: we don't handle this case right now
   test "had_amount of recipe that's not in predicted orders' subrecipes shouldn't reduce inputs/prep" do
   end
 
+  #TODO: we don't handle this case right now
+  test "had_amount of recipe greater than needed in predicted orders' subrecipes shouldn't reduce inputs/prep" do
+  end
+
   #TODO: how do we want to handle this case?
-  test "had_amount of recipe generated from component_amounts" do
+  test "had_amount of recipe generated from component_amounts less than generated" do
     #day originally would have brined chicken added as day input since needed prep day before
     #have day input with recipe brined chicken, had_amount = 0
-    #now day also needs to make brined chicken...?
+    #now day also needs to make brined chicken but day of...?
+  end
+
+  #TODO: we don't handle this case right now + don't prevent user from causing this
+  test "had_amount multiple of the same recipe" do
   end
 end

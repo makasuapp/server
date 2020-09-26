@@ -190,7 +190,7 @@ class OpDayManager
       added_recipe_amounts = day_inputs_map[recipe_map_key] && day_inputs_map[recipe_map_key][day_needed_at_i]
       if added_recipe_amounts.present?
         #shouldn't be able to have a recipe that can't convert
-        added_recipe_amount = added_recipe_amount.first
+        added_recipe_amount = added_recipe_amounts.first
         recipe_had_qty = added_recipe_amount.expected_qty - recipe_had_amount.quantity
       else
         recipe_had_qty = recipe_had_amount.quantity
