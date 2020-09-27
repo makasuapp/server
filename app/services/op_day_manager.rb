@@ -225,11 +225,11 @@ class OpDayManager
           added_inputs = day_inputs_map[map_key][day_needed_at_i]
 
           input = removing_input_amount.inputable
-          match_idx = day_inputs_map[map_key][day_needed_at_i].find_index { |i| 
+          match_idx = added_inputs && added_inputs.find_index { |i| 
             UnitConverter.can_convert?(removing_input_amount.unit, i.unit, 
               input.volume_weight_ratio) }
           if match_idx.present?
-            added_input = day_inputs_map[map_key][day_needed_at_i][match_idx]
+            added_input = added_inputs[match_idx]
             added_input.expected_qty = added_input.expected_qty - 
               UnitConverter.convert(removing_input_amount.quantity * recipe_had_qty, 
                 removing_input_amount.unit,
@@ -244,8 +244,8 @@ class OpDayManager
       end
     end
  
-    DayInput.import! day_inputs_map.values.map(&:values).flatten
-    DayPrep.import! day_preps_map.values.map(&:values).flatten
+    DayInput.import! day_inputs_map.values.map(&:values).flatten.compact
+    DayPrep.import! day_preps_map.values.map(&:values).flatten.compact
   end
 
   sig {params(

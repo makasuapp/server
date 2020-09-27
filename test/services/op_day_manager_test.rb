@@ -10,6 +10,8 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     @chicken_step = recipe_steps(:chicken_p2)
     @sauce_recipe = recipes(:sauce)
     @prep_chicken_recipe = recipes(:prep_chicken)
+    @sesame_paste = ingredients(:sesame_paste)
+    @sauce_step = recipe_steps(:sauce_p2)
   end
 
   test "adds had_amount to ingredients if exists" do
@@ -143,17 +145,14 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
   test "had_amount of recipes removes ingredients/preps needed for them" do
     time = DateTime.now.in_time_zone("America/Toronto").beginning_of_day
 
-    sesame_paste = ingredients(:sesame_paste)
-    sauce_step = recipe_steps(:sauce_p2)
-
     OpDayManager.create_day(PredictedOrder.all, @today, {}, {})
 
     paste_input_before = DayInput.where(inputable_type: DayInputType::Ingredient,
-      inputable_id: sesame_paste.id).first
+      inputable_id: @sesame_paste.id).first
     #4x chicken needs 1x sauce
     assert paste_input_before.expected_qty == 3
 
-    sauce_step_before = DayPrep.where(recipe_step_id: sauce_step.id).first
+    sauce_step_before = DayPrep.where(recipe_step_id: @sauce_step.id).first
     assert sauce_step_before.expected_qty == 1
 
     prep_chicken_before = DayInput.where(inputable_type: DayInputType::Recipe,
@@ -178,10 +177,10 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     OpDayManager.create_day(PredictedOrder.all, @today, had_amounts, {})
 
     paste_input_after = DayInput.where(inputable_type: DayInputType::Ingredient,
-      inputable_id: sesame_paste.id).first
+      inputable_id: @sesame_paste.id).first
     assert paste_input_after.expected_qty == 1.5
 
-    sauce_step_after = DayPrep.where(recipe_step_id: sauce_step.id).first
+    sauce_step_after = DayPrep.where(recipe_step_id: @sauce_step.id).first
     assert sauce_step_after.expected_qty == 0.5
 
     prep_chicken_after = DayInput.where(inputable_type: DayInputType::Recipe,
@@ -190,12 +189,38 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     assert prep_chicken_after.expected_qty == 2
   end
 
+  test "had_amount of recipe more than needed" do
+    time = DateTime.now.in_time_zone("America/Toronto").beginning_of_day
+
+    had_amounts = {}
+    had_amounts["#{DayInputType::Recipe}#{@sauce_recipe.id}"] = {}
+    had_amounts["#{DayInputType::Recipe}#{@sauce_recipe.id}"][time.to_i] = [
+      InputAmount.mk(@sauce_recipe.id, DayInputType::Recipe, time, 3)
+    ]
+    OpDayManager.create_day(PredictedOrder.all, @today, had_amounts, {})
+
+    paste_input_after = DayInput.where(inputable_type: DayInputType::Ingredient,
+      inputable_id: @sesame_paste.id).first
+    assert paste_input_after.nil?
+
+    sauce_step_after = DayPrep.where(recipe_step_id: @sauce_step.id).first
+    assert sauce_step_after.nil?
+  end
+
+  #TODO: we don't handle this properly right now
+  test "had_amount of recipe includes recipe DayInput" do
+    #have mouth watering chicken use a recipe that uses brined chicken, liked cooked chicken
+    #if have_amount of cooked chicken, should remove brined chicken, but instead will try to remove whole chicken
+  end
+
   #TODO: we don't handle this case right now
   test "had_amount of recipe that's not in predicted orders' subrecipes shouldn't reduce inputs/prep" do
   end
 
   #TODO: we don't handle this case right now
   test "had_amount of recipe greater than needed in predicted orders' subrecipes shouldn't reduce inputs/prep" do
+    #if we have 10x brined chicken, that shouldn't remove salt we need in other recipes
+    #just up to amount of salt from predicted brined chickens
   end
 
   #TODO: how do we want to handle this case?
