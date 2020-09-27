@@ -187,6 +187,10 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
       inputable_id: @prep_chicken_recipe.id).first
     assert prep_chicken_after.had_qty == 2
     assert prep_chicken_after.expected_qty == 2
+
+    recipe = DayInput.where(inputable_type: DayInputType::Recipe, 
+      inputable_id: @sauce_recipe.id).first
+    assert recipe.had_qty == 0.5
   end
 
   test "had_amount of recipe more than needed" do
@@ -205,6 +209,10 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
 
     sauce_step_after = DayPrep.where(recipe_step_id: @sauce_step.id).first
     assert sauce_step_after.nil?
+
+    recipe = DayInput.where(inputable_type: DayInputType::Recipe, 
+      inputable_id: @sauce_recipe.id).first
+    assert recipe.had_qty == 3
   end
 
   #TODO: we don't handle this properly right now
