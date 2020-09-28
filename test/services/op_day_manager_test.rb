@@ -4,14 +4,16 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
   setup do
     @predicted_order = predicted_orders(:chicken)
     @today = op_days(:today)
+
     @i1 = ingredients(:salt)
     @i2 = ingredients(:green_onion)
-    @sauce_step = recipe_steps(:sauce_p2)
+
+    @green_onion_step = recipe_steps(:green_onion_p1)
     @chicken_step = recipe_steps(:chicken_p2)
-    @sauce_recipe = recipes(:sauce)
-    @prep_chicken_recipe = recipes(:prep_chicken)
-    @sesame_paste = ingredients(:sesame_paste)
     @sauce_step = recipe_steps(:sauce_p2)
+
+    @green_onion_recipe = recipes(:green_onion)
+    @prep_chicken_recipe = recipes(:prep_chicken)
   end
 
   test "adds had_amount to ingredients if exists" do
@@ -147,13 +149,14 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
 
     OpDayManager.create_day(PredictedOrder.all, @today, {}, {})
 
-    paste_input_before = DayInput.where(inputable_type: DayInputType::Ingredient,
-      inputable_id: @sesame_paste.id).first
-    #4x chicken needs 1x sauce
-    assert paste_input_before.expected_qty == 3
+    green_onion_input_before = DayInput.where(inputable_type: DayInputType::Ingredient,
+      inputable_id: @i2.id).first
+    #4x chicken needs 2x green onion
+    assert green_onion_input_before.expected_qty == 80 * 2
+    assert green_onion_input_before.unit == "g"
 
-    sauce_step_before = DayPrep.where(recipe_step_id: @sauce_step.id).first
-    assert sauce_step_before.expected_qty == 1
+    green_onion_before = DayPrep.where(recipe_step_id: @green_onion_step.id).first
+    assert green_onion_before.expected_qty == 0.8 * 2
 
     prep_chicken_before = DayInput.where(inputable_type: DayInputType::Recipe,
       inputable_id: @prep_chicken_recipe.id).first
@@ -164,11 +167,11 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     DayPrep.delete_all
 
     had_amounts = {}
-    had_amounts["#{DayInputType::Recipe}#{@sauce_recipe.id}"] = {}
+    had_amounts["#{DayInputType::Recipe}#{@green_onion_recipe.id}"] = {}
     had_amounts["#{DayInputType::Recipe}#{@prep_chicken_recipe.id}"] = {}
-    #have a bit of sauce, don't need to make it all
-    had_amounts["#{DayInputType::Recipe}#{@sauce_recipe.id}"][time.to_i] = [
-      InputAmount.mk(@sauce_recipe.id, DayInputType::Recipe, time, 0.5)
+    #have a bit of green onion, don't need to make it all
+    had_amounts["#{DayInputType::Recipe}#{@green_onion_recipe.id}"][time.to_i] = [
+      InputAmount.mk(@green_onion_recipe.id, DayInputType::Recipe, time, 40, "g")
     ]
     #already expecting prep chicken from component_amounts, doesn't change anything
     had_amounts["#{DayInputType::Recipe}#{@prep_chicken_recipe.id}"][time.to_i] = [
@@ -176,12 +179,13 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     ]
     OpDayManager.create_day(PredictedOrder.all, @today, had_amounts, {})
 
-    paste_input_after = DayInput.where(inputable_type: DayInputType::Ingredient,
-      inputable_id: @sesame_paste.id).first
-    assert paste_input_after.expected_qty == 1.5
+    green_onion_input_after = DayInput.where(inputable_type: DayInputType::Ingredient,
+      inputable_id: @i2.id).first
+    assert green_onion_input_after.expected_qty == 120
+    assert green_onion_input_after.unit == "g"
 
-    sauce_step_after = DayPrep.where(recipe_step_id: @sauce_step.id).first
-    assert sauce_step_after.expected_qty == 0.5
+    green_onion_after = DayPrep.where(recipe_step_id: @green_onion_step.id).first
+    assert green_onion_after.expected_qty.round(2) == 1.2
 
     prep_chicken_after = DayInput.where(inputable_type: DayInputType::Recipe,
       inputable_id: @prep_chicken_recipe.id).first
@@ -189,30 +193,32 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     assert prep_chicken_after.expected_qty == 2
 
     recipe = DayInput.where(inputable_type: DayInputType::Recipe, 
-      inputable_id: @sauce_recipe.id).first
-    assert recipe.had_qty == 0.5
+      inputable_id: @green_onion_recipe.id).first
+    assert recipe.had_qty == 40
+    assert recipe.unit == "g"
   end
 
   test "had_amount of recipe more than needed" do
     time = DateTime.now.in_time_zone("America/Toronto").beginning_of_day
 
     had_amounts = {}
-    had_amounts["#{DayInputType::Recipe}#{@sauce_recipe.id}"] = {}
-    had_amounts["#{DayInputType::Recipe}#{@sauce_recipe.id}"][time.to_i] = [
-      InputAmount.mk(@sauce_recipe.id, DayInputType::Recipe, time, 3)
+    had_amounts["#{DayInputType::Recipe}#{@green_onion_recipe.id}"] = {}
+    had_amounts["#{DayInputType::Recipe}#{@green_onion_recipe.id}"][time.to_i] = [
+      InputAmount.mk(@green_onion_recipe.id, DayInputType::Recipe, time, 1, "kg")
     ]
     OpDayManager.create_day(PredictedOrder.all, @today, had_amounts, {})
 
-    paste_input_after = DayInput.where(inputable_type: DayInputType::Ingredient,
-      inputable_id: @sesame_paste.id).first
-    assert paste_input_after.nil?
+    green_onion_input_after = DayInput.where(inputable_type: DayInputType::Ingredient,
+      inputable_id: @i2.id).first
+    assert green_onion_input_after.nil?
 
-    sauce_step_after = DayPrep.where(recipe_step_id: @sauce_step.id).first
-    assert sauce_step_after.nil?
+    green_onion_after = DayPrep.where(recipe_step_id: @green_onion_step.id).first
+    assert green_onion_after.nil?
 
     recipe = DayInput.where(inputable_type: DayInputType::Recipe, 
-      inputable_id: @sauce_recipe.id).first
-    assert recipe.had_qty == 3
+      inputable_id: @green_onion_recipe.id).first
+    assert recipe.had_qty == 1
+    assert recipe.unit == "kg"
   end
 
   #TODO: we don't handle this properly right now
