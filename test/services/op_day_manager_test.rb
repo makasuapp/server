@@ -26,7 +26,9 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
       InputAmount.mk(@i1.id, DayInputType::Ingredient, time, 1.5),
       InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1400, "g")
     ]
-    Recipe.any_instance.expects(:component_amounts).once.returns([[], amounts])
+    Recipe.any_instance.expects(:component_amounts).once
+      .with(anything, recipe_deductions: {}, recipe_servings: 2)
+      .returns([[], amounts, {}])
     had_amounts = {}
     had_amounts["#{DayInputType::Ingredient}#{@i2.id}"] = {}
     had_amounts["#{DayInputType::Ingredient}#{@i2.id}"][time.to_i] = [InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1.2, "kg")]
@@ -35,12 +37,11 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     assert DayInput.count == count + 2
 
     di1 = DayInput.where(inputable_id: @i1.id, inputable_type: DayInputType::Ingredient).first
-    #4 qty orders, each recipe produces 2 servings
-    assert di1.expected_qty == 1.5 * 2
+    assert di1.expected_qty == 1.5 
     assert di1.had_qty.nil?
 
     di2 = DayInput.where(inputable_id: @i2.id, inputable_type: DayInputType::Ingredient).first
-    assert di2.expected_qty == 1400 * 2
+    assert di2.expected_qty == 1400
     assert di2.had_qty == 1200
     assert di2.unit == "g"
   end
@@ -68,7 +69,10 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
       InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1100, "g"),
       InputAmount.mk(@i2.id, DayInputType::Ingredient, time, 1.6, "L")
     ]
-    Recipe.any_instance.expects(:component_amounts).times(2).returns([[], amounts])
+    Recipe.any_instance.expects(:component_amounts).times(2)
+      .with(anything, recipe_deductions: {}, recipe_servings: 2)
+      .returns([[], amounts, {}])
+
     OpDayManager.create_day(PredictedOrder.all, @today, {}, {})
 
     assert DayInput.count == count + 4
@@ -77,21 +81,21 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
 
     di1_yesterday = DayInput.where(inputable_id: @i1.id, inputable_type: DayInputType::Ingredient)
       .where("min_needed_at < ?", time.beginning_of_day).first
-    assert di1_yesterday.expected_qty == 1.5 * 2 * 2
+    assert di1_yesterday.expected_qty == 1.5 * 2
     assert di1_yesterday.unit == "g"
     
     di1_1 = DayInput.where(inputable_id: @i1.id, inputable_type: DayInputType::Ingredient)
       .where(min_needed_at: time.beginning_of_day).first
-    assert di1_1.expected_qty == (1.5 + 1.3) * 2 * 2
+    assert di1_1.expected_qty == (1.5 + 1.3) * 2
     assert di1_1.unit == "g"
 
     di1_2 = DayInput.where(inputable_id: @i1.id, inputable_type: DayInputType::Ingredient)
       .where(min_needed_at: time.beginning_of_day).last
-    assert di1_2.expected_qty == 1.2 * 2 * 2
+    assert di1_2.expected_qty == 1.2 * 2
     assert di1_2.unit == "L"
 
     di2 = DayInput.where(inputable_id: @i2.id, inputable_type: DayInputType::Ingredient).first
-    assert di2.expected_qty.round(4) == (((1100.0/1000) + 1.4 + (1.6 * @i2.volume_weight_ratio)) * 2 * 2).round(4)
+    assert di2.expected_qty.round(4) == (((1100.0/1000) + 1.4 + (1.6 * @i2.volume_weight_ratio)) * 2).round(4)
     assert di2.unit == "kg"
   end
 
@@ -181,7 +185,7 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
 
     green_onion_input_after = DayInput.where(inputable_type: DayInputType::Ingredient,
       inputable_id: @i2.id).first
-    assert green_onion_input_after.expected_qty == 120
+    assert green_onion_input_after.expected_qty.round(1) == 120
     assert green_onion_input_after.unit == "g"
 
     green_onion_after = DayPrep.where(recipe_step_id: @green_onion_step.id).first
@@ -221,30 +225,27 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     assert recipe.unit == "kg"
   end
 
-  #TODO: we don't handle this properly right now
+  #TODO(day_recipe): write these tests
   test "had_amount of recipe includes recipe DayInput" do
     #have mouth watering chicken use a recipe that uses brined chicken, liked cooked chicken
     #if have_amount of cooked chicken, should remove brined chicken, but instead will try to remove whole chicken
   end
 
-  #TODO: we don't handle this case right now
   test "had_amount of recipe that's not in predicted orders' subrecipes shouldn't reduce inputs/prep" do
+    #recipe has subrecipe with similar subrecipe as what's in predicted orders
   end
 
-  #TODO: we don't handle this case right now
   test "had_amount of recipe greater than needed in predicted orders' subrecipes shouldn't reduce inputs/prep" do
     #if we have 10x brined chicken, that shouldn't remove salt we need in other recipes
     #just up to amount of salt from predicted brined chickens
   end
 
-  #TODO: how do we want to handle this case?
   test "had_amount of recipe generated from component_amounts less than generated" do
     #day originally would have brined chicken added as day input since needed prep day before
     #have day input with recipe brined chicken, had_amount = 0
     #now day also needs to make brined chicken but day of...?
   end
 
-  #TODO: we don't handle this case right now + don't prevent user from causing this
   test "had_amount multiple of the same recipe" do
   end
 end

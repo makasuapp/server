@@ -78,21 +78,47 @@ class Recipe < ApplicationRecord
   sig {params(
     for_date: T.any(DateTime, ActiveSupport::TimeWithZone),
     include_root_steps: T::Boolean,
-    parent_inserted_date: T.nilable(T.any(DateTime, ActiveSupport::TimeWithZone))
-  ).returns([T::Array[StepAmount], T::Array[InputAmount]])}
+    parent_inserted_date: T.nilable(T.any(DateTime, ActiveSupport::TimeWithZone)),
+    recipe_deductions: T::Hash[Integer, T.nilable(InputAmount)],
+    recipe_servings: Float
+  ).returns([
+    T::Array[StepAmount], 
+    T::Array[InputAmount],
+    T::Hash[Integer, T.nilable(InputAmount)]
+  ])}
   #TODO: not great, a lot of db calls because of nesting
-  # get steps and ingredients for recipe + subrecipes
-  def component_amounts(for_date, include_root_steps = false, parent_inserted_date = nil)
+  # get steps and ingredients for recipe + subrecipes minus deductions
+  def component_amounts(for_date, include_root_steps: false, parent_inserted_date: nil,
+    recipe_deductions: {}, recipe_servings: 1.0)
     steps = []
     inputs = []
     already_inserted_date = parent_inserted_date
+    curr_recipe_deductions = T.let(recipe_deductions, T::Hash[Integer, T.nilable(InputAmount)])
+    num_servings = recipe_servings
+
+    recipe_deduction = curr_recipe_deductions[self.id]
+    if recipe_deduction.present?
+      num_servings = num_servings - self.servings_produced(recipe_deduction.quantity, recipe_deduction.unit)
+
+      #deducting is enough, don't need to continue
+      if num_servings <= 0
+        recipe_deduction.quantity = recipe_deduction.quantity - UnitConverter.convert(
+          recipe_servings * self.output_qty, self.unit, recipe_deduction.unit, self.volume_weight_ratio)
+        curr_recipe_deductions[self.id] = recipe_deduction
+
+        return [steps, inputs, curr_recipe_deductions]
+      #deducted everything from deductions
+      else
+        curr_recipe_deductions[self.id] = nil
+      end
+    end
 
     steps_to_check = self.recipe_steps.includes(:inputs).order("number ASC")
     steps_to_check.each do |step|
       step_needed_at = step.min_needed_at(for_date)
 
       if include_root_steps
-        steps << StepAmount.mk(step.id, step_needed_at, 1)
+        steps << StepAmount.mk(step.id, step_needed_at, 1 * num_servings)
       end
 
       latest_date = already_inserted_date || for_date
@@ -101,7 +127,7 @@ class Recipe < ApplicationRecord
       if latest_date.beginning_of_day.to_i > step_needed_at.beginning_of_day.to_i
         already_inserted_date = step_needed_at
         inputs << InputAmount.mk(self.id, DayInputType::Recipe, 
-          latest_date, self.output_qty, self.unit)
+          latest_date, self.output_qty * num_servings, self.unit)
       end
 
       step.inputs.each do |input|
@@ -110,22 +136,26 @@ class Recipe < ApplicationRecord
           child_recipe = input.inputable
           #children needed at is relative to this step's needed at
           #we always want children's steps
-          child_steps, child_inputs = child_recipe.component_amounts(step_needed_at, 
-            true, already_inserted_date)
+          num_child_servings = child_recipe.servings_produced(input.quantity, input.unit)
 
-          num_servings = child_recipe.servings_produced(input.quantity, input.unit)
-          child_steps.each { |x| steps << x * num_servings }
-          child_inputs.each { |x| inputs << x * num_servings }
+          child_steps, child_inputs, child_recipe_deductions = child_recipe.component_amounts(step_needed_at, 
+            include_root_steps: true, parent_inserted_date: already_inserted_date, 
+            recipe_deductions: curr_recipe_deductions, 
+            recipe_servings: recipe_servings * num_child_servings)
+
+          steps = steps + child_steps
+          inputs = inputs + child_inputs
+          curr_recipe_deductions = child_recipe_deductions
         end
 
         if input.inputable_type == StepInputType::Ingredient
           inputs << InputAmount.mk(input.inputable_id, DayInputType::Ingredient, 
-            step_needed_at, input.quantity, input.unit)
+            step_needed_at, input.quantity * num_servings, input.unit)
         end
       end
     end
 
-    [steps, inputs]
+    [steps, inputs, curr_recipe_deductions]
   end
 
   sig {params(usage_qty: T.any(Float, Integer, BigDecimal), usage_unit: T.nilable(String)).returns(Float)}

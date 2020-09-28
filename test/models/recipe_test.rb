@@ -83,6 +83,16 @@ class RecipeTest < ActiveSupport::TestCase
     assert today_inputs.first.inputable_type == DayInputType::Recipe
   end
 
+  #TODO(day_recipe): write these tests
+  test "component_amounts skips if none left after deductions" do
+  end
+
+  test "component_amounts returns less from deductions" do
+  end
+
+  test "component_amounts with multiple servings returns more" do
+  end
+
   test "servings_produced when using less of recipe" do
     r = recipes(:chicken)
     assert r.servings_produced(4.5) == 2.25
@@ -194,6 +204,13 @@ class SubRecipeTest < ActiveSupport::TestCase
     prep_inputs = recipe_inputs.select { |i| i.inputable_id == @p.id }
     assert prep_inputs.map(&:quantity).sort == [1,2]
     assert prep_inputs[0].min_needed_at.beginning_of_day.to_i == for_time.beginning_of_day.to_i
+  end
+
+  #TODO(day_recipe): write these tests
+  test "component_amounts deducting subrecipe skips subrecipe if none left after" do
+  end
+
+  test "component_amounts deducting subrecipe returns less of subrecipe" do
   end
 
   test "all_in returns the recipes and their subrecipes" do
