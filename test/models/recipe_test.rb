@@ -36,6 +36,34 @@ class RecipeTest < ActiveSupport::TestCase
     assert r.is_valid?
   end
 
+  test "is_valid? is true if later steps happen later min/max" do
+    r = recipes(:prep_chicken)
+    assert r.is_valid?
+  end
+
+  test "is_valid? is false if later step happens earlier min/max" do
+    r = recipes(:prep_chicken)
+    recipe_steps = r.recipe_steps.order("number ASC")
+
+    recipe_steps.first.update_attributes(min_before_sec: 0)
+    assert !r.is_valid?
+
+    recipe_steps.first.update_attributes(min_before_sec: nil)
+    assert !r.is_valid?
+  end
+  test "is_valid? is false if max is more than min" do
+    r = recipes(:sauce)
+    recipe_steps = r.recipe_steps.order("number ASC")
+
+    #happen 40-30 min before
+    recipe_steps.first.update_attributes(min_before_sec: 30 * 60, max_before_sec: 40 * 60)
+    assert !r.is_valid?
+
+    #happen 30-40 min before
+    recipe_steps.first.update_attributes(min_before_sec: 40 * 60, max_before_sec: 30 * 60)
+    assert r.is_valid?
+  end
+
   test "is_valid? is true if no steps" do 
     @organization = organizations(:test)
     r = Recipe.create!(name: "Test", organization_id: @organization.id)
@@ -144,7 +172,7 @@ end
 class SubRecipeTest < ActiveSupport::TestCase
   setup do
     @organization = organizations(:test)
-    step = recipe_steps(:sauce_p2)
+    @step = recipe_steps(:sauce_p2)
     @g = recipes(:green_onion)
     @s = recipes(:sauce)
     @r = recipes(:chicken)
@@ -153,7 +181,14 @@ class SubRecipeTest < ActiveSupport::TestCase
     #green onion is now a subrecipe of both chicken and sauce
     #0.5 * 10 = 5 tbsp needed for sauce = 30g = 0.3 prep
     StepInput.create!(inputable_id: @g.id, inputable_type: StepInputType::Recipe, 
-      recipe_step_id: step.id, quantity: 10, unit: "tbsp")
+      recipe_step_id: @step.id, quantity: 10, unit: "tbsp")
+  end
+
+  test "is_valid? is false if there's a cycle" do
+    StepInput.create!(inputable_id: @r.id, inputable_type: StepInputType::Recipe, 
+      recipe_step_id: @step.id, quantity: 10, unit: "tbsp")
+
+    assert @r.is_valid? == false
   end
 
   test "component_amounts includes sub-recipes' ingredients" do

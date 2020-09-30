@@ -164,21 +164,33 @@ class Recipe < ApplicationRecord
     converted_qty / self.output_qty
   end
 
-  sig {returns(T::Boolean)}
+  sig {params(checking_recipe_id: Integer).returns(T::Boolean)}
   #TODO: not great, a lot of db calls because of nesting
-  #TODO: check if recipe steps min/max times make sense -- later steps should have less min/max than earlier ones
   #TODO: check that day jumps in min/max are in separate subrecipe... how decide what fits this?
-  #TODO: check if there's any cycles 
+  #check later steps have less min/max than earlier ones
+  #check no subrecipes can use this recipe as input
   #check if all steps aside from last are inputs to later steps
   #check if children recipes' usages match in units
-  def is_valid?
+  def is_valid?(checking_recipe_id = self.id)
     steps_to_check = self.recipe_steps.order("number ASC")
     used_steps = {}
     mk_step_id = ->(step) {"#{step.recipe_id}#{step.number}"}
-    last_id = steps_to_check.last.try(:id)
+    final_step_id = steps_to_check.last.try(:id)
+    prev_min_sec = steps_to_check.first.try(:min_before_sec)
+    prev_max_sec = steps_to_check.first.try(:max_before_sec)
 
     steps_to_check.each do |step|
-      if step.id != last_id && used_steps[mk_step_id.call(step)].nil?
+      if prev_min_sec == nil && step.min_before_sec != nil ||
+        prev_min_sec != nil && step.min_before_sec != nil && step.min_before_sec > prev_min_sec ||
+        prev_max_sec == nil && step.max_before_sec != nil ||
+        prev_max_sec != nil && step.max_before_sec != nil && step.max_before_sec > prev_max_sec ||
+        step.min_before_sec != nil && step.max_before_sec != nil && step.max_before_sec > step.min_before_sec
+        return false
+      end
+      prev_min_sec = step.min_before_sec
+      prev_max_sec = step.max_before_sec
+
+      if step.id != final_step_id && used_steps[mk_step_id.call(step)].nil?
         used_steps[mk_step_id.call(step)] = false
       end
 
@@ -188,6 +200,15 @@ class Recipe < ApplicationRecord
 
       step.inputs.recipe_typed.each do |recipe_input|
         child_recipe = recipe_input.inputable
+
+        if child_recipe.id == checking_recipe_id
+          return false
+        end
+
+        unless child_recipe.is_valid?(checking_recipe_id)
+          return false
+        end
+
         if !UnitConverter.can_convert?(recipe_input.unit, child_recipe.unit, child_recipe.volume_weight_ratio)
           puts "#{child_recipe.name} in #{self.name} can't convert #{recipe_input.unit} to #{child_recipe.unit}"
           return false
