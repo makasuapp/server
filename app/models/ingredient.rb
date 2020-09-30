@@ -8,6 +8,11 @@
 #  volume_weight_ratio :float
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  organization_id     :bigint
+#
+# Indexes
+#
+#  index_ingredients_on_organization_id  (organization_id)
 #
 class Ingredient < ApplicationRecord
   extend T::Sig
@@ -15,4 +20,5 @@ class Ingredient < ApplicationRecord
   #places where this is an input
   has_many :step_inputs, as: :inputable
   has_many :day_ingredients
+  belongs_to :organization
 end

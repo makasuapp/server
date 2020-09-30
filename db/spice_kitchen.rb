@@ -17,7 +17,8 @@ def r(name, quantity = 1, unit = nil, publish: false, output_volume_weight_ratio
 end
 
 def i(name, volume_weight_ratio = nil)
-  i = Ingredient.find_or_create_by!(name: name)
+  organization = Organization.find(2)
+  i = Ingredient.find_or_create_by!(name: name, organization_id: organization.id)
 
   i.volume_weight_ratio = volume_weight_ratio
   i.save!

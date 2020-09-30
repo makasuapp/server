@@ -3,11 +3,11 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-def r(name, quantity = 1, unit = nil, publish = false, output_volume_weight_ratio = nil)
-  recipe = Recipe.find_or_initialize_by(name: name)
 
+def r(name, quantity = 1, unit = nil, publish = false, output_volume_weight_ratio = nil)
   organization = Organization.find_or_create_by!(name: "Test")
-  recipe.organization_id = organization.id
+  recipe = Recipe.find_or_initialize_by(name: name, organization_id: organization.id)
+
   recipe.output_qty = quantity
   recipe.unit = unit
   recipe.publish = publish
@@ -18,7 +18,8 @@ def r(name, quantity = 1, unit = nil, publish = false, output_volume_weight_rati
 end
 
 def i(name, volume_weight_ratio = nil)
-  i = Ingredient.find_or_create_by!(name: name)
+  organization = Organization.find_or_create_by!(name: "Test")
+  i = Ingredient.find_or_create_by!(name: name, organization_id: organization.id)
 
   i.volume_weight_ratio = volume_weight_ratio
   i.save!
