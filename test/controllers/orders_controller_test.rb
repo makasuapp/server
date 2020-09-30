@@ -54,7 +54,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     r2 = recipes(:green_onion)
     for_time = DateTime.now + 2.hours
 
-    Firebase.any_instance.expects(:send_data).once
+    Firebase.any_instance.expects(:send_notification_with_data).once
     post "/api/orders", params: { 
       customer: {
         email: c.email,

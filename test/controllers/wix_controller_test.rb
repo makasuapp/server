@@ -16,7 +16,7 @@ class WixControllerTest < ActionDispatch::IntegrationTest
     )
     r = recipes(:chicken)
 
-    Firebase.any_instance.expects(:send_data).once
+    Firebase.any_instance.expects(:send_notification_with_data).once
     post "/wix/orders", params: {
       "restaurant"=> {
         "type"=>"restaurant", "id"=>"7212040090230996", "created"=>1597952539537, "modified"=>1598204422488, 

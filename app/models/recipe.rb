@@ -134,14 +134,14 @@ class Recipe < ApplicationRecord
         if input.inputable_type == StepInputType::Recipe
 
           child_recipe = input.inputable
-          #children needed at is relative to this step's needed at
-          #we always want children's steps
           num_child_servings = child_recipe.servings_produced(input.quantity, input.unit)
 
+          #children needed at is relative to this step's needed at
+          #we always want children's steps
           child_steps, child_inputs, child_recipe_deductions = child_recipe.component_amounts(step_needed_at, 
             include_root_steps: true, parent_inserted_date: already_inserted_date, 
             recipe_deductions: curr_recipe_deductions, 
-            recipe_servings: recipe_servings * num_child_servings)
+            recipe_servings: num_servings * num_child_servings)
 
           steps = steps + child_steps
           inputs = inputs + child_inputs
@@ -168,6 +168,7 @@ class Recipe < ApplicationRecord
   #TODO: not great, a lot of db calls because of nesting
   #TODO: check if recipe steps min/max times make sense -- later steps should have less min/max than earlier ones
   #TODO: check that day jumps in min/max are in separate subrecipe... how decide what fits this?
+  #TODO: check if there's any cycles 
   #check if all steps aside from last are inputs to later steps
   #check if children recipes' usages match in units
   def is_valid?

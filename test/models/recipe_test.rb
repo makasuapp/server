@@ -65,16 +65,25 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "component_amounts gets all ingredients used in recipe" do
     r = recipes(:sauce)
-    steps, inputs = r.component_amounts(DateTime.now)
+    steps, inputs, deductions = r.component_amounts(DateTime.now)
     assert inputs.count == 3
     assert inputs.find { |i| i.inputable_id == ingredients(:salt).id }.quantity == 1
     assert inputs.find { |i| i.inputable_id == ingredients(:sesame_paste).id }.quantity == 3
     assert inputs.find { |i| i.inputable_id == ingredients(:sesame_oil).id }.quantity == 6
   end
 
+  test "component_amounts gets steps of current recipe if include_root_steps" do
+    r = recipes(:sauce)
+    steps, inputs, deductions = r.component_amounts(DateTime.now)
+    assert steps.count == 0
+
+    steps, inputs, deductions = r.component_amounts(DateTime.now, include_root_steps: true)
+    assert steps.count > 0
+  end
+
   test "component_amounts for recipe that's just steps earlier will only have recipe as input day of" do
     r = recipes(:prep_chicken)
-    steps, inputs = r.component_amounts(DateTime.now)
+    steps, inputs, deductions = r.component_amounts(DateTime.now)
     assert inputs.count == 3
 
     today = DateTime.now.beginning_of_day.to_i
@@ -83,14 +92,36 @@ class RecipeTest < ActiveSupport::TestCase
     assert today_inputs.first.inputable_type == DayInputType::Recipe
   end
 
-  #TODO(day_recipe): write these tests
   test "component_amounts skips if none left after deductions" do
+    r = recipes(:green_onion)
+    recipe_deductions = {}
+    recipe_deductions[r.id] = InputAmount.mk(r.id, DayInputType::Recipe, 
+      DateTime.now, 1, 'kg')
+
+    steps, inputs, deductions = r.component_amounts(DateTime.now, 
+      recipe_deductions: recipe_deductions, include_root_steps: true)
+    assert steps.count == 0
+    assert inputs.count == 0
+
+    assert recipe_deductions[r.id].quantity == 0.9
   end
 
   test "component_amounts returns less from deductions" do
-  end
+    r = recipes(:green_onion)
+    recipe_deductions = {}
+    recipe_deductions[r.id] = InputAmount.mk(r.id, DayInputType::Recipe, 
+      DateTime.now, 40, 'g')
 
-  test "component_amounts with multiple servings returns more" do
+    steps, inputs, deductions = r.component_amounts(DateTime.now, 
+      recipe_deductions: recipe_deductions, include_root_steps: true)
+    assert steps.count == 1
+    assert inputs.count == 1
+
+    assert steps.first.quantity == 0.6
+    assert inputs.first.quantity == 60
+    assert inputs.first.unit == 'g'
+
+    assert recipe_deductions[r.id] == nil
   end
 
   test "servings_produced when using less of recipe" do
@@ -126,7 +157,7 @@ class SubRecipeTest < ActiveSupport::TestCase
   end
 
   test "component_amounts includes sub-recipes' ingredients" do
-    steps, inputs = @r.component_amounts(DateTime.now)
+    steps, inputs, deductions = @r.component_amounts(DateTime.now)
     assert inputs.count == 8
 
     #should be the 1tsp 
@@ -206,12 +237,63 @@ class SubRecipeTest < ActiveSupport::TestCase
     assert prep_inputs[0].min_needed_at.beginning_of_day.to_i == for_time.beginning_of_day.to_i
   end
 
-  #TODO(day_recipe): write these tests
   test "component_amounts deducting subrecipe skips subrecipe if none left after" do
+    recipe_deductions = {}
+    recipe_deductions[@g.id] = InputAmount.mk(@g.id, DayInputType::Recipe, 
+      DateTime.now, 1, 'kg')
+
+    steps, inputs, deductions = @r.component_amounts(DateTime.now, 
+      recipe_deductions: recipe_deductions)
+    g_step = recipe_steps(:green_onion_p1)
+    assert steps.select { |x| x.recipe_step_id == g_step.id }.empty?
+    g_ingredient = ingredients(:green_onion)
+    assert inputs.select { |x| x.inputable_id == g_ingredient.id }.empty?
+
+    assert recipe_deductions[@g.id].quantity == 0.89
   end
 
   test "component_amounts deducting subrecipe returns less of subrecipe" do
+    recipe_deductions = {}
+    recipe_deductions[@g.id] = InputAmount.mk(@g.id, DayInputType::Recipe, 
+      DateTime.now, 30, 'g')
+    recipe_deductions[@r.id] = InputAmount.mk(@r.id, DayInputType::Recipe,
+      DateTime.now, 1)
+
+    steps, inputs, deductions = @r.component_amounts(DateTime.now, 
+      recipe_deductions: recipe_deductions)
+  
+    #1 chicken order = -1/2 serving of recipe. need .15 + .4 green onion. -.3 = .25
+    g_step = recipe_steps(:green_onion_p1)
+    g_ingredient = ingredients(:green_onion)
+    chicken_ingredient = ingredients(:chicken)
+
+    assert steps.select { |x| x.recipe_step_id == g_step.id }.first.quantity == 0.25
+    assert inputs.select { |x| x.inputable_id == g_ingredient.id }.first.quantity == 25
+    assert inputs.select { |x| x.inputable_id == chicken_ingredient.id }.first.quantity == 0.5
+
+    assert recipe_deductions[@g.id] == nil
+    assert recipe_deductions[@r.id] == nil
   end
+
+  test "component_amounts with multiple servings returns more" do
+    recipe_deductions = {}
+    recipe_deductions[@r.id] = InputAmount.mk(@r.id, DayInputType::Recipe,
+      DateTime.now, 1)
+
+    #-1/2 serving = need 3.5 servings
+    steps, inputs, deductions = @r.component_amounts(DateTime.now, recipe_servings: 4.0,
+      recipe_deductions: recipe_deductions)
+
+    g_step = recipe_steps(:green_onion_p1)
+    g_ingredient = ingredients(:green_onion)
+    chicken_ingredient = ingredients(:chicken)
+
+    assert steps.select { |x| x.recipe_step_id == g_step.id }.map { |x| x.quantity.round(2) }.sort == [1.05, 2.8]
+    assert inputs.select { |x| x.inputable_id == g_ingredient.id }.map { |x| x.quantity.round(2) }.sort == [105, 280]
+    assert inputs.select { |x| x.inputable_id == chicken_ingredient.id }.first.quantity == 3.5
+  end
+
+  #TODO: test that it's adding subrecipe as a whole if it's needed day before
 
   test "all_in returns the recipes and their subrecipes" do
     new_r = Recipe.create!(name: "New", organization_id: @organization.id)

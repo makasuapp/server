@@ -226,11 +226,6 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
   end
 
   #TODO(day_recipe): write these tests
-  test "had_amount of recipe includes recipe DayInput" do
-    #have mouth watering chicken use a recipe that uses brined chicken, liked cooked chicken
-    #if have_amount of cooked chicken, should remove brined chicken, but instead will try to remove whole chicken
-  end
-
   test "had_amount of recipe that's not in predicted orders' subrecipes shouldn't reduce inputs/prep" do
     #recipe has subrecipe with similar subrecipe as what's in predicted orders
   end
@@ -240,12 +235,14 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     #just up to amount of salt from predicted brined chickens
   end
 
-  test "had_amount of recipe generated from component_amounts less than generated" do
+  test "had_amount multiple of the same recipe" do
+  end
+
+  #TODO: this case is still not accounted for
+  test "had_amount of recipe generated from component_amounts is less than generated" do
     #day originally would have brined chicken added as day input since needed prep day before
-    #have day input with recipe brined chicken, had_amount = 0
+    #actually have day input with recipe brined chicken had_amount = 0
     #now day also needs to make brined chicken but day of...?
   end
 
-  test "had_amount multiple of the same recipe" do
-  end
 end
