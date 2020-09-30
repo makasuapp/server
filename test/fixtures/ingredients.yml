@@ -21,16 +21,21 @@
 
 salt:
   name: "Salt"
+  organization: test
 
 sesame_paste:
   name: "Sesame Paste"
+  organization: test
 
 sesame_oil:
   name: "Sesame Oil"
+  organization: test
 
 green_onion:
   name: "Green Onion"
   volume_weight_ratio: 0.4057618178129438
+  organization: test
 
 chicken:
   name: "Whole Chicken"
+  organization: test
