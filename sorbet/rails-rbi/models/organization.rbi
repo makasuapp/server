@@ -46,6 +46,15 @@ module Organization::GeneratedAttributeMethods
 end
 
 module Organization::GeneratedAssociationMethods
+  sig { returns(::Ingredient::ActiveRecord_Associations_CollectionProxy) }
+  def ingredients; end
+
+  sig { returns(T::Array[Integer]) }
+  def ingredient_ids; end
+
+  sig { params(value: T::Enumerable[::Ingredient]).void }
+  def ingredients=(value); end
+
   sig { returns(::Kitchen::ActiveRecord_Associations_CollectionProxy) }
   def kitchens; end
 

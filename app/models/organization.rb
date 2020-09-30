@@ -12,6 +12,7 @@ class Organization < ApplicationRecord
   extend T::Sig
 
   has_many :user_organizations
-  has_many :recipes
   has_many :kitchens
+  has_many :recipes
+  has_many :ingredients
 end

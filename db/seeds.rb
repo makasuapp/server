@@ -3,7 +3,6 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-
 def r(name, quantity = 1, unit = nil, publish = false, output_volume_weight_ratio = nil)
   organization = Organization.find_or_create_by!(name: "Test")
   recipe = Recipe.find_or_initialize_by(name: name, organization_id: organization.id)

@@ -35,6 +35,15 @@ module Ingredient::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def name?; end
 
+  sig { returns(Integer) }
+  def organization_id; end
+
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
+  def organization_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def organization_id?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def updated_at; end
 
