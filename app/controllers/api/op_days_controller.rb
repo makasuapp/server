@@ -2,25 +2,39 @@
 class Api::OpDaysController < ApplicationController
   def index
     #TODO(timezone)
-    date = DateTime.now.in_time_zone("America/Toronto")
-    start_date = date.beginning_of_day
-    end_date = date.end_of_day
+    if params[:date].present?
+      @date = Time.at(params[:date]).in_time_zone("America/Toronto")
+    else
+      @date = DateTime.now.in_time_zone("America/Toronto")
+    end
+    start_date = @date.beginning_of_day
+    end_date = @date.end_of_day
+
+    kitchen = Kitchen.find(params[:kitchen_id])
 
     @inputs = DayInput
-      .where(kitchen_id: params[:kitchen_id])
+      .where(kitchen_id: kitchen.id)
       .where(min_needed_at: start_date..end_date)
     @preps = DayPrep
-      .where(kitchen_id: params[:kitchen_id])
+      .where(kitchen_id: kitchen.id)
       .where(min_needed_at: start_date..end_date)
+    @predicted_orders = PredictedOrder
+      .where(date: start_date..end_date)
+      .where(kitchen_id: kitchen.id)
 
     render formats: :json
   end
 
   def add_inputs
     #TODO(timezone)
-    date = DateTime.now.in_time_zone("America/Toronto")
+    if params[:date].present?
+      @date = Time.at(params[:date]).in_time_zone("America/Toronto")
+    else
+      @date = DateTime.now.in_time_zone("America/Toronto")
+    end
+
     kitchen = Kitchen.find(params[:kitchen_id])
-    op_day = OpDay.find_or_create_by!(date: date, kitchen_id: kitchen.id)
+    op_day = OpDay.find_or_create_by!(date: @date, kitchen_id: kitchen.id)
 
     inputs = []
 
@@ -31,8 +45,8 @@ class Api::OpDaysController < ApplicationController
         inputable_type: input[:inputable_type],
         inputable_id: input[:inputable_id],
         unit: input[:unit],
-        min_needed_at: DayInput.day_needed_at(date),
-        qty_updated_at: date,
+        min_needed_at: DayInput.day_needed_at(@date),
+        qty_updated_at: @date,
         kitchen_id: kitchen.id,
         op_day_id: op_day.id
       )
@@ -42,15 +56,18 @@ class Api::OpDaysController < ApplicationController
 
     OpDayManager.update_day_for(op_day)
 
-    start_date = date.beginning_of_day
-    end_date = date.end_of_day
+    start_date = @date.beginning_of_day
+    end_date = @date.end_of_day
 
     @inputs = DayInput
-      .where(kitchen_id: params[:kitchen_id])
+      .where(kitchen_id: kitchen.id)
       .where(min_needed_at: start_date..end_date)
     @preps = DayPrep
-      .where(kitchen_id: params[:kitchen_id])
+      .where(kitchen_id: kitchen.id)
       .where(min_needed_at: start_date..end_date)
+    @predicted_orders = PredictedOrder
+      .where(date: start_date..end_date)
+      .where(kitchen_id: kitchen.id)
 
     render :index, status: :created
   end

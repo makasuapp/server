@@ -1,3 +1,5 @@
+json.date_sec @date.to_i
+
 json.inputs do
   json.array!(@inputs) do |day_input|
     json.extract! day_input, :id, :expected_qty, :had_qty, :unit, :inputable_id, :inputable_type
@@ -16,5 +18,12 @@ json.prep do
     if prep.qty_updated_at.present?
       json.qty_updated_at prep.qty_updated_at.to_i
     end
+  end
+end
+
+json.predicted_orders do
+  json.array! @predicted_orders do |order|
+    json.extract! order, :id, :quantity, :recipe_id
+    json.date_sec order.date.to_i
   end
 end
