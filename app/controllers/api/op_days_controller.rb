@@ -3,7 +3,7 @@ class Api::OpDaysController < ApplicationController
   def index
     #TODO(timezone)
     if params[:date].present?
-      @date = Time.at(params[:date]).in_time_zone("America/Toronto")
+      @date = Time.at(params[:date].to_i).in_time_zone("America/Toronto")
     else
       @date = DateTime.now.in_time_zone("America/Toronto")
     end
@@ -28,7 +28,7 @@ class Api::OpDaysController < ApplicationController
   def add_inputs
     #TODO(timezone)
     if params[:date].present?
-      @date = Time.at(params[:date]).in_time_zone("America/Toronto")
+      @date = Time.at(params[:date].to_i).in_time_zone("America/Toronto")
     else
       @date = DateTime.now.in_time_zone("America/Toronto")
     end
