@@ -169,6 +169,152 @@ class RecipeTest < ActiveSupport::TestCase
   end
 end
 
+class UpdateComponentTest < ActiveSupport::TestCase
+  setup do
+    @r = recipes(:green_onion)
+    @step = @r.recipe_steps.latest.first
+    @input = @step.inputs.latest.first
+  end
+
+  test "update_components doesn't snapshot if nothing changed" do
+    RecipeSnapshot.expects(:create_for!).never
+    @r.update_components({"0": {
+      id: @step.id,
+      inputs: {"0": {
+        id: @input.id,
+        quantity: @input.quantity,
+        unit: @input.unit
+      }}
+    }})
+  end
+
+  test "update_components init snapshot needs snapshot" do
+    RecipeSnapshot.expects(:create_for!).once
+    @r.update_components({"0": {
+      id: @step.id,
+      inputs: {"0": {
+        id: @input.id,
+        quantity: @input.quantity,
+        unit: @input.unit
+      }}
+    }}, true)
+  end
+
+  test "update_components removes untouched steps" do
+    RecipeSnapshot.expects(:create_for!).once
+    @r.update_components({})
+
+    #only the step is removed, input not removed from step
+    assert @r.recipe_steps.latest.empty?
+    assert @step.reload.removed
+    assert !@input.reload.removed
+  end
+
+  test "update_components removes untouched inputs" do
+    RecipeSnapshot.expects(:create_for!).once
+    @r.update_components({"0": {
+      id: @step.id, 
+      inputs: {}
+    }})
+
+    assert @r.recipe_steps.latest.count == 1
+    assert @step.reload.inputs.latest.empty?
+    assert @input.reload.removed
+  end
+  
+  test "update_components creates new input on existing step if updates" do
+    RecipeSnapshot.expects(:create_for!).once
+    @r.update_components({"0": {
+      id: @step.id,
+      inputs: {"0": {
+        id: @input.id,
+        quantity: 12,
+        unit: "kg"
+      }}
+    }})
+
+    assert @input.reload.removed
+    assert @input.unit != "kg"
+    assert @input.quantity != 12
+
+    new_input = @step.inputs.latest.first
+    assert new_input.quantity == 12
+    assert new_input.unit == "kg"
+  end
+
+  test "update_components creates new steps/inputs if updates on both" do
+    RecipeSnapshot.expects(:create_for!).once
+    @r.update_components({"0": {
+      id: @step.id,
+      instruction: "A new instruction",
+      number: 2,
+      max_before_sec: 12,
+      min_before_sec: 30,
+      duration_sec: 5,
+      inputs: {"0": {
+        id: @input.id,
+        quantity: 12,
+        unit: "kg"
+      }}
+    }})
+
+    assert @step.reload.removed
+    assert @step.instruction != "A new instruction"
+    assert @step.number != 2
+
+    assert @r.recipe_steps.latest.count == 1
+    new_step = @r.recipe_steps.latest.first
+    assert new_step.instruction == "A new instruction"
+    assert new_step.number == 2
+    assert new_step.min_before_sec == 30
+    assert new_step.max_before_sec == 12
+    assert new_step.duration_sec == 5
+
+    assert @input.reload.removed
+    assert @input.unit != "kg"
+    assert @input.quantity != 12
+
+    new_input = new_step.inputs.latest.first
+    assert new_input.quantity == 12
+    assert new_input.unit == "kg"
+  end
+
+  test "update_components creates recipe steps and inputs if no id" do
+    RecipeSnapshot.expects(:create_for!).once
+    @r.update_components({"0": {
+      instruction: "A new instruction",
+      number: 2,
+      max_before_sec: 12,
+      min_before_sec: 30,
+      duration_sec: 5,
+      inputs: {"0": {
+        inputable_type: StepInputType::Ingredient,
+        inputable_id: @input.inputable_id,
+        quantity: 12,
+        unit: "kg"
+      }}
+    }})
+
+    assert @step.reload.removed
+    assert @step.instruction != "A new instruction"
+    assert @step.number != 2
+
+    assert @r.recipe_steps.latest.count == 1
+    new_step = @r.recipe_steps.latest.first
+    assert new_step.id != @step.id
+    assert new_step.instruction == "A new instruction"
+    assert new_step.number == 2
+    assert new_step.min_before_sec == 30
+    assert new_step.max_before_sec == 12
+    assert new_step.duration_sec == 5
+
+    new_input = new_step.inputs.latest.first
+    assert new_input.id != @input.id
+    assert new_input.quantity == 12
+    assert new_input.unit == "kg"
+  end
+end
+
 class SubRecipeTest < ActiveSupport::TestCase
   setup do
     @organization = organizations(:test)

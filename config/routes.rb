@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     post 'users/verify', to: 'users#verify'
     post 'users/verify_kitchen', to: 'users#verify_kitchen'
 
-    resources :recipes, only: [:index]
+    resources :recipes, only: [:index, :create, :update]
 
     resources :op_days, only: [:index]
     post 'op_days/save_inputs_qty', to: 'op_days#save_inputs_qty'

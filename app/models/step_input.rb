@@ -77,4 +77,32 @@ class StepInput < ApplicationRecord
   def name
     self.inputable.name
   end
+
+  sig {void}
+  def delete_input
+    self.update_attributes(removed: true)
+  end
+
+  sig {params(params: T::Hash[Symbol, T.untyped]).returns(StepInput)}
+  def update_input(params)
+    input = self
+
+    if self.removed
+      raise "Unexpected updating an old input id=#{self.id}"
+    end
+
+    if (
+      (params[:quantity] && params[:quantity] != self.quantity) || 
+      params[:unit] != self.unit 
+    )
+      input = self.dup
+      input.quantity = params[:quantity] || self.quantity
+      input.unit = params[:unit]
+      input.save!
+
+      self.update_attributes(removed: true)
+    end
+
+    input
+  end
 end

@@ -221,6 +221,70 @@ class Recipe < ApplicationRecord
     used_steps.values.inject(true) { |sum, step| sum && step }
   end
 
+  sig {params(recipe_step_params: T::Hash[String, T::Hash[Symbol, T.untyped]],
+    init_need_snapshot: T::Boolean).void}
+  def update_components(recipe_step_params, init_need_snapshot = false)
+    touched_steps = []
+    need_snapshot = T.let(init_need_snapshot, T::Boolean)
+
+    recipe_step_params.each do |idx, recipe_step_param|
+      if recipe_step_param[:id].present?
+        curr_step = RecipeStep.find(recipe_step_param[:id])
+
+        updated_step = curr_step.update_step(recipe_step_param)
+        if updated_step.id != curr_step.id
+          touched_steps << curr_step.id
+          need_snapshot = true
+          curr_step = updated_step
+        end
+      else
+        base_recipe_step_param = recipe_step_param.clone
+        base_recipe_step_param[:inputs] = []
+        curr_step = self.recipe_steps.create!(base_recipe_step_param)
+        need_snapshot = true
+      end
+      touched_steps << curr_step.id
+
+      touched_inputs = []
+      recipe_step_param[:inputs].each do |i, input_param|
+        if input_param[:id].present?
+          curr_input = StepInput.find(input_param[:id])
+
+          updated_input = curr_input.update_input(input_param)
+          if updated_input.id != curr_input.id
+            touched_inputs << curr_input.id
+            need_snapshot = true
+            curr_input = updated_input
+          end
+        else
+          curr_input = StepInput.new(input_param)
+          need_snapshot = true
+        end
+
+        curr_input.recipe_step_id = curr_step.id
+        curr_input.save!
+
+        touched_inputs << curr_input.id
+      end
+
+      to_remove_inputs = curr_step.inputs.latest.where.not(id: touched_inputs)
+      to_remove_inputs.each do |input|
+        need_snapshot = true
+        input.delete_input
+      end
+    end
+
+    to_remove_steps = self.recipe_steps.latest.where.not(id: touched_steps)
+    to_remove_steps.each do |step|
+      need_snapshot = true
+      step.delete_step
+    end
+
+    if need_snapshot
+      RecipeSnapshot.create_for!(self)
+    end
+  end
+
   private
   sig {void}
   def update_price

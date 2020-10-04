@@ -50,4 +50,38 @@ class RecipeStep < ApplicationRecord
   def min_needed_at(for_date)
     (for_date - (self.min_before_sec || 0).seconds).to_datetime
   end
+
+  sig {void}
+  def delete_step
+    self.update_attributes(removed: true)
+  end
+
+  sig {params(params: T::Hash[Symbol, T.untyped]).returns(RecipeStep)}
+  def update_step(params)
+    step = self
+
+    if self.removed
+      raise "Unexpected updating an old step id=#{self.id}"
+    end
+
+    if (
+      (params[:instruction] && params[:instruction] != self.instruction) ||
+      params[:max_before_sec] != self.max_before_sec ||
+      params[:min_before_sec] != self.min_before_sec ||
+      (params[:number] && params[:number] != self.number) ||
+      params[:duration_sec] != self.duration_sec
+    )
+      step = self.dup
+      step.instruction = params[:instruction] || self.instruction
+      step.number = params[:number] || self.number 
+      step.max_before_sec = params[:max_before_sec]
+      step.min_before_sec = params[:min_before_sec]
+      step.duration_sec = params[:duration_sec]
+      step.save!
+
+      self.update_attributes(removed: true)
+    end
+
+    step
+  end
 end
