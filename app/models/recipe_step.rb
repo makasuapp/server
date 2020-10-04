@@ -10,13 +10,14 @@
 #  min_before_sec :integer
 #  number         :integer          not null
 #  output_name    :string
+#  removed        :boolean          default(FALSE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  recipe_id      :bigint           not null
 #
 # Indexes
 #
-#  index_recipe_steps_on_recipe_id  (recipe_id)
+#  index_recipe_steps_on_recipe_id_and_removed  (recipe_id,removed)
 #
 class RecipeStep < ApplicationRecord
   extend T::Sig
@@ -30,6 +31,11 @@ class RecipeStep < ApplicationRecord
   #steps where this is an input
   has_many :step_inputs, as: :inputable
   has_many :day_preps
+
+  sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
+  def self.latest
+    self.where(removed: false)
+  end
 
   sig {returns(String)}
   def name

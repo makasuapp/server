@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_014656) do
+ActiveRecord::Schema.define(version: 2020_10_03_220502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,6 +199,30 @@ ActiveRecord::Schema.define(version: 2020_09_30_014656) do
     t.index ["vendor_id"], name: "index_procurement_orders_on_vendor_id"
   end
 
+  create_table "recipe_snapshots", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.string "unit"
+    t.float "output_qty", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_recipe_snapshots_on_recipe_id"
+  end
+
+  create_table "recipe_snapshots_step_inputs", id: false, force: :cascade do |t|
+    t.bigint "recipe_snapshot_id", null: false
+    t.bigint "step_input_id", null: false
+    t.index ["recipe_snapshot_id", "step_input_id"], name: "recipe_snapshot_input"
+    t.index ["step_input_id", "recipe_snapshot_id"], name: "step_input_snapshot"
+  end
+
+  create_table "recipe_snapshots_steps", id: false, force: :cascade do |t|
+    t.bigint "recipe_snapshot_id", null: false
+    t.bigint "recipe_step_id", null: false
+    t.index ["recipe_snapshot_id", "recipe_step_id"], name: "recipe_snapshot_step"
+    t.index ["recipe_step_id", "recipe_snapshot_id"], name: "recipe_step_snapshot"
+  end
+
   create_table "recipe_steps", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.integer "number", null: false
@@ -209,7 +233,8 @@ ActiveRecord::Schema.define(version: 2020_09_30_014656) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "output_name"
-    t.index ["recipe_id"], name: "index_recipe_steps_on_recipe_id"
+    t.boolean "removed", default: false, null: false
+    t.index ["recipe_id", "removed"], name: "index_recipe_steps_on_recipe_id_and_removed"
   end
 
   create_table "recipe_steps_tools", id: false, force: :cascade do |t|
@@ -241,8 +266,9 @@ ActiveRecord::Schema.define(version: 2020_09_30_014656) do
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "removed", default: false, null: false
     t.index ["inputable_type", "inputable_id"], name: "index_step_inputs_on_inputable_type_and_inputable_id"
-    t.index ["recipe_step_id"], name: "index_step_inputs_on_recipe_step_id"
+    t.index ["recipe_step_id", "removed"], name: "index_step_inputs_on_recipe_step_id_and_removed"
   end
 
   create_table "tools", force: :cascade do |t|

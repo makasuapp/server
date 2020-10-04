@@ -1,6 +1,9 @@
 # typed: strong
 class RecipeStep::ActiveRecord_Associations_CollectionProxy
   sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
+  def latest; end
+
+  sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
   def prep; end
 
   sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
@@ -8,6 +11,9 @@ class RecipeStep::ActiveRecord_Associations_CollectionProxy
 end
 
 class RecipeStep::ActiveRecord_AssociationRelation
+  sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
+  def latest; end
+
   sig {returns(T.any(RecipeStep::ActiveRecord_Relation, RecipeStep::ActiveRecord_AssociationRelation))}
   def prep; end
 

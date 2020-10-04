@@ -29,10 +29,10 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "is_valid? is true if multiple steps used in one" do 
     r = recipes(:sauce)
-    recipe_steps = r.recipe_steps.order("number ASC")
-    assert recipe_steps.first.inputs.recipe_step_typed.empty?
-    assert recipe_steps.second.inputs.recipe_step_typed.empty?
-    assert recipe_steps.last.inputs.recipe_step_typed.size == 2
+    recipe_steps = r.recipe_steps.latest.order("number ASC")
+    assert recipe_steps.first.inputs.latest.recipe_step_typed.empty?
+    assert recipe_steps.second.inputs.latest.recipe_step_typed.empty?
+    assert recipe_steps.last.inputs.latest.recipe_step_typed.size == 2
     assert r.is_valid?
   end
 
@@ -43,7 +43,7 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "is_valid? is false if later step happens earlier min/max" do
     r = recipes(:prep_chicken)
-    recipe_steps = r.recipe_steps.order("number ASC")
+    recipe_steps = r.recipe_steps.latest.order("number ASC")
 
     recipe_steps.first.update_attributes(min_before_sec: 0)
     assert !r.is_valid?
@@ -53,7 +53,7 @@ class RecipeTest < ActiveSupport::TestCase
   end
   test "is_valid? is false if max is more than min" do
     r = recipes(:sauce)
-    recipe_steps = r.recipe_steps.order("number ASC")
+    recipe_steps = r.recipe_steps.latest.order("number ASC")
 
     #happen 40-30 min before
     recipe_steps.first.update_attributes(min_before_sec: 30 * 60, max_before_sec: 40 * 60)
@@ -67,13 +67,13 @@ class RecipeTest < ActiveSupport::TestCase
   test "is_valid? is true if no steps" do 
     @organization = organizations(:test)
     r = Recipe.create!(name: "Test", organization_id: @organization.id)
-    assert r.recipe_steps.size == 0
+    assert r.recipe_steps.latest.size == 0
     assert r.is_valid?
   end
 
   test "is_valid? is true if only one step" do 
     r = recipes(:green_onion)
-    assert r.recipe_steps.size == 1
+    assert r.recipe_steps.latest.size == 1
     assert r.is_valid?
   end
 
@@ -203,19 +203,19 @@ class SubRecipeTest < ActiveSupport::TestCase
   end
 
   test "component_amounts returns step amounts subrecipes but not recipes" do 
-    assert @g.recipe_steps.count == 1
-    assert @s.recipe_steps.count == 3
-    assert @r.recipe_steps.count == 2
-    assert @p.recipe_steps.count == 2
+    assert @g.recipe_steps.latest.count == 1
+    assert @s.recipe_steps.latest.count == 3
+    assert @r.recipe_steps.latest.count == 2
+    assert @p.recipe_steps.latest.count == 2
 
     step_amounts, inputs = @r.component_amounts(DateTime.now)
     assert step_amounts.count == 7
 
-    recipe_step = @r.recipe_steps.first
+    recipe_step = @r.recipe_steps.latest.first
     recipe_amounts = step_amounts.select { |x| x.recipe_step_id == recipe_step.id }
     assert recipe_amounts.count == 0
 
-    green_onion_step = @g.recipe_steps.first
+    green_onion_step = @g.recipe_steps.latest.first
     green_onion_amounts = step_amounts.select { |x| x.recipe_step_id == green_onion_step.id }
     assert green_onion_amounts.count == 2
     assert green_onion_amounts.find { |i| i.quantity.round(1) == 0.3 }.present?
@@ -223,7 +223,7 @@ class SubRecipeTest < ActiveSupport::TestCase
   end
 
   test "component_amounts splits same step if different time" do 
-    chicken_p1 = @p.recipe_steps.where(number: 1).first
+    chicken_p1 = @p.recipe_steps.latest.where(number: 1).first
     StepInput.create!(inputable_id: @g.id, inputable_type: StepInputType::Recipe, 
       recipe_step_id: chicken_p1.id, quantity: 20, unit: "tbsp")
 
@@ -234,7 +234,7 @@ class SubRecipeTest < ActiveSupport::TestCase
     chicken_p1_amount = step_amounts.select { |x| x.recipe_step_id == chicken_p1.id }.first
     assert chicken_p1_amount.min_needed_at.to_i == chicken_time.to_i
 
-    green_onion_step = @g.recipe_steps.first
+    green_onion_step = @g.recipe_steps.latest.first
     green_onion_amounts = step_amounts.select { |x| x.recipe_step_id == green_onion_step.id }
     assert green_onion_amounts.count == 3
     assert green_onion_amounts.find { |i| i.quantity.round(1) == 0.3 }.min_needed_at.to_i == for_time.to_i
@@ -253,7 +253,7 @@ class SubRecipeTest < ActiveSupport::TestCase
 
     #prep chicken needs ingredient two days earlier, that recipe should show up same day as prep chicken
     new_recipe = Recipe.create!(name: "Test", organization_id: @r.organization_id, output_qty: 10, unit: "g")
-    new_recipe.recipe_steps.create!(instruction: "Test", number: 1, min_before_sec: 49 * 60 * 60)
+    new_recipe.recipe_steps.latest.create!(instruction: "Test", number: 1, min_before_sec: 49 * 60 * 60)
     StepInput.create!(inputable_id: new_recipe.id, inputable_type: StepInputType::Recipe,
       recipe_step_id: chicken_p1.id, quantity: 20, unit: "g")
 

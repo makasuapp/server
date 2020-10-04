@@ -89,6 +89,15 @@ module RecipeStep::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def recipe_id?; end
 
+  sig { returns(T::Boolean) }
+  def removed; end
+
+  sig { params(value: T::Boolean).void }
+  def removed=(value); end
+
+  sig { returns(T::Boolean) }
+  def removed?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def updated_at; end
 

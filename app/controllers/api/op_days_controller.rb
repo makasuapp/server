@@ -1,12 +1,6 @@
 # typed: false
 class Api::OpDaysController < ApplicationController
-  def index
-    #TODO(timezone)
-    if params[:date].present?
-      @date = Time.at(params[:date].to_i).in_time_zone("America/Toronto")
-    else
-      @date = DateTime.now.in_time_zone("America/Toronto")
-    end
+  def set_variables
     start_date = @date.beginning_of_day
     end_date = @date.end_of_day
 
@@ -22,6 +16,26 @@ class Api::OpDaysController < ApplicationController
       .where(date: start_date..end_date)
       .where(kitchen_id: kitchen.id)
 
+    @recipes = Recipe.where(organization_id: kitchen.organization_id)
+    
+    @recipe_steps = RecipeStep
+      .where(recipe_id: @recipes.map(&:id), removed: false)
+      .or(RecipeStep.where(id: @preps.map(&:recipe_step_id)))
+      .includes([{inputs: :inputable}, :detailed_instructions, :tools, :recipe])
+      .distinct
+
+    @ingredients = Ingredient.where(organization_id: kitchen.organization_id)
+  end
+
+  def index
+    #TODO(timezone)
+    if params[:date].present?
+      @date = Time.at(params[:date].to_i).in_time_zone("America/Toronto")
+    else
+      @date = DateTime.now.in_time_zone("America/Toronto")
+    end
+
+    set_variables
     render formats: :json
   end
 
@@ -56,19 +70,7 @@ class Api::OpDaysController < ApplicationController
 
     OpDayManager.update_day_for(op_day)
 
-    start_date = @date.beginning_of_day
-    end_date = @date.end_of_day
-
-    @inputs = DayInput
-      .where(kitchen_id: kitchen.id)
-      .where(min_needed_at: start_date..end_date)
-    @preps = DayPrep
-      .where(kitchen_id: kitchen.id)
-      .where(min_needed_at: start_date..end_date)
-    @predicted_orders = PredictedOrder
-      .where(date: start_date..end_date)
-      .where(kitchen_id: kitchen.id)
-
+    set_variables
     render :index, status: :created
   end
 

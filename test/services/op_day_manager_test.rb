@@ -145,7 +145,7 @@ class OpDayManagerCreateDayTest < ActiveSupport::TestCase
     #recipe serves 2, so we want 7/2 of it
     assert DayPrep.where(recipe_step_id: @chicken_step.id).first.expected_qty == 3.5
 
-    green_onion_step = g.recipe_steps.first
+    green_onion_step = g.recipe_steps.latest.first
     green_onion_prep = DayPrep.where(recipe_step_id: green_onion_step.id).order(:min_needed_at)
     assert green_onion_prep.count == 2
     assert green_onion_prep.first.expected_qty.round(3) == (7.0/2 * ((3.0 * 6)/100)).round(3)

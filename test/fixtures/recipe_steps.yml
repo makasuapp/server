@@ -9,19 +9,26 @@
 #  min_before_sec :integer
 #  number         :integer          not null
 #  output_name    :string
+#  removed        :boolean          default(FALSE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  recipe_id      :bigint           not null
 #
 # Indexes
 #
-#  index_recipe_steps_on_recipe_id  (recipe_id)
+#  index_recipe_steps_on_recipe_id_and_removed  (recipe_id,removed)
 #
 
 # This model initially had no columns defined. If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+old_green_onion_p1:
+  recipe: green_onion
+  instruction: "Chop green onions"
+  number: 1
+  removed: true
 
 green_onion_p1:
   recipe: green_onion

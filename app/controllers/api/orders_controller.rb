@@ -52,18 +52,23 @@ class Api::OrdersController < ApplicationController
 
   def index
     if params[:date].present?
-      date = Time.at(params[:date])
+      date = Time.at(params[:date]).in_time_zone("America/Toronto")
     else
       #TODO(timezone)
       date = Time.now.in_time_zone("America/Toronto")
     end
 
     kitchen = Kitchen.find_by(id: params[:kitchen_id])
+
+    #TODO: remove this stuff once latest version of the app is out
     @recipes = Recipe.where(organization_id: kitchen.organization_id)
     
     @recipe_steps = RecipeStep
       .where(recipe_id: @recipes.map(&:id))
       .includes([{inputs: :inputable}, :detailed_instructions, :tools, :recipe])
+
+    #TODO: make this just the ingredients from the recipes
+    @ingredients = Ingredient.where(organization_id: kitchen.organization_id)
     
     @orders = Order
       .where(kitchen_id: kitchen.id)
@@ -78,9 +83,6 @@ class Api::OrdersController < ApplicationController
         .before_date(date.to_date, "America/Toronto")
         .where.not(aasm_state: Order::STATE_DELIVERED)
     end
-
-    #TODO: make this just the ingredients from the recipes
-    @ingredients = Ingredient.all
 
     render formats: :json
   end

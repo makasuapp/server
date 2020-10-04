@@ -44,9 +44,9 @@ class Recipe < ApplicationRecord
     Recipe.where(id: recipe_ids).each do |recipe|
       recipes << recipe
 
-      steps_to_check = recipe.recipe_steps.includes(:inputs)
+      steps_to_check = recipe.recipe_steps.latest.includes(:inputs)
       steps_to_check.each do |s|
-        s.inputs.select { |input| 
+        s.inputs.latest.select { |input| 
           input.inputable_type == StepInputType::Recipe
         }.each do |recipe_input|
           child_recipes = Recipe.all_in([recipe_input.inputable_id])
@@ -61,10 +61,12 @@ class Recipe < ApplicationRecord
   sig {returns(T.nilable(Float))}
   def volume_weight_ratio
     if self.output_volume_weight_ratio.nil?
-      if self.recipe_steps.length == 1
-        step = T.must(self.recipe_steps.first)
-        if step.inputs.length == 1
-          input = T.must(step.inputs.first)
+      steps = self.recipe_steps.latest
+      if steps.length == 1
+        step = T.must(steps.first)
+        inputs = step.inputs.latest
+        if inputs.length == 1
+          input = T.must(inputs.first)
           if input.inputable_type == StepInputType::Ingredient
             return input.inputable.volume_weight_ratio
           end
@@ -113,7 +115,7 @@ class Recipe < ApplicationRecord
       end
     end
 
-    steps_to_check = self.recipe_steps.includes(:inputs).order("number ASC")
+    steps_to_check = self.recipe_steps.latest.includes(:inputs).order("number ASC")
     steps_to_check.each do |step|
       step_needed_at = step.min_needed_at(for_date)
 
@@ -130,7 +132,7 @@ class Recipe < ApplicationRecord
           latest_date, self.output_qty * num_servings, self.unit)
       end
 
-      step.inputs.each do |input|
+      step.inputs.latest.each do |input|
         if input.inputable_type == StepInputType::Recipe
 
           child_recipe = input.inputable
@@ -172,7 +174,7 @@ class Recipe < ApplicationRecord
   #check if all steps aside from last are inputs to later steps
   #check if children recipes' usages match in units
   def is_valid?(checking_recipe_id = self.id)
-    steps_to_check = self.recipe_steps.order("number ASC")
+    steps_to_check = self.recipe_steps.latest.order("number ASC")
     used_steps = {}
     mk_step_id = ->(step) {"#{step.recipe_id}#{step.number}"}
     final_step_id = steps_to_check.last.try(:id)
@@ -181,10 +183,10 @@ class Recipe < ApplicationRecord
 
     steps_to_check.each do |step|
       if prev_min_sec == nil && step.min_before_sec != nil ||
-        prev_min_sec != nil && step.min_before_sec != nil && step.min_before_sec > prev_min_sec ||
+        prev_min_sec != nil && step.min_before_sec != nil && T.must(step.min_before_sec) > prev_min_sec ||
         prev_max_sec == nil && step.max_before_sec != nil ||
-        prev_max_sec != nil && step.max_before_sec != nil && step.max_before_sec > prev_max_sec ||
-        step.min_before_sec != nil && step.max_before_sec != nil && step.max_before_sec > step.min_before_sec
+        prev_max_sec != nil && step.max_before_sec != nil && T.must(step.max_before_sec) > prev_max_sec ||
+        step.min_before_sec != nil && step.max_before_sec != nil && T.must(step.max_before_sec) > T.must(step.min_before_sec)
         return false
       end
       prev_min_sec = step.min_before_sec
@@ -194,11 +196,11 @@ class Recipe < ApplicationRecord
         used_steps[mk_step_id.call(step)] = false
       end
 
-      step.inputs.recipe_step_typed.each do |input|
+      step.inputs.latest.recipe_step_typed.each do |input|
         used_steps[mk_step_id.call(input.inputable)] = true
       end
 
-      step.inputs.recipe_typed.each do |recipe_input|
+      step.inputs.latest.recipe_typed.each do |recipe_input|
         child_recipe = recipe_input.inputable
 
         if child_recipe.id == checking_recipe_id

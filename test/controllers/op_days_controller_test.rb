@@ -1,7 +1,7 @@
 # typed: false
 require 'test_helper'
 
-class OpDaysControllerSaveInputsTest < ActionDispatch::IntegrationTest
+class OpDaysControllerInputsTest < ActionDispatch::IntegrationTest
   setup do
     @yesterday = DateTime.now - 1.day
     salt = ingredients(:salt)
@@ -81,7 +81,7 @@ class OpDaysControllerSaveInputsTest < ActionDispatch::IntegrationTest
   end
 end
 
-class OpDaysControllerSavePrepTest < ActionDispatch::IntegrationTest
+class OpDaysControllerPrepTest < ActionDispatch::IntegrationTest
   setup do
     @yesterday = DateTime.now - 1.day
     chicken_p1 = recipe_steps(:chicken_p1)
@@ -134,9 +134,39 @@ class OpDaysControllerSavePrepTest < ActionDispatch::IntegrationTest
     assert @p2_prep.reload.made_qty == 2.5
     assert @p2_prep.qty_updated_at.to_i == now.to_i
   end
+
+  test "index doesn't show old prep" do
+    op_day = op_days(:today)
+    OpDayManager.update_day_for(op_day)
+
+    get api_op_days_url(kitchen_id: @kitchen.id)
+    assert_response 200
+
+    body = JSON.parse(@response.body)
+
+    assert !body["recipes"].empty?
+    assert !body["ingredients"].empty?
+    assert !body["recipe_steps"].empty?
+    assert !body["predicted_orders"].empty?
+    assert !body["prep"].empty?
+    assert !body["inputs"].empty?
+
+    old_prep = recipe_steps(:old_green_onion_p1)
+    assert body["recipe_steps"].select { |x| x["id"] == old_prep.id}.empty?
+  end
+
+  test "index shows old prep if it's included in a day prep" do
+    old_prep = recipe_steps(:old_green_onion_p1)
+    @p1_prep.update_attributes(recipe_step_id: old_prep.id)
+    get api_op_days_url(kitchen_id: @kitchen.id, date: @yesterday.to_i)
+    assert_response 200
+
+    body = JSON.parse(@response.body)
+    assert body["recipe_steps"].select { |x| x["id"] == old_prep.id}.first.present?
+  end
 end
 
-class OpDaysControllerAddInputTest < ActionDispatch::IntegrationTest
+class OpDaysControllerRecipeTest < ActionDispatch::IntegrationTest
   setup do
     @kitchen = kitchens(:test)
     @op_day = op_days(:today)

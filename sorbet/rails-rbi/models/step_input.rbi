@@ -62,6 +62,15 @@ module StepInput::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def recipe_step_id?; end
 
+  sig { returns(T::Boolean) }
+  def removed; end
+
+  sig { params(value: T::Boolean).void }
+  def removed=(value); end
+
+  sig { returns(T::Boolean) }
+  def removed?; end
+
   sig { returns(T.nilable(String)) }
   def unit; end
 

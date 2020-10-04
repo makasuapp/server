@@ -129,7 +129,7 @@ class OpDayManager
       recipe_deductions[recipe_had_amount.inputable_id] = recipe_had_amount
     end
 
-    predicted_orders.includes({recipe: {recipe_steps: :inputs}}).each do |po|
+    predicted_orders.includes(:recipe).each do |po|
       recipe = po.recipe
       for_date = po.date
       recipe_servings = recipe.servings_produced(po.quantity)

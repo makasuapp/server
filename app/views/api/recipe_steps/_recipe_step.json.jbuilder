@@ -8,6 +8,6 @@ json.detailed_instructions(step.detailed_instructions) do |instruction|
   json.extract! instruction, :id, :instruction
 end
 
-json.inputs(step.inputs) do |input|
+json.inputs(step.inputs.latest) do |input|
   json.extract! input, :id, :name, :inputable_type, :inputable_id, :unit, :quantity
 end

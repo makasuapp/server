@@ -5,6 +5,7 @@
 #  id             :bigint           not null, primary key
 #  inputable_type :string           not null
 #  quantity       :float            default(1.0), not null
+#  removed        :boolean          default(FALSE), not null
 #  unit           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -14,13 +15,26 @@
 # Indexes
 #
 #  index_step_inputs_on_inputable_type_and_inputable_id  (inputable_type,inputable_id)
-#  index_step_inputs_on_recipe_step_id                   (recipe_step_id)
+#  index_step_inputs_on_recipe_step_id_and_removed       (recipe_step_id,removed)
 #
 
 # This model initially had no columns defined. If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+old_green_onion_p1:
+  inputable: green_onion (Ingredient)
+  recipe_step: old_green_onion_p1
+  quantity: 100
+  unit: "g"
+
+other_old_green_onion_p1:
+  inputable: green_onion (Ingredient)
+  recipe_step: green_onion_p1
+  quantity: 100
+  unit: "g"
+  removed: true
 
 green_onion_p1:
   inputable: green_onion (Ingredient)

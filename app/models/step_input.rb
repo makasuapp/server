@@ -6,6 +6,7 @@
 #  id             :bigint           not null, primary key
 #  inputable_type :string           not null
 #  quantity       :float            default(1.0), not null
+#  removed        :boolean          default(FALSE), not null
 #  unit           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -15,7 +16,7 @@
 # Indexes
 #
 #  index_step_inputs_on_inputable_type_and_inputable_id  (inputable_type,inputable_id)
-#  index_step_inputs_on_recipe_step_id                   (recipe_step_id)
+#  index_step_inputs_on_recipe_step_id_and_removed       (recipe_step_id,removed)
 #
 class StepInput < ApplicationRecord
   extend T::Sig
@@ -25,6 +26,11 @@ class StepInput < ApplicationRecord
 
   belongs_to :recipe_step
   belongs_to :inputable, polymorphic: true
+
+  sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
+  def self.latest
+    self.where(removed: false)
+  end
 
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
   def self.recipe_typed
