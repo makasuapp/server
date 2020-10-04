@@ -22,20 +22,6 @@
 require 'test_helper'
 
 class RecipeTest < ActiveSupport::TestCase
-  test "is_valid? is true if all steps used in later ones" do 
-    r = recipes(:chicken)
-    assert r.is_valid?
-  end
-
-  test "is_valid? is true if multiple steps used in one" do 
-    r = recipes(:sauce)
-    recipe_steps = r.recipe_steps.latest.order("number ASC")
-    assert recipe_steps.first.inputs.latest.recipe_step_typed.empty?
-    assert recipe_steps.second.inputs.latest.recipe_step_typed.empty?
-    assert recipe_steps.last.inputs.latest.recipe_step_typed.size == 2
-    assert r.is_valid?
-  end
-
   test "is_valid? is true if later steps happen later min/max" do
     r = recipes(:prep_chicken)
     assert r.is_valid?
@@ -75,13 +61,6 @@ class RecipeTest < ActiveSupport::TestCase
     r = recipes(:green_onion)
     assert r.recipe_steps.latest.size == 1
     assert r.is_valid?
-  end
-
-  test "is_valid? is false if a step is not used in later one" do 
-    r = recipes(:chicken)
-    step_input = step_inputs(:chicken_c2_i1)
-    step_input.destroy
-    assert r.is_valid? == false
   end
 
   test "volume_weight_ratio returns volume_weight_ratio of ingredient if is a recipe with just one input" do
@@ -281,35 +260,48 @@ class UpdateComponentTest < ActiveSupport::TestCase
 
   test "update_components creates recipe steps and inputs if no id" do
     RecipeSnapshot.expects(:create_for!).once
-    @r.update_components({"0": {
-      instruction: "A new instruction",
-      number: 2,
-      max_before_sec: 12,
-      min_before_sec: 30,
-      duration_sec: 5,
-      inputs: {"0": {
-        inputable_type: StepInputType::Ingredient,
-        inputable_id: @input.inputable_id,
-        quantity: 12,
-        unit: "kg"
-      }}
-    }})
+    @r.update_components({
+      "0": {
+        id: @step.id,
+        inputs: {"0": {
+          id: @input.id,
+          quantity: @input.quantity,
+          unit: @input.unit
+        }}
+      }, 
+      "1": {
+        instruction: "A new instruction",
+        number: 2,
+        duration_sec: 5,
+        inputs: {
+          "0": {
+            inputable_type: StepInputType::Ingredient,
+            inputable_id: @input.inputable_id,
+            quantity: 12,
+            unit: "kg"
+          },
+          "1": {
+            inputable_type: StepInputType::RecipeStep,
+            inputable_id: @step.id,
+            quantity: 1
+          }
+        }
+      }
+    })
 
-    assert @step.reload.removed
-    assert @step.instruction != "A new instruction"
-    assert @step.number != 2
+    assert !@step.reload.removed
+    assert !@input.reload.removed
 
-    assert @r.recipe_steps.latest.count == 1
-    new_step = @r.recipe_steps.latest.first
-    assert new_step.id != @step.id
+    assert @r.recipe_steps.latest.count == 2
+    new_step = @r.recipe_steps.latest.last
+    assert new_step.id.present?
     assert new_step.instruction == "A new instruction"
     assert new_step.number == 2
-    assert new_step.min_before_sec == 30
-    assert new_step.max_before_sec == 12
     assert new_step.duration_sec == 5
 
+    assert new_step.inputs.latest.count == 2
     new_input = new_step.inputs.latest.first
-    assert new_input.id != @input.id
+    assert new_input.id.present?
     assert new_input.quantity == 12
     assert new_input.unit == "kg"
   end

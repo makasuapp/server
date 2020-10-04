@@ -171,13 +171,9 @@ class Recipe < ApplicationRecord
   #TODO: check that day jumps in min/max are in separate subrecipe... how decide what fits this?
   #check later steps have less min/max than earlier ones
   #check no subrecipes can use this recipe as input
-  #check if all steps aside from last are inputs to later steps
   #check if children recipes' usages match in units
   def is_valid?(checking_recipe_id = self.id)
     steps_to_check = self.recipe_steps.latest.order("number ASC")
-    used_steps = {}
-    mk_step_id = ->(step) {"#{step.recipe_id}#{step.number}"}
-    final_step_id = steps_to_check.last.try(:id)
     prev_min_sec = steps_to_check.first.try(:min_before_sec)
     prev_max_sec = steps_to_check.first.try(:max_before_sec)
 
@@ -187,27 +183,22 @@ class Recipe < ApplicationRecord
         prev_max_sec == nil && step.max_before_sec != nil ||
         prev_max_sec != nil && step.max_before_sec != nil && T.must(step.max_before_sec) > prev_max_sec ||
         step.min_before_sec != nil && step.max_before_sec != nil && T.must(step.max_before_sec) > T.must(step.min_before_sec)
+        puts "step #{step.id} has invalid min/max"
         return false
       end
       prev_min_sec = step.min_before_sec
       prev_max_sec = step.max_before_sec
 
-      if step.id != final_step_id && used_steps[mk_step_id.call(step)].nil?
-        used_steps[mk_step_id.call(step)] = false
-      end
-
-      step.inputs.latest.recipe_step_typed.each do |input|
-        used_steps[mk_step_id.call(input.inputable)] = true
-      end
-
       step.inputs.latest.recipe_typed.each do |recipe_input|
         child_recipe = recipe_input.inputable
 
         if child_recipe.id == checking_recipe_id
+          puts "child recipe #{child_recipe.id} is same as recipe, causing loop"
           return false
         end
 
         unless child_recipe.is_valid?(checking_recipe_id)
+          puts "child recipe #{child_recipe.id} is invalid"
           return false
         end
 
@@ -218,10 +209,13 @@ class Recipe < ApplicationRecord
       end
     end
 
-    used_steps.values.inject(true) { |sum, step| sum && step }
+    true
   end
 
-  sig {params(recipe_step_params: T::Hash[String, T::Hash[Symbol, T.untyped]],
+  sig {params(recipe_step_params: T.any(
+      T::Hash[String, T::Hash[Symbol, T.untyped]],
+      ActionController::Parameters
+    ),
     init_need_snapshot: T::Boolean).void}
   def update_components(recipe_step_params, init_need_snapshot = false)
     touched_steps = []
@@ -278,6 +272,11 @@ class Recipe < ApplicationRecord
     to_remove_steps.each do |step|
       need_snapshot = true
       step.delete_step
+    end
+
+    unless self.is_valid?
+      #TODO: revert recipe to previous snapshot?
+      raise "Updates to recipe #{self.id} are not valid"
     end
 
     if need_snapshot

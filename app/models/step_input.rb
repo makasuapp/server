@@ -83,7 +83,10 @@ class StepInput < ApplicationRecord
     self.update_attributes(removed: true)
   end
 
-  sig {params(params: T::Hash[Symbol, T.untyped]).returns(StepInput)}
+  sig {params(params: T.any(
+      T::Hash[Symbol, T.untyped],
+      ActionController::Parameters
+  )).returns(StepInput)}
   def update_input(params)
     input = self
 

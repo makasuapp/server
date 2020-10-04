@@ -56,7 +56,10 @@ class RecipeStep < ApplicationRecord
     self.update_attributes(removed: true)
   end
 
-  sig {params(params: T::Hash[Symbol, T.untyped]).returns(RecipeStep)}
+  sig {params(params: T.any(
+      T::Hash[Symbol, T.untyped],
+      ActionController::Parameters
+    )).returns(RecipeStep)}
   def update_step(params)
     step = self
 

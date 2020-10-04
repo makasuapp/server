@@ -22,8 +22,12 @@ class RecipeSnapshot < ApplicationRecord
   has_and_belongs_to_many :recipe_steps
   has_and_belongs_to_many :step_inputs
 
-  sig {params(recipe: Recipe, 
-    recipe_params: T::Hash[Symbol, T.untyped]).returns(T::Boolean)}
+  sig {params(
+    recipe: Recipe,
+    recipe_params: T.any(
+      T::Hash[Symbol, T.untyped],
+      ActionController::Parameters
+    )).returns(T::Boolean)}
   def self.would_differ?(recipe, recipe_params)
     recipe.name != recipe_params[:name] ||
       recipe.output_qty != recipe_params[:output_qty] ||
