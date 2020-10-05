@@ -4,14 +4,14 @@ require 'test_helper'
 class RecipesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @r = recipes(:green_onion)
+    @kitchen = kitchens(:test)
   end
 
   test "create makes new recipe + steps/inputs" do
-    kitchen = kitchens(:test)
     ingredient = ingredients(:green_onion)
 
     post "/api/recipes", params: { 
-      kitchen_id: kitchen.id,
+      kitchen_id: @kitchen.id,
       recipe: {
         current_price_cents: 1000,
         name: "Test Recipe",
@@ -23,8 +23,14 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
             instruction: "Test instruction 1",
             number: 1,
             min_before_sec: 100,
+            tools: {
+              "0": {
+                name: "Shouldn't impact it"
+              }
+            },
             inputs: {
               "0": {
+                name: "Shouldn't show up",
                 inputable_type: StepInputType::Ingredient,
                 inputable_id: ingredient.id,
                 quantity: 10,
@@ -51,7 +57,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
 
     r = Recipe.find_by_name("Test Recipe")
-    assert r.organization_id == kitchen.organization_id
+    assert r.organization_id == @kitchen.organization_id
     assert r.current_price_cents == 1000
     assert r.publish == true
     assert r.output_qty == 20
@@ -77,6 +83,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     input = step.inputs.latest.first
 
     put "/api/recipes/#{@r.id}", params: { 
+      kitchen_id: @kitchen.id,
       recipe: {
         name: "Changed name",
         output_qty: @r.output_qty,
