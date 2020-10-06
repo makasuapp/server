@@ -18,6 +18,10 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
         output_qty: 20,
         publish: true,
         unit: "g",
+        step_ids: {
+          "0": 1,
+          "1": 2
+        },
         recipe_steps: {
           "0": {
             instruction: "Test instruction 1",

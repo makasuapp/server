@@ -3,7 +3,5 @@ json.recipes do
 end
 
 json.ingredients do
-  json.array!(@ingredients) do |ingredient|
-    json.extract! ingredient, :id, :name, :volume_weight_ratio
-  end
+  json.array! @ingredients, partial: "api/ingredients/ingredient", as: :ingredient
 end

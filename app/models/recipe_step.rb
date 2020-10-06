@@ -48,7 +48,10 @@ class RecipeStep < ApplicationRecord
 
   sig {params(for_date: T.any(DateTime, ActiveSupport::TimeWithZone)).returns(DateTime)}
   def min_needed_at(for_date)
-    (for_date - (self.min_before_sec || 0).seconds).to_datetime
+    (for_date 
+      - (self.min_before_sec || 0).seconds 
+      - (self.duration_sec || 0).seconds
+    ).to_datetime
   end
 
   sig {void}

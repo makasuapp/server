@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_220502) do
+ActiveRecord::Schema.define(version: 2020_10_06_163931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_10_03_220502) do
     t.datetime "updated_at", null: false
     t.float "volume_weight_ratio"
     t.bigint "organization_id", null: false
+    t.bigint "default_vendor_id"
     t.index ["organization_id"], name: "index_ingredients_on_organization_id"
   end
 
@@ -319,6 +320,8 @@ ActiveRecord::Schema.define(version: 2020_10_03_220502) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "organization_id"
+    t.index ["organization_id"], name: "index_vendors_on_organization_id"
   end
 
 end

@@ -8,6 +8,7 @@
 #  volume_weight_ratio :float
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  default_vendor_id   :bigint
 #  organization_id     :bigint           not null
 #
 # Indexes

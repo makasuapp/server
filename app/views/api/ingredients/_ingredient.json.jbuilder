@@ -1,0 +1,1 @@
+json.extract! ingredient, :id, :name, :volume_weight_ratio, :default_vendor_id
