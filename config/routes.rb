@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     resources :predicted_orders, only: [:index]
     post 'predicted_orders/for_date', to: 'predicted_orders#update_for_date'
 
+    resources :ingredients, only: [:index, :create, :update]
+    resources :vendors, only: [:index, :create, :update]
   end
 
   post 'wix/orders', to: 'wix#orders_webhook'
