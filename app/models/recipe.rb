@@ -240,25 +240,27 @@ class Recipe < ApplicationRecord
       touched_steps << curr_step.id
 
       touched_inputs = []
-      recipe_step_param[:inputs].each do |i, input_param|
-        if input_param[:id].present?
-          curr_input = StepInput.find(input_param[:id])
+      if recipe_step_params[:inputs].present?
+        recipe_step_param[:inputs].each do |i, input_param|
+          if input_param[:id].present?
+            curr_input = StepInput.find(input_param[:id])
 
-          updated_input = curr_input.update_input(input_param)
-          if updated_input.id != curr_input.id
-            touched_inputs << curr_input.id
+            updated_input = curr_input.update_input(input_param)
+            if updated_input.id != curr_input.id
+              touched_inputs << curr_input.id
+              need_snapshot = true
+              curr_input = updated_input
+            end
+          else
+            curr_input = StepInput.new(input_param)
             need_snapshot = true
-            curr_input = updated_input
           end
-        else
-          curr_input = StepInput.new(input_param)
-          need_snapshot = true
+
+          curr_input.recipe_step_id = curr_step.id
+          curr_input.save!
+
+          touched_inputs << curr_input.id
         end
-
-        curr_input.recipe_step_id = curr_step.id
-        curr_input.save!
-
-        touched_inputs << curr_input.id
       end
 
       to_remove_inputs = curr_step.inputs.latest.where.not(id: touched_inputs)

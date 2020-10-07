@@ -41,7 +41,7 @@ class Api::IngredientsController < ApplicationController
 
   private
   def set_ingredients
-    @ingredients = Ingredient.where(organization_id: @kitchen.organization_id)
+    @ingredients = Ingredient.where(organization_id: @kitchen.organization_id).order("id ASC")
   end
 
 
