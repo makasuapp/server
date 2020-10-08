@@ -23,4 +23,5 @@ class Ingredient < ApplicationRecord
   has_many :step_inputs, as: :inputable
   has_many :day_ingredients
   belongs_to :organization
+  belongs_to :default_vendor, class_name: "Vendor"
 end

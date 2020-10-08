@@ -20,3 +20,4 @@
 
 costco:
   name: "Costco"
+  organization: test

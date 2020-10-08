@@ -24,20 +24,25 @@
 salt:
   name: "Salt"
   organization: test
+  default_vendor: costco
 
 sesame_paste:
   name: "Sesame Paste"
   organization: test
+  default_vendor: costco
 
 sesame_oil:
   name: "Sesame Oil"
   organization: test
+  default_vendor: costco
 
 green_onion:
   name: "Green Onion"
   volume_weight_ratio: 0.4057618178129438
   organization: test
+  default_vendor: costco
 
 chicken:
   name: "Whole Chicken"
   organization: test
+  default_vendor: costco

@@ -17,4 +17,5 @@ class Vendor < ApplicationRecord
   extend T::Sig
 
   belongs_to :organization
+  has_many :ingredients, foreign_key: "default_vendor_id"
 end
