@@ -1,12 +1,12 @@
 # TODO: fix tests that are failing on CI for whatever reason so we can integrate thi
-# name: test
+name: test
 
-# on: push
+on: push
 
-# jobs:
-#   build:
-#     name: Tests
-#     runs-on: ubuntu-latest
+jobs:
+  build:
+    name: Tests
+    runs-on: ubuntu-latest
 #     services:
 #       postgres:
 #         image: postgres:11
@@ -15,9 +15,9 @@
 #         env:
 #           POSTGRES_USER: postgres
 #           POSTGRES_PASSWORD: postgres
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
 #       - name: Setup Ruby
 #         uses: ruby/setup-ruby@v1

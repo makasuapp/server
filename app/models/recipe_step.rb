@@ -69,11 +69,11 @@ class RecipeStep < ApplicationRecord
       raise "Unexpected updating an old step id=#{self.id}"
     end
 
-    puts ">>>> updating step. params[:instruction]=#{params[:instruction]} instruction=#{self.instruction} eq=#{params[:instruction] == self.instruction}"
-    puts "params[max]=#{params[:max_before_sec]} max=#{self.max_before_sec} eq=#{params[:max_before_sec] == self.max_before_sec}"
-    puts "params[min]=#{params[:min_before_sec]} min=#{self.min_before_sec} eq=#{params[:min_before_sec] == self.min_before_sec}"
-    puts "params[number]=#{params[:number]} number=#{self.number} eq=#{params[:number] == self.number}"
-    puts "params[duration]=#{params[:duration_sec]} duration=#{self.duration_sec} eq=#{params[:duration_sec] == self.duration_sec}"
+    Rails.logger.info ">>>> updating step. params[:instruction]=#{params[:instruction]} instruction=#{self.instruction} eq=#{params[:instruction] == self.instruction}"
+    Rails.logger.info "params[max]=#{params[:max_before_sec]} max=#{self.max_before_sec} eq=#{params[:max_before_sec] == self.max_before_sec}"
+    Rails.logger.info "params[min]=#{params[:min_before_sec]} min=#{self.min_before_sec} eq=#{params[:min_before_sec] == self.min_before_sec}"
+    Rails.logger.info "params[number]=#{params[:number]} number=#{self.number} eq=#{params[:number] == self.number}"
+    Rails.logger.info "params[duration]=#{params[:duration_sec]} duration=#{self.duration_sec} eq=#{params[:duration_sec] == self.duration_sec}"
     if (
       (params[:instruction] && params[:instruction] != self.instruction) ||
       params[:max_before_sec] != self.max_before_sec ||
