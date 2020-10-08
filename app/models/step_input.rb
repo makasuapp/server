@@ -95,7 +95,7 @@ class StepInput < ApplicationRecord
     end
 
     if (
-      (params[:quantity] && params[:quantity] != self.quantity) || 
+      (params[:quantity] && params[:quantity].to_f != self.quantity) || 
       params[:unit] != self.unit 
     )
       input = self.dup

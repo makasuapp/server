@@ -218,8 +218,6 @@ class Recipe < ApplicationRecord
     ),
     init_need_snapshot: T::Boolean).void}
   def update_components(recipe_step_params, init_need_snapshot = false)
-    Rails.logger.info ">>> #{recipe_step_params.to_json}"
-
     touched_steps = []
     need_snapshot = T.let(init_need_snapshot, T::Boolean)
 
@@ -227,14 +225,12 @@ class Recipe < ApplicationRecord
       if recipe_step_param[:id].present?
         curr_step = RecipeStep.find(recipe_step_param[:id])
 
-        Rails.logger.info ">>> curr_step: #{curr_step.id}"
         updated_step = curr_step.update_step(recipe_step_param)
         if updated_step.id != curr_step.id
           touched_steps << curr_step.id
           need_snapshot = true
           curr_step = updated_step
         end
-        Rails.logger.info ">> updated_step: #{updated_step.id}"
       else
         base_recipe_step_param = recipe_step_param.clone
         base_recipe_step_param[:inputs] = []
@@ -246,7 +242,6 @@ class Recipe < ApplicationRecord
       touched_inputs = []
       if recipe_step_param[:inputs].present?
         recipe_step_param[:inputs].each do |i, input_param|
-          Rails.logger.info ">> input #{input_param.to_json}"
           if input_param[:id].present?
             curr_input = StepInput.find(input_param[:id])
 
