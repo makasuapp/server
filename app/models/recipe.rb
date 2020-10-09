@@ -184,7 +184,8 @@ class Recipe < ApplicationRecord
         prev_max_sec == nil && step.max_before_sec != nil ||
         prev_max_sec != nil && step.max_before_sec != nil && T.must(step.max_before_sec) > prev_max_sec ||
         step.min_before_sec != nil && step.max_before_sec != nil && T.must(step.max_before_sec) > T.must(step.min_before_sec)
-        puts "step #{step.id} has invalid min/max"
+
+        Raven.capture_exception("step #{step.id} has invalid min/max")
         return false
       end
       prev_min_sec = step.min_before_sec
@@ -194,17 +195,17 @@ class Recipe < ApplicationRecord
         child_recipe = recipe_input.inputable
 
         if child_recipe.id == checking_recipe_id
-          puts "child recipe #{child_recipe.id} is same as recipe, causing loop"
+          Raven.capture_exception("child recipe #{child_recipe.id} is same as recipe, causing loop")
           return false
         end
 
         unless child_recipe.is_valid?(checking_recipe_id)
-          puts "child recipe #{child_recipe.id} is invalid"
+          Raven.capture_exception("child recipe #{child_recipe.id} is invalid")
           return false
         end
 
         if !UnitConverter.can_convert?(recipe_input.unit, child_recipe.unit, child_recipe.volume_weight_ratio)
-          puts "#{child_recipe.name} in #{self.name} can't convert #{recipe_input.unit} to #{child_recipe.unit}"
+          Raven.capture_exception("#{child_recipe.name} in #{self.name} can't convert #{recipe_input.unit} to #{child_recipe.unit}")
           return false
         end
       end
@@ -288,7 +289,7 @@ class Recipe < ApplicationRecord
   end
 
   private
-  
+
   sig {void}
   def nil_empty_unit
     if self.unit == ""
