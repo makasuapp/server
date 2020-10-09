@@ -30,6 +30,7 @@ class Recipe < ApplicationRecord
   has_many :predicted_orders
   belongs_to :organization
 
+  before_save :nil_empty_unit, if: :will_save_change_to_unit?
   after_save :update_price, if: :saved_change_to_current_price_cents
 
   sig {returns(Recipe::ActiveRecord_Relation)}
@@ -287,6 +288,14 @@ class Recipe < ApplicationRecord
   end
 
   private
+  
+  sig {void}
+  def nil_empty_unit
+    if self.unit == ""
+      self.unit = nil
+    end
+  end
+
   sig {void}
   def update_price
     if self.current_price_cents.present?

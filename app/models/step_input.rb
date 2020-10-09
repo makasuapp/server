@@ -27,6 +27,8 @@ class StepInput < ApplicationRecord
   belongs_to :recipe_step
   belongs_to :inputable, polymorphic: true
 
+  before_save :nil_empty_unit, if: :will_save_change_to_unit?
+
   sig {returns(T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
   def self.latest
     self.where(removed: false)
@@ -111,5 +113,14 @@ class StepInput < ApplicationRecord
     end
 
     input
+  end
+
+  private
+
+  sig {void}
+  def nil_empty_unit
+    if self.unit == ""
+      self.unit = nil
+    end
   end
 end
