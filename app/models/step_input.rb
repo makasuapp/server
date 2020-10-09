@@ -95,10 +95,14 @@ class StepInput < ApplicationRecord
     end
 
     if (
+      (params[:inputable_id] && params[:inputable_id].to_i != self.inputable_id) ||
+      (params[:inputable_type] && params[:inputable_type] != self.inputable_type) ||
       (params[:quantity] && params[:quantity].to_f != self.quantity) || 
       params[:unit] != self.unit 
     )
       input = self.dup
+      input.inputable_id = params[:inputable_id] || self.inputable_id
+      input.inputable_type = params[:inputable_type] || self.inputable_type
       input.quantity = params[:quantity] || self.quantity
       input.unit = params[:unit]
       input.save!

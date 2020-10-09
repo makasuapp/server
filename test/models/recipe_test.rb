@@ -158,10 +158,11 @@ class UpdateComponentTest < ActiveSupport::TestCase
   test "update_components doesn't snapshot if nothing changed" do
     RecipeSnapshot.expects(:create_for!).never
     @r.update_components({"0": {
-      id: @step.id,
+      id: @step.id.to_s,
+      number: "1",
       inputs: {"0": {
-        id: @input.id,
-        quantity: @input.quantity,
+        id: @input.id.to_s,
+        quantity: @input.quantity.to_s,
         unit: @input.unit
       }}
     }})
@@ -170,10 +171,10 @@ class UpdateComponentTest < ActiveSupport::TestCase
   test "update_components init snapshot needs snapshot" do
     RecipeSnapshot.expects(:create_for!).once
     @r.update_components({"0": {
-      id: @step.id,
+      id: @step.id.to_s,
       inputs: {"0": {
-        id: @input.id,
-        quantity: @input.quantity,
+        id: @input.id.to_s,
+        quantity: @input.quantity.to_s,
         unit: @input.unit
       }}
     }}, true)
@@ -192,7 +193,7 @@ class UpdateComponentTest < ActiveSupport::TestCase
   test "update_components removes untouched inputs" do
     RecipeSnapshot.expects(:create_for!).once
     @r.update_components({"0": {
-      id: @step.id, 
+      id: @step.id.to_s, 
       inputs: {}
     }})
 
@@ -202,21 +203,29 @@ class UpdateComponentTest < ActiveSupport::TestCase
   end
   
   test "update_components creates new input on existing step if updates" do
+    ingredient = ingredients(:salt)
+
     RecipeSnapshot.expects(:create_for!).once
     @r.update_components({"0": {
-      id: @step.id,
+      id: @step.id.to_s,
       inputs: {"0": {
-        id: @input.id,
-        quantity: 12,
+        id: @input.id.to_s,
+        inputable_type: StepInputType::Ingredient,
+        inputable_id: ingredient.id,
+        quantity: "12",
         unit: "kg"
       }}
     }})
 
+    assert @r.recipe_steps.latest.first.id == @step.id
+
     assert @input.reload.removed
     assert @input.unit != "kg"
     assert @input.quantity != 12
+    assert @input.inputable_id != ingredient.id
 
     new_input = @step.inputs.latest.first
+    assert new_input.inputable_id == ingredient.id
     assert new_input.quantity == 12
     assert new_input.unit == "kg"
   end
@@ -224,15 +233,15 @@ class UpdateComponentTest < ActiveSupport::TestCase
   test "update_components creates new steps/inputs if updates on both" do
     RecipeSnapshot.expects(:create_for!).once
     @r.update_components({"0": {
-      id: @step.id,
+      id: @step.id.to_s,
       instruction: "A new instruction",
-      number: 2,
-      max_before_sec: 12,
-      min_before_sec: 30,
-      duration_sec: 5,
+      number: "2",
+      max_before_sec: "12",
+      min_before_sec: "30",
+      duration_sec: "5",
       inputs: {"0": {
-        id: @input.id,
-        quantity: 12,
+        id: @input.id.to_s,
+        quantity: "12",
         unit: "kg"
       }}
     }})
@@ -262,28 +271,28 @@ class UpdateComponentTest < ActiveSupport::TestCase
     RecipeSnapshot.expects(:create_for!).once
     @r.update_components({
       "0": {
-        id: @step.id,
+        id: @step.id.to_s,
         inputs: {"0": {
-          id: @input.id,
-          quantity: @input.quantity,
+          id: @input.id.to_s,
+          quantity: @input.quantity.to_s,
           unit: @input.unit
         }}
       }, 
       "1": {
         instruction: "A new instruction",
-        number: 2,
-        duration_sec: 5,
+        number: "2",
+        duration_sec: "5",
         inputs: {
           "0": {
             inputable_type: StepInputType::Ingredient,
-            inputable_id: @input.inputable_id,
-            quantity: 12,
+            inputable_id: @input.inputable_id.to_s,
+            quantity: "12",
             unit: "kg"
           },
           "1": {
             inputable_type: StepInputType::RecipeStep,
-            inputable_id: @step.id,
-            quantity: 1
+            inputable_id: @step.id.to_s,
+            quantity: "1"
           }
         }
       }
@@ -301,6 +310,7 @@ class UpdateComponentTest < ActiveSupport::TestCase
 
     assert new_step.inputs.latest.count == 2
     new_input = new_step.inputs.latest.first
+    assert new_input.inputable_id == @input.inputable_id
     assert new_input.id.present?
     assert new_input.quantity == 12
     assert new_input.unit == "kg"
