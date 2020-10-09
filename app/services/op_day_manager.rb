@@ -235,23 +235,51 @@ class OpDayManager
       DayInput::ActiveRecord_Relation, 
       DayInput::ActiveRecord_AssociationRelation,
       T::Array[DayInput]), 
-    vendor: Vendor, date: T.any(DateTime, ActiveSupport::TimeWithZone),
+    date: T.any(DateTime, ActiveSupport::TimeWithZone),
     kitchen: Kitchen).void}
-  def self.create_procurement(day_inputs, vendor, date, kitchen)
-    po = ProcurementOrder
-    po = ProcurementOrder.create!(
-      for_date: date, 
-      order_type: "manual",
-      kitchen_id: kitchen.id,
-      vendor_id: vendor.id
-    )
+  def self.create_procurement(day_inputs, date, kitchen)
+    created_orders = {}
+
     day_inputs.each do |di|
       if di.inputable_type == DayInputType::Ingredient
-        po.procurement_items.create!(
-          ingredient_id: di.inputable_id, 
-          quantity: di.expected_qty,
-          unit: di.unit
-        )
+        ingredient = Ingredient.find(di.inputable_id)
+        vendor = Vendor.find(ingredient.default_vendor_id)
+
+        po = created_orders[vendor.id]
+        if po.nil?
+          po = ProcurementOrder.create!(
+            for_date: date, 
+            order_type: "manual",
+            kitchen_id: kitchen.id,
+            vendor_id: vendor.id
+          )
+          created_orders[vendor.id] = po
+        end
+
+        items = po.procurement_items.where(ingredient_id: ingredient.id)
+        if items.count == 0
+          po.procurement_items.create!(
+            ingredient_id: di.inputable_id, 
+            quantity: di.expected_qty,
+            unit: di.unit
+          )
+        else
+          matching = items.find { |i| 
+            UnitConverter.can_convert?(di.unit, i.unit, ingredient.volume_weight_ratio) 
+          }
+
+          if matching.present?
+            new_qty = UnitConverter.convert(di.expected_qty, di.unit, matching.unit,
+              ingredient.volume_weight_ratio) + matching.quantity
+            matching.update_attributes!(quantity: new_qty)
+          else
+            po.procurement_items.create!(
+              ingredient_id: di.inputable_id, 
+              quantity: di.expected_qty,
+              unit: di.unit
+            )
+          end
+        end
       end
     end
   end

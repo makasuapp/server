@@ -18,6 +18,15 @@ module Ingredient::GeneratedAttributeMethods
   def created_at?; end
 
   sig { returns(Integer) }
+  def default_vendor_id; end
+
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
+  def default_vendor_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def default_vendor_id?; end
+
+  sig { returns(Integer) }
   def id; end
 
   sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }

@@ -39,6 +39,24 @@ class Api::OpDaysController < ApplicationController
     render formats: :json
   end
 
+  #TODO(test)
+  def generate_procurements
+    start_date = params[:start].to_datetime
+    end_date = params[:end].to_datetime
+
+    kitchen = Kitchen.find(params[:kitchen_id])
+
+    op_days = OpDay.where(date: start_date..end_date)
+      .where(kitchen_id: kitchen.id)
+    day_inputs = DayInput
+      .where(op_day_id: op_days.map(&:id))
+      .where(inputable_type: DayInputType::Ingredient)
+
+    OpDayManager.create_procurement(day_inputs, start_date, kitchen)
+
+    head :ok
+  end
+
   def add_inputs
     #TODO(timezone)
     if params[:date].present?

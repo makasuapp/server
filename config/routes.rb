@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     post 'op_days/save_inputs_qty', to: 'op_days#save_inputs_qty'
     post 'op_days/save_prep_qty', to: 'op_days#save_prep_qty'
     post 'op_days/add_inputs', to: 'op_days#add_inputs'
+    post 'op_days/generate_procurements', to: 'op_days#generate_procurements'
 
     resources :orders, only: [:create, :index]
     post 'orders/:id/update_state', to: 'orders#update_state'

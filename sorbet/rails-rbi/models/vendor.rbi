@@ -35,6 +35,15 @@ module Vendor::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def name?; end
 
+  sig { returns(Integer) }
+  def organization_id; end
+
+  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
+  def organization_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def organization_id?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def updated_at; end
 
@@ -43,6 +52,32 @@ module Vendor::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def updated_at?; end
+end
+
+module Vendor::GeneratedAssociationMethods
+  sig { returns(::Ingredient::ActiveRecord_Associations_CollectionProxy) }
+  def ingredients; end
+
+  sig { returns(T::Array[Integer]) }
+  def ingredient_ids; end
+
+  sig { params(value: T::Enumerable[::Ingredient]).void }
+  def ingredients=(value); end
+
+  sig { returns(::Organization) }
+  def organization; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Organization).void)).returns(::Organization) }
+  def build_organization(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Organization).void)).returns(::Organization) }
+  def create_organization(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Organization).void)).returns(::Organization) }
+  def create_organization!(*args, &block); end
+
+  sig { params(value: ::Organization).void }
+  def organization=(value); end
 end
 
 module Vendor::CustomFinderMethods
@@ -64,6 +99,7 @@ end
 
 class Vendor < ApplicationRecord
   include Vendor::GeneratedAttributeMethods
+  include Vendor::GeneratedAssociationMethods
   extend Vendor::CustomFinderMethods
   extend Vendor::QueryMethodsReturningRelation
   RelationType = T.type_alias { T.any(Vendor::ActiveRecord_Relation, Vendor::ActiveRecord_Associations_CollectionProxy, Vendor::ActiveRecord_AssociationRelation) }

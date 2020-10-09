@@ -224,6 +224,13 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_recipes_url(*args, **kwargs); end
 
+  # Sigs for route /api/recipes/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_recipe_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_recipe_url(*args, **kwargs); end
+
   # Sigs for route /api/op_days(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_op_days_path(*args, **kwargs); end
@@ -300,6 +307,34 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_predicted_orders_for_date_url(*args, **kwargs); end
+
+  # Sigs for route /api/ingredients(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_ingredients_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_ingredients_url(*args, **kwargs); end
+
+  # Sigs for route /api/ingredients/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_ingredient_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_ingredient_url(*args, **kwargs); end
+
+  # Sigs for route /api/vendors(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_vendors_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_vendors_url(*args, **kwargs); end
+
+  # Sigs for route /api/vendors/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_vendor_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_vendor_url(*args, **kwargs); end
 
   # Sigs for route /wix/orders(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
