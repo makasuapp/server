@@ -82,7 +82,11 @@ class Api::OrdersController < ApplicationController
       @orders = @orders
         .before_date(date.to_date, "America/Toronto")
         .where.not(aasm_state: Order::STATE_DELIVERED)
+
+      #refreshing on app, confirm any that haven't been confirmed
+      @orders.where(confirmed_at: nil).update_all(confirmed_at: DateTime.now)
     end
+
 
     render formats: :json
   end
@@ -98,7 +102,9 @@ class Api::OrdersController < ApplicationController
   end
 
   def confirm
-    @order.update_attributes!(confirmed_at: DateTime.now)
+    if @order.confirmed_at.nil?
+      @order.update_attributes!(confirmed_at: DateTime.now)
+    end
 
     head :ok
   end
