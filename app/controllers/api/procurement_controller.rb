@@ -27,12 +27,11 @@ class Api::ProcurementController < ApplicationController
       item.got_qty = update[:got_qty]
       item.got_unit = update[:got_unit]
       item.price_cents = update[:price_cents]
-      item.price_unit = update[:price_unit]
 
       item
     end
 
-    ProcurementItem.import items, on_duplicate_key_update: [:got_qty, :got_unit, :price_cents, :price_unit]
+    ProcurementItem.import items, on_duplicate_key_update: [:got_qty, :got_unit, :price_cents]
 
     head :ok
   end

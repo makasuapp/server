@@ -5,7 +5,7 @@ json.array!(@procurement_orders) do |order|
 
   json.items do 
     json.array!(order.procurement_items) do |pi|
-      json.extract! pi, :id, :ingredient_id, :procurement_order_id, :quantity, :unit, :got_qty, :got_unit, :price_cents, :price_unit
+      json.extract! pi, :id, :ingredient_id, :procurement_order_id, :quantity, :unit, :got_qty, :got_unit, :price_cents
     end
   end
 end

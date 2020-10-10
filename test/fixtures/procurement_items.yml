@@ -6,7 +6,6 @@
 #  got_qty              :float
 #  got_unit             :string
 #  price_cents          :integer
-#  price_unit           :string
 #  quantity             :float            not null
 #  unit                 :string
 #  created_at           :datetime         not null

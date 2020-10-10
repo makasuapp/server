@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_144549) do
+ActiveRecord::Schema.define(version: 2020_10_10_012343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,7 +180,6 @@ ActiveRecord::Schema.define(version: 2020_10_08_144549) do
     t.bigint "ingredient_id", null: false
     t.float "quantity", null: false
     t.string "unit"
-    t.string "price_unit"
     t.integer "price_cents"
     t.float "got_qty"
     t.string "got_unit"
@@ -234,7 +233,6 @@ ActiveRecord::Schema.define(version: 2020_10_08_144549) do
     t.integer "min_before_sec"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "output_name"
     t.boolean "removed", default: false, null: false
     t.index ["recipe_id", "removed"], name: "index_recipe_steps_on_recipe_id_and_removed"
   end

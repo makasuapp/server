@@ -9,7 +9,6 @@
 #  max_before_sec :integer
 #  min_before_sec :integer
 #  number         :integer          not null
-#  output_name    :string
 #  removed        :boolean          default(FALSE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

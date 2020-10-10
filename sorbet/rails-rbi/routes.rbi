@@ -259,6 +259,13 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_op_days_add_inputs_url(*args, **kwargs); end
 
+  # Sigs for route /api/op_days/generate_procurements(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_op_days_generate_procurements_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_op_days_generate_procurements_url(*args, **kwargs); end
+
   # Sigs for route /api/orders(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_orders_path(*args, **kwargs); end

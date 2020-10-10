@@ -62,15 +62,6 @@ module ProcurementItem::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def price_cents?; end
 
-  sig { returns(T.nilable(String)) }
-  def price_unit; end
-
-  sig { params(value: T.nilable(T.any(String, Symbol))).void }
-  def price_unit=(value); end
-
-  sig { returns(T::Boolean) }
-  def price_unit?; end
-
   sig { returns(Integer) }
   def procurement_order_id; end
 
