@@ -38,11 +38,7 @@ class RecipeStep < ApplicationRecord
 
   sig {returns(String)}
   def name
-    if self.output_name.present?
-      T.must(self.output_name)
-    else
-      "#{self.recipe.name} step #{self.number}"
-    end
+    "#{self.recipe.name} step #{self.number}"
   end
 
   sig {params(for_date: T.any(DateTime, ActiveSupport::TimeWithZone)).returns(DateTime)}
