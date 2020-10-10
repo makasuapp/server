@@ -6,6 +6,7 @@
 #  id                   :bigint           not null, primary key
 #  aasm_state           :string           not null
 #  comment              :string
+#  confirmed_at         :datetime
 #  for_time             :datetime
 #  order_type           :string           not null
 #  created_at           :datetime         not null

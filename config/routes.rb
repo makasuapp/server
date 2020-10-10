@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:create, :index]
     post 'orders/:id/update_state', to: 'orders#update_state'
     post 'orders/update_items', to: 'orders#update_items'
+    post 'orders/:id/confirm', to: 'orders#confirm'
 
     resources :procurement, only: [:index]
     post 'procurement/update_items', to: 'procurement#update_items'

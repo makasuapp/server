@@ -26,6 +26,15 @@ module Order::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def comment?; end
 
+  sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
+  def confirmed_at; end
+
+  sig { params(value: T.nilable(T.any(Date, Time, ActiveSupport::TimeWithZone))).void }
+  def confirmed_at=(value); end
+
+  sig { returns(T::Boolean) }
+  def confirmed_at?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def created_at; end
 

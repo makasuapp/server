@@ -1,6 +1,6 @@
 # typed: ignore
 class Api::OrdersController < ApplicationController
-  before_action :set_order, only: [:update_state]
+  before_action :set_order, only: [:update_state, :confirm]
 
   def create
     @customer = Customer.assign_or_init_by_contact(customer_params[:phone_number], 
@@ -95,6 +95,12 @@ class Api::OrdersController < ApplicationController
     end
 
     render :show
+  end
+
+  def confirm
+    @order.update_attributes!(confirmed_at: DateTime.now)
+
+    head :ok
   end
 
   def update_items

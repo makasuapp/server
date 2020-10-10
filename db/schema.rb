@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_10_012343) do
+ActiveRecord::Schema.define(version: 2020_10_10_182640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_012343) do
     t.bigint "integration_id"
     t.string "integration_order_id"
     t.string "comment"
+    t.datetime "confirmed_at"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["integration_id", "integration_order_id"], name: "index_orders_on_integration_id_and_integration_order_id"
     t.index ["kitchen_id", "for_time", "created_at", "aasm_state"], name: "idx_kitchen_time"
