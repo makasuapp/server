@@ -53,6 +53,15 @@ module ProcurementItem::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def ingredient_id?; end
 
+  sig { returns(T::Boolean) }
+  def latest_price; end
+
+  sig { params(value: T::Boolean).void }
+  def latest_price=(value); end
+
+  sig { returns(T::Boolean) }
+  def latest_price?; end
+
   sig { returns(T.nilable(Integer)) }
   def price_cents; end
 
@@ -62,10 +71,10 @@ module ProcurementItem::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def price_cents?; end
 
-  sig { returns(Integer) }
+  sig { returns(T.nilable(Integer)) }
   def procurement_order_id; end
 
-  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
+  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
   def procurement_order_id=(value); end
 
   sig { returns(T::Boolean) }
@@ -115,7 +124,7 @@ module ProcurementItem::GeneratedAssociationMethods
   sig { params(value: ::Ingredient).void }
   def ingredient=(value); end
 
-  sig { returns(::ProcurementOrder) }
+  sig { returns(T.nilable(::ProcurementOrder)) }
   def procurement_order; end
 
   sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::ProcurementOrder).void)).returns(::ProcurementOrder) }
@@ -127,7 +136,7 @@ module ProcurementItem::GeneratedAssociationMethods
   sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::ProcurementOrder).void)).returns(::ProcurementOrder) }
   def create_procurement_order!(*args, &block); end
 
-  sig { params(value: ::ProcurementOrder).void }
+  sig { params(value: T.nilable(::ProcurementOrder)).void }
   def procurement_order=(value); end
 end
 

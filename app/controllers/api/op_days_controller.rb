@@ -52,7 +52,7 @@ class Api::OpDaysController < ApplicationController
       .where(op_day_id: op_days.map(&:id))
       .where(inputable_type: DayInputType::Ingredient)
 
-    OpDayManager.create_procurement(day_inputs, start_date, kitchen)
+    OpDayManager.create_procurement(day_inputs, end_date, kitchen)
 
     head :ok
   end

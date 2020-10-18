@@ -301,6 +301,20 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_procurement_update_items_url(*args, **kwargs); end
 
+  # Sigs for route /api/procurement/costs(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_procurement_costs_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_procurement_costs_url(*args, **kwargs); end
+
+  # Sigs for route /api/procurement/cost(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_procurement_cost_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def api_procurement_cost_url(*args, **kwargs); end
+
   # Sigs for route /api/predicted_orders(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def api_predicted_orders_path(*args, **kwargs); end

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
     resources :procurement, only: [:index]
     post 'procurement/update_items', to: 'procurement#update_items'
+    get 'procurement/costs', to: 'procurement#costs'
+    post 'procurement/cost', to: 'procurement#create_cost'
 
     resources :predicted_orders, only: [:index]
     post 'predicted_orders/for_date', to: 'predicted_orders#update_for_date'

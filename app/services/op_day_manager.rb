@@ -261,7 +261,8 @@ class OpDayManager
           po.procurement_items.create!(
             ingredient_id: di.inputable_id, 
             quantity: di.expected_qty,
-            unit: di.unit
+            unit: di.unit,
+            latest_price: false
           )
         else
           matching = items.find { |i| 
@@ -276,7 +277,8 @@ class OpDayManager
             po.procurement_items.create!(
               ingredient_id: di.inputable_id, 
               quantity: di.expected_qty,
-              unit: di.unit
+              unit: di.unit,
+              latest_price: false
             )
           end
         end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_10_182640) do
+ActiveRecord::Schema.define(version: 2020_10_17_194401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_182640) do
   end
 
   create_table "procurement_items", force: :cascade do |t|
-    t.bigint "procurement_order_id", null: false
+    t.bigint "procurement_order_id"
     t.bigint "ingredient_id", null: false
     t.float "quantity", null: false
     t.string "unit"
@@ -186,7 +186,8 @@ ActiveRecord::Schema.define(version: 2020_10_10_182640) do
     t.string "got_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ingredient_id"], name: "index_procurement_items_on_ingredient_id"
+    t.boolean "latest_price", default: true, null: false
+    t.index ["ingredient_id", "latest_price", "price_cents"], name: "procurement_items_latest_idx"
     t.index ["procurement_order_id"], name: "index_procurement_items_on_procurement_order_id"
   end
 

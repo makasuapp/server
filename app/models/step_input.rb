@@ -49,6 +49,13 @@ class StepInput < ApplicationRecord
     self.where(inputable_type: StepInputType::Ingredient)
   end
 
+  sig {params(recipe: Recipe).returns(
+    T.any(StepInput::ActiveRecord_Relation, StepInput::ActiveRecord_AssociationRelation))}
+  def self.for_recipe(recipe)
+    self.joins({recipe_step: :recipe})
+      .where("recipes.id = ?", recipe.id)
+  end
+
   sig {void}
   def step_input_above_chain
     if self.inputable_type == StepInputType::RecipeStep
