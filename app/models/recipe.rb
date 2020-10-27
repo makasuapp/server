@@ -214,61 +214,63 @@ class Recipe < ApplicationRecord
     true
   end
 
-  sig {params(recipe_step_params: T.any(
+  sig {params(recipe_step_params: T.nilable(T.any(
       T::Hash[String, T::Hash[Symbol, T.untyped]],
       ActionController::Parameters
-    ),
+    )),
     init_need_snapshot: T::Boolean).void}
   def update_components(recipe_step_params, init_need_snapshot = false)
     touched_steps = []
     need_snapshot = T.let(init_need_snapshot, T::Boolean)
 
-    recipe_step_params.each do |idx, recipe_step_param|
-      if recipe_step_param[:id].present?
-        curr_step = RecipeStep.find(recipe_step_param[:id])
+    if recipe_step_params.present?
+      recipe_step_params.each do |idx, recipe_step_param|
+        if recipe_step_param[:id].present?
+          curr_step = RecipeStep.find(recipe_step_param[:id])
 
-        updated_step = curr_step.update_step(recipe_step_param)
-        if updated_step.id != curr_step.id
-          touched_steps << curr_step.id
-          need_snapshot = true
-          curr_step = updated_step
-        end
-      else
-        base_recipe_step_param = recipe_step_param.clone
-        base_recipe_step_param[:inputs] = []
-        curr_step = self.recipe_steps.create!(base_recipe_step_param)
-        need_snapshot = true
-      end
-      touched_steps << curr_step.id
-
-      touched_inputs = []
-      if recipe_step_param[:inputs].present?
-        recipe_step_param[:inputs].each do |i, input_param|
-          if input_param[:id].present?
-            curr_input = StepInput.find(input_param[:id])
-
-            updated_input = curr_input.update_input(input_param)
-            if updated_input.id != curr_input.id
-              touched_inputs << curr_input.id
-              need_snapshot = true
-              curr_input = updated_input
-            end
-          else
-            curr_input = StepInput.new(input_param)
+          updated_step = curr_step.update_step(recipe_step_param)
+          if updated_step.id != curr_step.id
+            touched_steps << curr_step.id
             need_snapshot = true
+            curr_step = updated_step
           end
-
-          curr_input.recipe_step_id = curr_step.id
-          curr_input.save!
-
-          touched_inputs << curr_input.id
+        else
+          base_recipe_step_param = recipe_step_param.clone
+          base_recipe_step_param[:inputs] = []
+          curr_step = self.recipe_steps.create!(base_recipe_step_param)
+          need_snapshot = true
         end
-      end
+        touched_steps << curr_step.id
 
-      to_remove_inputs = curr_step.inputs.latest.where.not(id: touched_inputs)
-      to_remove_inputs.each do |input|
-        need_snapshot = true
-        input.delete_input
+        touched_inputs = []
+        if recipe_step_param[:inputs].present?
+          recipe_step_param[:inputs].each do |i, input_param|
+            if input_param[:id].present?
+              curr_input = StepInput.find(input_param[:id])
+
+              updated_input = curr_input.update_input(input_param)
+              if updated_input.id != curr_input.id
+                touched_inputs << curr_input.id
+                need_snapshot = true
+                curr_input = updated_input
+              end
+            else
+              curr_input = StepInput.new(input_param)
+              need_snapshot = true
+            end
+
+            curr_input.recipe_step_id = curr_step.id
+            curr_input.save!
+
+            touched_inputs << curr_input.id
+          end
+        end
+
+        to_remove_inputs = curr_step.inputs.latest.where.not(id: touched_inputs)
+        to_remove_inputs.each do |input|
+          need_snapshot = true
+          input.delete_input
+        end
       end
     end
 

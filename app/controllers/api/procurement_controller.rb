@@ -30,6 +30,9 @@ class Api::ProcurementController < ApplicationController
       .order("updated_at DESC")
   end
 
+  #TODO(recipe_cost): think about what's a better way to update price across units
+  #if we don't do it that way, then they have to know to manually update the price of a specific thing
+  #e.g. if bought 1 of something, have to manually create separate price for g of it
   def create_cost
     @kitchen = Kitchen.find_by(id: params[:kitchen_id])
 
