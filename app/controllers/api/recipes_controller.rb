@@ -25,7 +25,7 @@ class Api::RecipesController < ApplicationController
       @recipe.update_components(recipe_params[:recipe_steps])
     rescue => e
       @recipe.destroy!
-      render json: e, status: unprocessable_entity
+      render json: e, status: :unprocessable_entity
       return
     end
 
