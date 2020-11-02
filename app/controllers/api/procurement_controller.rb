@@ -30,7 +30,7 @@ class Api::ProcurementController < ApplicationController
       .order("updated_at DESC")
   end
 
-  #TODO(recipe_cost): think about what's a better way to update price across units
+  #think about what's a better way to update price across units
   #if we don't do it that way, then they have to know to manually update the price of a specific thing
   #e.g. if bought 1 of something, have to manually create separate price for g of it
   def create_cost
@@ -41,19 +41,29 @@ class Api::ProcurementController < ApplicationController
     @item.unit = @item.got_unit
     @item.latest_price = true
 
-    #TODO(recipe_cost): set old price of same unit to latest=false
+    old_items = ProcurementItem.where(
+      ingredient_id: @item.ingredient_id,
+      latest_price: true
+    )
 
     unless @item.save
       render json: @item.errors, status: :unprocessable_entity
       return
     end
 
+    old_items.each do |old_item|
+      ingredient = Ingredient.find(old_item.ingredient_id)
+      if @item.id != old_item.id && 
+        UnitConverter.can_convert?(@item.unit, old_item.unit, ingredient.volume_weight_ratio)
+        old_item.update_attributes!(latest_price: false)
+      end
+    end
+
     head :ok
   end
 
   def update_items
-    #TODO(recipe_cost): build map of latest priced procurement items
-
+    old_items = {}
     latest_updates = {}
     params[:updates].each do |x| 
       id = x[:id] 
@@ -69,15 +79,27 @@ class Api::ProcurementController < ApplicationController
       item.got_qty = update[:got_qty]
       item.got_unit = update[:got_unit]
       item.price_cents = update[:price_cents]
-
-      #TODO(recipe_cost): if price is not nil and is more recent than latest priced procurement item,
-      #update this latest_price=true, the other to false 
-      #what do about edge case where setting price to nil and is latest?
-
       items << item
+
+      #what do about edge case where setting price to nil and is latest?
+      if item.price_cents.present?
+        old_items = ProcurementItem.where(
+          ingredient_id: item.ingredient_id,
+          latest_price: true
+        )
+
+        old_items.each do |old_item|
+          ingredient = Ingredient.find(old_item.ingredient_id)
+          if item.id != old_item.id && 
+            UnitConverter.can_convert?(item.unit, old_item.unit, ingredient.volume_weight_ratio)
+            old_item.latest_price = false
+            items << old_item
+          end
+        end
+      end
     end
 
-    ProcurementItem.import items, on_duplicate_key_update: [:got_qty, :got_unit, :price_cents]
+    ProcurementItem.import items, on_duplicate_key_update: [:got_qty, :got_unit, :price_cents, :latest_price]
 
     head :ok
   end

@@ -1,7 +1,7 @@
 json.costs do
   json.array!(@costs) do |pi|
     json.extract! pi, :id, :ingredient_id, :got_qty, :got_unit, :price_cents
-    json.updated_at_sec pi.update_at.to_i
+    json.updated_at_sec pi.updated_at.to_i
   end
 end
 
