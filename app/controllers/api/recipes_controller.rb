@@ -21,7 +21,13 @@ class Api::RecipesController < ApplicationController
       return
     end
 
-    @recipe.update_components(recipe_params[:recipe_steps])
+    begin
+      @recipe.update_components(recipe_params[:recipe_steps])
+    rescue => e
+      @recipe.destroy!
+      render json: e, status: unprocessable_entity
+      return
+    end
 
     set_recipe_steps
 
