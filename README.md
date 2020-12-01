@@ -1,12 +1,11 @@
 # First time setup
 
-1. [Install ruby version manager](https://rvm.io/rvm/install)
-2. Install ruby: `rvm install ruby-2.5.3`
-3. Use the version installed: `rvm --default use ruby-2.5.3`
-4. Install bundler: `gem install bundler`
-5. Install the repo's gems. First time will take a while: `bundle`
-6. Create the database (you might have to install postgres manually first if there's issues): `rake db:create`
-7. Populate the database: `rake db:migrate && rake db:seed`
+1. Install rbenv
+2. Install ruby: `rbenv install $(cat .ruby-version)`
+3. Install bundler: `gem install bundler`
+4. Install the repo's gems. First time will take a while: `bundle`
+5. Create the database (you might have to install postgres manually first if there's issues): `rake db:create`
+6. Populate the database: `rake db:migrate && rake db:seed`
 
 # Update server
 
